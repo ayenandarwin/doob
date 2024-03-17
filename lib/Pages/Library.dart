@@ -3,7 +3,10 @@ import 'package:doob/Libcomponent/AlbumsTabs.dart';
 import 'package:doob/Libcomponent/Artist.dart';
 import 'package:doob/Libcomponent/Folder.dart';
 import 'package:doob/Libcomponent/PodCast.dart';
+import 'package:doob/services/albumServiceProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+//import 'package:provider/provider.dart';
 
 class Library extends StatefulWidget {
   const Library({super.key});
@@ -204,59 +207,128 @@ class Albums extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, '/playlistDetails');
       },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        child: Container(
-          // decoration: BoxDecoration(
-          //   // color: Colors.grey.withOpacity(0.4),
-          //   color: Color.fromARGB(255, 194, 211, 226),
-          //   borderRadius: const BorderRadius.all(
-          //     Radius.circular(10),
-          //   ),
-          // ),
-          child: Row(
-            children: [
-              Container(
-                height: 70,
-                width: 70,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    'lib/Image/joji.png',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                flex: 4,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'SMITHREENS',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: "Century",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
+      child: Consumer(
+        builder: (BuildContext context, ref, Widget? child) {
+          // ref.watch(albumServiceProvider).when(data: (albumList) {
+          //   return Container();
+          // }, error: (Object error, StackTrace stackTrace) {
+          //    return Text('$error');
+          //  }, loading: () {
+          //    return Center(
+          //               child: CircularProgressIndicator(),
+          //             );
+          //  });
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Container(
+              // decoration: BoxDecoration(
+              //   // color: Colors.grey.withOpacity(0.4),
+              //   color: Color.fromARGB(255, 194, 211, 226),
+              //   borderRadius: const BorderRadius.all(
+              //     Radius.circular(10),
+              //   ),
+              // ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 70,
+                    width: 70,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.asset(
+                        'lib/Image/joji.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    Text(
-                      'Joji',
-                      style: TextStyle(
-                          color: Color(0xff8A9A9D),
-                          fontFamily: "Century",
-                          // fontWeight: FontWeight.bold,
-                          fontSize: 12),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'SMITHREENS',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Century",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                        ),
+                        Text(
+                          'Joji',
+                          style: TextStyle(
+                              color: Color(0xff8A9A9D),
+                              fontFamily: "Century",
+                              // fontWeight: FontWeight.bold,
+                              fontSize: 12),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+
+        //  Padding(
+        //   padding: const EdgeInsets.symmetric(vertical: 10),
+        //   child: Container(
+        //     // decoration: BoxDecoration(
+        //     //   // color: Colors.grey.withOpacity(0.4),
+        //     //   color: Color.fromARGB(255, 194, 211, 226),
+        //     //   borderRadius: const BorderRadius.all(
+        //     //     Radius.circular(10),
+        //     //   ),
+        //     // ),
+        //     child: Row(
+        //       children: [
+        //         Container(
+        //           height: 70,
+        //           width: 70,
+        //           child: ClipRRect(
+        //             borderRadius: BorderRadius.circular(8),
+        //             child: Image.asset(
+        //               'lib/Image/joji.png',
+        //               fit: BoxFit.cover,
+        //             ),
+        //           ),
+        //         ),
+        //         SizedBox(
+        //           width: 20,
+        //         ),
+        //         Expanded(
+        //           flex: 4,
+        //           child: Column(
+        //             crossAxisAlignment: CrossAxisAlignment.start,
+        //             children: [
+        //               Text(
+        //                 'SMITHREENS',
+        //                 style: TextStyle(
+        //                     color: Colors.white,
+        //                     fontFamily: "Century",
+        //                     fontWeight: FontWeight.bold,
+        //                     fontSize: 14),
+        //               ),
+        //               Text(
+        //                 'Joji',
+        //                 style: TextStyle(
+        //                     color: Color(0xff8A9A9D),
+        //                     fontFamily: "Century",
+        //                     // fontWeight: FontWeight.bold,
+        //                     fontSize: 12),
+        //               )
+        //             ],
+        //           ),
+        //         )
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }

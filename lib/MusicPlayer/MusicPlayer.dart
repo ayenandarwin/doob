@@ -515,7 +515,8 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                       ),
                     );
                   },
-                  child: Container(
+                  child: 
+                  Container(
                     height: 40,
                     width: 200,
                     decoration: BoxDecoration(

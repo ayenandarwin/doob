@@ -26,13 +26,13 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white),
           borderRadius: BorderRadius.circular(5),
-          color: widget.isCheck ? Colors.white : Colors.transparent,
+          color: widget.isCheck ? Color(0xffFF9800) : Colors.transparent,
         ),
         child: widget.isCheck
             ? Icon(
                 Icons.check,
                 size: 10,
-                color: Colors.black,
+                color: Colors.white,
               )
             : null,
       ),

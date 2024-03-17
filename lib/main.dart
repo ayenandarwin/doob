@@ -1,11 +1,9 @@
 import 'dart:collection';
-
 import 'package:doob/Component/AddToPlaylist.dart';
 import 'package:doob/Component/Empty.dart';
 import 'package:doob/Component/Equalizer.dart';
 import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:doob/Component/FolderDetails.dart';
-import 'package:doob/Component/PageIndicator.dart';
 import 'package:doob/Component/PageProvider.dart';
 import 'package:doob/Component/PlaylistDetails.dart';
 import 'package:doob/Component/Queue.dart';
@@ -16,13 +14,16 @@ import 'package:doob/Pages/CreatePlayList.dart';
 import 'package:doob/Pages/Explore.dart';
 import 'package:doob/Pages/Home.dart';
 import 'package:doob/Pages/Languages.dart';
+import 'package:doob/Pages/Launch.dart';
 import 'package:doob/Pages/Library.dart';
 import 'package:doob/Pages/Login.dart';
 import 'package:doob/Pages/MainSearch.dart';
 import 'package:doob/Pages/Search.dart';
 import 'package:doob/Pages/Setting.dart';
+import 'package:doob/Pages/SignIn.dart';
 import 'package:doob/Pages/SignUp.dart';
 import 'package:doob/Pages/SocialLogin.dart';
+import 'package:doob/Pages/Welcome.dart';
 import 'package:doob/l10n/l10n.dart';
 import 'package:doob/provider/locale.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -75,8 +76,14 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          initialRoute: "/empty",
+          initialRoute: '/',
+          // initialRoute: "/empty",
           routes: {
+            "/": (context) => const LaunchScreen(),
+            "/welcome": (context) => const Welcome(),
+            "/signIn": (context) => const SignIn(),
+            "/signUp": (context) => const SignUp(),
+            "/login": (context) => const Login(),
             "/empty": (context) => const Empty(),
             "/explore": (context) => const Explore(),
             "/library": (context) => const Library(),
