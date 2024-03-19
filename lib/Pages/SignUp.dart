@@ -1,7 +1,11 @@
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:doob/Controller/isLoginController.dart';
+import 'package:doob/services/authorizedService.dart';
 import 'package:doob/utils/constants.dart';
+import 'package:doob/utils/global.dart';
 import 'package:doob/utils/sharedPreference.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
@@ -16,31 +20,46 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   //final dateInput = TextEditingController();
   final nameController = TextEditingController();
+  FocusNode nameFocusNode = FocusNode();
+
   final emailController = TextEditingController();
+  FocusNode emailFocusNode = FocusNode();
+
   final passwordController = TextEditingController();
+  FocusNode passwordFocusNode = FocusNode();
+
   final comfirmPasswordController = TextEditingController();
+  FocusNode comfirmPasswordFocusNode = FocusNode();
+
   final phoneController = TextEditingController();
+  FocusNode phoneFocusNode = FocusNode();
 
-  register(String name, password, phone) async {
-    // final token = await SharedPref.getData(key: SharedPref.token);
-    final response = await http.post(Uri.parse(ApiUrl.registerUrl),
-        // headers: {
-        //   'Accept': 'application/json;charset=UTF-8',
-        //   // 'Authorization': token!
-        // },
-        body: {
-          'name': name,
-          'phone': phone,
-          'password': password,
-        });
+  bool _obscureTextLogin = true;
+  bool _obscureConfirmTextLogin = true;
 
-    if (response.statusCode == 200) {
-      print("API Result ${response.body}");
-      // print('******* $token');
-    } else {
-      print('error');
-    }
-  }
+  final IsLoginController isLoginController = Get.put(IsLoginController());
+  bool isloading = false;
+
+  // register(String name, password, phone) async {
+  //   // final token = await SharedPref.getData(key: SharedPref.token);
+  //   final response = await http.post(Uri.parse(ApiUrl.registerUrl),
+  //       // headers: {
+  //       //   'Accept': 'application/json;charset=UTF-8',
+  //       //   // 'Authorization': token!
+  //       // },
+  //       body: {
+  //         'name': name,
+  //         'phone': phone,
+  //         'password': password,
+  //       });
+
+  //   if (response.statusCode == 200) {
+  //     print("API Result ${response.body}");
+  //     // print('******* $token');
+  //   } else {
+  //     print('error');
+  //   }
+  // }
 
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
@@ -110,6 +129,7 @@ class _SignUpState extends State<SignUp> {
                       height: 50,
                       child: TextField(
                         controller: nameController,
+                        focusNode: nameFocusNode,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Name',
@@ -146,6 +166,7 @@ class _SignUpState extends State<SignUp> {
                       height: 50,
                       child: TextField(
                         controller: emailController,
+                        focusNode: emailFocusNode,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Email',
@@ -185,6 +206,7 @@ class _SignUpState extends State<SignUp> {
                       height: 50,
                       child: TextField(
                         controller: passwordController,
+                        focusNode: passwordFocusNode,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Password',
@@ -224,6 +246,7 @@ class _SignUpState extends State<SignUp> {
                       height: 50,
                       child: TextField(
                         controller: comfirmPasswordController,
+                        focusNode: comfirmPasswordFocusNode,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Comfirm Password',
@@ -263,6 +286,7 @@ class _SignUpState extends State<SignUp> {
                       height: 50,
                       child: TextField(
                         controller: phoneController,
+                        focusNode: phoneFocusNode,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Phone Number',
@@ -375,34 +399,162 @@ class _SignUpState extends State<SignUp> {
                   //     );
                   //   },
                   // ),
-                  InkWell(
-                    onTap: () {
-                      register(
-                          nameController.text.toString(),
-                          //  emailController.text.toString(),
-                          passwordController.text.toString(),
-                          phoneController.text.toString());
-                      Navigator.pushNamed(context, '/login');
+
+                  Consumer(
+                    builder: (context, ref, child) {
+                      return isloading
+                          ? Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 25),
+                              child: Container(
+                                height: 40,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffff9800),
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: Container(
+                                  height: 50,
+                                  alignment: Alignment.center,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            )
+                          // Card(
+                          //     color: CustomColors.mainColor,
+                          //     shape: RoundedRectangleBorder(
+                          //       borderRadius: BorderRadius.circular(5.0),
+                          //     ),
+                          //     elevation: 5,
+                          //     child: Container(
+                          //       height: 50,
+                          //       alignment: Alignment.center,
+                          //       child: CircularProgressIndicator(
+                          //         color: Colors.white,
+                          //       ),
+                          //     ),
+                          //   )
+                          : InkWell(
+                              onTap: () {
+                                nameFocusNode.unfocus();
+                                passwordFocusNode.unfocus();
+                                phoneFocusNode.unfocus();
+                                emailFocusNode.unfocus();
+                                comfirmPasswordFocusNode.unfocus();
+                                setState(() {
+                                  isloading = true;
+                                });
+                                if (nameController.text != "" &&
+                                    phoneController.text != "" &&
+                                    passwordController.text != "" &&
+                                    comfirmPasswordController.text != "" &&
+                                    emailController.text != "") {
+                                  setState(() {
+                                    isloading = true;
+                                  });
+                                  ref
+                                      .watch(authServiceProvider)
+                                      .register(
+                                        name: nameController.text,
+                                        phone: phoneController.text,
+                                        password: passwordController.text,
+                                        //confirm_password: comfirmPasswordController.text,
+                                        //email: emailController.text,
+                                      )
+                                      .then((value) async {
+                                    print(value);
+
+                                    var status = value["status"];
+                                    if (status.toString() == 'true') {
+                                      var token = value["token"];
+
+                                      // var token = value["data"]["token"];
+
+                                      // await SharedPref.setBoolForLoginUser(
+                                      //     key: SharedPref.islogin, value: true);
+                                      await SharedPref.setData(
+                                          key: SharedPref.token,
+                                          value: "Bearer $token");
+                                      //  isLoginController.login();
+                                      Global.isLogIn = true;
+                                      Global.loginStatus();
+                                      setState(() {
+                                        isloading = false;
+                                      });
+                                      Navigator.pop(context);
+                                      // Navigator.pushNamed(
+                                      //     context, '/loginScreen');
+                                      // Get.off(() => VerifyCodeScreen());
+                                    } else {
+                                      setState(() {
+                                        isloading = false;
+                                        phoneController.clear();
+                                        passwordController.clear();
+                                        nameController.clear();
+                                        comfirmPasswordController.clear();
+                                        var error = value["data"]["phone"];
+                                        Get.snackbar("Alert",
+                                            "အကောင့်အသစ်ဖွင့်ခြင်း မအောင်မြင်ပါ");
+                                      });
+                                    }
+                                  });
+                                }
+                                // Navigator.pushNamed(context, '/loginScreen');
+                                // Get.off(() => VerifyCodeScreen());
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 25),
+                                child: Container(
+                                  height: 40,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xffff9800),
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: Center(
+                                    child: Text("Register",
+                                        style: GoogleFonts.mulish(
+                                            color: Color(0xffffffff),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16)),
+                                  ),
+                                ),
+                              ),
+                            );
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 25),
-                      child: Container(
-                        height: 40,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          color: Color(0xffff9800),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Center(
-                          child: Text("Register",
-                              style: GoogleFonts.mulish(
-                                  color: Color(0xffffffff),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16)),
-                        ),
-                      ),
-                    ),
                   ),
+
+                  // InkWell(
+                  //   onTap: () {
+                  //     register(
+                  //         nameController.text.toString(),
+                  //         //  emailController.text.toString(),
+                  //         passwordController.text.toString(),
+                  //         phoneController.text.toString());
+                  //     Navigator.pushNamed(context, '/login');
+                  //   },
+                  // child:
+                  //  Padding(
+                  //   padding: const EdgeInsets.symmetric(vertical: 25),
+                  //   child: Container(
+                  //     height: 40,
+                  //     width: 150,
+                  //     decoration: BoxDecoration(
+                  //       color: Color(0xffff9800),
+                  //       borderRadius: BorderRadius.circular(50),
+                  //     ),
+                  //     child: Center(
+                  //       child: Text("Register",
+                  //           style: GoogleFonts.mulish(
+                  //               color: Color(0xffffffff),
+                  //               fontWeight: FontWeight.bold,
+                  //               fontSize: 16)),
+                  //     ),
+                  //   ),
+                  // ),
+                  //),
                   InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, '/login');

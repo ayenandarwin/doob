@@ -10,7 +10,7 @@ class LaunchScreen extends StatefulWidget {
 class _LaunchScreenState extends State<LaunchScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(milliseconds: 3000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       Navigator.pushNamed(context, '/welcome');
       //passedCheck();
     });

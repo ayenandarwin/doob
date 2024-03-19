@@ -1,4 +1,6 @@
+import 'package:doob/Pages/loginCopy.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignIn extends StatefulWidget {
@@ -198,7 +200,8 @@ class _SignInState extends State<SignIn> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/login');
+                      Navigator.pushNamed(context, '/loginScreen');
+                      // Get.off(LoginScreen());
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 30),

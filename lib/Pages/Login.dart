@@ -20,13 +20,16 @@ class Login extends StatefulWidget {
 
 final phonecontroller = TextEditingController();
 final passwordcontroller = TextEditingController();
-RememberController rememberController = Get.put(RememberController());
+FocusNode phoneFocusNode = FocusNode();
+FocusNode passwordFocusNode = FocusNode();
+
+//RememberController rememberController = Get.put(RememberController());
 
 bool view = true;
 bool _isChecked = true;
 bool _remember = false;
-String? rememberName;
-String? rememberPassword;
+//String? rememberName;
+//String? rememberPassword;
 // bool showPassword = false;
 bool isloading = false;
 

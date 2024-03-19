@@ -48,73 +48,77 @@ class _LibraryState extends State<Library> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Container(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    flex: 4,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Your Library',
-                            style: TextStyle(
-                                color: Color(0xffff9800),
-                                fontFamily: "Century",
-                                letterSpacing: 2,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/search');
-                      },
-                      child: Icon(
-                        Icons.search,
-                        size: 25,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 10, left: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: tabs.map((e) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            currenttabs = e['Page'];
-                            currenttabsID = e['id'];
-                          });
-                        },
-                        child: Libtab(
-                          LableTabs: e['lable'],
-                          selected: currenttabsID == e['id'],
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Container(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Your Library',
+                              style: TextStyle(
+                                  color: Color(0xffff9800),
+                                  fontFamily: "Century",
+                                  letterSpacing: 2,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          ],
                         ),
-                      );
-                    }).toList(),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/search');
+                        },
+                        child: Icon(
+                          Icons.search,
+                          size: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 20, bottom: 10, left: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: tabs.map((e) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              currenttabs = e['Page'];
+                              currenttabsID = e['id'];
+                            });
+                          },
+                          child: Libtab(
+                            LableTabs: e['lable'],
+                            selected: currenttabsID == e['id'],
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
-              ),
-              currenttabs,
-            ],
+                currenttabs,
+              ],
+            ),
           ),
         ),
       ),
@@ -208,16 +212,59 @@ class Albums extends StatelessWidget {
         Navigator.pushNamed(context, '/playlistDetails');
       },
       child: Consumer(
+        
         builder: (BuildContext context, ref, Widget? child) {
-          // ref.watch(albumServiceProvider).when(data: (albumList) {
-          //   return Container();
-          // }, error: (Object error, StackTrace stackTrace) {
-          //    return Text('$error');
-          //  }, loading: () {
-          //    return Center(
-          //               child: CircularProgressIndicator(),
-          //             );
-          //  });
+          ref.watch(albumServiceProvider).when(data: (albumList) {
+            return 
+            Row(
+                children: [
+                  Container(
+                    height: 70,
+                    width: 70,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.asset(
+                        'lib/Image/joji.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${albumList!}',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Century",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                        ),
+                        Text(
+                          'Joji',
+                          style: TextStyle(
+                              color: Color(0xff8A9A9D),
+                              fontFamily: "Century",
+                              // fontWeight: FontWeight.bold,
+                              fontSize: 12),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ) ;
+          }, error: (Object error, StackTrace stackTrace) {
+            return Text('$error');
+          }, loading: () {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          });
 
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
@@ -229,7 +276,8 @@ class Albums extends StatelessWidget {
               //     Radius.circular(10),
               //   ),
               // ),
-              child: Row(
+              child:
+               Row(
                 children: [
                   Container(
                     height: 70,

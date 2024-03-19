@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 final albumServiceProvider =
-    FutureProvider.autoDispose<List<Album?>>((ref) async {
+    FutureProvider.autoDispose<AlbumList?>((ref) async {
   final service = ref.watch(albumProvider);
   final albumData = await service.getAlbumInfo();
   return albumData;
@@ -19,7 +19,7 @@ final albumProvider = Provider((ref) => AlbumService(Dio()));
 
 class AlbumService {
   AlbumService(this._dio);
- Dio _dio;
+  Dio _dio;
 
   //Process? process;
 
@@ -38,6 +38,6 @@ class AlbumService {
       ),
     );
     final request = AlbumList.fromJson(response.data);
-    return request.data;
+    return request;
   }
 }
