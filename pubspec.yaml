@@ -47,6 +47,9 @@ dependencies:
   dio:
   get_storage: 
   url_launcher: ^6.1.8
+  country_picker: 
+  country_code_picker: ^3.0.0
+
 
 
 
@@ -65,6 +68,13 @@ dependencies:
   device_info_plus: 
   freezed_annotation:
   shared_preferences: ^2.2.2
+  connectivity_plus:
+  intl_phone_field: 
+  carousel_slider:
+  fancy_shimmer_image: 
+ 
+
+
 
   
 
@@ -74,6 +84,14 @@ dev_dependencies:
   freezed:  
   build_runner:
   json_serializable:
+  flutter_launcher_icons:
+
+ 
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "asset/Logos/dooblogo.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

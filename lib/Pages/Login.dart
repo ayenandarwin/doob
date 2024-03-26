@@ -443,25 +443,32 @@ class _LoginState extends State<Login> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: RichText(
-                      text: TextSpan(
-                          style: GoogleFonts.mulish(color: Colors.white),
-                          children: [
-                            TextSpan(
-                                text: 'Don\'t have an account? ',
-                                style: TextStyle(
-                                    color: Color(0xff06F94A),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold)),
-                            TextSpan(
-                                text: ' Sign Up',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold))
-                          ]),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,'/'
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: RichText(
+                        text: TextSpan(
+                            style: GoogleFonts.mulish(color: Colors.white),
+                            children: [
+                              TextSpan(
+                                  text: 'Don\'t have an account? ',
+                                  style: TextStyle(
+                                      color: Color(0xff06F94A),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold)),
+                              TextSpan(
+                                  text: ' Sign Up',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold))
+                            ]),
+                      ),
                     ),
                   ),
                 ],

@@ -1,14 +1,18 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:doob/Controller/isLoginController.dart';
+import 'package:doob/Pages/loginCopy.dart';
 import 'package:doob/services/authorizedService.dart';
 import 'package:doob/utils/constants.dart';
 import 'package:doob/utils/global.dart';
 import 'package:doob/utils/sharedPreference.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -18,6 +22,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   //final dateInput = TextEditingController();
   final nameController = TextEditingController();
   FocusNode nameFocusNode = FocusNode();
@@ -279,31 +284,115 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
+                  // IntlPhoneField(
+
+                  // ),
+
+                  // Padding(
+                  //   padding:
+                  //       const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  //   child: SizedBox(
+                  //     height: 70,
+                  //     child: Form(
+                  //       key: _formKey,
+                  //       child: IntlPhoneField(
+                  //         inputFormatters: [
+                  //           LengthLimitingTextInputFormatter(100)
+                  //         ],
+                  //         controller: phoneController,
+                  //         keyboardType: TextInputType.number,
+                  //         focusNode: phoneFocusNode,
+                  //         initialCountryCode: 'MM',
+                  //         dropdownTextStyle:
+                  //             TextStyle(fontSize: 14, color: Colors.white),
+                  //         dropdownIcon: Icon(
+                  //           Icons.arrow_drop_down,
+                  //           color: Colors.white,
+                  //           size: 20,
+                  //         ),
+                  //         style: TextStyle(color: Colors.white),
+                  //         decoration: InputDecoration(
+                  //           labelText: 'Phone Number',
+                  //           // counterText: '',
+                  //           labelStyle: TextStyle(
+                  //               color: Colors.white,
+                  //               fontSize: 14,
+
+                  //               // color: Colors.white.withOpacity(0.6),
+                  //               fontFamily: "Century"),
+                  //           prefixIcon: Icon(
+                  //             Icons.phone_iphone,
+                  //             size: 20,
+
+                  //             color: Colors.white,
+
+                  //             // color: Colors.white.withOpacity(0.4),
+                  //           ),
+                  //           border: OutlineInputBorder(
+                  //             borderRadius: BorderRadius.circular(10),
+                  //             borderSide: BorderSide(
+                  //               color: Colors.white,
+                  //             ),
+                  //           ),
+                  //           enabledBorder: OutlineInputBorder(
+                  //             borderRadius: BorderRadius.circular(10),
+                  //             borderSide:
+                  //                 BorderSide(color: Colors.white, width: 0.3),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     child: SizedBox(
                       height: 50,
-                      child: TextField(
+                      child: TextFormField(
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(100)
+                        ],
+                        onChanged: (phone) {},
                         controller: phoneController,
+                        keyboardType: TextInputType.number,
                         focusNode: phoneFocusNode,
+                        maxLength: null,
+                        // initialCountryCode: 'MM',
+                        // dropdownTextStyle:
+                        //     TextStyle(fontSize: 14, color: Colors.white),
+                        // dropdownIcon: Icon(
+                        //   Icons.arrow_drop_down,
+                        //   color: Colors.white,
+                        //   size: 20,
+                        // ),
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Phone Number',
+                          counterText: '',
                           labelStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 14,
 
                               // color: Colors.white.withOpacity(0.6),
                               fontFamily: "Century"),
-                          prefixIcon: Icon(
-                            Icons.phone_iphone,
-                            size: 20,
+                          prefixIcon: 
+                          CountryCodePicker(
 
-                            color: Colors.white,
-
-                            // color: Colors.white.withOpacity(0.4),
+                            initialSelection: 'MM',
+                            showCountryOnly: true,
+                            textStyle:
+                                TextStyle(fontSize: 14, color: Colors.white),
                           ),
+                          // prefixIcon: Icon(
+                          //   Icons.phone_iphone,
+                          //   size: 20,
+
+                          //   color: Colors.white,
+
+                          //   // color: Colors.white.withOpacity(0.4),
+                          // ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide: BorderSide(
@@ -319,86 +408,6 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
-                  //  FutureBuilder<AndroidDeviceInfo>(
-                  //   future: getInfo(),
-                  //   builder: (context, snapshot) {
-                  //     String? deviceid = snapshot.data?.id!;
-                  //     return SizedBox(
-                  //       width: size.width,
-                  //       height: 40,
-                  //       child: TextButton(
-                  //         onPressed: () async {
-                  //           final signUpState = ref.watch(signupProvider);
-                  //           if (signUpState.isSuccess) {
-                  //             // ignore: use_build_context_synchronously
-                  //             context.go(
-                  //                 '${LoginScreen.path}/${TermsPrivacyScreen.path}');
-                  //             return;
-                  //           }
-
-                  //           if (signUpState.isLoading) {
-                  //             return;
-                  //           }
-
-                  //           final name = nameController.text;
-                  //           final phone = phoneController.text;
-                  //           final date = dateInput.text;
-                  //           const role = 'user';
-
-                  //           final email = emailController.text;
-                  //           final password = passwordController.text;
-                  //           print(
-                  //               "########## $deviceid");
-
-                  //           await ref.read(signupProvider.notifier).signup(
-                  //                 context,
-                  //                 name,
-                  //                 email,
-                  //                 password,
-                  //                 date,
-                  //                 role,
-                  //                 phone,
-                  //                 deviceid!,
-                  //               );
-
-                  //           final updatedSignUpState =
-                  //               ref.watch(signupProvider);
-                  //           if (updatedSignUpState.isSuccess) {
-                  //             // ignore: use_build_context_synchronously
-                  //             context.go(
-                  //                 '${LoginScreen.path}/${TermsPrivacyScreen.path}');
-                  //             //  '${LoginScreen.path}');
-                  //           } else if (updatedSignUpState.error != null) {
-                  //             // ignore: use_build_context_synchronously
-                  //             // showToast(context, updatedSignUpState.error!);
-                  //             showToastError(context);
-                  //           }
-                  //         },
-                  //         style: TextButton.styleFrom(
-                  //           backgroundColor: const Color(0xff0000ff),
-                  //           // fixedSize: const Size(396, 48),
-                  //         ),
-                  //         child: Consumer(
-                  //           builder: (context, watch, child) {
-                  //             final signUpState = ref.watch(signupProvider);
-                  //             return signUpState.isLoading
-                  //                 ? SizedBox(
-                  //                     width: 22,
-                  //                     height: 22,
-                  //                     child: const CircularProgressIndicator(
-                  //                       color: Colors.white,
-                  //                     ))
-                  //                 : const Text(
-                  //                     'Create',
-                  //                     style: TextStyle(
-                  //                         fontSize: 16, color: Colors.white),
-                  //                   );
-                  //           },
-                  //         ),
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
 
                   Consumer(
                     builder: (context, ref, child) {
@@ -415,8 +424,12 @@ class _SignUpState extends State<SignUp> {
                                 child: Container(
                                   height: 50,
                                   alignment: Alignment.center,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
+                                  child: SizedBox(
+                                    width: 25,
+                                    height: 25,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -437,6 +450,9 @@ class _SignUpState extends State<SignUp> {
                           //   )
                           : InkWell(
                               onTap: () {
+                                // if (_formKey.currentState!.validate()) {
+                                //   print('From is valid');
+                                // }
                                 nameFocusNode.unfocus();
                                 passwordFocusNode.unfocus();
                                 phoneFocusNode.unfocus();
@@ -482,9 +498,9 @@ class _SignUpState extends State<SignUp> {
                                       setState(() {
                                         isloading = false;
                                       });
-                                      Navigator.pop(context);
-                                      // Navigator.pushNamed(
-                                      //     context, '/loginScreen');
+                                      // Navigator.pop(context);
+                                      Navigator.pushNamed(
+                                          context, '/loginScreen');
                                       // Get.off(() => VerifyCodeScreen());
                                     } else {
                                       setState(() {
@@ -557,7 +573,8 @@ class _SignUpState extends State<SignUp> {
                   //),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/login');
+                      Get.off(LoginScreen());
+                      // Navigator.pushNamed(context, '/loginScreen');
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),

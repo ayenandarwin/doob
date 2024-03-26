@@ -1,4 +1,6 @@
+import 'package:doob/Pages/Welcome.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LaunchScreen extends StatefulWidget {
   const LaunchScreen({super.key});
@@ -11,7 +13,8 @@ class _LaunchScreenState extends State<LaunchScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(milliseconds: 2000), () {
-      Navigator.pushNamed(context, '/welcome');
+      // Navigator.pushNamed(context, '/welcome');
+      Get.off(Welcome());
       //passedCheck();
     });
     super.initState();

@@ -38,6 +38,8 @@ class AlbumService {
       ),
     );
     final request = AlbumList.fromJson(response.data);
+   // print('Album Api Result ^^^^^^^^^^^^ $request');
+
     return request;
   }
 }

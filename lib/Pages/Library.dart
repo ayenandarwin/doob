@@ -207,176 +207,65 @@ class Albums extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return
+     InkWell(
       onTap: () {
         Navigator.pushNamed(context, '/playlistDetails');
       },
-      child: Consumer(
-        
-        builder: (BuildContext context, ref, Widget? child) {
-          ref.watch(albumServiceProvider).when(data: (albumList) {
-            return 
-            Row(
-                children: [
-                  Container(
-                    height: 70,
-                    width: 70,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'lib/Image/joji.png',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+      child: 
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Container(
+          // decoration: BoxDecoration(
+          //   // color: Colors.grey.withOpacity(0.4),
+          //   color: Color.fromARGB(255, 194, 211, 226),
+          //   borderRadius: const BorderRadius.all(
+          //     Radius.circular(10),
+          //   ),
+          // ),
+          child: Row(
+            children: [
+              Container(
+                height: 70,
+                width: 70,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    'lib/Image/joji.png',
+                    fit: BoxFit.cover,
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${albumList!}',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Century",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
-                        ),
-                        Text(
-                          'Joji',
-                          style: TextStyle(
-                              color: Color(0xff8A9A9D),
-                              fontFamily: "Century",
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 12),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ) ;
-          }, error: (Object error, StackTrace stackTrace) {
-            return Text('$error');
-          }, loading: () {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          });
-
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Container(
-              // decoration: BoxDecoration(
-              //   // color: Colors.grey.withOpacity(0.4),
-              //   color: Color.fromARGB(255, 194, 211, 226),
-              //   borderRadius: const BorderRadius.all(
-              //     Radius.circular(10),
-              //   ),
-              // ),
-              child:
-               Row(
-                children: [
-                  Container(
-                    height: 70,
-                    width: 70,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'lib/Image/joji.png',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'SMITHREENS',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Century",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
-                        ),
-                        Text(
-                          'Joji',
-                          style: TextStyle(
-                              color: Color(0xff8A9A9D),
-                              fontFamily: "Century",
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 12),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+                ),
               ),
-            ),
-          );
-        },
-
-        //  Padding(
-        //   padding: const EdgeInsets.symmetric(vertical: 10),
-        //   child: Container(
-        //     // decoration: BoxDecoration(
-        //     //   // color: Colors.grey.withOpacity(0.4),
-        //     //   color: Color.fromARGB(255, 194, 211, 226),
-        //     //   borderRadius: const BorderRadius.all(
-        //     //     Radius.circular(10),
-        //     //   ),
-        //     // ),
-        //     child: Row(
-        //       children: [
-        //         Container(
-        //           height: 70,
-        //           width: 70,
-        //           child: ClipRRect(
-        //             borderRadius: BorderRadius.circular(8),
-        //             child: Image.asset(
-        //               'lib/Image/joji.png',
-        //               fit: BoxFit.cover,
-        //             ),
-        //           ),
-        //         ),
-        //         SizedBox(
-        //           width: 20,
-        //         ),
-        //         Expanded(
-        //           flex: 4,
-        //           child: Column(
-        //             crossAxisAlignment: CrossAxisAlignment.start,
-        //             children: [
-        //               Text(
-        //                 'SMITHREENS',
-        //                 style: TextStyle(
-        //                     color: Colors.white,
-        //                     fontFamily: "Century",
-        //                     fontWeight: FontWeight.bold,
-        //                     fontSize: 14),
-        //               ),
-        //               Text(
-        //                 'Joji',
-        //                 style: TextStyle(
-        //                     color: Color(0xff8A9A9D),
-        //                     fontFamily: "Century",
-        //                     // fontWeight: FontWeight.bold,
-        //                     fontSize: 12),
-        //               )
-        //             ],
-        //           ),
-        //         )
-        //       ],
-        //     ),
-        //   ),
-        // ),
+              SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                flex: 4,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'SMITHREENS',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: "Century",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    Text(
+                      'Joji',
+                      style: TextStyle(
+                          color: Color(0xff8A9A9D),
+                          fontFamily: "Century",
+                          // fontWeight: FontWeight.bold,
+                          fontSize: 12),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -389,7 +278,8 @@ class ArtistCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return 
+    Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Container(
         child: Row(

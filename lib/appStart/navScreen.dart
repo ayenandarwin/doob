@@ -8,6 +8,7 @@ import 'package:doob/utils/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NaviScreen extends StatefulWidget {
   @override
@@ -63,7 +64,7 @@ class _NaviScreenState extends State<NaviScreen> {
                     size: 20.0,
                   ),
                 ),
-                label: 'Home'.tr,
+                label: AppLocalizations.of(context)!.home,
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -73,7 +74,9 @@ class _NaviScreenState extends State<NaviScreen> {
                     size: 20.0,
                   ),
                 ),
-                label: 'Search'.tr,
+                label: AppLocalizations.of(context)!.search,
+
+                // label: 'Search'.tr,
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -83,25 +86,32 @@ class _NaviScreenState extends State<NaviScreen> {
                     size: 20.0,
                   ),
                 ),
-                label: 'Feed'.tr,
+                label: AppLocalizations.of(context)!.feed,
               ),
               BottomNavigationBarItem(
-                icon: Container(
-                  margin: EdgeInsets.only(bottom: 7),
-                  child: Icon(
-                    Icons.folder_outlined,
-                    size: 20.0,
-                  ),
+                icon: Image.asset(
+                  'lib/Icons/library2.png', width: 28, height: 28,
+                  // Container(
+                  //   margin: EdgeInsets.only(bottom: 7),
+                  //   child: Icon(
+                  //     Icons.folder_outlined,
+                  //     size: 20.0,
+                  //   ),
                 ),
-                label: 'Library'.tr,
+                label: AppLocalizations.of(context)!.library,
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset('lib/Icons/pay.svg', height: 24),
-                activeIcon: SvgPicture.asset(
-                  'lib/Icons/pay.svg',
-                  height: 24,
+                icon: Image.asset(
+                  'lib/Icons/feed1.png',
+                  width: 28,
+                  height: 28,
                 ),
-                label: 'Premium'.tr,
+                //  SvgPicture.asset('lib/Icons/pay.svg', height: 24),
+                // activeIcon: SvgPicture.asset(
+                //   'lib/Icons/pay.svg',
+                //   height: 24,
+                // ),
+                label: AppLocalizations.of(context)!.premium,
               ),
             ],
           ),
@@ -125,7 +135,7 @@ class _NaviScreenState extends State<NaviScreen> {
               Library(),
               Premium(),
               //ProfileScreen(),
-              //Global.isLogIn ? ProfileScreen() : LoginScreen(),
+              // Global.isLogIn ? ProfileScreen() : LoginScreen(),
             ],
           )),
     ));

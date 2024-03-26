@@ -13,63 +13,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.orange,
-      //   title: Container(
-      //     child: Container(
-      //       child: Text(
-      //         "DOOB",
-      //         style: TextStyle(
-      //           color: Colors.white,
-      //           //color: Color(0xffffff9800),
-      //           fontFamily: "Century",
-      //           fontWeight: FontWeight.bold,
-      //           fontSize: 20,
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      //   actions: [
-      //     Container(
-      //       margin: EdgeInsets.only(right: 10),
-      //       child: Row(
-      //         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //         children: [
-      //           Icon(
-      //             Icons.notifications,
-      //             size: 20,
-      //             color: Colors.white,
-      //           ),
-      //           SizedBox(
-      //             width: 10,
-      //           ),
-      //           Icon(
-      //             Icons.history,
-      //             size: 20,
-      //             color: Colors.white,
-      //           ),
-      //           SizedBox(
-      //             width: 10,
-      //           ),
-      //           GestureDetector(
-      //             onTap: () {
-      //               Navigator.of(context).pushNamed('/setting');
-      //             },
-      //             child: Icon(
-      //               Icons.settings,
-      //               size: 20,
-      //               color: Colors.white,
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     )
-      //   ],
-      // ),
+     
       body: SingleChildScrollView(
         child: Padding(
           padding:
-              //const EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 60),
               const EdgeInsets.only(right: 10, left: 10, bottom: 60),
           child: Container(
             child: Column(
@@ -173,13 +120,17 @@ class _HomeState extends State<Home> {
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: Colors.white)),
+                      //  SliverCarouselWidget(),
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: PageIndicator(),
+                        // child: SliverCarouselWidget(),
                       )
                     ],
                   ),
                 ),
+                //  SliverCarouselWidget(),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 5),
                   child: Text(

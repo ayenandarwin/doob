@@ -53,6 +53,10 @@ class ApiUrl {
   static const String deliveryReturnList = "$mainUrl/delivery/return_list";
   static const String cancelList = "$mainUrl/delivery/cancel_list";
   static const String albumList = "$mainUrl/customer/albums";
+  static const String artistList = "$mainUrl/customer/artists";
+  static const String profile = "$mainUrl/customer/profile";
+  static const String sliderList = "$mainUrl/sliders/index";
+
 
   static const String signUpUrl = "$mainUrl/register";
   static const String signUpFirstStepUrl = "$mainUrl/create-login";
@@ -64,7 +68,6 @@ class ApiUrl {
   static const String checkToken = "$mainUrl/verify";
   // static const String logout = "$mainUrl/delimens/logout";
 
-  //static List<PickupRequest> requests = [];
   //static List<PickedUp> pickups = [];
 
   //Profile

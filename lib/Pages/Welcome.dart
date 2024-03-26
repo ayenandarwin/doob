@@ -1,4 +1,6 @@
+import 'package:doob/Pages/SignIn.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -136,7 +138,8 @@ class _WelcomeState extends State<Welcome> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/signIn');
+                      Get.off(SignIn());
+                      // Navigator.pushNamed(context, '/signIn');
                     },
                     child: Container(
                       height: 40,

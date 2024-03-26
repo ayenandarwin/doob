@@ -1,3 +1,4 @@
+import 'package:doob/Pages/SignUp.dart';
 import 'package:doob/Pages/loginCopy.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -200,8 +201,8 @@ class _SignInState extends State<SignIn> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/loginScreen');
-                      // Get.off(LoginScreen());
+                      // Navigator.pushNamed(context, '/loginScreen');
+                      Get.off(LoginScreen());
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 30),
@@ -224,7 +225,8 @@ class _SignInState extends State<SignIn> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/signUp');
+                      Get.off(SignUp());
+                      // Navigator.pushNamed(context, '/signUp');
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),

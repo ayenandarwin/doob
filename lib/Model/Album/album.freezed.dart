@@ -24,6 +24,7 @@ mixin _$Album {
   String? get name => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   String? get cover_photo => throw _privateConstructorUsedError;
+  List<dynamic> get album_artists => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   List<Songs>? get songs => throw _privateConstructorUsedError;
 
@@ -42,6 +43,7 @@ abstract class $AlbumCopyWith<$Res> {
       String? name,
       String? type,
       String? cover_photo,
+      List<dynamic> album_artists,
       String? status,
       List<Songs>? songs});
 }
@@ -63,6 +65,7 @@ class _$AlbumCopyWithImpl<$Res, $Val extends Album>
     Object? name = freezed,
     Object? type = freezed,
     Object? cover_photo = freezed,
+    Object? album_artists = null,
     Object? status = freezed,
     Object? songs = freezed,
   }) {
@@ -83,6 +86,10 @@ class _$AlbumCopyWithImpl<$Res, $Val extends Album>
           ? _value.cover_photo
           : cover_photo // ignore: cast_nullable_to_non_nullable
               as String?,
+      album_artists: null == album_artists
+          ? _value.album_artists
+          : album_artists // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -107,6 +114,7 @@ abstract class _$$AlbumImplCopyWith<$Res> implements $AlbumCopyWith<$Res> {
       String? name,
       String? type,
       String? cover_photo,
+      List<dynamic> album_artists,
       String? status,
       List<Songs>? songs});
 }
@@ -126,6 +134,7 @@ class __$$AlbumImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? type = freezed,
     Object? cover_photo = freezed,
+    Object? album_artists = null,
     Object? status = freezed,
     Object? songs = freezed,
   }) {
@@ -146,6 +155,10 @@ class __$$AlbumImplCopyWithImpl<$Res>
           ? _value.cover_photo
           : cover_photo // ignore: cast_nullable_to_non_nullable
               as String?,
+      null == album_artists
+          ? _value._album_artists
+          : album_artists // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
       freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -162,8 +175,9 @@ class __$$AlbumImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AlbumImpl implements _Album {
   const _$AlbumImpl(this.id, this.name, this.type, this.cover_photo,
-      this.status, final List<Songs>? songs)
-      : _songs = songs;
+      final List<dynamic> album_artists, this.status, final List<Songs>? songs)
+      : _album_artists = album_artists,
+        _songs = songs;
 
   factory _$AlbumImpl.fromJson(Map<String, dynamic> json) =>
       _$$AlbumImplFromJson(json);
@@ -176,6 +190,14 @@ class _$AlbumImpl implements _Album {
   final String? type;
   @override
   final String? cover_photo;
+  final List<dynamic> _album_artists;
+  @override
+  List<dynamic> get album_artists {
+    if (_album_artists is EqualUnmodifiableListView) return _album_artists;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_album_artists);
+  }
+
   @override
   final String? status;
   final List<Songs>? _songs;
@@ -190,7 +212,7 @@ class _$AlbumImpl implements _Album {
 
   @override
   String toString() {
-    return 'Album(id: $id, name: $name, type: $type, cover_photo: $cover_photo, status: $status, songs: $songs)';
+    return 'Album(id: $id, name: $name, type: $type, cover_photo: $cover_photo, album_artists: $album_artists, status: $status, songs: $songs)';
   }
 
   @override
@@ -203,14 +225,23 @@ class _$AlbumImpl implements _Album {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.cover_photo, cover_photo) ||
                 other.cover_photo == cover_photo) &&
+            const DeepCollectionEquality()
+                .equals(other._album_artists, _album_artists) &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._songs, _songs));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, type, cover_photo,
-      status, const DeepCollectionEquality().hash(_songs));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      type,
+      cover_photo,
+      const DeepCollectionEquality().hash(_album_artists),
+      status,
+      const DeepCollectionEquality().hash(_songs));
 
   @JsonKey(ignore: true)
   @override
@@ -232,6 +263,7 @@ abstract class _Album implements Album {
       final String? name,
       final String? type,
       final String? cover_photo,
+      final List<dynamic> album_artists,
       final String? status,
       final List<Songs>? songs) = _$AlbumImpl;
 
@@ -245,6 +277,8 @@ abstract class _Album implements Album {
   String? get type;
   @override
   String? get cover_photo;
+  @override
+  List<dynamic> get album_artists;
   @override
   String? get status;
   @override

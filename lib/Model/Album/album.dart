@@ -10,6 +10,7 @@ class Album with _$Album {
     String? name,
     String? type,
     String? cover_photo,
+    List album_artists,
     String? status,
     List<Songs>? songs,
     

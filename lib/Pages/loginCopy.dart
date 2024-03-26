@@ -1,14 +1,19 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:doob/Component/CustomCheckBox.dart';
 import 'package:doob/appStart/navScreen.dart';
 import 'package:doob/services/authorizedService.dart';
 import 'package:doob/utils/global.dart';
 import 'package:doob/utils/sharedPreference.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../controller/rememberController.dart';
 
@@ -27,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   RememberController rememberController = Get.put(RememberController());
   bool view = true;
   bool _isChecked = true;
+  //bool _isChecked = false;
 
   bool _remember = false;
   String? rememberName;
@@ -37,12 +43,32 @@ class _LoginScreenState extends State<LoginScreen> {
   var _isObscured;
   bool? isChecked = false;
 
+  late Box box1;
+
   @override
   void initState() {
     // TODO: implement initState
     _isObscured = true;
+    createBox();
     super.initState();
     checkRememberUser();
+  }
+
+  void createBox() async {
+    box1 = await Hive.openBox('login');
+    getData();
+  }
+
+  void getData() {
+    if (box1.get('phone') != null) {
+      phoneController.text = box1.get('phone');
+    }
+    if (box1.get('password') != null) {
+      passwordController.text = box1.get('password');
+      setState(() {
+        _isChecked = !_isChecked;
+      });
+    }
   }
 
   checkRememberUser() async {
@@ -109,29 +135,102 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(vertical: 10),
+                  //   //  padding: const EdgeInsets.only(
+                  //   //   top: 40, bottom: 5, left: 10, right: 10),
+                  //   child: SizedBox(
+                  //     height: 70,
+                  //     child: IntlPhoneField(
+                  //       inputFormatters: [
+                  //         LengthLimitingTextInputFormatter(100)
+                  //       ],
+                  //       controller: phoneController,
+                  //       focusNode: phoneFocusNode,
+                  //       // disableLengthCheck: false,
+
+                  //       initialCountryCode: 'MM',
+                  //       dropdownTextStyle:
+                  //           TextStyle(fontSize: 14, color: Colors.white),
+                  //       dropdownIcon: Icon(
+                  //         Icons.arrow_drop_down,
+                  //         color: Colors.white,
+                  //         size: 20,
+                  //       ),
+                  //       keyboardType: TextInputType.number,
+                  //       style: TextStyle(color: Colors.white),
+                  //       decoration: InputDecoration(
+                  //         labelText: 'Phone',
+                  //         //  counterText: '',
+                  //         labelStyle: TextStyle(
+                  //             color: Colors.white,
+                  //             fontSize: 14,
+                  //             // color: Colors.white.withOpacity(0.7),
+                  //             fontFamily: "Century"),
+                  //         prefixIcon: Icon(
+                  //           Icons.phone,
+                  //           color: Colors.white,
+                  //           size: 20,
+                  //           // color: Colors.white.withOpacity(0.4),
+                  //         ),
+                  //         border: OutlineInputBorder(
+                  //           borderRadius: BorderRadius.circular(10),
+                  //           borderSide: BorderSide(color: Colors.white),
+                  //         ),
+                  //         enabledBorder: OutlineInputBorder(
+                  //           borderRadius: BorderRadius.circular(10),
+                  //           borderSide:
+                  //               BorderSide(color: Colors.white, width: 0.3),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     //  padding: const EdgeInsets.only(
                     //   top: 40, bottom: 5, left: 10, right: 10),
                     child: SizedBox(
                       height: 50,
-                      child: TextField(
+                      child: TextFormField(
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(100)
+                        ],
                         controller: phoneController,
                         focusNode: phoneFocusNode,
+                        // disableLengthCheck: false,
+
+                        // initialCountryCode: 'MM',
+                        // dropdownTextStyle:
+                        //     TextStyle(fontSize: 14, color: Colors.white),
+                        // dropdownIcon: Icon(
+                        //   Icons.arrow_drop_down,
+                        //   color: Colors.white,
+                        //   size: 20,
+                        // ),
+                        keyboardType: TextInputType.number,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Phone',
+                          //  counterText: '',
                           labelStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 14,
                               // color: Colors.white.withOpacity(0.7),
                               fontFamily: "Century"),
-                          prefixIcon: Icon(
-                            Icons.phone,
-                            color: Colors.white,
-                            size: 20,
-                            // color: Colors.white.withOpacity(0.4),
+                          prefixIcon: CountryCodePicker(
+                            initialSelection: 'MM',
+                            showCountryOnly: true,
+                            textStyle:
+                                TextStyle(fontSize: 14, color: Colors.white),
                           ),
+                          // Icon(
+                          //   Icons.phone,
+                          //   color: Colors.white,
+                          //   size: 20,
+                          //   // color: Colors.white.withOpacity(0.4),
+                          // ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide: BorderSide(color: Colors.white),
@@ -145,6 +244,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Row(
@@ -260,46 +360,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                     borderRadius: BorderRadius.circular(50),
                                     color: Color(0xffFF9800)),
                                 child: Container(
-                                  margin: EdgeInsets.all(5),
+                                  height: 50,
+                                  alignment: Alignment.center,
                                   child: SizedBox(
-                                    height: 5,
-                                    width: 5,
-                                    child: Center(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.white,
-                                        //strokeWidth: 2,
-                                      ),
+                                    width: 25,
+                                    height: 25,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
                               ),
                             )
-                          // Container(
-                          //     width: MediaQuery.of(context)
-                          //             .size
-                          //             .width *
-                          //         0.22,
-                          //     height: MediaQuery.of(context)
-                          //             .size
-                          //             .height *
-                          //         0.0575,
-                          //     padding: EdgeInsets.all(15),
-                          //     alignment: Alignment.center,
-                          //     decoration: BoxDecoration(
-                          //         borderRadius:
-                          //             BorderRadius.circular(
-                          //                 12),
-                          //         color: Constants.blue),
-                          //     child: SizedBox(
-                          //       height: 30,
-                          //       width: 30,
-                          //       child:
-                          //           CircularProgressIndicator(
-                          //         color: Colors.white,
-                          //         //strokeWidth: 2,
-                          //       ),
-                          //     ),
-                          //   )
                           : GestureDetector(
                               onTap: () {
                                 phoneFocusNode.unfocus();
@@ -337,12 +409,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                       // }
                                       Global.isLogIn = true;
                                       Global.loginStatus();
+                                      loginData();
                                       setState(() {
                                         isloading = false;
                                       });
-                                      Navigator.pushNamed(
-                                          context, '/naviScreen');
-                                      // Get.off(() => NaviScreen());
+                                      // Navigator.pushNamed(
+                                      //     context, '/naviScreen');
+
+                                      Get.off(() => NaviScreen());
                                     } else {
                                       setState(() {
                                         isloading = false;
@@ -536,25 +610,30 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: RichText(
-                      text: TextSpan(
-                          style: GoogleFonts.mulish(color: Colors.white),
-                          children: [
-                            TextSpan(
-                                text: 'Don\'t have an account? ',
-                                style: TextStyle(
-                                    color: Color(0xff06F94A),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold)),
-                            TextSpan(
-                                text: ' Sign Up',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold))
-                          ]),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/signUp');
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: RichText(
+                        text: TextSpan(
+                            style: GoogleFonts.mulish(color: Colors.white),
+                            children: [
+                              TextSpan(
+                                  text: 'Don\'t have an account? ',
+                                  style: TextStyle(
+                                      color: Color(0xff06F94A),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold)),
+                              TextSpan(
+                                  text: ' Sign Up',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold))
+                            ]),
+                      ),
                     ),
                   ),
                 ],
@@ -564,5 +643,12 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void loginData() {
+    if (_isChecked) {
+      box1.put('phone', phoneController.text);
+      box1.put('password', passwordController.text);
+    }
   }
 }

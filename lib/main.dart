@@ -32,15 +32,21 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
-import 'package:provider/provider.dart';
-
 Future<void> main() async {
   // configure();
+ await Hive.initFlutter();
+//        await Hive.initFlutter();
+
+//        if (Hive.box("Language").get('lang') == null) {
+//   Hive.box("Language").put('lang', 'en');
+//  }
+
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   //await SystemChrome.setPreferredOrientations(
@@ -73,7 +79,7 @@ class MyApp extends StatelessWidget {
     //   ),
     // ],
 
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorSchemeSeed: Color(0xffFF9800),
@@ -95,7 +101,7 @@ class MyApp extends StatelessWidget {
         "/welcome": (context) => const Welcome(),
         "/signIn": (context) => const SignIn(),
         "/signUp": (context) => const SignUp(),
-        "/login": (context) => const Login(),
+        // "/login": (context) => const Login(),
         "/loginScreen": (context) => const LoginScreen(),
         "/naviScreen": (context) => NaviScreen(),
         "/empty": (context) => const Empty(),
@@ -110,7 +116,7 @@ class MyApp extends StatelessWidget {
         "/lang": (context) => const Language(),
         "/createnewplaylist": (context) => const CreatePlayList(),
         "/topgenres": (context) => const TopGenres(),
-        "/playlistDetails": (context) => const PlaylistDetails(),
+        // "/playlistDetails": (context) => const PlaylistDetails(),
         "/playlistMoreDetails": (context) => const PlaylistMoreDetails(),
         "/sleepTimer": (context) => const SleepTimer(),
         "/addToPlaylist": (context) => const AddToPlaylist(),
