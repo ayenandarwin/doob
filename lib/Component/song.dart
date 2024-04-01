@@ -85,7 +85,7 @@ class _SongPlayScreenState extends State<SongPlayScreen> {
                   child: GestureDetector(
                     onTap: () {
                       // Navigator.pushNamed(context, '/search');
-                      Get.off(PlaylistMoreDetails());
+                      //  Get.off(PlaylistMoreDetails());
                     },
                     child: Icon(
                       Icons.more_vert,

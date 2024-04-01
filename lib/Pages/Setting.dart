@@ -1,6 +1,11 @@
+import 'package:doob/Component/help&feedback.dart';
+import 'package:doob/Component/privacy&policy.dart';
+import 'package:doob/localization/controller/appLanguageController.dart';
 import 'package:doob/services/profileServiceProvider.dart';
+import 'package:doob/utils/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -12,6 +17,7 @@ class Setting extends StatefulWidget {
 class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
+    String? languageChoice;
     return Consumer(
       builder: (context, ref, child) {
         return SafeArea(
@@ -21,10 +27,11 @@ class _SettingState extends State<Setting> {
             backgroundColor: Colors.black,
             iconTheme: IconThemeData(color: Colors.white),
             title: Text(
-              'Settings',
+              'Settings'.tr,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
+                  fontFamily: 'Century',
                   fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
@@ -106,7 +113,7 @@ class _SettingState extends State<Setting> {
                     ),
                     Container(
                       padding: const EdgeInsets.all(20),
-                      child: const Row(
+                      child: Row(
                         children: [
                           Icon(
                             Icons.favorite_rounded,
@@ -117,7 +124,7 @@ class _SettingState extends State<Setting> {
                             width: 29,
                           ),
                           Text(
-                            'Favourites',
+                            'Favorites'.tr,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
@@ -130,7 +137,7 @@ class _SettingState extends State<Setting> {
                     Container(
                       padding: const EdgeInsets.all(20),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(
                             Icons.bookmark_outline,
                             size: 20,
@@ -140,7 +147,7 @@ class _SettingState extends State<Setting> {
                             width: 29,
                           ),
                           Text(
-                            'Saved',
+                            'Saved'.tr,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
@@ -153,7 +160,7 @@ class _SettingState extends State<Setting> {
                     Container(
                       padding: const EdgeInsets.all(20),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(
                             Icons.download,
                             size: 20,
@@ -163,7 +170,7 @@ class _SettingState extends State<Setting> {
                             width: 29,
                           ),
                           Text(
-                            'Download',
+                            'Download'.tr,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
@@ -173,16 +180,199 @@ class _SettingState extends State<Setting> {
                         ],
                       ),
                     ),
+
+                    GetBuilder<AppLanguageController>(
+                      init: AppLanguageController(),
+                      builder: (controller) {
+                        languageChoice = controller.appLocale;
+                        // String tempValue = controller.appLocale;
+
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                          ),
+                          child: ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Container(
+                              child: Icon(
+                                Icons.language,
+                                color: Colors.white,
+                              ),
+                            ),
+                            title: Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Text(
+                                "Languages".tr,
+                                style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                    fontFamily: 'Century'),
+                              ),
+                            ),
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return StatefulBuilder(builder:
+                                      (BuildContext context,
+                                          StateSetter setState) {
+                                    return AlertDialog(
+                                      contentPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.grey,
+                                      titleTextStyle: const TextStyle(
+                                          fontSize: 20, color: Colors.black),
+                                      content: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.35,
+                                        // decoration: const BoxDecoration(
+                                        //     image: DecorationImage(
+                                        //         image: AssetImage(
+                                        //             'assets/images/puLanguage.png'),
+                                        //         fit: BoxFit.fill)),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 20),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            // Padding(
+                                            //   padding: const EdgeInsets.only(
+                                            //       top: 20.0,
+                                            //       left: 15,
+                                            //       right: 15),
+                                            //   child: Container(
+                                            //     height: MediaQuery.of(context)
+                                            //             .size
+                                            //             .height *
+                                            //         0.15,
+                                            //   ),
+                                            // ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 15, right: 15),
+                                              child: Text(
+                                                "Please Choice Language".tr,
+                                                style: const TextStyle(
+                                                  fontSize: 18,
+                                                  fontFamily: 'Century',
+                                                ),
+                                              ),
+                                            ),
+                                            RadioListTile(
+                                              value: 'my_MM',
+                                              title: const Text("မြန်မာ"),
+                                              groupValue: languageChoice,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  languageChoice = 'my_MM';
+                                                });
+                                              },
+                                            ),
+                                            RadioListTile(
+                                              value: 'en_US',
+                                              title: const Text("English"),
+                                              groupValue: languageChoice,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  languageChoice = 'en_US';
+                                                });
+                                              },
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  horizontal:
+                                                                      25.0)),
+                                                  onPressed: () {
+                                                    Get.back();
+                                                  },
+                                                  child: const Text("Cancel"),
+                                                ),
+                                                ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  horizontal:
+                                                                      40.0)),
+                                                  onPressed: () {
+                                                    controller.changeLanguage(
+                                                        languageChoice!);
+                                                    Get.updateLocale(Locale(
+                                                        languageChoice!));
+                                                    Global.language =
+                                                        languageChoice;
+                                                    Get.back();
+                                                  },
+                                                  child: const Text("Apply"),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  });
+                                },
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
+
+                    // InkWell(
+                    //   onTap: () {
+                    //     Navigator.of(context).pushNamed('/lang');
+                    //   },
+                    //   child: Container(
+                    //     padding: const EdgeInsets.all(20),
+                    //     child: Row(
+                    //       children: const [
+                    //         Icon(
+                    //           Icons.language,
+                    //           size: 20,
+                    //           color: Colors.white,
+                    //         ),
+                    //         SizedBox(
+                    //           width: 29,
+                    //         ),
+                    //         Text(
+                    //           'Language',
+                    //           style: TextStyle(
+                    //               color: Colors.white,
+                    //               fontSize: 14,
+                    //               fontWeight: FontWeight.normal,
+                    //               fontFamily: 'Century'),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pushNamed('/lang');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HelpAndFeedback()));
                       },
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         child: Row(
-                          children: const [
+                          children: [
                             Icon(
-                              Icons.language,
+                              Icons.help_outline,
                               size: 20,
                               color: Colors.white,
                             ),
@@ -190,7 +380,7 @@ class _SettingState extends State<Setting> {
                               width: 29,
                             ),
                             Text(
-                              'Language',
+                              "Help & feedback".tr,
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,
@@ -201,50 +391,35 @@ class _SettingState extends State<Setting> {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.help_outline,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 29,
-                          ),
-                          Text(
-                            'Help & feedback',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                                fontFamily: 'Century'),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.privacy_tip_outlined,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 29,
-                          ),
-                          Text(
-                            'Privacy & policy',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                                fontFamily: 'Century'),
-                          ),
-                        ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PrivacyAndPolicy()));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.privacy_tip_outlined,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 29,
+                            ),
+                            Text(
+                              "Privacy & policy".tr,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  fontFamily: 'Century'),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -265,7 +440,7 @@ class _SettingState extends State<Setting> {
                           ),
                           child: Center(
                             child: Text(
-                              'Logout',
+                              'Logout'.tr,
                               style: TextStyle(
                                   fontFamily: 'Century',
                                   fontSize: 14,

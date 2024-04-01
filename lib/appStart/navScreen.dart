@@ -1,14 +1,14 @@
-import 'package:doob/Controller/navController.dart';
-import 'package:doob/MusicPlayer/MusicPlayer.dart';
-import 'package:doob/Pages/Explore.dart';
-import 'package:doob/Pages/Home.dart';
-import 'package:doob/Pages/Library.dart';
-import 'package:doob/Pages/Premium.dart';
-import 'package:doob/utils/global.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import "package:doob/Controller/navController.dart";
+import "package:doob/MusicPlayer/MusicPlayer.dart";
+import "package:doob/Pages/Explore.dart";
+import "package:doob/Pages/Home.dart";
+import "package:doob/Pages/Library.dart";
+import "package:doob/Pages/Premium.dart";
+import "package:doob/utils/global.dart";
+import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
+import "package:get/get.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class NaviScreen extends StatefulWidget {
   @override
@@ -64,7 +64,8 @@ class _NaviScreenState extends State<NaviScreen> {
                     size: 20.0,
                   ),
                 ),
-                label: AppLocalizations.of(context)!.home,
+                label: "Home".tr,
+                //  label: AppLocalizations.of(context)!.home,
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -74,9 +75,10 @@ class _NaviScreenState extends State<NaviScreen> {
                     size: 20.0,
                   ),
                 ),
-                label: AppLocalizations.of(context)!.search,
+                label: "Search".tr,
+                // label: AppLocalizations.of(context)!.search,
 
-                // label: 'Search'.tr,
+                // label: "Search".tr,
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -86,32 +88,61 @@ class _NaviScreenState extends State<NaviScreen> {
                     size: 20.0,
                   ),
                 ),
-                label: AppLocalizations.of(context)!.feed,
+                label: "Feed".tr,
+                // label: AppLocalizations.of(context)!.feed,
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'lib/Icons/library2.png', width: 28, height: 28,
-                  // Container(
-                  //   margin: EdgeInsets.only(bottom: 7),
-                  //   child: Icon(
-                  //     Icons.folder_outlined,
-                  //     size: 20.0,
-                  //   ),
+                icon: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Image.asset(
+                    "lib/Icons/library.png", width: 20, height: 20,
+                    // Container(
+                    //   margin: EdgeInsets.only(bottom: 7),
+                    //   child: Icon(
+                    //     Icons.folder_outlined,
+                    //     size: 20.0,
+                    //   ),
+                  ),
                 ),
-                label: AppLocalizations.of(context)!.library,
+                activeIcon: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Image.asset(
+                    "lib/Icons/library.png",
+                    color: Color(0xffff9800),
+                    width: 20,
+                    height: 20,
+                    //   height: 50,
+                  ),
+                ),
+                label: "Library".tr,
+                // label: AppLocalizations.of(context)!.library,
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'lib/Icons/feed1.png',
-                  width: 28,
-                  height: 28,
+                icon: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Image.asset(
+                    "lib/Icons/feed1.png",
+                    width: 25,
+                    height: 25,
+                  ),
                 ),
-                //  SvgPicture.asset('lib/Icons/pay.svg', height: 24),
-                // activeIcon: SvgPicture.asset(
-                //   'lib/Icons/pay.svg',
+                //   SvgPicture.asset("lib/Icons/pay.svg", height: 24),
+                activeIcon: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Image.asset(
+                    "lib/Icons/feed1.png",
+                    color: Color(0xffff9800),
+                    width: 25,
+                    height: 25,
+                    //   height: 50,
+                  ),
+                ),
+                // SvgPicture.asset(
+                //   "lib/Icons/pay.svg",
                 //   height: 24,
                 // ),
-                label: AppLocalizations.of(context)!.premium,
+                label: "Premium".tr,
+                // label: AppLocalizations.of(context)!.premium,
               ),
             ],
           ),

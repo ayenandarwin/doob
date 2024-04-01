@@ -13,8 +13,6 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-
 import '../controller/rememberController.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -212,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.number,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          labelText: 'Phone',
+                          labelText: 'Phone Number'.tr,
                           //  counterText: '',
                           labelStyle: TextStyle(
                               color: Colors.white,
@@ -258,7 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               obscureText: view,
                               style: TextStyle(color: Colors.white),
                               decoration: InputDecoration(
-                                labelText: 'Password',
+                                labelText: 'Password'.tr,
                                 labelStyle: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -449,7 +447,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       color: Color(0xffFF9800)),
                                   child: Center(
                                     child: Text(
-                                      "Login",
+                                      "Login".tr,
                                       style: GoogleFonts.mulish(
                                           color: Color(0xffffffff),
                                           fontWeight: FontWeight.bold,
@@ -529,7 +527,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Text(
-                      "Forgot the password?",
+                      "Forgot the password?".tr,
                       style: TextStyle(
                         fontFamily: "Century",
                         fontSize: 16,
@@ -553,7 +551,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 10,
                         ),
                         Text(
-                          "or continue with",
+                          "or continue with".tr,
                           style: TextStyle(
                               color: Color(0xffffffff),
                               fontFamily: "Century",
@@ -621,13 +619,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: GoogleFonts.mulish(color: Colors.white),
                             children: [
                               TextSpan(
-                                  text: 'Don\'t have an account? ',
+                                  text: "Don't have an account?".tr,
                                   style: TextStyle(
                                       color: Color(0xff06F94A),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
-                                  text: ' Sign Up',
+                                  text: 'Sign Up'.tr,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16,

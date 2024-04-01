@@ -286,91 +286,92 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, '/favoriteDetails');
-                              },
-                              child: SvgPicture.asset('lib/Icons/love.svg',
-                                  height: 25)),
-                          Text(
-                            '5.3M',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: "Century",
-                                fontSize: 14),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          SvgPicture.asset('lib/Icons/comment.svg', height: 25),
-                          Text(
-                            '5.3M',
-                            style: TextStyle(
+                  Container(
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.2), blurRadius: 20)
+                    ]),
+                    child: Column(
+                      children: [
+                        InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/favoriteDetails');
+                            },
+                            child: Image.asset(
+                              'lib/Icons/4.png',
+                              height: 50,
+                            )
+                            // SvgPicture.asset('lib/Icons/love.svg',
+                            //     height: 25),
+                            ),
+                        Text(
+                          '5.3M',
+                          style: TextStyle(
                               color: Colors.white,
                               fontFamily: "Century",
-                              fontSize: 14,
-                            ),
-                          )
-                        ],
-                      ),
+                              fontSize: 14),
+                        )
+                      ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Container(
+                  Container(
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.2), blurRadius: 20)
+                    ]),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'lib/Icons/6.png',
+                          height: 50,
+                        ),
+                        // SvgPicture.asset('lib/Icons/comment.svg', height: 25),
+                        Text(
+                          '5.3M',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "Century",
+                            fontSize: 14,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.2), blurRadius: 20)
+                    ]),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'lib/Icons/5.png',
+                          height: 50,
+                        ),
+                        //  SvgPicture.asset('lib/Icons/share.svg', height: 25),
+                        Text(
+                          '5.3M',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Century",
+                              fontSize: 14),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
                       decoration: BoxDecoration(boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.2),
                             blurRadius: 20)
                       ]),
-                      child: Column(
-                        children: [
-                          SvgPicture.asset('lib/Icons/share.svg', height: 25),
-                          Text(
-                            '5.3M',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: "Century",
-                                fontSize: 14),
-                          )
-                        ],
+                      child: Image.asset(
+                        'lib/Icons/7.png',
+                        height: 50,
+                      )
+                      //  SvgPicture.asset('lib/Icons/download.svg',
+                      //     height: 25),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: SvgPicture.asset('lib/Icons/download.svg',
-                          height: 25),
-                    ),
-                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Container(
@@ -395,18 +396,18 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                           SvgPicture.asset('lib/Icons/Shuffle.svg', height: 25),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Container(
+                  Container(
                       decoration: BoxDecoration(boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.2),
                             blurRadius: 20)
                       ]),
-                      child:
-                          SvgPicture.asset('lib/Icons/option.svg', height: 25),
-                    ),
-                  ),
+                      child: Image.asset(
+                        'lib/Icons/8.png',
+                        height: 50,
+                      )
+                      // SvgPicture.asset('lib/Icons/option.svg', height: 25),
+                      ),
                 ],
               ),
             ),
@@ -515,8 +516,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                       ),
                     );
                   },
-                  child: 
-                  Container(
+                  child: Container(
                     height: 40,
                     width: 200,
                     decoration: BoxDecoration(

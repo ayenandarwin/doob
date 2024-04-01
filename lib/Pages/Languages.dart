@@ -24,6 +24,7 @@ class _LanguageState extends State<Language> {
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
+                  fontFamily: 'Century',
                   fontWeight: FontWeight.bold),
             ),
             centerTitle: true,

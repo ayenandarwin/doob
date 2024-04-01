@@ -1,5 +1,10 @@
+import 'package:doob/Component/ArtistDetail.dart';
+import 'package:doob/Component/NewReleaseDetails.dart';
 import 'package:doob/Component/PageIndicator.dart';
+import 'package:doob/Component/PlaylistDetails.dart';
+import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -13,11 +18,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-     
       body: SingleChildScrollView(
         child: Padding(
-          padding:
-              const EdgeInsets.only(right: 10, left: 10, bottom: 60),
+          padding: const EdgeInsets.only(right: 10, left: 10, bottom: 60),
           child: Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,16 +54,21 @@ class _HomeState extends State<Home> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              Image.asset(
+                                'lib/Icons/bar.png',
+                                width: 20,
+                                height: 20,
+                              ),
                               Icon(
                                 Icons.notifications,
                                 size: 20,
                                 color: Colors.white,
                               ),
-                              Icon(
-                                Icons.history,
-                                size: 20,
-                                color: Colors.white,
-                              ),
+                              // Icon(
+                              //   Icons.history,
+                              //   size: 20,
+                              //   color: Colors.white,
+                              // ),
                               GestureDetector(
                                 onTap: () {
                                   Navigator.of(context).pushNamed('/setting');
@@ -659,15 +667,20 @@ class NewRelese extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/middle.jpg',
-          fit: BoxFit.cover,
-          height: 150,
-          width: 150,
+    return InkWell(
+      onTap: () {
+        Get.off(() => NewReleaseDetails());
+      },
+      child: Container(
+        padding: EdgeInsets.all(4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/middle.jpg',
+            fit: BoxFit.cover,
+            height: 150,
+            width: 150,
+          ),
         ),
       ),
     );
@@ -681,15 +694,20 @@ class Mixes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/utopia.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+      onTap: () {
+        Get.off(() => NewReleaseDetails());
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/utopia.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -703,15 +721,20 @@ class NewFU extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/unforgiven.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+      onTap: () {
+        Get.off(() => NewReleaseDetails());
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/unforgiven.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -725,37 +748,42 @@ class HomeArtistCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width / 2.5,
-      child: Column(
-        children: [
-          Container(
-            height: 130,
-            width: 130,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.asset(
-                'lib/Image/jojipf.jpg',
-                fit: BoxFit.cover,
+    return InkWell(
+      onTap: () {
+        Get.off(ArtistsDetails());
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width / 2.5,
+        child: Column(
+          children: [
+            Container(
+              height: 130,
+              width: 130,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.asset(
+                  'lib/Image/jojipf.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            'Joji',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Century',
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.bold),
-          ),
-        ],
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Joji',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Century',
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -137,7 +137,7 @@ class _SignUpState extends State<SignUp> {
                         focusNode: nameFocusNode,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          labelText: 'Name',
+                          labelText: 'Name'.tr,
                           labelStyle: TextStyle(
                               // color: Colors.white.withOpacity(0.6),
                               color: Colors.white,
@@ -174,7 +174,7 @@ class _SignUpState extends State<SignUp> {
                         focusNode: emailFocusNode,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          labelText: 'Email',
+                          labelText: 'Email'.tr,
                           labelStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 14,
@@ -214,7 +214,7 @@ class _SignUpState extends State<SignUp> {
                         focusNode: passwordFocusNode,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          labelText: 'Password'.tr,
                           labelStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 14,
@@ -254,7 +254,7 @@ class _SignUpState extends State<SignUp> {
                         focusNode: comfirmPasswordFocusNode,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          labelText: 'Comfirm Password',
+                          labelText: 'Comfirm Password'.tr,
                           labelStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 14,
@@ -369,7 +369,7 @@ class _SignUpState extends State<SignUp> {
                         // ),
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          labelText: 'Phone Number',
+                          labelText: 'Phone Number'.tr,
                           counterText: '',
                           labelStyle: TextStyle(
                               color: Colors.white,
@@ -377,9 +377,7 @@ class _SignUpState extends State<SignUp> {
 
                               // color: Colors.white.withOpacity(0.6),
                               fontFamily: "Century"),
-                          prefixIcon: 
-                          CountryCodePicker(
-
+                          prefixIcon: CountryCodePicker(
                             initialSelection: 'MM',
                             showCountryOnly: true,
                             textStyle:
@@ -530,7 +528,7 @@ class _SignUpState extends State<SignUp> {
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                   child: Center(
-                                    child: Text("Register",
+                                    child: Text("Register".tr,
                                         style: GoogleFonts.mulish(
                                             color: Color(0xffffffff),
                                             fontWeight: FontWeight.bold,
@@ -583,13 +581,13 @@ class _SignUpState extends State<SignUp> {
                             style: GoogleFonts.mulish(color: Colors.white),
                             children: [
                               TextSpan(
-                                  text: 'Already have an account? ',
+                                  text: 'Already have an account?'.tr,
                                   style: TextStyle(
                                       color: Color(0xffFF9800),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
-                                  text: 'Login',
+                                  text: 'Login'.tr,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16,

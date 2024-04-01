@@ -1,3 +1,4 @@
+import 'package:doob/Component/errorScreen.dart';
 import 'package:doob/services/sliderServiceProvier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,125 +28,159 @@ class _PageIndicatorState extends State<PageIndicator> {
                 child:
                     ref.watch(sliderServiceProvider).when(data: (sliderList) {
                   return PageView.builder(
+                      controller: _pageController,
                       itemCount: sliderList!.data!.length,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              sliderList.data![index].photo!,
-                              errorBuilder: (BuildContext context,
-                                  Object exception, StackTrace? stackTrace) {
-                                // This function is called when the image fails to load
-                                // Return a new widget to display a dummy image from the internet
-                                return Image.network(
-                                  'https://i.ebayimg.com/images/g/QQAAAOSwk-JiEK3v/s-l1600.jpg',
-                                  // 'https://media.istockphoto.com/photos/music-picture-id535427404?k=6&m=535427404&s=612x612&w=0&h=en1c7qslpGsVRkrTUHPvBNmA61gPUXl_v8ABMgQoZPY=',
-                                );
-                              },
-                              // 'lib/Image/joji.png',
-                              fit: BoxFit.cover,
-                            ),
+                        return sliderList.data![index] != null
+                            ? Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
 
-                            // Image.asset(
-                            //   'lib/Image/epikpost.png',
-                            //   fit: BoxFit.cover,
-                            // ),
-                          ),
-                        );
+                                      child: Image.network(
+                                        sliderList.data![index].photo!,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.21,
+
+                                        errorBuilder: (BuildContext context,
+                                            Object exception,
+                                            StackTrace? stackTrace) {
+                                          // This function is called when the image fails to load
+                                          // Return a new widget to display a dummy image from the internet
+                                          return Image.network(
+                                            'https://i.ebayimg.com/images/g/QQAAAOSwk-JiEK3v/s-l1600.jpg',
+                                            // 'https://media.istockphoto.com/photos/music-picture-id535427404?k=6&m=535427404&s=612x612&w=0&h=en1c7qslpGsVRkrTUHPvBNmA61gPUXl_v8ABMgQoZPY=',
+                                          );
+                                        },
+                                        // 'lib/Image/joji.png',
+                                        fit: BoxFit.cover,
+                                      ),
+
+                                      // Image.asset(
+                                      //   'lib/Image/epikpost.png',
+                                      //   fit: BoxFit.cover,
+                                      // ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 16.0,
+                                  ),
+                                  SmoothPageIndicator(
+                                    controller: _pageController,
+                                    count: sliderList.data!.length,
+                                    axisDirection: Axis.horizontal,
+                                    onDotClicked: (index) {
+                                      _pageController.animateToPage(index,
+                                          duration: Duration(microseconds: 500),
+                                          curve: Curves.ease);
+                                    },
+                                    effect: WormEffect(
+                                        activeDotColor: Color(0xffff9800),
+                                        dotColor: Colors.white.withOpacity(0.4),
+                                        dotHeight: 4,
+                                        dotWidth: 4),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  AspectRatio(
+                                    aspectRatio: 16 / 9,
+                                    child: SizedBox(
+                                      width: double.infinity,
+                                      child: PageView(
+                                        controller: _pageController,
+                                        onPageChanged: (int page) {
+                                          setState(() {
+                                            _currentPage = page;
+                                          });
+                                        },
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 5),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child: Image.asset(
+                                                'lib/Image/epikpost.png',
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 5),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child: Image.asset(
+                                                'lib/Image/shukhin.jpg',
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 5),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child: Image.asset(
+                                                'lib/Image/epikpost.png',
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 16.0,
+                                  ),
+                                  SmoothPageIndicator(
+                                    controller: _pageController,
+                                    count: 3,
+                                    axisDirection: Axis.horizontal,
+                                    effect: WormEffect(
+                                        activeDotColor: Color(0xffff9800),
+                                        dotColor: Colors.white.withOpacity(0.4),
+                                        dotHeight: 4,
+                                        dotWidth: 4),
+                                  ),
+                                ],
+                              );
                       });
                 }, error: (Object error, StackTrace stackTrace) {
-                  return Text('$error');
+                  return ErrorScreen(
+                    aspectR: 1,
+                    iconSize: 100,
+                    textSize: 18,
+                    profile: false,
+                  );
                 }, loading: () {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
                 }),
-
-                /* PageView(
-                  controller: _pageController,
-                  onPageChanged: (int page) {
-                    setState(() {
-                      _currentPage = page;
-                    });
-                  },
-                  children: [
-                    // ref.watch(sliderServiceProvider).when(data: (albumList) {
-                    //   return Padding(
-                    //     padding: const EdgeInsets.symmetric(horizontal: 5),
-                    //     child: ClipRRect(
-                    //       borderRadius: BorderRadius.circular(10),
-                    //       //  (requestList.data!.indexOf(
-                    //       //                                     request) +
-                    //       //                                 1)
-
-                    //       child:
-                    //           //Image.network(albumList!.data![0].photo!),
-                    //           Image.asset(
-                    //         'lib/Image/epikpost.png',
-                    //         fit: BoxFit.cover,
-                    //       ),
-                    //     ),
-                    //   );
-                    // }, error: (Object error, StackTrace stackTrace) {
-                    //   return Text('$error');
-                    // }, loading: () {
-                    //   return Center(
-                    //     child: CircularProgressIndicator(),
-                    //   );
-                    // }),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          'lib/Image/epikpost.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          'lib/Image/shukhin.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          'lib/Image/epikpost.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),*/
               ),
-            ),
-            SizedBox(
-              height: 16.0,
-            ),
-            SmoothPageIndicator(
-              controller: _pageController,
-              count: 3,
-              axisDirection: Axis.horizontal,
-              effect: WormEffect(
-                  activeDotColor: Color(0xffff9800),
-                  dotColor: Colors.white.withOpacity(0.4),
-                  dotHeight: 4,
-                  dotWidth: 4),
             ),
           ],
         );
       },
-      // child: Column(
+      // child:
+      // Column(
       //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       //   mainAxisSize: MainAxisSize.min,
       //   children: [

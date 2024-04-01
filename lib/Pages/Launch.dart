@@ -44,7 +44,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
               height: size.height * 0.1,
             ),
             Text(
-              'Welcome to doob',
+              'Welcome to doob'.tr,
               style: TextStyle(
                   fontSize: 30, fontFamily: 'Century', color: Colors.white),
             ),

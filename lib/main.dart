@@ -27,6 +27,7 @@ import 'package:doob/Pages/Welcome.dart';
 import 'package:doob/Pages/loginCopy.dart';
 import 'package:doob/appStart/navScreen.dart';
 import 'package:doob/l10n/l10n.dart';
+import 'package:doob/localization/localizationService.dart';
 import 'package:doob/provider/locale.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -40,12 +41,7 @@ import 'package:hive_flutter/adapters.dart';
 
 Future<void> main() async {
   // configure();
- await Hive.initFlutter();
-//        await Hive.initFlutter();
-
-//        if (Hive.box("Language").get('lang') == null) {
-//   Hive.box("Language").put('lang', 'en');
-//  }
+  await Hive.initFlutter();
 
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
@@ -81,6 +77,9 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      locale: Locale("my_MM"),
+      fallbackLocale: Locale("my_MM"),
+      translations: LocalizationService(),
       theme: ThemeData(
         colorSchemeSeed: Color(0xffFF9800),
         useMaterial3: true,

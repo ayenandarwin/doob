@@ -214,7 +214,7 @@ class _SignInState extends State<SignIn> {
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: Center(
-                          child: Text("Log in with a password",
+                          child: Text("Log in with a password".tr,
                               style: GoogleFonts.mulish(
                                   color: Color(0xffffffff),
                                   fontWeight: FontWeight.bold,
@@ -235,7 +235,7 @@ class _SignInState extends State<SignIn> {
                             style: GoogleFonts.mulish(color: Colors.white),
                             children: [
                               TextSpan(
-                                  text: 'Don\'t have an account?',
+                                  text: 'Don\'t have an account?'.tr,
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Color(0xff06F94A),
@@ -243,7 +243,7 @@ class _SignInState extends State<SignIn> {
                                       // color: Colors.green
                                       )),
                               TextSpan(
-                                  text: ' Sign Up',
+                                  text: 'Sign Up'.tr,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Century',

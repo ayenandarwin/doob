@@ -70,7 +70,7 @@ class _PlaylistDetailsState extends State<PlaylistDetails> {
                             GestureDetector(
                               onTap: () {
                                 // Navigator.pushNamed(context, '/search');
-                                Get.off(SongPlayScreen());
+                               // Get.off(SongPlayScreen());
                               },
                               child: Icon(
                                 Icons.more_vert,

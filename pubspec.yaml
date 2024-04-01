@@ -48,6 +48,8 @@ dependencies:
   get_storage: 
   url_launcher: ^6.1.8
   country_picker: 
+  audioplayers: ^5.1.0
+
   country_code_picker: ^3.0.0
 
 
