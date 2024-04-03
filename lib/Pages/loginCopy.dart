@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import '../controller/rememberController.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -113,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 10),
+                    padding: const EdgeInsets.only(top: 15, bottom: 10),
                     child: Center(
                       child: Container(
                         child:
@@ -122,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 18),
                     child: Text(
                       "Login to your account",
                       style: TextStyle(
@@ -133,44 +134,114 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    //  padding: const EdgeInsets.only(
+                    //   top: 40, bottom: 5, left: 10, right: 10),
+                    child: IntlPhoneField(
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(50),
+                      ],
+                      controller: phoneController,
+                      focusNode: phoneFocusNode,
+                      disableLengthCheck: true,
+                      initialCountryCode: 'MM',
+                      dropdownTextStyle:
+                          TextStyle(fontSize: 14, color: Colors.white),
+                      dropdownIcon: Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      keyboardType: TextInputType.number,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: 'Phone',
+                        counterText: '',
+                        labelStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            // color: Colors.white.withOpacity(0.7),
+                            fontFamily: "Century"),
+                        prefixIcon: Icon(
+                          Icons.phone,
+                          color: Colors.white,
+                          size: 20,
+                          // color: Colors.white.withOpacity(0.4),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 0.3),
+                        ),
+                      ),
+                    ),
+                  ),
+
                   // Padding(
                   //   padding: const EdgeInsets.symmetric(vertical: 10),
                   //   //  padding: const EdgeInsets.only(
                   //   //   top: 40, bottom: 5, left: 10, right: 10),
                   //   child: SizedBox(
-                  //     height: 70,
-                  //     child: IntlPhoneField(
+                  //     height: 60,
+                  //     child: TextFormField(
+                  //       textAlignVertical: TextAlignVertical.center,
                   //       inputFormatters: [
                   //         LengthLimitingTextInputFormatter(100)
                   //       ],
                   //       controller: phoneController,
                   //       focusNode: phoneFocusNode,
-                  //       // disableLengthCheck: false,
+                  //       //  disableLengthCheck: false,
 
-                  //       initialCountryCode: 'MM',
-                  //       dropdownTextStyle:
-                  //           TextStyle(fontSize: 14, color: Colors.white),
-                  //       dropdownIcon: Icon(
-                  //         Icons.arrow_drop_down,
-                  //         color: Colors.white,
-                  //         size: 20,
-                  //       ),
+                  //       // initialCountryCode: 'MM',
+                  //       // dropdownTextStyle:
+                  //       //     TextStyle(fontSize: 14, color: Colors.white),
+                  //       // dropdownIcon: Icon(
+                  //       //   Icons.arrow_drop_down,
+                  //       //   color: Colors.white,
+                  //       //   size: 20,
+                  //       // ),
                   //       keyboardType: TextInputType.number,
                   //       style: TextStyle(color: Colors.white),
                   //       decoration: InputDecoration(
-                  //         labelText: 'Phone',
+                  //         labelText: 'Phone Number'.tr,
                   //         //  counterText: '',
                   //         labelStyle: TextStyle(
                   //             color: Colors.white,
                   //             fontSize: 14,
                   //             // color: Colors.white.withOpacity(0.7),
                   //             fontFamily: "Century"),
-                  //         prefixIcon: Icon(
-                  //           Icons.phone,
-                  //           color: Colors.white,
-                  //           size: 20,
-                  //           // color: Colors.white.withOpacity(0.4),
+                  //         prefixIcon: CountryCodePicker(
+                  //           // backgroundColor: Colors.black,
+                  //           // dialogSize: Size(300, 400),
+
+                  //           //  dialogBackgroundColor: Colors.transparent,
+                  //           // dialogTextStyle: TextStyle(color: Colors.white),
+                  //           searchStyle: TextStyle(color: Colors.white),
+
+                  //           initialSelection: 'MM',
+                  //           showCountryOnly: true,
+                  //           //showCountryOnly: false,
+                  //           showOnlyCountryWhenClosed: false,
+                  //           enabled: true,
+                  //           hideMainText: false,
+                  //           showFlagMain: true,
+                  //           showFlagDialog: true,
+
+                  //           textStyle:
+                  //               TextStyle(fontSize: 14, color: Colors.white),
                   //         ),
+                  //         // Icon(
+                  //         //   Icons.phone,
+                  //         //   color: Colors.white,
+                  //         //   size: 20,
+                  //         //   // color: Colors.white.withOpacity(0.4),
+                  //         // ),
                   //         border: OutlineInputBorder(
                   //           borderRadius: BorderRadius.circular(10),
                   //           borderSide: BorderSide(color: Colors.white),
@@ -186,114 +257,54 @@ class _LoginScreenState extends State<LoginScreen> {
                   // ),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    //  padding: const EdgeInsets.only(
-                    //   top: 40, bottom: 5, left: 10, right: 10),
-                    child: SizedBox(
-                      height: 50,
-                      child: TextFormField(
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(100)
-                        ],
-                        controller: phoneController,
-                        focusNode: phoneFocusNode,
-                        // disableLengthCheck: false,
-
-                        // initialCountryCode: 'MM',
-                        // dropdownTextStyle:
-                        //     TextStyle(fontSize: 14, color: Colors.white),
-                        // dropdownIcon: Icon(
-                        //   Icons.arrow_drop_down,
-                        //   color: Colors.white,
-                        //   size: 20,
-                        // ),
-                        keyboardType: TextInputType.number,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          labelText: 'Phone Number'.tr,
-                          //  counterText: '',
-                          labelStyle: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              // color: Colors.white.withOpacity(0.7),
-                              fontFamily: "Century"),
-                          prefixIcon: CountryCodePicker(
-                            initialSelection: 'MM',
-                            showCountryOnly: true,
-                            textStyle:
-                                TextStyle(fontSize: 14, color: Colors.white),
-                          ),
-                          // Icon(
-                          //   Icons.phone,
-                          //   color: Colors.white,
-                          //   size: 20,
-                          //   // color: Colors.white.withOpacity(0.4),
-                          // ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.white, width: 0.3),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Row(
                       children: [
                         Expanded(
-                          child: SizedBox(
-                            height: 50,
-                            child: TextField(
-                              controller: passwordController,
-                              focusNode: passwordFocusNode,
-                              obscureText: view,
-                              style: TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                labelText: 'Password'.tr,
-                                labelStyle: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    //color: Colors.white.withOpacity(0.7),
-                                    fontFamily: "Century"),
-                                prefixIcon: Icon(
-                                  Icons.lock,
-                                  size: 20,
+                          child: TextField(
+                            controller: passwordController,
+                            focusNode: passwordFocusNode,
+                            obscureText: view,
+                            textAlignVertical: TextAlignVertical.center,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                              labelText: 'Password'.tr,
+                              labelStyle: TextStyle(
                                   color: Colors.white,
+                                  fontSize: 14,
+                                  //color: Colors.white.withOpacity(0.7),
+                                  fontFamily: "Century"),
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                size: 20,
+                                color: Colors.white,
+
+                                // color: Colors.white.withOpacity(0.4),
+                              ),
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    view = !view;
+                                  });
+                                },
+                                child: Icon(
+                                  view
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.white,
+                                  size: 20,
 
                                   // color: Colors.white.withOpacity(0.4),
                                 ),
-                                suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      view = !view;
-                                    });
-                                  },
-                                  child: Icon(
-                                    view
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.white,
-                                    size: 20,
-
-                                    // color: Colors.white.withOpacity(0.4),
-                                  ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 0.3),
-                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    BorderSide(color: Colors.white, width: 0.3),
                               ),
                             ),
                           ),
@@ -525,7 +536,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   // ),
                   // ),
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
                       "Forgot the password?".tr,
                       style: TextStyle(

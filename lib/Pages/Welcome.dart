@@ -150,7 +150,8 @@ class _WelcomeState extends State<Welcome> {
                       ),
                       child: Center(
                         child: Text(
-                          'Get Started'.tr,
+                          'Get Started',
+//'Get Started'.tr,
                           style: TextStyle(
                               fontFamily: 'Century',
                               fontSize: 14,

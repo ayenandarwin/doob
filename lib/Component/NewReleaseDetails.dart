@@ -3,6 +3,7 @@ import 'package:doob/Component/song.dart';
 import 'package:doob/Libcomponent/AlbumsTabs.dart';
 import 'package:doob/Libcomponent/Artist.dart';
 import 'package:doob/Libcomponent/Tracks.dart';
+import 'package:doob/MusicPlayer/MusicPlayer.dart';
 import 'package:doob/services/albumIdServiceProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +44,8 @@ class _NewReleaseDetailsState extends State<NewReleaseDetails> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pop(context);
+                                Get.back();
+                                // Navigator.pop(context);
                               },
                               child: Icon(
                                 Icons.arrow_back,
@@ -385,7 +387,9 @@ class Albums extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.off(NewReleaseMoreDetails());
+        Get.off(() => MusicPlayer());
+        //Get.off(NewReleaseMoreDetails());
+
         //  Navigator.pushNamed(context, '/NewReleaseMoreDetails');
       },
       child: Padding(

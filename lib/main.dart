@@ -77,8 +77,10 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      locale: Locale("my_MM"),
-      fallbackLocale: Locale("my_MM"),
+      locale: Locale("en_US"),
+      //  locale: Locale("my_MM"),
+      fallbackLocale: Locale("en_US"),
+      // fallbackLocale: Locale("my_MM"),
       translations: LocalizationService(),
       theme: ThemeData(
         colorSchemeSeed: Color(0xffFF9800),

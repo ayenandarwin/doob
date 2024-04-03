@@ -307,13 +307,25 @@ class _SettingState extends State<Setting> {
                                                                   horizontal:
                                                                       40.0)),
                                                   onPressed: () {
-                                                    controller.changeLanguage(
-                                                        languageChoice!);
-                                                    Get.updateLocale(Locale(
-                                                        languageChoice!));
-                                                    Global.language =
-                                                        languageChoice;
-                                                    Get.back();
+                                                    setState(
+                                                      () {
+                                                        controller
+                                                            .changeLanguage(
+                                                                languageChoice!);
+                                                        Get.updateLocale(Locale(
+                                                            languageChoice!));
+                                                        Global.language =
+                                                            languageChoice;
+                                                        Get.back();
+                                                      },
+                                                    );
+                                                    // controller.changeLanguage(
+                                                    //     languageChoice!);
+                                                    // Get.updateLocale(Locale(
+                                                    //     languageChoice!));
+                                                    // Global.language =
+                                                    //     languageChoice;
+                                                    // Get.back();
                                                   },
                                                   child: const Text("Apply"),
                                                 ),

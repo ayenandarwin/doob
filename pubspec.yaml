@@ -49,14 +49,7 @@ dependencies:
   url_launcher: ^6.1.8
   country_picker: 
   audioplayers: ^5.1.0
-
-  country_code_picker: ^3.0.0
-
-
-
-
-
-
+  country_code_picker: 
   riverpod_annotation: 
   hive_flutter: ^1.1.0
   smooth_page_indicator: ^1.1.0
@@ -74,11 +67,9 @@ dependencies:
   intl_phone_field: 
   carousel_slider:
   fancy_shimmer_image: 
+  share_plus: ^7.2.2
  
 
-
-
-  
 
 dev_dependencies:
   flutter_test:
@@ -88,7 +79,6 @@ dev_dependencies:
   json_serializable:
   flutter_launcher_icons:
 
- 
 
 flutter_icons:
   android: true

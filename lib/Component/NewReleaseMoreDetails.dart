@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:doob/Component/FavoriteArtists.dart';
 import 'package:doob/Component/song.dart';
 import 'package:doob/Libcomponent/AlbumsTabs.dart';
 import 'package:doob/Libcomponent/Artist.dart';
@@ -28,6 +29,7 @@ class _NewReleaseMoreDetailsState extends State<NewReleaseMoreDetails> {
   final audioPlayer = AudioPlayer();
 
   bool isPlaying = false;
+  bool isFav = false;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
 
@@ -41,31 +43,31 @@ class _NewReleaseMoreDetailsState extends State<NewReleaseMoreDetails> {
   void initState() {
     // TODO: implement initState
 
-    setAudio();
-    audioPlayer.onPlayerStateChanged.listen((state) {
-      setState(() {
-        isPlaying = state == PlayerState.playing;
-      });
+    // setAudio();
+    // audioPlayer.onPlayerStateChanged.listen((state) {
+    //   setState(() {
+    //     isPlaying = state == PlayerState.playing;
+    //   });
 
-      audioPlayer.onDurationChanged.listen((newDuration) {
-        setState(() {
-          duration = newDuration;
-        });
-      });
-    });
+    //   audioPlayer.onDurationChanged.listen((newDuration) {
+    //     setState(() {
+    //       duration = newDuration;
+    //     });
+    //   });
+    // });
 
-    audioPlayer.onDurationChanged.listen((newPosition) {
-      setState(() {
-        position = newPosition;
-      });
-    });
+    // audioPlayer.onDurationChanged.listen((newPosition) {
+    //   setState(() {
+    //     position = newPosition;
+    //   });
+    // });
   }
 
-  Future setAudio() async {
-    audioPlayer.setReleaseMode(ReleaseMode.loop);
-    await audioPlayer.play(UrlSource(
-        'https://doob.smartcodemm.com/storage/songs/audio/xr2gvVQ7RyvodWMCtynleCnc9q7EiBFHRwnrWDnf.mp3'));
-  }
+  // Future setAudio() async {
+  //   audioPlayer.setReleaseMode(ReleaseMode.loop);
+  //   await audioPlayer.play(UrlSource(
+  //       'https://doob.smartcodemm.com/storage/songs/audio/xr2gvVQ7RyvodWMCtynleCnc9q7EiBFHRwnrWDnf.mp3'));
+  // }
 
   @override
   void dispose() {
@@ -81,210 +83,203 @@ class _NewReleaseMoreDetailsState extends State<NewReleaseMoreDetails> {
         body: SingleChildScrollView(
           child: Consumer(
             builder: (BuildContext context, WidgetRef ref, Widget? child) {
-              return Padding(
-                padding: const EdgeInsets.all(10),
-                child: Container(
-                  child: Column(
-                    children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios,
-                                color: Colors.white,
-                                size: 24,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 80,
-                            ),
-                            Text(
-                              'Now Playing',
-                              // textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: 'Century',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  color: Colors.white),
-                            ),
-                            SizedBox(
-                              width: 70,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                // Navigator.pushNamed(context, '/search');
-                                // Get.off(SongPlayScreen());
-                              },
-                              child: Icon(
-                                Icons.more_vert,
-                                size: 25,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                        ),
+              return Stack(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    // padding: EdgeInsets.symmetric(
+                    //     vertical: 20, horizontal: 16),
+                    child: ClipRRect(
+                      //   borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        'lib/Image/pop.png',
+                        fit: BoxFit.cover,
+                        // height: 210,
+                        // width: 210,
                       ),
-                      Column(
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            // Navigator.pushNamed(context, '/search');
+                            Get.to(() => FavoriteArtists());
+                          },
+                          child: Icon(
+                            Icons.more_horiz,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.38),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 16),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                'lib/Image/pop.png',
-                                fit: BoxFit.cover,
-                                // height: 210,
-                                // width: 210,
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 16, right: 16),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Lofi Lofi',
-                                        // textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontFamily: 'Century',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
-                                            color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        height: 2,
-                                      ),
-                                      Text(
-                                        'soft, chill, dreamy, lo-fi beats',
-                                        // textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: 'Century',
-                                          fontSize: 12,
-                                          color: Color(0xff8A9A9D),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    Icons.favorite_border_outlined,
-                                    color: Colors.green,
-                                    size: 30,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Slider(
-                            min: 0,
-                            max: duration.inSeconds.toDouble(),
-                            value: position.inSeconds.toDouble(),
-                            onChanged: (value) async {
-                              final position = Duration(seconds: value.toInt());
-                              audioPlayer.seek(position);
-                              audioPlayer.resume();
-                            },
-                          ),
-                          SizedBox(
-                            height: 0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                            ),
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    formatTime(position.inSeconds),
-                                  ),
-
-                                  Text(
-                                    formatTime((duration - position).inSeconds),
-                                  ),
-                                  // Text(_formatDuration(position)),
-                                  // Text(formatTime(position)),
-                                ]),
-                          ),
-                          SizedBox(
-                            height: 50,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              IconButton(
-                                  icon: const Icon(
-                                    Icons.skip_previous,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {});
-                                  }
-                                  // widget._audioPlayer.hasPrevious
-                                  //     ? widget._audioPlayer.seekToPrevious
-                                  //     : null,
-                                  ),
-                              SizedBox(
-                                width: 30,
-                              ),
-                              CircleAvatar(
-                                maxRadius: 25,
-                                backgroundColor: const Color(0xffff9800),
-                                child: IconButton(
-                                  icon: Icon(
-                                    isPlaying ? Icons.pause : Icons.play_arrow,
-                                    color: Colors.white,
-                                  ),
-                                  iconSize: 30.0,
-                                  onPressed: (() async {
-                                    if (isPlaying) {
-                                      await audioPlayer.pause();
-                                    } else {
-                                      //var url =await http.get(Uri.parse(''));
-                                      audioPlayer.play(UrlSource(
-                                          'https://doob.smartcodemm.com/storage/songs/audio/xr2gvVQ7RyvodWMCtynleCnc9q7EiBFHRwnrWDnf.mp3'));
-                                    }
-                                  }),
-                                ),
+                              Text(
+                                'Lofi Lofi',
+                                // textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Century',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Colors.white),
                               ),
                               SizedBox(
-                                width: 30,
+                                height: 2,
                               ),
-                              IconButton(
-                                  icon: const Icon(
-                                    Icons.skip_next,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {}
-                                  // widget._audioPlayer.hasNext ? widget._audioPlayer.seekToNext : null,
-                                  ),
+                              // Text(
+                              //   'soft, chill, dreamy, lo-fi beats',
+                              //   // textAlign: TextAlign.center,
+                              //   style: TextStyle(
+                              //     fontFamily: 'Century',
+                              //     fontSize: 12,
+                              //     color: Color(0xff8A9A9D),
+                              //   ),
+                              // ),
                             ],
                           ),
+                          //  Icon(
+                          //           view
+                          //               ? Icons.visibility_off
+                          //               : Icons.visibility,
+                          //           color: Colors.white,
+                          //           size: 20,
+
+                          //           // color: Colors.white.withOpacity(0.4),
+                          //         ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                isFav = !isFav;
+                              });
+                            },
+                            child: Icon(
+                              isFav
+                                  ? Icons.favorite
+                                  : Icons.favorite_border_outlined,
+                              color: Colors.green,
+                              size: 30,
+                            ),
+                          )
                         ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  // Slider(
+                  //   min: 0,
+                  //   max: duration.inSeconds.toDouble(),
+                  //   value: position.inSeconds.toDouble(),
+                  //   onChanged: (value) async {
+                  //     final position = Duration(seconds: value.toInt());
+                  //     audioPlayer.seek(position);
+                  //     audioPlayer.resume();
+                  //   },
+                  // ),
+                  // SizedBox(
+                  //   height: 0,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(
+                  //     horizontal: 16,
+                  //   ),
+                  //   child: Row(
+                  //       mainAxisAlignment:
+                  //           MainAxisAlignment.spaceBetween,
+                  //       children: [
+                  //         Text(
+                  //           formatTime(position.inSeconds),
+                  //         ),
+
+                  //         Text(
+                  //           formatTime((duration - position).inSeconds),
+                  //         ),
+                  //         // Text(_formatDuration(position)),
+                  //         // Text(formatTime(position)),
+                  //       ]),
+                  // ),
+                  // SizedBox(
+                  //   height: 50,
+                  // ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     IconButton(
+                  //         icon: const Icon(
+                  //           Icons.skip_previous,
+                  //           color: Colors.white,
+                  //         ),
+                  //         onPressed: () {
+                  //           setState(() {});
+                  //         }
+                  //         // widget._audioPlayer.hasPrevious
+                  //         //     ? widget._audioPlayer.seekToPrevious
+                  //         //     : null,
+                  //         ),
+                  //     SizedBox(
+                  //       width: 30,
+                  //     ),
+                  //     CircleAvatar(
+                  //       maxRadius: 25,
+                  //       backgroundColor: const Color(0xffff9800),
+                  //       child: IconButton(
+                  //         icon: Icon(
+                  //           isPlaying ? Icons.pause : Icons.play_arrow,
+                  //           color: Colors.white,
+                  //         ),
+                  //         iconSize: 30.0,
+                  //         onPressed: (() async {
+                  //           if (isPlaying) {
+                  //             await audioPlayer.pause();
+                  //           } else {
+                  //             //var url =await http.get(Uri.parse(''));
+                  //             audioPlayer.play(UrlSource(
+                  //                 'https://doob.smartcodemm.com/storage/songs/audio/xr2gvVQ7RyvodWMCtynleCnc9q7EiBFHRwnrWDnf.mp3'));
+                  //           }
+                  //         }),
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       width: 30,
+                  //     ),
+                  //     IconButton(
+                  //         icon: const Icon(
+                  //           Icons.skip_next,
+                  //           color: Colors.white,
+                  //         ),
+                  //         onPressed: () {}
+                  //         // widget._audioPlayer.hasNext ? widget._audioPlayer.seekToNext : null,
+                  //         ),
+                  //   ],
+                  // ),
+                ],
               );
             },
             // child:

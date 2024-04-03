@@ -39,6 +39,9 @@ class _SignUpState extends State<SignUp> {
   final phoneController = TextEditingController();
   FocusNode phoneFocusNode = FocusNode();
 
+  String text = "";
+  int maxLength = 50;
+
   bool _obscureTextLogin = true;
   bool _obscureConfirmTextLogin = true;
 
@@ -108,7 +111,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 40),
+                    padding: const EdgeInsets.only(top: 30),
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
@@ -129,12 +132,13 @@ class _SignUpState extends State<SignUp> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                        top: 40, bottom: 5, left: 10, right: 10),
+                        top: 35, bottom: 5, left: 10, right: 10),
                     child: SizedBox(
-                      height: 50,
+                      height: 60,
                       child: TextField(
                         controller: nameController,
                         focusNode: nameFocusNode,
+                        textAlignVertical: TextAlignVertical.center,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Name'.tr,
@@ -168,10 +172,11 @@ class _SignUpState extends State<SignUp> {
                     padding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     child: SizedBox(
-                      height: 50,
+                      height: 60,
                       child: TextField(
                         controller: emailController,
                         focusNode: emailFocusNode,
+                        textAlignVertical: TextAlignVertical.center,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Email'.tr,
@@ -208,10 +213,11 @@ class _SignUpState extends State<SignUp> {
                     padding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     child: SizedBox(
-                      height: 50,
+                      height: 60,
                       child: TextField(
                         controller: passwordController,
                         focusNode: passwordFocusNode,
+                        textAlignVertical: TextAlignVertical.center,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Password'.tr,
@@ -248,10 +254,11 @@ class _SignUpState extends State<SignUp> {
                     padding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     child: SizedBox(
-                      height: 50,
+                      height: 60,
                       child: TextField(
                         controller: comfirmPasswordController,
                         focusNode: comfirmPasswordFocusNode,
+                        textAlignVertical: TextAlignVertical.center,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Comfirm Password'.tr,
@@ -288,46 +295,119 @@ class _SignUpState extends State<SignUp> {
 
                   // ),
 
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: IntlPhoneField(
+                      inputFormatters: [LengthLimitingTextInputFormatter(50)],
+                      controller: phoneController,
+
+                      // onChanged: (String phone) {
+                      //   if (phone.length <= maxLength) {
+                      //     text = phone;
+                      //   } else {
+                      //     phoneController = text;
+                      //   }
+                      // },
+                      keyboardType: TextInputType.number,
+                      focusNode: phoneFocusNode,
+                      initialCountryCode: 'MM',
+                      disableLengthCheck: true,
+
+                      onChanged: (phone) {
+                        print(phone.completeNumber);
+                      },
+                      dropdownTextStyle:
+                          TextStyle(fontSize: 14, color: Colors.white),
+                      dropdownIcon: Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: 'Phone Number',
+                        counterText: '',
+                        labelStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+
+                            // color: Colors.white.withOpacity(0.6),
+                            fontFamily: "Century"),
+                        prefixIcon: Icon(
+                          Icons.phone_iphone,
+                          size: 20,
+
+                          color: Colors.white,
+
+                          // color: Colors.white.withOpacity(0.4),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 0.3),
+                        ),
+                      ),
+                    ),
+                  ),
+
                   // Padding(
                   //   padding:
                   //       const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                   //   child: SizedBox(
-                  //     height: 70,
-                  //     child: Form(
-                  //       key: _formKey,
-                  //       child: IntlPhoneField(
+                  //     height: 60,
+                  //     child: Container(
+                  //       //    padding: EdgeInsets.only(bottom: 5),
+                  //       child: TextFormField(
                   //         inputFormatters: [
                   //           LengthLimitingTextInputFormatter(100)
                   //         ],
+                  //         onChanged: (phone) {},
                   //         controller: phoneController,
+                  //         textAlignVertical: TextAlignVertical.center,
+                  //         // textAlign: TextAlign.center,
+
                   //         keyboardType: TextInputType.number,
                   //         focusNode: phoneFocusNode,
-                  //         initialCountryCode: 'MM',
-                  //         dropdownTextStyle:
-                  //             TextStyle(fontSize: 14, color: Colors.white),
-                  //         dropdownIcon: Icon(
-                  //           Icons.arrow_drop_down,
-                  //           color: Colors.white,
-                  //           size: 20,
-                  //         ),
+                  //         maxLength: null,
+                  //         // initialCountryCode: 'MM',
+                  //         // dropdownTextStyle:
+                  //         //     TextStyle(fontSize: 14, color: Colors.white),
+                  //         // dropdownIcon: Icon(
+                  //         //   Icons.arrow_drop_down,
+                  //         //   color: Colors.white,
+                  //         //   size: 20,
+                  //         // ),
                   //         style: TextStyle(color: Colors.white),
                   //         decoration: InputDecoration(
-                  //           labelText: 'Phone Number',
-                  //           // counterText: '',
+                  //           labelText: 'Phone Number'.tr,
+                  //           counterText: '',
                   //           labelStyle: TextStyle(
                   //               color: Colors.white,
                   //               fontSize: 14,
 
                   //               // color: Colors.white.withOpacity(0.6),
                   //               fontFamily: "Century"),
-                  //           prefixIcon: Icon(
-                  //             Icons.phone_iphone,
-                  //             size: 20,
-
-                  //             color: Colors.white,
-
-                  //             // color: Colors.white.withOpacity(0.4),
+                  //           prefixIcon: CountryCodePicker(
+                  //             initialSelection: 'MM',
+                  //             showCountryOnly: true,
+                  //             textStyle:
+                  //                 TextStyle(fontSize: 14, color: Colors.white),
                   //           ),
+                  //           // prefixIcon: Icon(
+                  //           //   Icons.phone_iphone,
+                  //           //   size: 20,
+
+                  //           //   color: Colors.white,
+
+                  //           //   // color: Colors.white.withOpacity(0.4),
+                  //           // ),
                   //           border: OutlineInputBorder(
                   //             borderRadius: BorderRadius.circular(10),
                   //             borderSide: BorderSide(
@@ -345,73 +425,11 @@ class _SignUpState extends State<SignUp> {
                   //   ),
                   // ),
 
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    child: SizedBox(
-                      height: 50,
-                      child: TextFormField(
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(100)
-                        ],
-                        onChanged: (phone) {},
-                        controller: phoneController,
-                        keyboardType: TextInputType.number,
-                        focusNode: phoneFocusNode,
-                        maxLength: null,
-                        // initialCountryCode: 'MM',
-                        // dropdownTextStyle:
-                        //     TextStyle(fontSize: 14, color: Colors.white),
-                        // dropdownIcon: Icon(
-                        //   Icons.arrow_drop_down,
-                        //   color: Colors.white,
-                        //   size: 20,
-                        // ),
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          labelText: 'Phone Number'.tr,
-                          counterText: '',
-                          labelStyle: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-
-                              // color: Colors.white.withOpacity(0.6),
-                              fontFamily: "Century"),
-                          prefixIcon: CountryCodePicker(
-                            initialSelection: 'MM',
-                            showCountryOnly: true,
-                            textStyle:
-                                TextStyle(fontSize: 14, color: Colors.white),
-                          ),
-                          // prefixIcon: Icon(
-                          //   Icons.phone_iphone,
-                          //   size: 20,
-
-                          //   color: Colors.white,
-
-                          //   // color: Colors.white.withOpacity(0.4),
-                          // ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.white, width: 0.3),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
                   Consumer(
                     builder: (context, ref, child) {
                       return isloading
                           ? Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 25),
+                              padding: const EdgeInsets.symmetric(vertical: 20),
                               child: Container(
                                 height: 40,
                                 width: 150,
@@ -575,7 +593,7 @@ class _SignUpState extends State<SignUp> {
                       // Navigator.pushNamed(context, '/loginScreen');
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       child: RichText(
                         text: TextSpan(
                             style: GoogleFonts.mulish(color: Colors.white),

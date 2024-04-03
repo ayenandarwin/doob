@@ -1,6 +1,9 @@
+import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MusicPlayer extends StatefulWidget {
   const MusicPlayer({super.key});
@@ -295,7 +298,8 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                       children: [
                         InkWell(
                             onTap: () {
-                              Navigator.pushNamed(context, '/favoriteDetails');
+                              Get.to(() => PlaylistMoreDetails());
+                              //Navigator.pushNamed(context, '/favoriteDetails');
                             },
                             child: Image.asset(
                               'lib/Icons/4.png',
@@ -344,9 +348,14 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     ]),
                     child: Column(
                       children: [
-                        Image.asset(
-                          'lib/Icons/5.png',
-                          height: 50,
+                        InkWell(
+                          onTap: () {
+                            Share.share('com.example.doob');
+                          },
+                          child: Image.asset(
+                            'lib/Icons/5.png',
+                            height: 50,
+                          ),
                         ),
                         //  SvgPicture.asset('lib/Icons/share.svg', height: 25),
                         Text(

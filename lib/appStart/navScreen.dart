@@ -19,12 +19,14 @@ class _NaviScreenState extends State<NaviScreen> {
   final TextStyle unselectedLabelStyle = TextStyle(
       color: Colors.white.withOpacity(0.5),
       fontWeight: FontWeight.w500,
-      fontSize: 12);
+    //  fontFamily: 'Century',
+      fontSize: 14);
 
   final TextStyle selectedLabelStyle = TextStyle(
     color: Colors.white,
     fontWeight: FontWeight.w500,
-    fontSize: 12,
+    //fontFamily: 'Century',
+    fontSize: 14,
   );
 
   @override
@@ -47,9 +49,12 @@ class _NaviScreenState extends State<NaviScreen> {
             showSelectedLabels: true,
             onTap: naviController.changePage,
             currentIndex: naviController.currentIndex.value,
-            // backgroundColor: Color.fromRGBO(101, 10, 10, 0.8),
-            backgroundColor: Colors.black.withOpacity(0.7),
+
+            // backgroundColor: Colors.transparent,
+
+            backgroundColor: Colors.black.withOpacity(0.95),
             unselectedItemColor: Colors.white,
+            //  unselectedItemColor: Colors.black,
             type: BottomNavigationBarType.fixed,
 
             selectedItemColor: Color(0xffff9800),
@@ -61,7 +66,7 @@ class _NaviScreenState extends State<NaviScreen> {
                   margin: EdgeInsets.only(bottom: 7),
                   child: Icon(
                     Icons.home_filled,
-                    size: 20.0,
+                    size: 25.0,
                   ),
                 ),
                 label: "Home".tr,
@@ -72,7 +77,7 @@ class _NaviScreenState extends State<NaviScreen> {
                   margin: EdgeInsets.only(bottom: 7),
                   child: Icon(
                     Icons.search,
-                    size: 20.0,
+                    size: 25.0,
                   ),
                 ),
                 label: "Search".tr,
@@ -85,7 +90,7 @@ class _NaviScreenState extends State<NaviScreen> {
                   margin: EdgeInsets.only(bottom: 7),
                   child: Icon(
                     Icons.play_circle_outline,
-                    size: 20.0,
+                    size: 25.0,
                   ),
                 ),
                 label: "Feed".tr,
@@ -95,7 +100,8 @@ class _NaviScreenState extends State<NaviScreen> {
                 icon: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Image.asset(
-                    "lib/Icons/library.png", width: 20, height: 20,
+                    "lib/Icons/library.png", width: 25, height: 25,
+                    //   color: Colors.black,
                     // Container(
                     //   margin: EdgeInsets.only(bottom: 7),
                     //   child: Icon(
@@ -109,8 +115,8 @@ class _NaviScreenState extends State<NaviScreen> {
                   child: Image.asset(
                     "lib/Icons/library.png",
                     color: Color(0xffff9800),
-                    width: 20,
-                    height: 20,
+                    width: 25,
+                    height: 25,
                     //   height: 50,
                   ),
                 ),
@@ -122,8 +128,9 @@ class _NaviScreenState extends State<NaviScreen> {
                   padding: const EdgeInsets.all(2.0),
                   child: Image.asset(
                     "lib/Icons/feed1.png",
-                    width: 25,
-                    height: 25,
+                    //  color: Colors.black,
+                    width: 30,
+                    height: 30,
                   ),
                 ),
                 //   SvgPicture.asset("lib/Icons/pay.svg", height: 24),
@@ -132,8 +139,8 @@ class _NaviScreenState extends State<NaviScreen> {
                   child: Image.asset(
                     "lib/Icons/feed1.png",
                     color: Color(0xffff9800),
-                    width: 25,
-                    height: 25,
+                    width: 30,
+                    height: 30,
                     //   height: 50,
                   ),
                 ),

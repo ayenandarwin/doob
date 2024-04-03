@@ -669,7 +669,7 @@ class NewRelese extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.off(() => NewReleaseDetails());
+        Get.to(() => NewReleaseDetails());
       },
       child: Container(
         padding: EdgeInsets.all(4),
@@ -696,7 +696,7 @@ class Mixes extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.off(() => NewReleaseDetails());
+        Get.to(() => NewReleaseDetails());
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 4),
@@ -723,7 +723,7 @@ class NewFU extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.off(() => NewReleaseDetails());
+        Get.to(() => NewReleaseDetails());
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 4),
@@ -750,7 +750,7 @@ class HomeArtistCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.off(ArtistsDetails());
+        Get.to(ArtistsDetails());
       },
       child: Container(
         width: MediaQuery.of(context).size.width / 2.5,
@@ -796,15 +796,20 @@ class HomePageMood extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/JC.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+      onTap: () {
+        Get.to(() => NewReleaseDetails());
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/JC.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -836,15 +841,21 @@ class TopChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/unforgiven.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+       onTap: (){
+                Get.to(() => NewReleaseDetails());
+
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/unforgiven.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -858,15 +869,21 @@ class TrendingNearYou extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/utopia.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+       onTap: (){
+                Get.to(() => NewReleaseDetails());
+
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/utopia.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -880,15 +897,21 @@ class PopularPlaylist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/middle.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+       onTap: (){
+                Get.to(() => NewReleaseDetails());
+
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/middle.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -902,15 +925,21 @@ class YourMostPlayedSongs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/JC.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+       onTap: (){
+                Get.to(() => NewReleaseDetails());
+
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/JC.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -924,15 +953,21 @@ class FlavourofMusics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/IGOR.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+       onTap: (){
+                Get.to(() => NewReleaseDetails());
+
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/IGOR.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -946,15 +981,21 @@ class BaseOnYourRecent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/utopia.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+       onTap: (){
+                Get.to(() => NewReleaseDetails());
+
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/utopia.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -968,15 +1009,21 @@ class DoobChoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/JC.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+       onTap: (){
+                Get.to(() => NewReleaseDetails());
+
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/JC.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -990,15 +1037,20 @@ class InternationalHitsSongs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/middle.jpg',
-          fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+    return InkWell(
+      onTap: () {
+        Get.to(() => NewReleaseDetails());
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/middle.jpg',
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -1012,15 +1064,20 @@ class LocalHits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'lib/Image/IGOR.jpg',
-          width: 150,
-          fit: BoxFit.cover,
-          height: 150,
+    return InkWell(
+      onTap: () {
+        Get.to(() => NewReleaseDetails());
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'lib/Image/IGOR.jpg',
+            width: 150,
+            fit: BoxFit.cover,
+            height: 150,
+          ),
         ),
       ),
     );
@@ -1034,37 +1091,43 @@ class ArtistForU extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width / 2.5,
-      child: Column(
-        children: [
-          Container(
-            height: 130,
-            width: 130,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.asset(
-                'lib/Image/jojipf.jpg',
-                fit: BoxFit.cover,
+    return InkWell(
+       onTap: (){
+                Get.to(() => ArtistsDetails());
+
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width / 2.5,
+        child: Column(
+          children: [
+            Container(
+              height: 130,
+              width: 130,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.asset(
+                  'lib/Image/jojipf.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            'Joji',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Century',
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold),
-          ),
-        ],
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Joji',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Century',
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -1077,37 +1140,42 @@ class YourFollowArtist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width / 2.5,
-      child: Column(
-        children: [
-          Container(
-            height: 130,
-            width: 130,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.asset(
-                'lib/Image/jojipf.jpg',
-                fit: BoxFit.cover,
+    return InkWell(
+      onTap: () {
+        Get.to(() => ArtistsDetails());
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width / 2.5,
+        child: Column(
+          children: [
+            Container(
+              height: 130,
+              width: 130,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.asset(
+                  'lib/Image/jojipf.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            'Joji',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Century',
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.bold),
-          ),
-        ],
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Joji',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Century',
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }

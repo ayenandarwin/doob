@@ -1,7 +1,9 @@
+import 'package:doob/Component/NewReleaseMoreDetails.dart';
 import 'package:doob/Pages/Library.dart';
 import 'package:doob/services/artistServiceProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 class ArtistsDetails extends StatefulWidget {
   const ArtistsDetails({super.key});
@@ -78,7 +80,8 @@ class _ArtistsDetailstate extends State<ArtistsDetails> {
                             itemBuilder: (context, index) {
                               return InkWell(
                                   onTap: (() {
-                                    
+                                    Get.to(() => NewReleaseMoreDetails());
+
                                     // Navigator.pushNamed(
                                     //     context, '/playlistDetails');
                                   }),
