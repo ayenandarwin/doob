@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'song.dart';
+part of 'randomsong.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SongImpl _$$SongImplFromJson(Map<String, dynamic> json) => _$SongImpl(
+_$RandomSongImpl _$$RandomSongImplFromJson(Map<String, dynamic> json) =>
+    _$RandomSongImpl(
       json['id'] as int?,
       json['name'] as String?,
       json['cover_photo'] as String?,
@@ -21,7 +22,7 @@ _$SongImpl _$$SongImplFromJson(Map<String, dynamic> json) => _$SongImpl(
       json['reject_reason'] as String?,
     );
 
-Map<String, dynamic> _$$SongImplToJson(_$SongImpl instance) =>
+Map<String, dynamic> _$$RandomSongImplToJson(_$RandomSongImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

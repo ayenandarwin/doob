@@ -202,7 +202,7 @@ class _SignInState extends State<SignIn> {
                   InkWell(
                     onTap: () {
                       // Navigator.pushNamed(context, '/loginScreen');
-                      Get.off(LoginScreen());
+                      Get.to(LoginScreen());
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 30),
@@ -225,7 +225,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.off(SignUp());
+                      Get.to(() => SignUp());
                       // Navigator.pushNamed(context, '/signUp');
                     },
                     child: Padding(

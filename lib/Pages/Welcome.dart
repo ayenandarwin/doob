@@ -138,7 +138,7 @@ class _WelcomeState extends State<Welcome> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.off(SignIn());
+                      Get.to(() => SignIn());
                       // Navigator.pushNamed(context, '/signIn');
                     },
                     child: Container(

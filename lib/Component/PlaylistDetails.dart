@@ -173,7 +173,8 @@ class _PlaylistDetailsState extends State<PlaylistDetails> {
                                   if (
                                       // albumIdList.data!['songs'] == null
                                       albumIdList.data!.songs!.isEmpty) {
-                                    return Padding(
+                                    return 
+                                    Padding(
                                       padding: const EdgeInsets.only(
                                           top: 20,
                                           left: 10,

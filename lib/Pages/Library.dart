@@ -1,4 +1,3 @@
-import 'package:doob/Component/NavBar.dart';
 import 'package:doob/Libcomponent/AlbumsTabs.dart';
 import 'package:doob/Libcomponent/Artist.dart';
 import 'package:doob/Libcomponent/Folder.dart';
@@ -207,13 +206,11 @@ class Albums extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-     InkWell(
+    return InkWell(
       onTap: () {
         Navigator.pushNamed(context, '/playlistDetails');
       },
-      child: 
-      Padding(
+      child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Container(
           // decoration: BoxDecoration(
@@ -278,8 +275,7 @@ class ArtistCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Container(
         child: Row(

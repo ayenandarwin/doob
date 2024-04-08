@@ -53,7 +53,7 @@ class _SettingState extends State<Setting> {
                               color: Colors.white),
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
-                              child: Image.asset('lib/Image/dooro.jpg',
+                              child: Image.asset('lib/Image/dooblogo.png',
                                   fit: BoxFit.cover)),
                         ),
                         SizedBox(

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'song.dart';
+part of 'randomsong.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Song _$SongFromJson(Map<String, dynamic> json) {
-  return _Song.fromJson(json);
+RandomSong _$RandomSongFromJson(Map<String, dynamic> json) {
+  return _RandomSong.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Song {
+mixin _$RandomSong {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get cover_photo => throw _privateConstructorUsedError;
@@ -35,13 +35,15 @@ mixin _$Song {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SongCopyWith<Song> get copyWith => throw _privateConstructorUsedError;
+  $RandomSongCopyWith<RandomSong> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SongCopyWith<$Res> {
-  factory $SongCopyWith(Song value, $Res Function(Song) then) =
-      _$SongCopyWithImpl<$Res, Song>;
+abstract class $RandomSongCopyWith<$Res> {
+  factory $RandomSongCopyWith(
+          RandomSong value, $Res Function(RandomSong) then) =
+      _$RandomSongCopyWithImpl<$Res, RandomSong>;
   @useResult
   $Res call(
       {int? id,
@@ -59,9 +61,9 @@ abstract class $SongCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SongCopyWithImpl<$Res, $Val extends Song>
-    implements $SongCopyWith<$Res> {
-  _$SongCopyWithImpl(this._value, this._then);
+class _$RandomSongCopyWithImpl<$Res, $Val extends RandomSong>
+    implements $RandomSongCopyWith<$Res> {
+  _$RandomSongCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -138,10 +140,11 @@ class _$SongCopyWithImpl<$Res, $Val extends Song>
 }
 
 /// @nodoc
-abstract class _$$SongImplCopyWith<$Res> implements $SongCopyWith<$Res> {
-  factory _$$SongImplCopyWith(
-          _$SongImpl value, $Res Function(_$SongImpl) then) =
-      __$$SongImplCopyWithImpl<$Res>;
+abstract class _$$RandomSongImplCopyWith<$Res>
+    implements $RandomSongCopyWith<$Res> {
+  factory _$$RandomSongImplCopyWith(
+          _$RandomSongImpl value, $Res Function(_$RandomSongImpl) then) =
+      __$$RandomSongImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -160,10 +163,11 @@ abstract class _$$SongImplCopyWith<$Res> implements $SongCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SongImplCopyWithImpl<$Res>
-    extends _$SongCopyWithImpl<$Res, _$SongImpl>
-    implements _$$SongImplCopyWith<$Res> {
-  __$$SongImplCopyWithImpl(_$SongImpl _value, $Res Function(_$SongImpl) _then)
+class __$$RandomSongImplCopyWithImpl<$Res>
+    extends _$RandomSongCopyWithImpl<$Res, _$RandomSongImpl>
+    implements _$$RandomSongImplCopyWith<$Res> {
+  __$$RandomSongImplCopyWithImpl(
+      _$RandomSongImpl _value, $Res Function(_$RandomSongImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -182,7 +186,7 @@ class __$$SongImplCopyWithImpl<$Res>
     Object? mtv = freezed,
     Object? reject_reason = freezed,
   }) {
-    return _then(_$SongImpl(
+    return _then(_$RandomSongImpl(
       freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -237,8 +241,8 @@ class __$$SongImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SongImpl implements _Song {
-  const _$SongImpl(
+class _$RandomSongImpl implements _RandomSong {
+  const _$RandomSongImpl(
       this.id,
       this.name,
       this.cover_photo,
@@ -252,8 +256,8 @@ class _$SongImpl implements _Song {
       this.mtv,
       this.reject_reason);
 
-  factory _$SongImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SongImplFromJson(json);
+  factory _$RandomSongImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RandomSongImplFromJson(json);
 
   @override
   final int? id;
@@ -282,14 +286,14 @@ class _$SongImpl implements _Song {
 
   @override
   String toString() {
-    return 'Song(id: $id, name: $name, cover_photo: $cover_photo, audio: $audio, run_time: $run_time, lyric: $lyric, album_id: $album_id, owner_id: $owner_id, status: $status, type: $type, mtv: $mtv, reject_reason: $reject_reason)';
+    return 'RandomSong(id: $id, name: $name, cover_photo: $cover_photo, audio: $audio, run_time: $run_time, lyric: $lyric, album_id: $album_id, owner_id: $owner_id, status: $status, type: $type, mtv: $mtv, reject_reason: $reject_reason)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SongImpl &&
+            other is _$RandomSongImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.cover_photo, cover_photo) ||
@@ -317,19 +321,19 @@ class _$SongImpl implements _Song {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SongImplCopyWith<_$SongImpl> get copyWith =>
-      __$$SongImplCopyWithImpl<_$SongImpl>(this, _$identity);
+  _$$RandomSongImplCopyWith<_$RandomSongImpl> get copyWith =>
+      __$$RandomSongImplCopyWithImpl<_$RandomSongImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SongImplToJson(
+    return _$$RandomSongImplToJson(
       this,
     );
   }
 }
 
-abstract class _Song implements Song {
-  const factory _Song(
+abstract class _RandomSong implements RandomSong {
+  const factory _RandomSong(
       final int? id,
       final String? name,
       final String? cover_photo,
@@ -341,9 +345,10 @@ abstract class _Song implements Song {
       final String? status,
       final String? type,
       final String? mtv,
-      final String? reject_reason) = _$SongImpl;
+      final String? reject_reason) = _$RandomSongImpl;
 
-  factory _Song.fromJson(Map<String, dynamic> json) = _$SongImpl.fromJson;
+  factory _RandomSong.fromJson(Map<String, dynamic> json) =
+      _$RandomSongImpl.fromJson;
 
   @override
   int? get id;
@@ -371,6 +376,6 @@ abstract class _Song implements Song {
   String? get reject_reason;
   @override
   @JsonKey(ignore: true)
-  _$$SongImplCopyWith<_$SongImpl> get copyWith =>
+  _$$RandomSongImplCopyWith<_$RandomSongImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

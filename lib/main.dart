@@ -26,6 +26,7 @@ import 'package:doob/Pages/SocialLogin.dart';
 import 'package:doob/Pages/Welcome.dart';
 import 'package:doob/Pages/loginCopy.dart';
 import 'package:doob/appStart/navScreen.dart';
+import 'package:doob/appStart/preScreen.dart';
 import 'package:doob/l10n/l10n.dart';
 import 'package:doob/localization/localizationService.dart';
 import 'package:doob/provider/locale.dart';
@@ -98,7 +99,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       // initialRoute: "/empty",
       routes: {
-        "/": (context) => const LaunchScreen(),
+        "/": (context) => PreScreen(),
         "/welcome": (context) => const Welcome(),
         "/signIn": (context) => const SignIn(),
         "/signUp": (context) => const SignUp(),

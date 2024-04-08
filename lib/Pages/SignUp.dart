@@ -515,9 +515,8 @@ class _SignUpState extends State<SignUp> {
                                         isloading = false;
                                       });
                                       // Navigator.pop(context);
-                                      Navigator.pushNamed(
-                                          context, '/loginScreen');
-                                      // Get.off(() => VerifyCodeScreen());
+
+                                      Get.to(() => LoginScreen());
                                     } else {
                                       setState(() {
                                         isloading = false;
@@ -589,7 +588,7 @@ class _SignUpState extends State<SignUp> {
                   //),
                   InkWell(
                     onTap: () {
-                      Get.off(LoginScreen());
+                      Get.to(() => LoginScreen());
                       // Navigator.pushNamed(context, '/loginScreen');
                     },
                     child: Padding(
