@@ -1,4 +1,3 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:doob/Component/FavoriteArtists.dart';
 import 'package:doob/Component/song.dart';
 import 'package:doob/Libcomponent/AlbumsTabs.dart';
@@ -26,7 +25,7 @@ class NewReleaseMoreDetails extends StatefulWidget {
 }
 
 class _NewReleaseMoreDetailsState extends State<NewReleaseMoreDetails> {
-  final audioPlayer = AudioPlayer();
+  // final audioPlayer = AudioPlayer();
 
   bool isPlaying = false;
   bool isFav = false;
@@ -71,7 +70,7 @@ class _NewReleaseMoreDetailsState extends State<NewReleaseMoreDetails> {
 
   @override
   void dispose() {
-    audioPlayer.dispose();
+    // audioPlayer.dispose();
     super.dispose();
   }
 

@@ -49,7 +49,7 @@ class _PreScreenState extends State<PreScreen> {
       Global.isLogIn = false;
       //naviController.currentIndex.value = 3;
       // Get.off(() => LoginScreen());
-      Get.to(() => LoginScreen());
+      Get.off(() => LoginScreen());
       Get.snackbar(
         "Alert",
         "အကောင့်ပြန်ဝင်ပါ",
@@ -71,13 +71,15 @@ class _PreScreenState extends State<PreScreen> {
           builder: (context) {
             return AlertDialog(
               contentPadding: EdgeInsets.zero,
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.black38,
               content: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height * 0.38,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/no_internet.png'),
+                        image: AssetImage(
+                          'lib/Image/noInternet.png',
+                        ),
                         fit: BoxFit.fill)),
                 child: Padding(
                   padding:
@@ -85,53 +87,70 @@ class _PreScreenState extends State<PreScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      // Container(
+                      //   width: 200,
+                      //   height: 100,
+                      //   child: Image.asset(
+                      //     'lib/Image/noInternet1.jpg',
+                      //   ),
+                      // ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 70.0, left: 15, right: 15),
+                            top: 160.0, left: 15, right: 15),
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.1,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, right: 15),
-                        child: Text(
-                          "Alert",
-                          style: const TextStyle(fontSize: 18),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(left: 15, right: 15),
+                      //   child: Text(
+                      //     "Alert",
+                      //     style: const TextStyle(
+                      //         fontSize: 18,
+                      //         fontFamily: 'Century',
+                      //         fontWeight: FontWeight.bold),
+                      //   ),
+                      // ),
                       Container(
                         alignment: Alignment.center,
                         padding: const EdgeInsets.only(left: 10.0, right: 10),
                         child: Text(
-                          'You have no internet'.tr + '\n' + 'Try Again'.tr,
+                          'You have no internet'.tr,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontFamily: 'Century',
+                              fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Get.back();
-                              checkConnection();
-                            },
-                            child: Container(
-                              width: 80,
-                              height: 30,
-                              alignment: Alignment.center,
-                              decoration: const BoxDecoration(
-                                  // color: CustomColors.mainColor,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0))),
-                              child: Text(
-                                'Try Again'.tr,
-                                style: TextStyle(
-                                    fontSize: 12, color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      //   children: [
+                      //     InkWell(
+                      //       onTap: () {
+                      //         Get.back();
+                      //         checkConnection();
+                      //       },
+                      //       child: Container(
+                      //         width: 80,
+                      //         height: 30,
+                      //         alignment: Alignment.center,
+                      //         decoration: const BoxDecoration(
+                      //             // color: CustomColors.mainColor,
+                      //             borderRadius:
+                      //                 BorderRadius.all(Radius.circular(15.0))),
+                      //         child: Text(
+                      //           'Try Again'.tr,
+                      //           style: TextStyle(
+                      //               fontSize: 12,
+                      //               color: Colors.white,
+                      //               fontFamily: 'Century'),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )
                     ],
                   ),
                 ),
@@ -268,11 +287,6 @@ class _PreScreenState extends State<PreScreen> {
                     height: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      // color: CustomColors.mainColor,
-                      // gradient: LinearGradient(colors: [
-                      //   Colors.red.withOpacity(.8),
-                      //   Colors.orange.withOpacity(0.8)
-                      // ]),
                     ),
                     child: Center(
                       child: Text(
@@ -313,9 +327,7 @@ class _PreScreenState extends State<PreScreen> {
             Center(
               child: Image.asset(
                 'lib/Image/DOOB.png',
-
                 height: 90,
-                //scale: 0.1,
               ),
             ),
             SizedBox(
@@ -323,11 +335,9 @@ class _PreScreenState extends State<PreScreen> {
             ),
             Text(
               'Welcome to doob',
-              //'Welcome to doob'.tr,
               style: TextStyle(
                   fontSize: 30, fontFamily: 'Century', color: Colors.white),
             ),
-            // Lottie.asset('assets/icons/loading2.json', width: 150, height: 150),
             SizedBox(
               height: 20,
             ),
@@ -336,30 +346,4 @@ class _PreScreenState extends State<PreScreen> {
       ),
     );
   }
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     backgroundColor: Colors.white,
-  //     body: Center(
-  //       child: SingleChildScrollView(
-  //         child: Column(
-  //           children: [
-  //             Container(
-  //               width: MediaQuery.of(context).size.width * 0.35,
-  //               height: MediaQuery.of(context).size.height * 0.35,
-  //               decoration: BoxDecoration(
-  //                   color: Colors.transparent,
-  //                   image: DecorationImage(
-  //                     image: AssetImage(
-  //                       "assets/icons/appstore.png",
-  //                     ),
-  //                     scale: 5,
-  //                     fit: BoxFit.contain,
-  //                   )),
-  //             )
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 }

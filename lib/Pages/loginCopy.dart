@@ -359,10 +359,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   Consumer(
                     builder: (context, ref, child) {
                       return isloading
-                          ? Padding(
+                          ? 
+                          Padding(
                               padding:
                                   const EdgeInsets.only(top: 30, bottom: 20),
-                              child: Container(
+                              child: 
+                              Container(
                                 height: 40,
                                 width: 150,
                                 decoration: BoxDecoration(

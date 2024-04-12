@@ -18,9 +18,6 @@ import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
 
 class Home extends StatefulWidget {
-  // final VoidCallbackAction showNavigation;
-  // final VoidCallbackAction hideNavigation;
-
   const Home({
     super.key,
   });
@@ -59,7 +56,7 @@ class _HomeState extends State<Home> {
     _scrollController = ScrollController();
 
     setState(() {
-      // Global.loginStatus();
+      
     });
   }
 
@@ -69,50 +66,12 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
-  // void hideNav() {
-  //   setState(() {
-  //     visible = false;
-  //   });
-  // }
-
-  // void showNav() {
-  //   setState(() {
-  //     visible = true;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     final NaviController naviController = Get.put(NaviController());
     return Scaffold(
       backgroundColor: Colors.black,
-      body:
-          //   Obx(
-          // () {
-//return
-          //   NotificationListener<ScrollUpdateNotification>(
-          // onNotification: (scrollNotification) {
-          //   print(scrollNotification.metrics.pixels);
-
-          //   if (scrollNotification.metrics.axisDirection ==
-          //       AxisDirection.down) {
-          //     // if (naviController.isBottomNavVisible.value) {
-          //     print('Down');
-          //     naviController.isBottomNavVisible.value = false;
-          //     //}
-          //   } else if (scrollNotification.metrics.axisDirection ==
-          //       AxisDirection.up) {
-          //     print('Up');
-          //     // if (!naviController.isBottomNavVisible.value) {
-          //     naviController.isBottomNavVisible.value = true;
-          //     //  }
-          //   }
-
-          //   return true;
-          // },
-          //  child:
-          SingleChildScrollView(
-        // controller: _scrollController,
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(right: 10, left: 10, bottom: 60),
           child: Container(
@@ -132,15 +91,7 @@ class _HomeState extends State<Home> {
                                 'lib/Image/DOOB.png',
                                 width: 60,
                               )
-                                  // Text(
-                                  //   "DOOB",
-                                  //   style: TextStyle(
-                                  //     color: Color(0xffffff9800),
-                                  //     fontFamily: "Century",
-                                  //     fontWeight: FontWeight.bold,
-                                  //     fontSize: 20,
-                                  //   ),
-                                  // ),
+                                 
                                   ),
                             ],
                           ),
@@ -192,19 +143,14 @@ class _HomeState extends State<Home> {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 10, left: 0),
                       child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        
                         children: tabs.map((e) {
                           return GestureDetector(
                             onTap: () {
                               setState(() {
                                 currenttabs = e['Page'];
                                 currenttabsID = e['id'];
-                                // if (currenttabsID = e['id'][0]) {
-                                //   Get.to(AlbumsTabs());
-
-                                // }else if(currenttabsID=e['id'][1]){
-                                //   Get.to(()=>Podcast());
-                                // }
+                                
                               });
                             },
                             child: Libtab(
@@ -215,86 +161,7 @@ class _HomeState extends State<Home> {
                         }).toList(),
                       ),
                     ),
-                    // Row(
-                    //   mainAxisSize: MainAxisSize.min,
-                    //   children: [
-                    //     Expanded(
-                    //       child:
-                    //        Row(
-                    //         mainAxisSize: MainAxisSize.min,
-                    //         //mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: [
-                    //           GestureDetector(
-                    //             onTap: () {
-                    //               Get.to(() => MusicPlayer());
-                    //               // if (currentindex != 0) {
-                    //               //   controller.animateToPage(0,
-                    //               //       duration: Duration(milliseconds: 500),
-                    //               //       curve: Curves.linear);
-                    //               //   setState(() {
-                    //               //     currentindex = 0;
-                    //               //   });
-                    //               // }
-                    //             },
-                    //             child: Text(
-                    //               'Music',
-                    //               style: TextStyle(
-                    //                   fontFamily: 'Century',
-                    //                   color: isClick
-                    //                       ? Color(0xffff9800)
-                    //                       : Colors.white,
-                    //                   fontWeight: FontWeight.bold,
-                    //                   fontSize: 16),
-                    //             ),
-                    //           ),
-                    //           Spacer(),
-                    //           GestureDetector(
-                    //             onTap: () {
-                    //               Get.to(() => MusicPlayer());
-                    //               // if (currentindex != 1) {
-                    //               //   controller.animateToPage(1,
-                    //               //       duration: Duration(milliseconds: 500),
-                    //               //       curve: Curves.linear);
-
-                    //               //   setState(() {
-                    //               //     currentindex = 1;
-                    //               //   });
-                    //               // }
-                    //             },
-                    //             child: Text(
-                    //               'PodCasts & Shows',
-                    //               style: TextStyle(
-                    //                   fontFamily: 'Century',
-                    //                   color: !isClick
-                    //                       ? Color(0xffff9800)
-                    //                       : Colors.white,
-                    //                   fontWeight: FontWeight.bold,
-                    //                   fontSize: 16),
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //     // Text(
-                    //     //   'Music',
-                    //     //   style: TextStyle(
-                    //     //       fontFamily: 'Century',
-                    //     //       fontSize: 18,
-                    //     //       fontWeight: FontWeight.w600,
-                    //     //       color: Colors.white),
-                    //     // ),
-                    //     // // SizedBox(width: 40),
-                    //     // Spacer(),
-                    //     // Text(
-                    //     //   'PodCasts & Shows',
-                    //     //   style: TextStyle(
-                    //     //       fontFamily: 'Century',
-                    //     //       fontSize: 18,
-                    //     //       fontWeight: FontWeight.w600,
-                    //     //       color: Colors.white),
-                    //     // ),
-                    //   ],
-                    // ),
+                   
                   ),
                 ),
                 currenttabs,
@@ -310,17 +177,17 @@ class _HomeState extends State<Home> {
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: Colors.white)),
-                      //  SliverCarouselWidget(),
+                     
 
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: PageIndicator(),
-                        // child: SliverCarouselWidget(),
+                       
                       )
                     ],
                   ),
                 ),
-                //  SliverCarouselWidget(),
+                
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 5),
                   child: Text(

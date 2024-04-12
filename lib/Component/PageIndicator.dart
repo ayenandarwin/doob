@@ -56,7 +56,6 @@ class _PageIndicatorState extends State<PageIndicator> {
                                           // Return a new widget to display a dummy image from the internet
                                           return Image.network(
                                             'https://i.ebayimg.com/images/g/QQAAAOSwk-JiEK3v/s-l1600.jpg',
-                                            // 'https://media.istockphoto.com/photos/music-picture-id535427404?k=6&m=535427404&s=612x612&w=0&h=en1c7qslpGsVRkrTUHPvBNmA61gPUXl_v8ABMgQoZPY=',
                                           );
                                         },
                                         // 'lib/Image/joji.png',
