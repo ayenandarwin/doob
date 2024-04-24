@@ -58,7 +58,7 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
   void initState() {
     super.initState();
     _audioPlayer = AudioPlayer();
-   // initAudioPlayer();
+    // initAudioPlayer();
 
     // _audioPlayer.positionStream.listen((position) {
     //   final duration = _audioPlayer.duration;

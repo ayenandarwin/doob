@@ -1,6 +1,7 @@
 import 'package:doob/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:lottie/lottie.dart';
 import 'package:simple_waveform_progressbar/simple_waveform_progressbar.dart';
 
 class PlayerButtons extends StatefulWidget {
@@ -96,47 +97,60 @@ class _PlayerButtonsState extends State<PlayerButtons>
       width: size.width * 0.9,
       child: Column(
         children: [
-          SizedBox(
-            height: 32,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${widget._audioPlayer.position.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.position.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
-                  style: TextStyle(
-                      fontSize: 12.0,
-                      fontFamily: 'Century',
-                      color: Colors.white),
-                ),
-                SizedBox(
-                  width: size.width * 0.68,
-                  height: 20,
-                  child: WaveformProgressbar(
-                    color: Colors.grey,
-                    //progressColor: Constants.kGradient,
-                    progressColor: Color(0xffFF9800),
-                    progress: _progressValue,
-                    onTap: (progress) {
-                      var tt = progress;
-                    },
+          Stack(
+            children: [
+              // Container(
+              //   child: Lottie.asset(
+              //     'asset/lottie/Animation - 1713755104463.json',
+              //     width: size.width,
+              //   ),
+              // ),
+              Container(
+                padding: EdgeInsets.only(top: 50),
+                child: SizedBox(
+                  height: 32,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${widget._audioPlayer.position.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.position.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
+                        style: TextStyle(
+                            fontSize: 12.0,
+                            fontFamily: 'Century',
+                            color: Colors.white),
+                      ),
+                      // SizedBox(
+                      //   width: size.width * 0.68,
+                      //   height: 20,
+                      //   child: WaveformProgressbar(
+                      //     color: Colors.grey,
+                      //     //progressColor: Constants.kGradient,
+                      //     progressColor: Color(0xffFF9800),
+                      //     progress: _progressValue,
+                      //     onTap: (progress) {
+                      //       var tt = progress;
+                      //     },
+                      //   ),
+                      // ),
+                      Container(
+                        width: size.width * 0.68,
+                        child: LinearProgressIndicator(
+                          value: _progressValue,
+                          color: const Color(0xffff9800),
+                        ),
+                      ),
+                      Text(
+                        '${audioDuration?.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.duration?.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
+                        style: TextStyle(
+                            fontSize: 12.0,
+                            fontFamily: 'Century',
+                            color: Colors.white),
+                      ),
+                    ],
                   ),
                 ),
-                // Container(
-                //   width: size.width * 0.68,
-                //   child: LinearProgressIndicator(
-                //     value: _progressValue,
-                //     color: const Color(0xffff9800),
-                //   ),
-                // ),
-                Text(
-                  '${audioDuration?.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.duration?.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
-                  style: TextStyle(
-                      fontSize: 12.0,
-                      fontFamily: 'Century',
-                      color: Colors.white),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
           SizedBox(height: 30.0),
           Row(
@@ -164,134 +178,92 @@ class _PlayerButtonsState extends State<PlayerButtons>
                   //  final processState = snapshot.data?.processingState;
                   if (processingState == ProcessingState.loading ||
                       processingState == ProcessingState.buffering) {
-                    return Container(
-                      height: 40,
-                      width: 200,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Color(0xffFF9800)),
-                      child: Container(
-                        height: 50,
-                        alignment: Alignment.center,
-                        child: SizedBox(
-                          width: 25,
-                          height: 25,
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    );
-                    // CircleAvatar(
-                    //   maxRadius: 25,
-                    //   backgroundColor: const Color(0xffff9800),
+                    // Container(
+                    //   height: 40,
+                    //   width: 200,
+                    //   decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.circular(50),
+                    //       color: Color(0xffFF9800)),
                     //   child: Container(
-                    //     margin: const EdgeInsets.all(8.0),
-                    //     width: 25.0,
-                    //     height: 25.0,
-                    //     child: const CircularProgressIndicator(
-                    //       color: Colors.white,
+                    //     height: 50,
+                    //     alignment: Alignment.center,
+                    //     child: SizedBox(
+                    //       width: 25,
+                    //       height: 25,
+                    //       child: CircularProgressIndicator(
+                    //         color: Colors.white,
+                    //       ),
                     //     ),
                     //   ),
                     // );
-                  }
-                  //return Container();
-                  // else if (widget._audioPlayer.playing != true) {
-                  //   return Container(
-                  //     height: 40,
-                  //     width: 200,
-                  //     decoration: BoxDecoration(
-                  //       color: Color(0xffff9800),
-                  //       borderRadius: BorderRadius.circular(25),
-                  //     ),
-                  //     child: Center(
-                  //       child: Text(
-                  //         'Lyrics',
-                  //         style: TextStyle(
-                  //             fontFamily: 'Century',
-                  //             fontSize: 14,
-                  //             fontWeight: FontWeight.bold,
-                  //             color: Colors.white),
-                  //       ),
-                  //     ),
-                  //   );
-                  //   // CircleAvatar(
-                  //   //   maxRadius: 25,
-                  //   //   backgroundColor: Color(0xffff9800),
-                  //   //   child: IconButton(
-                  //   //     icon: const Icon(
-                  //   //       Icons.play_arrow,
-                  //   //       color: Colors.white,
-                  //   //     ),
-                  //   //     iconSize: 30.0,
-                  //   //     onPressed: widget._audioPlayer.play,
-                  //   //   ),
-                  //   // );
-                  // }
-                  // else if (processingState != ProcessingState.completed) {
-                  //   return
-                  //       //  Container(
-                  //       //   height: 40,
-                  //       //   width: 200,
-                  //       //   decoration: BoxDecoration(
-                  //       //     color: Color(0xffff9800),
-                  //       //     borderRadius: BorderRadius.circular(25),
-                  //       //   ),
-                  //       //   child:
-                  //       //    Center(
-                  //       //     child: Text(
-                  //       //       'Lyrics',
-                  //       //       style: TextStyle(
-                  //       //           fontFamily: 'Century',
-                  //       //           fontSize: 14,
-                  //       //           fontWeight: FontWeight.bold,
-                  //       //           color: Colors.white),
-                  //       //     ),
-                  //       //   ),
-                  //       // );
-                  //       CircleAvatar(
-                  //     maxRadius: 25,
-                  //     backgroundColor: const Color(0xffff9800),
-                  //     child: IconButton(
-                  //       icon: const Icon(
-                  //         Icons.pause,
-                  //         color: Colors.white,
-                  //       ),
-                  //       iconSize: 30.0,
-                  //       onPressed: widget._audioPlayer.pause,
-                  //     ),
-                  //   );
-                  // }
-                  else {
-                    return Container(
-                      height: 40,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xffff9800),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Lyrics',
-                          style: TextStyle(
-                              fontFamily: 'Century',
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                    return CircleAvatar(
+                      maxRadius: 25,
+                      backgroundColor: const Color(0xffff9800),
+                      child: Container(
+                        margin: const EdgeInsets.all(8.0),
+                        width: 25.0,
+                        height: 25.0,
+                        child: const CircularProgressIndicator(
+                          color: Colors.white,
                         ),
                       ),
                     );
-                    // IconButton(
-                    //   icon: const Icon(
-                    //     Icons.replay,
-                    //   ),
-                    //   iconSize: 40.0,
-                    //   onPressed: () => widget._audioPlayer.seek(Duration.zero,
-                    //       index: widget._audioPlayer.effectiveIndices!.first),
-                    // );
+                  } else if (widget._audioPlayer.playing != true) {
+                    //   return Container(
+                    //     height: 40,
+                    //     width: 200,
+                    //     decoration: BoxDecoration(
+                    //       color: Color(0xffff9800),
+                    //       borderRadius: BorderRadius.circular(25),
+                    //     ),
+                    //     child: Center(
+                    //       child: Text(
+                    //         'Lyrics',
+                    //         style: TextStyle(
+                    //             fontFamily: 'Century',
+                    //             fontSize: 14,
+                    //             fontWeight: FontWeight.bold,
+                    //             color: Colors.white),
+                    //       ),
+                    //     ),
+                    //   );
+                    return CircleAvatar(
+                      maxRadius: 25,
+                      backgroundColor: Color(0xffff9800),
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.play_arrow,
+                          color: Colors.white,
+                        ),
+                        iconSize: 30.0,
+                        onPressed: widget._audioPlayer.play,
+                      ),
+                    );
+                  } else if (processingState != ProcessingState.completed) {
+                    return CircleAvatar(
+                      maxRadius: 25,
+                      backgroundColor: const Color(0xffff9800),
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.pause,
+                          color: Colors.white,
+                        ),
+                        iconSize: 30.0,
+                        onPressed: widget._audioPlayer.pause,
+                      ),
+                    );
+                  } else {
+                    return IconButton(
+                      icon: const Icon(
+                        Icons.replay,
+                      ),
+                      iconSize: 40.0,
+                      onPressed: () => widget._audioPlayer.seek(Duration.zero,
+                          index: widget._audioPlayer.effectiveIndices!.first),
+                    );
                   }
 
-                  // return _playPauseButton(playerState!);
+                  //  return _playPauseButton(playerState!);
                 },
               ),
               // StreamBuilder<Duration>(
