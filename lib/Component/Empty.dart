@@ -69,7 +69,7 @@ class _EmptyState extends State<Empty> with SingleTickerProviderStateMixin {
               case 2:
                 {
                   setState(() {
-                    currentPage = const MusicPlayer();
+                    currentPage =  MusicPlayer();
                     currentIndex = index;
                   });
                 }

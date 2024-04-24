@@ -27,9 +27,11 @@ import 'package:doob/Pages/Welcome.dart';
 import 'package:doob/Pages/loginCopy.dart';
 import 'package:doob/appStart/navScreen.dart';
 import 'package:doob/appStart/preScreen.dart';
+import 'package:doob/firebase_options.dart';
 import 'package:doob/l10n/l10n.dart';
 import 'package:doob/localization/localizationService.dart';
 import 'package:doob/provider/locale.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -42,10 +44,15 @@ import 'package:hive_flutter/adapters.dart';
 
 Future<void> main() async {
   // configure();
+  WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  // await FireMSG.initNoti();
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await GetStorage.init();
-  WidgetsFlutterBinding.ensureInitialized();
   //await SystemChrome.setPreferredOrientations(
   //  [DeviceOrientation.landscapeLeft]);
   runApp(ProviderScope(child: MyApp()));
@@ -112,7 +119,7 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const Home(),
         "/search": (context) => const Search(),
         "/folderdetails": (context) => const FolderDetails(),
-        "/musicplayer": (context) => const MusicPlayer(),
+        "/musicplayer": (context) => MusicPlayer(),
         "/mainsearch": (context) => const MainSearch(),
         "/setting": (context) => const Setting(),
         "/lang": (context) => const Language(),

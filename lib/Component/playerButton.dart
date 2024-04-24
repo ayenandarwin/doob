@@ -1,16 +1,43 @@
+import 'package:doob/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:simple_waveform_progressbar/simple_waveform_progressbar.dart';
 
 class PlayerButtons extends StatefulWidget {
   const PlayerButtons(this._audioPlayer, {super.key});
 
   final AudioPlayer _audioPlayer;
 
+  //late AudioController _controller;
+
+  //final int duration;
+  // final Color color;
+
+  // List<Color> colors = [
+  //   Colors.blueAccent,
+  //   Colors.greenAccent,
+  //   Colors.yellowAccent,
+  //   Colors.redAccent
+  // ];
+
   @override
   State<PlayerButtons> createState() => _PlayerButtonsState();
 }
 
-class _PlayerButtonsState extends State<PlayerButtons> {
+class _PlayerButtonsState extends State<PlayerButtons>
+    with SingleTickerProviderStateMixin {
+  List<Color> colors = [
+    Colors.blueAccent,
+    Colors.greenAccent,
+    Colors.yellowAccent,
+    Colors.redAccent
+  ];
+
+  List<int> duration = [900, 700, 600, 800, 500];
+
+  late Animation<double> animation;
+  late AnimationController animationController;
+
   double _progressValue = 0.0;
   int currentIndex = 0;
   bool isPlaying = true;
@@ -18,7 +45,19 @@ class _PlayerButtonsState extends State<PlayerButtons> {
   @override
   void initState() {
     super.initState();
-    widget._audioPlayer.play();
+    initAudioPlayer();
+    animationController = AnimationController(
+        duration: Duration(milliseconds: 1200), vsync: this);
+
+    final curvedAnimation =
+        CurvedAnimation(parent: animationController, curve: Curves.easeInCubic);
+
+    animation = Tween<double>(begin: 0, end: 100).animate(curvedAnimation)
+      ..addListener(() {
+        animationController.repeat(reverse: true);
+      });
+
+    // widget._audioPlayer.play();
 
     // widget._audioPlayer.playerStateStream.listen((state) {
     //   setState(() {
@@ -26,12 +65,8 @@ class _PlayerButtonsState extends State<PlayerButtons> {
     //   });
     // });
 
-    
-
-    // print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& ${widget._audioPlayer}');
     widget._audioPlayer.positionStream.listen((position) {
       final duration = widget._audioPlayer.duration;
-      //print('>>>>>>>>>>>>>>>>>>>>> $duration');
       if (duration != null) {
         if (mounted) {
           setState(() {
@@ -40,6 +75,16 @@ class _PlayerButtonsState extends State<PlayerButtons> {
         }
       }
     });
+  }
+
+  Future<void> initAudioPlayer() async {
+    try {
+      await widget._audioPlayer.play();
+
+      //await widget._audioPlayer.setUrl(widget.audioUrl);
+    } catch (e) {
+      print('Error loading audio $e');
+    }
   }
 
   @override
@@ -63,13 +108,26 @@ class _PlayerButtonsState extends State<PlayerButtons> {
                       fontFamily: 'Century',
                       color: Colors.white),
                 ),
-                Container(
+                SizedBox(
                   width: size.width * 0.68,
-                  child: LinearProgressIndicator(
-                    value: _progressValue,
-                    color: const Color(0xffff9800),
+                  height: 20,
+                  child: WaveformProgressbar(
+                    color: Colors.grey,
+                    //progressColor: Constants.kGradient,
+                    progressColor: Color(0xffFF9800),
+                    progress: _progressValue,
+                    onTap: (progress) {
+                      var tt = progress;
+                    },
                   ),
                 ),
+                // Container(
+                //   width: size.width * 0.68,
+                //   child: LinearProgressIndicator(
+                //     value: _progressValue,
+                //     color: const Color(0xffff9800),
+                //   ),
+                // ),
                 Text(
                   '${audioDuration?.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.duration?.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
                   style: TextStyle(
@@ -80,33 +138,7 @@ class _PlayerButtonsState extends State<PlayerButtons> {
               ],
             ),
           ),
-          // LinearProgressIndicator(
-          //   value: _progressValue,
-          //   color: const Color(0xffff9800),
-          // ),
-          // SizedBox(
-          //   height: 32.0,
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       Text(
-          //         '${widget._audioPlayer.position.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.position.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
-          //         style: TextStyle(
-          //             fontSize: 12.0,
-          //             fontFamily: 'Century',
-          //             color: Colors.white),
-          //       ),
-          //       Text(
-          //         '${audioDuration?.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.duration?.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
-          //         style: TextStyle(
-          //             fontSize: 12.0,
-          //             fontFamily: 'Century',
-          //             color: Colors.white),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          SizedBox(height: 40.0),
+          SizedBox(height: 30.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.min,
@@ -127,13 +159,12 @@ class _PlayerButtonsState extends State<PlayerButtons> {
                 stream: widget._audioPlayer.playerStateStream,
                 builder: (_, snapshot) {
                   final playerState = snapshot.data;
-                 final isPlaying = playerState?.playing ?? true;
+                  //final isPlaying = playerState?.playing ?? true;
                   final processingState = playerState?.processingState;
+                  //  final processState = snapshot.data?.processingState;
                   if (processingState == ProcessingState.loading ||
-                      processingState == ProcessingState.buffering) 
-                      {
-                    return
-                     Container(
+                      processingState == ProcessingState.buffering) {
+                    return Container(
                       height: 40,
                       width: 200,
                       decoration: BoxDecoration(
@@ -231,34 +262,34 @@ class _PlayerButtonsState extends State<PlayerButtons> {
                   //     ),
                   //   );
                   // }
-                   else {
-                      return Container(
-                        height: 40,
-                        width: 200,
-                        decoration: BoxDecoration(
-                          color: Color(0xffff9800),
-                          borderRadius: BorderRadius.circular(25),
+                  else {
+                    return Container(
+                      height: 40,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        color: Color(0xffff9800),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Lyrics',
+                          style: TextStyle(
+                              fontFamily: 'Century',
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
-                        child: Center(
-                          child: Text(
-                            'Lyrics',
-                            style: TextStyle(
-                                fontFamily: 'Century',
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ),
-                      );
-                      // IconButton(
-                      //   icon: const Icon(
-                      //     Icons.replay,
-                      //   ),
-                      //   iconSize: 40.0,
-                      //   onPressed: () => widget._audioPlayer.seek(Duration.zero,
-                      //       index: widget._audioPlayer.effectiveIndices!.first),
-                      // );
-                    }
+                      ),
+                    );
+                    // IconButton(
+                    //   icon: const Icon(
+                    //     Icons.replay,
+                    //   ),
+                    //   iconSize: 40.0,
+                    //   onPressed: () => widget._audioPlayer.seek(Duration.zero,
+                    //       index: widget._audioPlayer.effectiveIndices!.first),
+                    // );
+                  }
 
                   // return _playPauseButton(playerState!);
                 },

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:doob/Component/playerButton.dart';
 import 'package:doob/services/songServiceProvider.dart';
@@ -6,12 +8,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:video_player/video_player.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MusicPlayer extends ConsumerStatefulWidget {
-  const MusicPlayer({super.key});
+  MusicPlayer({super.key});
+
+  //   List<Color> colors = [
+  //   Colors.blueAccent,
+  //   Colors.greenAccent,
+  //   Colors.yellowAccent,
+  //   Colors.redAccent
+  // ];
+
+  // List<int> duration = [900, 700, 600, 800, 500];
 
   @override
   _MusicPlayerState createState() => _MusicPlayerState();
@@ -21,31 +33,92 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
   PageController controller = PageController();
   PageController musicController = PageController();
   bool isPlaying = true;
-  //double _progressValue = 0.0;
+  late MusicPlayer _controller;
+  bool isicon = false;
+
+  //bool isPaused = true;
+  AppLifecycleState? stateChanged;
+
+  List<Color> colors = [
+    Colors.blueAccent,
+    Colors.greenAccent,
+    Colors.yellowAccent,
+    Colors.redAccent
+  ];
+
+  List<int> duration = [900, 700, 600, 800, 500];
+  double _progressValue = 0.0;
 
   int currentindex = 0;
   double value = 50;
 
   late AudioPlayer _audioPlayer;
-
+  late Duration? audioDuration;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _audioPlayer = AudioPlayer();
+   // initAudioPlayer();
+
+    // _audioPlayer.positionStream.listen((position) {
+    //   final duration = _audioPlayer.duration;
+    //   //print('>>>>>>>>>>>>>>>>>>>>> $duration');
+    //   if (duration != null) {
+    //     if (mounted) {
+    //       setState(() {
+    //         _progressValue = position.inMilliseconds / duration.inMilliseconds;
+    //       });
+    //     }
+    //   }
+    // });
+
+    // _audioPlayer.positionStream.listen((position) {
+    //   //audioDuration = _audioPlayer.duration!;
+    //   final duration = _audioPlayer.duration;
+
+    //   if (duration != null) {
+    //     if (mounted) {
+    //       setState(() {
+    //         _progressValue = position.inMilliseconds / duration.inMilliseconds;
+    //       });
+    //     }
+    //   }
+    // });
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _audioPlayer.dispose();
+  }
+
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   if (state == AppLifecycleState.resumed) {
+  //     if (isPaused) {
+  //       isPaused = false;
+  //       _audioPlayer.play();
+  //     }
+  //   } else if (state == AppLifecycleState.paused) {
+  //     if (_audioPlayer.playing) {
+  //       isPaused = true;
+  //       _audioPlayer.pause();
+  //     }
+  //   }
+  // }
+
+  Future<void> initAudioPlayer() async {
+    try {
+      await _audioPlayer.play();
+    } catch (e) {
+      print('Error loading audio $e');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final audioDuration = _audioPlayer.duration;
+    // final audioDuration = _audioPlayer.duration;
     //  final audioList = ref.watch(songServiceProvider);
 
     // _audioPlayer
@@ -62,20 +135,59 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
     //   }
     //   return null;
     // });
-
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.black,
           body: InkWell(
-            onTap: () {
+            onTap: () async {
+              // if (stateChanged == AppLifecycleState.resumed) {
+              //   if (isPlaying) {
+              //     isPlaying = false;
+              //     _audioPlayer.play();
+              //   }
+              // } else if (stateChanged == AppLifecycleState.paused) {
+              //   if (_audioPlayer.playing) {
+              //     isPlaying = true;
+              //     _audioPlayer.pause();
+              //   }
+              // }
+
               // if (isPlaying) {
+              //    audioDuration = _audioPlayer.duration;
+
               //   _audioPlayer.pause();
               // } else {
-              //   _audioPlayer.play();
+              //   try {
+              //     if (audioDuration != null) {
+              //       await _audioPlayer.seek(audioDuration);
+              //     }
+              //     await _audioPlayer.play();
+              //   } catch (e) {
+              //     print("Error playing audio: $e");
+              //   }
               // }
-              // setState(() {
-              //   isPlaying = !isPlaying;
-              // });
+
+              if (isPlaying) {
+                // audioDuration = _audioPlayer.duration;
+                print(audioDuration);
+                print("**************** not woriking");
+                _audioPlayer.pause();
+              } else {
+                try {
+                  print("play now");
+                  print(audioDuration);
+                  //  _audioPlayer.play();
+                  _audioPlayer.seek(audioDuration).then((value) async {
+                    await _audioPlayer.play();
+                  });
+                } catch (e) {
+                  print('Error occur $e');
+                  //  _audioPlayer.play();
+                }
+                setState(() {
+                  isPlaying = !isPlaying;
+                });
+              }
             },
             child: Consumer(
               builder: (context, ref, child) {
@@ -146,7 +258,6 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                         // Return a new widget to display a dummy image from the internet
                                         return Image.network(
                                           'https://cdn.wallpapersafari.com/64/93/hrC5Ge.jpg',
-                                          // 'https://i.ebayimg.com/images/g/QQAAAOSwk-JiEK3v/s-l1600.jpg',
                                         );
                                       },
                                       // 'lib/Image/joji.png',
@@ -424,6 +535,32 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                         //           ),
                                         //         ),
                                         //       ],
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        // isPlaying
+                                        //     ? Lottie.asset(
+                                        //         'asset/lottie/Animation - 1713755104463.json',
+                                        //         width: size.width,
+                                        //         height: 135)
+                                        //     : Container(),
+
+                                        // Container(
+                                        //   height: 40,
+                                        //   width: 200,
+                                        //   decoration: BoxDecoration(
+                                        //     color: Color(0xffff9800),
+                                        //     borderRadius:
+                                        //         BorderRadius.circular(25),
+                                        //   ),
+                                        //   child: Center(
+                                        //     child: Text(
+                                        //       'Lyrics',
+                                        //       style: TextStyle(
+                                        //           fontFamily: 'Century',
+                                        //           fontSize: 14,
+                                        //           fontWeight: FontWeight.bold,
+                                        //           color: Colors.white),
                                         //     ),
                                         //   ),
                                         // ),

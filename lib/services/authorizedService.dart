@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:doob/error/dioErrorException.dart';
+import 'package:doob/firebase_message.dart';
 import 'package:doob/httpService/httpException.dart';
 import 'package:doob/utils/global.dart';
 import 'package:doob/utils/sharedPreference.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,20 +22,26 @@ class AuthService {
   AuthService(this._dio);
 
   final Dio _dio;
+  //String dToken = '';
 
   Future<dynamic> login({
     required String phone,
     required String password,
   }) async {
     try {
-      var encodeJson = json.encode({
-        'phone': phone,
-        'password': password,
-      });
+      print('firebase ********* ${await FireMSG.getFireToken()}}');
+
+      String? deviceToken = await FireMSG.getFireToken();
+      var encodeJson = json
+          .encode({'phone': phone, 'password': password, 'token': deviceToken});
       print(encodeJson);
+
+      final token = await SharedPref.getData(key: SharedPref.token);
+     
       var response = await http
           .post(Uri.parse(ApiUrl.loginUrl), body: encodeJson, headers: {
-        "Accept": "application/json",
+        //"Accept": "application/json",
+        'Authorization': '$token',
         "Content-Type": "application/json",
       });
       var userData = jsonDecode(response.body);
@@ -60,9 +68,12 @@ class AuthService {
         // 'password_confirmation': confirm_password,
         //'email': email,
       });
+
+      final token = await SharedPref.getData(key: SharedPref.token);
       var response = await http
           .post(Uri.parse(ApiUrl.registerUrl), body: encodeJson, headers: {
-        "Accept": "application/json",
+        //"Accept": "application/json",
+        'Authorization': '$token',
         "Content-Type": "application/json",
       });
 

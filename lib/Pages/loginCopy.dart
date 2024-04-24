@@ -2,8 +2,11 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:doob/Component/CustomCheckBox.dart';
 import 'package:doob/appStart/navScreen.dart';
 import 'package:doob/services/authorizedService.dart';
+import 'package:doob/utils/constants.dart';
 import 'package:doob/utils/global.dart';
 import 'package:doob/utils/sharedPreference.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -15,6 +18,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../controller/rememberController.dart';
+import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -31,6 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
   RememberController rememberController = Get.put(RememberController());
   bool view = true;
   bool _isChecked = true;
+  String dToken = '';
   //bool _isChecked = false;
 
   bool _remember = false;
@@ -51,7 +56,10 @@ class _LoginScreenState extends State<LoginScreen> {
     createBox();
     super.initState();
     checkRememberUser();
+    //postDeviceToken();
   }
+
+ 
 
   void createBox() async {
     box1 = await Hive.openBox('login');
@@ -359,12 +367,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   Consumer(
                     builder: (context, ref, child) {
                       return isloading
-                          ? 
-                          Padding(
+                          ? Padding(
                               padding:
                                   const EdgeInsets.only(top: 30, bottom: 20),
-                              child: 
-                              Container(
+                              child: Container(
                                 height: 40,
                                 width: 150,
                                 decoration: BoxDecoration(
@@ -421,6 +427,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Global.isLogIn = true;
                                       Global.loginStatus();
                                       loginData();
+                                     
+                                      print('Device token Success');
+
                                       setState(() {
                                         isloading = false;
                                       });
@@ -662,4 +671,22 @@ class _LoginScreenState extends State<LoginScreen> {
       box1.put('password', passwordController.text);
     }
   }
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then((dtoken) {
+      setState(() {
+        dToken = dtoken.toString();
+        print('device token **************j');
+      });
+    });
+  }
+
+  // void saveToken(String token) async {
+  //   await FirebaseFirestore.instance
+  //       .collection('userTokens')
+  //       .doc('Users2')
+  //       .set({
+  //         'token':token,
+  //       });
+  // }
 }

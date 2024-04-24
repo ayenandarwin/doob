@@ -40,6 +40,7 @@ class ApiUrl {
   static const String profile = "$mainUrl/customer/profile";
   static const String sliderList = "$mainUrl/sliders/index";
   static const String songList = "$mainUrl/customer/songs";
+  //static const String songList = "https://doob.smartcodemm.com/api/customer/songs";
 
   static const String signUpUrl = "$mainUrl/register";
   static const String signUpFirstStepUrl = "$mainUrl/create-login";
@@ -57,4 +58,6 @@ class ApiUrl {
   //Profile
   // static const String profileUrl = "$mainUrl/delimens/profile";
   // static const String editProfile = "$mainUrl/delimens/edit";
+
+  
 }
