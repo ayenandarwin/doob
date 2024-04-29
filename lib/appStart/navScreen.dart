@@ -92,99 +92,169 @@ class _NaviScreenState extends State<NaviScreen>
                   selectedLabelStyle: selectedLabelStyle,
                   items: [
                     BottomNavigationBarItem(
-                      icon: Container(
-                        margin: EdgeInsets.only(bottom: 7),
-                        child: Icon(
-                          Icons.home_filled,
-                          size: 25.0,
+                      icon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Image.asset(
+                          "lib/Image/home.png",
+                          width: 25,
+                          height: 25,
                         ),
                       ),
+                      activeIcon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Image.asset(
+                          "lib/Image/home.png",
+                          color: Color(0xffff9800),
+                          width: 25,
+                          height: 25,
+                        ),
+                      ),
+                      // Container(
+                      //   margin: EdgeInsets.only(bottom: 7),
+                      //   child: Icon(
+                      //     Icons.home_filled,
+                      //     size: 25.0,
+                      //   ),
+                      // ),
                       label: "Home".tr,
                       //  label: AppLocalizations.of(context)!.home,
                     ),
                     BottomNavigationBarItem(
-                      icon: Container(
-                        margin: EdgeInsets.only(bottom: 7),
-                        child: Icon(
-                          Icons.search,
-                          size: 25.0,
+                      icon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Image.asset(
+                          "lib/Image/search.png",
+                          width: 25,
+                          height: 25,
                         ),
                       ),
+                      activeIcon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Image.asset(
+                          "lib/Image/search.png",
+                          color: Color(0xffff9800),
+                          width: 25,
+                          height: 25,
+                        ),
+                      ),
+                      // Container(
+                      //   margin: EdgeInsets.only(bottom: 7),
+                      //   child: Icon(
+                      //     Icons.search,
+                      //     size: 25.0,
+                      //   ),
+                      // ),
                       label: "Search".tr,
                       // label: AppLocalizations.of(context)!.search,
 
                       // label: "Search".tr,
                     ),
                     BottomNavigationBarItem(
-                      icon: Container(
-                        margin: EdgeInsets.only(bottom: 7),
-                        child: Icon(
-                          Icons.play_circle_outline,
-                          size: 25.0,
+                      icon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Image.asset(
+                          "lib/Image/add.png",
+                          color: Colors.white,
+                          width: 25,
+                          height: 25,
                         ),
                       ),
+                      activeIcon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Image.asset(
+                          "lib/Image/add.png",
+                          color: Color(0xffff9800),
+                          width: 25,
+                          height: 25,
+                        ),
+                      ),
+                      // Container(
+                      //   margin: EdgeInsets.only(bottom: 7),
+                      //   child: Icon(
+                      //     // Icons.play_circle_outline,
+                      //     Icons.music_note,
+                      //     size: 25.0,
+                      //   ),
+                      // ),
                       label: "Feed".tr,
                       // label: AppLocalizations.of(context)!.feed,
                     ),
                     BottomNavigationBarItem(
-                      icon:
-
-                          //  Image.asset(
-                          //   "lib/Icons/library.png", width: 25, height: 25,)
-
-                          Container(
-                        margin: EdgeInsets.only(bottom: 7),
-                        child: Icon(
-                          //  Icons.folder_outlined,
-                          Icons.music_video_outlined,
-                          size: 25.0,
+                      icon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Image.asset(
+                          "lib/Image/folder.png",
+                          //  color: Colors.black,
+                          width: 25,
+                          height: 25,
                         ),
                       ),
+                      activeIcon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Image.asset(
+                          "lib/Image/folder.png",
+                          color: Color(0xffff9800),
+                          width: 25,
+                          height: 25,
+                        ),
+                      ),
+                      //  Image.asset(
+                      //   "lib/Icons/library.png", width: 25, height: 25,)
+
+                      //     Container(
+                      //   margin: EdgeInsets.only(bottom: 7),
+                      //   child: Icon(
+                      //     //  Icons.folder_outlined,
+                      //     Icons.music_video_outlined,
+                      //     size: 25.0,
+                      //   ),
+                      // ),
 
                       label: "Library".tr,
                       // label: AppLocalizations.of(context)!.library,
                     ),
-                    BottomNavigationBarItem(
-                      icon: Container(
-                        margin: EdgeInsets.only(bottom: 7),
-                        child: Icon(
-                          // Icons.workspace_premium_outlined,
-                          Icons.bar_chart_outlined,
-                          size: 25.0,
-                        ),
-                      ),
-
-                      label: "Premium".tr,
-                      // label: AppLocalizations.of(context)!.premium,
-                    ),
                     // BottomNavigationBarItem(
-                    //   icon: Padding(
-                    //     padding: const EdgeInsets.all(2.0),
-                    //     child: Image.asset(
-                    //       "lib/Icons/feed1.png",
-                    //       //  color: Colors.black,
-                    //       width: 30,
-                    //       height: 30,
+                    //   icon:
+                    //   Container(
+                    //     margin: EdgeInsets.only(bottom: 7),
+                    //     child: Icon(
+                    //       // Icons.workspace_premium_outlined,
+                    //       Icons.bar_chart_outlined,
+                    //       size: 25.0,
                     //     ),
                     //   ),
-                    //   //   SvgPicture.asset("lib/Icons/pay.svg", height: 24),
-                    //   activeIcon: Padding(
-                    //     padding: const EdgeInsets.all(2.0),
-                    //     child: Image.asset(
-                    //       "lib/Icons/feed1.png",
-                    //       color: Color(0xffff9800),
-                    //       width: 30,
-                    //       height: 30,
-                    //       //   height: 50,
-                    //     ),
-                    //   ),
-                    //   // SvgPicture.asset(
-                    //   //   "lib/Icons/pay.svg",
-                    //   //   height: 24,
-                    //   // ),
+
                     //   label: "Premium".tr,
                     //   // label: AppLocalizations.of(context)!.premium,
                     // ),
+                    BottomNavigationBarItem(
+                      icon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Image.asset(
+                          "lib/Icons/feed1.png",
+                          //  color: Colors.black,
+                          width: 25,
+                          height: 25,
+                        ),
+                      ),
+                      //   SvgPicture.asset("lib/Icons/pay.svg", height: 24),
+                      activeIcon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Image.asset(
+                          "lib/Icons/feed1.png",
+                          color: Color(0xffff9800),
+                          width: 25,
+                          height: 25,
+                          //   height: 50,
+                        ),
+                      ),
+                      // SvgPicture.asset(
+                      //   "lib/Icons/pay.svg",
+                      //   height: 24,
+                      // ),
+                      label: "Premium".tr,
+                      // label: AppLocalizations.of(context)!.premium,
+                    ),
                   ],
                 ),
               ),

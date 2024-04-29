@@ -1,7 +1,8 @@
 import 'dart:io';
-
 import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:doob/Component/playerButton.dart';
+import 'package:doob/MusicPlayer/ForYouScreen.dart';
+import 'package:doob/MusicPlayer/videoplayer.dart';
 import 'package:doob/services/songServiceProvider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +11,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:music_visualizer/music_visualizer.dart';
 import 'package:video_player/video_player.dart';
 import 'package:share_plus/share_plus.dart';
 
-class MusicPlayer extends ConsumerStatefulWidget {
+class MusicPlayer extends StatefulWidget {
   MusicPlayer({super.key});
 
   //   List<Color> colors = [
@@ -29,14 +31,12 @@ class MusicPlayer extends ConsumerStatefulWidget {
   _MusicPlayerState createState() => _MusicPlayerState();
 }
 
-class _MusicPlayerState extends ConsumerState<MusicPlayer> {
+class _MusicPlayerState extends State<MusicPlayer> {
   PageController controller = PageController();
   PageController musicController = PageController();
   bool isPlaying = true;
-  late MusicPlayer _controller;
   bool isicon = false;
 
-  //bool isPaused = true;
   AppLifecycleState? stateChanged;
 
   List<Color> colors = [
@@ -47,43 +47,16 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
   ];
 
   List<int> duration = [900, 700, 600, 800, 500];
-  double _progressValue = 0.0;
 
   int currentindex = 0;
   double value = 50;
 
   late AudioPlayer _audioPlayer;
-  late Duration? audioDuration;
+  //late Duration? audioDuration;
   @override
   void initState() {
     super.initState();
     _audioPlayer = AudioPlayer();
-    // initAudioPlayer();
-
-    // _audioPlayer.positionStream.listen((position) {
-    //   final duration = _audioPlayer.duration;
-    //   //print('>>>>>>>>>>>>>>>>>>>>> $duration');
-    //   if (duration != null) {
-    //     if (mounted) {
-    //       setState(() {
-    //         _progressValue = position.inMilliseconds / duration.inMilliseconds;
-    //       });
-    //     }
-    //   }
-    // });
-
-    // _audioPlayer.positionStream.listen((position) {
-    //   //audioDuration = _audioPlayer.duration!;
-    //   final duration = _audioPlayer.duration;
-
-    //   if (duration != null) {
-    //     if (mounted) {
-    //       setState(() {
-    //         _progressValue = position.inMilliseconds / duration.inMilliseconds;
-    //       });
-    //     }
-    //   }
-    // });
   }
 
   @override
@@ -91,21 +64,6 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
     super.dispose();
     _audioPlayer.dispose();
   }
-
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   if (state == AppLifecycleState.resumed) {
-  //     if (isPaused) {
-  //       isPaused = false;
-  //       _audioPlayer.play();
-  //     }
-  //   } else if (state == AppLifecycleState.paused) {
-  //     if (_audioPlayer.playing) {
-  //       isPaused = true;
-  //       _audioPlayer.pause();
-  //     }
-  //   }
-  // }
 
   Future<void> initAudioPlayer() async {
     try {
@@ -118,28 +76,18 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    // final audioDuration = _audioPlayer.duration;
-    //  final audioList = ref.watch(songServiceProvider);
 
-    // _audioPlayer
-    //     .setAudioSource(ConcatenatingAudioSource(children: [
-    //   AudioSource.uri(Uri.parse(''
-    //       '${audioList.value!.data!.elementAt(3)}'
-    //       //'https://ed-mypages.s3.amazonaws.com/mp3/${audioList.value!.audioBook!.mp3!.file}'
-    //       )),
-    // ]))
-    //     .catchError((error) {
-    //   // catch load errors: 404, invalid url ...
-    //   if (kDebugMode) {
-    //     print("An error occured $error");
-    //   }
-    //   return null;
-    // });
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.black,
           body: InkWell(
-            onTap: () async {
+            onTap: () {
+              if (_audioPlayer.playing) {
+                _audioPlayer.pause();
+              } else {
+                _audioPlayer.play();
+              }
+
               // if (stateChanged == AppLifecycleState.resumed) {
               //   if (isPlaying) {
               //     isPlaying = false;
@@ -167,27 +115,27 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
               //   }
               // }
 
-              if (isPlaying) {
-                // audioDuration = _audioPlayer.duration;
-                print(audioDuration);
-                print("**************** not woriking");
-                _audioPlayer.pause();
-              } else {
-                try {
-                  print("play now");
-                  print(audioDuration);
-                  //  _audioPlayer.play();
-                  _audioPlayer.seek(audioDuration).then((value) async {
-                    await _audioPlayer.play();
-                  });
-                } catch (e) {
-                  print('Error occur $e');
-                  //  _audioPlayer.play();
-                }
-                setState(() {
-                  isPlaying = !isPlaying;
-                });
-              }
+              // if (isPlaying) {
+              //   // audioDuration = _audioPlayer.duration;
+              //   print(audioDuration);
+              //   print("**************** not woriking");
+              //   _audioPlayer.pause();
+              // } else {
+              //   try {
+              //     print("play now");
+              //     print(audioDuration);
+              //     //  _audioPlayer.play();
+              //     _audioPlayer.seek(audioDuration).then((value) async {
+              //       await _audioPlayer.play();
+              //     });
+              //   } catch (e) {
+              //     print('Error occur $e');
+              //     //  _audioPlayer.play();
+              //   }
+              //   setState(() {
+              //     isPlaying = !isPlaying;
+              //   });
+              // }
             },
             child: Consumer(
               builder: (context, ref, child) {
@@ -482,88 +430,14 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        // Padding(
-                                        //   padding: const EdgeInsets.symmetric(
-                                        //       horizontal: 5),
-                                        //   child: Container(
-                                        //     child: Row(
-                                        //       children: [
-                                        //         Text(
-                                        //           '1:25',
-                                        //           style: TextStyle(
-                                        //             color: Colors.white,
-                                        //             fontSize: 12,
-                                        //           ),
-                                        //         ),
-                                        //         SizedBox(
-                                        //           width: 10,
-                                        //         ),
-                                        //         Expanded(
-                                        //           child: SliderTheme(
-                                        //             data: const SliderThemeData(
-                                        //               trackShape:
-                                        //                   CustomSliderTrackShape(),
-                                        //               trackHeight: 2,
-                                        //               thumbShape:
-                                        //                   RoundSliderThumbShape(
-                                        //                       enabledThumbRadius:
-                                        //                           4),
-                                        //               overlayShape:
-                                        //                   CustomSliderOverlayShape(),
-                                        //             ),
-                                        //             child: Slider(
-                                        //               min: 0,
-                                        //               max: 100,
-                                        //               value: value,
-                                        //               activeColor:
-                                        //                   Color(0xffffff9800),
-                                        //               onChanged: (v) =>
-                                        //                   setState(() {
-                                        //                 value = v;
-                                        //               }),
-                                        //             ),
-                                        //           ),
-                                        //         ),
-                                        //         SizedBox(
-                                        //           width: 10,
-                                        //         ),
-                                        //         Text(
-                                        //           '3:55',
-                                        //           style: TextStyle(
-                                        //             color: Colors.white,
-                                        //             fontSize: 12,
-                                        //           ),
-                                        //         ),
-                                        //       ],
-                                        //     ),
-                                        //   ),
-                                        // ),
-                                        // isPlaying
-                                        //     ? Lottie.asset(
-                                        //         'asset/lottie/Animation - 1713755104463.json',
-                                        //         width: size.width,
-                                        //         height: 135)
-                                        //     : Container(),
-
-                                        // Container(
-                                        //   height: 40,
-                                        //   width: 200,
-                                        //   decoration: BoxDecoration(
-                                        //     color: Color(0xffff9800),
-                                        //     borderRadius:
-                                        //         BorderRadius.circular(25),
-                                        //   ),
-                                        //   child: Center(
-                                        //     child: Text(
-                                        //       'Lyrics',
-                                        //       style: TextStyle(
-                                        //           fontFamily: 'Century',
-                                        //           fontSize: 14,
-                                        //           fontWeight: FontWeight.bold,
-                                        //           color: Colors.white),
-                                        //     ),
-                                        //   ),
-                                        // ),
+                                        _audioPlayer.playing
+                                            ? MusicVisualizer(
+                                                barCount: 30,
+                                                colors: colors,
+                                                duration: duration,
+                                                // curve: Curves.easeIn,
+                                              )
+                                            : SizedBox.shrink(),
 
                                         PlayerButtons(_audioPlayer),
                                         SizedBox(
@@ -687,7 +561,7 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                             //   MusicScreenCard(),
                             //   MusicScreenCard(),
                             //   MusicScreenCard(),
-                            //   MusicScreenCard(),
+                            // MusicScreenCard(),
                             // ],
                           );
                         }, error: (Object error, StackTrace stackTrace) {
@@ -1299,480 +1173,6 @@ class CustomSliderOverlayShape extends RoundSliderOverlayShape {
         value: value,
         textScaleFactor: textScaleFactor,
         sizeWithOverflow: sizeWithOverflow);
-  }
-}
-
-class VideoScreenCard extends StatefulWidget {
-  const VideoScreenCard({
-    super.key,
-  });
-
-  @override
-  State<VideoScreenCard> createState() => _VideoScreenCardState();
-}
-
-class _VideoScreenCardState extends State<VideoScreenCard> {
-  late VideoPlayerController _controller;
-  bool isicon = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'))
-      ..initialize().then((_) {
-        if (mounted) {
-          setState(() {});
-          _controller.play();
-        }
-      });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-            // height: double.infinity,
-            child: Center(
-          child: AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: VideoPlayer(_controller)),
-        )),
-        GestureDetector(
-          onTap: () async {
-            if (_controller.value.isPlaying) {
-              await _controller.pause();
-            } else {
-              await _controller.play();
-            }
-            setState(() {
-              isicon = true;
-            });
-            await Future.delayed(Duration(milliseconds: 500));
-            setState(() {
-              isicon = false;
-            });
-          },
-          child: Center(
-            child: Container(
-              color: Colors.transparent,
-              height: double.infinity,
-              width: double.infinity,
-              child: Visibility(
-                visible: isicon,
-                child: Icon(
-                  _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-                  size: 80,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.asset(
-                                'lib/Image/jojipf.jpg',
-                                height: 40,
-                              )),
-                        ),
-                        Container(
-                          height: 20,
-                          width: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Colors.white,
-                          ),
-                          child: Center(
-                            child: Icon(
-                              Icons.add,
-                              size: 20,
-                              color: Color(0xffff9800),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          Image.asset('lib/Icons/love.png', height: 25),
-                          Text(
-                            '5.3M',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: "Century",
-                                fontSize: 14),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          Image.asset('lib/Icons/comment.png', height: 25),
-                          Text(
-                            '5.3M',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Century",
-                              fontSize: 14,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          Image.asset('lib/Icons/share.png', height: 25),
-                          Text(
-                            '5.3M',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: "Century",
-                                fontSize: 14),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          Image.asset('lib/Icons/download.png', height: 25),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          Image.asset('lib/Icons/option.png', height: 25),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 20,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  height: 8,
-                  child: VideoProgressIndicator(_controller,
-                      allowScrubbing: true,
-                      colors: VideoProgressColors(
-                          backgroundColor: Colors.white.withOpacity(0.1),
-                          bufferedColor: Colors.white.withOpacity(0.3),
-                          playedColor: Color(0xffffff9800))),
-                ),
-              ],
-            ),
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class VideoForYouCard extends StatefulWidget {
-  const VideoForYouCard({
-    super.key,
-  });
-
-  @override
-  State<VideoForYouCard> createState() => _VideoForYouCardState();
-}
-
-class _VideoForYouCardState extends State<VideoForYouCard> {
-  late VideoPlayerController _controller;
-  bool isicon = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.networkUrl(
-        Uri.parse('https://y.yarn.co/469baa11-a5e2-47cd-a42b-01a5f304c2de.mp4'))
-      ..initialize().then((_) {
-        if (mounted) {
-          setState(() {});
-          _controller.play();
-        }
-      });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-            // height: double.infinity,
-            child: Center(
-          child: AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: VideoPlayer(_controller)),
-        )),
-        GestureDetector(
-          onTap: () async {
-            if (_controller.value.isPlaying) {
-              await _controller.pause();
-            } else {
-              await _controller.play();
-            }
-            setState(() {
-              isicon = true;
-            });
-            await Future.delayed(Duration(milliseconds: 500));
-            setState(() {
-              isicon = false;
-            });
-          },
-          child: Center(
-            child: Container(
-              color: Colors.transparent,
-              height: double.infinity,
-              width: double.infinity,
-              child: Visibility(
-                visible: isicon,
-                child: Icon(
-                  _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-                  size: 80,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.asset(
-                                'lib/Image/jojipf.jpg',
-                                height: 40,
-                              )),
-                        ),
-                        Container(
-                          height: 20,
-                          width: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Colors.white,
-                          ),
-                          child: Center(
-                            child: Icon(
-                              Icons.add,
-                              size: 20,
-                              color: Color(0xffff9800),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          Image.asset('lib/Icons/love.png', height: 25),
-                          Text(
-                            '5.3M',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: "Century",
-                                fontSize: 14),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          Image.asset('lib/Icons/comment.png', height: 25),
-                          Text(
-                            '5.3M',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Century",
-                              fontSize: 14,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          Image.asset('lib/Icons/share.png', height: 25),
-                          Text(
-                            '5.3M',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: "Century",
-                                fontSize: 14),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          Image.asset('lib/Icons/download.png', height: 25),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20)
-                      ]),
-                      child: Column(
-                        children: [
-                          Image.asset('lib/Icons/option.png', height: 25),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 20,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  height: 8,
-                  child: VideoProgressIndicator(_controller,
-                      allowScrubbing: true,
-                      colors: VideoProgressColors(
-                          backgroundColor: Colors.white.withOpacity(0.1),
-                          bufferedColor: Colors.white.withOpacity(0.3),
-                          playedColor: Color(0xffffff9800))),
-                ),
-              ],
-            ),
-          ),
-        )
-      ],
-    );
   }
 }
 

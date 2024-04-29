@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simple_waveform_progressbar/simple_waveform_progressbar.dart';
+import 'package:music_visualizer/music_visualizer.dart';
 
 class PlayerButtons extends StatefulWidget {
   const PlayerButtons(this._audioPlayer, {super.key});
@@ -34,7 +35,24 @@ class _PlayerButtonsState extends State<PlayerButtons>
     Colors.redAccent
   ];
 
-  List<int> duration = [900, 700, 600, 800, 500];
+  // final List<Color> colors = [
+  //   Colors.red[900]!,
+  //   Colors.green[900]!,
+  //   Colors.blue[900]!,
+  //   Colors.brown[900]!
+  // ];
+
+  final List<int> duration = [900, 700, 600, 800, 500];
+
+  // final List<int> duration = [900, 700, 600, 800, 500];
+  // List<Color> colors = [
+  //   Colors.blueAccent,
+  //   Colors.greenAccent,
+  //   Colors.yellowAccent,
+  //   Colors.redAccent
+  // ];
+
+//  List<int> duration = [900, 700, 600, 800, 500];
 
   late Animation<double> animation;
   late AnimationController animationController;
@@ -88,6 +106,24 @@ class _PlayerButtonsState extends State<PlayerButtons>
     }
   }
 
+  void togglePlayPause() {
+    setState(() {
+      isPlaying = !isPlaying;
+    });
+  }
+
+  void playMusic() {
+    // Start playing music
+    isPlaying = true;
+    // Add any additional logic here (e.g., starting audio playback)
+  }
+
+  void pauseMusic() {
+    // Pause the music
+    isPlaying = false;
+    // Add any additional logic here (e.g., pausing audio playback)
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -99,14 +135,28 @@ class _PlayerButtonsState extends State<PlayerButtons>
         children: [
           Stack(
             children: [
-              // Container(
-              //   child: Lottie.asset(
-              //     'asset/lottie/Animation - 1713755104463.json',
-              //     width: size.width,
+              // Center(
+              //   child: Container(
+              //     child: Lottie.asset(
+              //       'asset/lottie/Animation - 1713755104463.json',
+              //       width: size.width * 0.8,
+              //     ),
               //   ),
               // ),
+              //
+              //
+
+              // widget._audioPlayer.playing
+              //     ? MusicVisualizer(
+              //         barCount: 30,
+              //         colors: colors,
+              //         duration: duration,
+              //         // curve: Curves.easeIn,
+              //       )
+              //     : Container(),
+
               Container(
-                padding: EdgeInsets.only(top: 50),
+                padding: EdgeInsets.only(top: 42),
                 child: SizedBox(
                   height: 32,
                   child: Row(
@@ -120,8 +170,8 @@ class _PlayerButtonsState extends State<PlayerButtons>
                             color: Colors.white),
                       ),
                       // SizedBox(
-                      //   width: size.width * 0.68,
-                      //   height: 20,
+                      //   width: size.width * 0.65,
+                      //   height: 35,
                       //   child: WaveformProgressbar(
                       //     color: Colors.grey,
                       //     //progressColor: Constants.kGradient,
@@ -133,7 +183,8 @@ class _PlayerButtonsState extends State<PlayerButtons>
                       //   ),
                       // ),
                       Container(
-                        width: size.width * 0.68,
+                        //   decoration: BoxDecoration(image: DecorationImage(image: AssetImage(''))),
+                        width: size.width * 0.65,
                         child: LinearProgressIndicator(
                           value: _progressValue,
                           color: const Color(0xffff9800),
@@ -178,89 +229,125 @@ class _PlayerButtonsState extends State<PlayerButtons>
                   //  final processState = snapshot.data?.processingState;
                   if (processingState == ProcessingState.loading ||
                       processingState == ProcessingState.buffering) {
-                    // Container(
-                    //   height: 40,
-                    //   width: 200,
-                    //   decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.circular(50),
-                    //       color: Color(0xffFF9800)),
+                    return Container(
+                      height: 40,
+                      width: 200,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Color(0xffFF9800)),
+                      child: Container(
+                        height: 50,
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width: 25,
+                          height: 25,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    );
+                    // return CircleAvatar(
+                    //   maxRadius: 25,
+                    //   backgroundColor: const Color(0xffff9800),
                     //   child: Container(
-                    //     height: 50,
-                    //     alignment: Alignment.center,
-                    //     child: SizedBox(
-                    //       width: 25,
-                    //       height: 25,
-                    //       child: CircularProgressIndicator(
-                    //         color: Colors.white,
-                    //       ),
+                    //     margin: const EdgeInsets.all(8.0),
+                    //     width: 25.0,
+                    //     height: 25.0,
+                    //     child: const CircularProgressIndicator(
+                    //       color: Colors.white,
                     //     ),
                     //   ),
                     // );
-                    return CircleAvatar(
-                      maxRadius: 25,
-                      backgroundColor: const Color(0xffff9800),
-                      child: Container(
-                        margin: const EdgeInsets.all(8.0),
-                        width: 25.0,
-                        height: 25.0,
-                        child: const CircularProgressIndicator(
-                          color: Colors.white,
-                        ),
-                      ),
-                    );
                   } else if (widget._audioPlayer.playing != true) {
-                    //   return Container(
-                    //     height: 40,
-                    //     width: 200,
-                    //     decoration: BoxDecoration(
-                    //       color: Color(0xffff9800),
-                    //       borderRadius: BorderRadius.circular(25),
-                    //     ),
-                    //     child: Center(
-                    //       child: Text(
-                    //         'Lyrics',
-                    //         style: TextStyle(
-                    //             fontFamily: 'Century',
-                    //             fontSize: 14,
-                    //             fontWeight: FontWeight.bold,
-                    //             color: Colors.white),
-                    //       ),
-                    //     ),
-                    //   );
-                    return CircleAvatar(
-                      maxRadius: 25,
-                      backgroundColor: Color(0xffff9800),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.play_arrow,
-                          color: Colors.white,
+                    return Container(
+                      height: 40,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        color: Color(0xffff9800),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Lyrics',
+                          style: TextStyle(
+                              fontFamily: 'Century',
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
-                        iconSize: 30.0,
-                        onPressed: widget._audioPlayer.play,
                       ),
                     );
+                    // return CircleAvatar(
+                    //   maxRadius: 25,
+                    //   backgroundColor: Color(0xffff9800),
+                    //   child: IconButton(
+                    //     icon: const Icon(
+                    //       Icons.play_arrow,
+                    //       color: Colors.white,
+                    //     ),
+                    //     iconSize: 30.0,
+                    //     onPressed: widget._audioPlayer.play,
+                    //   ),
+                    // );
                   } else if (processingState != ProcessingState.completed) {
-                    return CircleAvatar(
-                      maxRadius: 25,
-                      backgroundColor: const Color(0xffff9800),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.pause,
-                          color: Colors.white,
+                    return Container(
+                      height: 40,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        color: Color(0xffff9800),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Lyrics',
+                          style: TextStyle(
+                              fontFamily: 'Century',
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
-                        iconSize: 30.0,
-                        onPressed: widget._audioPlayer.pause,
                       ),
                     );
+                    // return CircleAvatar(
+                    //   maxRadius: 25,
+                    //   backgroundColor: const Color(0xffff9800),
+                    //   child: IconButton(
+                    //     icon: const Icon(
+                    //       Icons.pause,
+                    //       color: Colors.white,
+                    //     ),
+                    //     iconSize: 30.0,
+                    //     onPressed: widget._audioPlayer.pause,
+                    //   ),
+                    // );
                   } else {
-                    return IconButton(
-                      icon: const Icon(
-                        Icons.replay,
+                    return Container(
+                      height: 40,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        color: Color(0xffff9800),
+                        borderRadius: BorderRadius.circular(25),
                       ),
-                      iconSize: 40.0,
-                      onPressed: () => widget._audioPlayer.seek(Duration.zero,
-                          index: widget._audioPlayer.effectiveIndices!.first),
+                      child: Center(
+                        child: Text(
+                          'Lyrics',
+                          style: TextStyle(
+                              fontFamily: 'Century',
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
                     );
+                    // return IconButton(
+                    //   icon: const Icon(
+                    //     Icons.replay,
+                    //   ),
+                    //   iconSize: 40.0,
+                    //   onPressed: () => widget._audioPlayer.seek(Duration.zero,
+                    //       index: widget._audioPlayer.effectiveIndices!.first),
+                    // );
                   }
 
                   //  return _playPauseButton(playerState!);
