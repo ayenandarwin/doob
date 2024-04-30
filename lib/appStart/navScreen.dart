@@ -95,7 +95,7 @@ class _NaviScreenState extends State<NaviScreen>
                       icon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Image/home.png",
+                          "lib/Icons/home.png",
                           width: 25,
                           height: 25,
                         ),
@@ -103,7 +103,7 @@ class _NaviScreenState extends State<NaviScreen>
                       activeIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Image/home.png",
+                          "lib/Icons/home.png",
                           color: Color(0xffff9800),
                           width: 25,
                           height: 25,
@@ -123,7 +123,7 @@ class _NaviScreenState extends State<NaviScreen>
                       icon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Image/search.png",
+                          "lib/Icons/search.png",
                           width: 25,
                           height: 25,
                         ),
@@ -131,7 +131,7 @@ class _NaviScreenState extends State<NaviScreen>
                       activeIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Image/search.png",
+                          "lib/Icons/search.png",
                           color: Color(0xffff9800),
                           width: 25,
                           height: 25,
@@ -153,7 +153,7 @@ class _NaviScreenState extends State<NaviScreen>
                       icon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Image/add.png",
+                          "lib/Image/list.png",
                           color: Colors.white,
                           width: 25,
                           height: 25,
@@ -162,7 +162,7 @@ class _NaviScreenState extends State<NaviScreen>
                       activeIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Image/add.png",
+                          "lib/Image/list.png",
                           color: Color(0xffff9800),
                           width: 25,
                           height: 25,
@@ -181,21 +181,21 @@ class _NaviScreenState extends State<NaviScreen>
                     ),
                     BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Image.asset(
-                          "lib/Image/folder.png",
+                          "lib/Icons/folder.png",
                           //  color: Colors.black,
-                          width: 25,
-                          height: 25,
+                          width: 30,
+                          height: 30,
                         ),
                       ),
                       activeIcon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Image.asset(
-                          "lib/Image/folder.png",
+                          "lib/Icons/folder.png",
                           color: Color(0xffff9800),
-                          width: 25,
-                          height: 25,
+                          width: 30,
+                          height: 30,
                         ),
                       ),
                       //  Image.asset(

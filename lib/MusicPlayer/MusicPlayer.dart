@@ -36,6 +36,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
   PageController musicController = PageController();
   bool isPlaying = true;
   bool isicon = false;
+  bool isrepeat = true;
 
   AppLifecycleState? stateChanged;
 
@@ -283,10 +284,20 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                                             PlaylistMoreDetails());
                                                         //Navigator.pushNamed(context, '/favoriteDetails');
                                                       },
-                                                      child: Image.asset(
-                                                        'lib/Icons/4.png',
-                                                        height: 50,
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 12),
+                                                        child: Icon(
+                                                          Icons.favorite,
+                                                          color: Colors.white,
+                                                          size: 30,
+                                                        ),
                                                       )
+                                                      // Image.asset(
+                                                      //   'lib/Icons/4.png',
+                                                      //   height: 50,
+                                                      // )
                                                       // SvgPicture.asset('lib/Icons/love.svg',
                                                       //     height: 25),
                                                       ),
@@ -310,9 +321,21 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                                   ]),
                                               child: Column(
                                                 children: [
-                                                  Image.asset(
-                                                    'lib/Icons/6.png',
-                                                    height: 50,
+                                                  // Container(
+                                                  //   padding: EdgeInsets.only(
+                                                  //       top: 10),
+                                                  //   child: Icon(
+                                                  //     Icons.bookmark,
+                                                  //     color: Colors.white,
+                                                  //   ),
+                                                  // ),
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        top: 14),
+                                                    child: Image.asset(
+                                                      'lib/Icons/666.png',
+                                                      height: 25,
+                                                    ),
                                                   ),
                                                   // SvgPicture.asset('lib/Icons/comment.svg', height: 25),
                                                   Text(
@@ -337,15 +360,25 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                               child: Column(
                                                 children: [
                                                   InkWell(
-                                                    onTap: () {
-                                                      Share.share(
-                                                          'com.example.doob');
-                                                    },
-                                                    child: Image.asset(
-                                                      'lib/Icons/5.png',
-                                                      height: 50,
-                                                    ),
-                                                  ),
+                                                      onTap: () {
+                                                        Share.share(
+                                                            'com.example.doob');
+                                                      },
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 12),
+                                                        child: Icon(
+                                                          Icons.bookmark,
+                                                          color: Colors.white,
+                                                          size: 30,
+                                                        ),
+                                                      )
+                                                      // Image.asset(
+                                                      //   'lib/Icons/5.png',
+                                                      //   height: 50,
+                                                      //),
+                                                      ),
                                                   //  SvgPicture.asset('lib/Icons/share.svg', height: 25),
                                                   Text(
                                                     '5.3M',
@@ -365,9 +398,17 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                                               .withOpacity(0.2),
                                                           blurRadius: 20)
                                                     ]),
-                                                child: Image.asset(
+                                                child:
+                                                    // Container(
+                                                    //     padding:
+                                                    //         EdgeInsets.only(top: 10),
+                                                    //     child: Icon(
+                                                    //       Icons.bookmark,
+                                                    //       color: Colors.white,
+                                                    //  )),
+                                                    Image.asset(
                                                   'lib/Icons/7.png',
-                                                  height: 50,
+                                                  height: 65,
                                                 )
                                                 //  SvgPicture.asset('lib/Icons/download.svg',
                                                 //     height: 25),
@@ -384,28 +425,47 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                                               .withOpacity(0.2),
                                                           blurRadius: 20)
                                                     ]),
-                                                child: SvgPicture.asset(
-                                                    'lib/Icons/repeat.svg',
-                                                    height: 25),
+                                                child: InkWell(
+                                                    onTap: () {
+                                                      setState(() {});
+                                                      isrepeat = !isrepeat;
+                                                    },
+                                                    child: isrepeat
+                                                        ? Icon(
+                                                            Icons.repeat,
+                                                            color: Colors.white,
+                                                            size: 30,
+                                                          )
+                                                        : Icon(
+                                                            Icons.shuffle,
+                                                            color: Colors.white,
+                                                            size: 30,
+                                                          )
+                                                    // Image.asset(
+                                                    //     'lib/Icons/repeat.svg',
+                                                    //     height: 25)
+                                                    // : Image.asset(
+                                                    //     'lib/Icons/Shuffle.svg'),
+                                                    ),
                                               ),
                                             ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 5),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                          color: Colors.black
-                                                              .withOpacity(0.2),
-                                                          blurRadius: 20)
-                                                    ]),
-                                                child: SvgPicture.asset(
-                                                    'lib/Icons/Shuffle.svg',
-                                                    height: 25),
-                                              ),
-                                            ),
+                                            // Padding(
+                                            //   padding:
+                                            //       const EdgeInsets.symmetric(
+                                            //           vertical: 5),
+                                            //   child: Container(
+                                            //     decoration: BoxDecoration(
+                                            //         boxShadow: [
+                                            //           BoxShadow(
+                                            //               color: Colors.black
+                                            //                   .withOpacity(0.2),
+                                            //               blurRadius: 20)
+                                            //         ]),
+                                            //     child: SvgPicture.asset(
+                                            //         'lib/Icons/Shuffle.svg',
+                                            //         height: 25),
+                                            //   ),
+                                            //),
                                             Container(
                                                 decoration: BoxDecoration(
                                                     boxShadow: [
@@ -430,14 +490,14 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        _audioPlayer.playing
-                                            ? MusicVisualizer(
-                                                barCount: 30,
-                                                colors: colors,
-                                                duration: duration,
-                                                // curve: Curves.easeIn,
-                                              )
-                                            : SizedBox.shrink(),
+                                        // _audioPlayer.playing
+                                        //     ? MusicVisualizer(
+                                        //         barCount: 30,
+                                        //         colors: colors,
+                                        //         duration: duration,
+                                        //         // curve: Curves.easeIn,
+                                        //   )
+                                        // : SizedBox.shrink(),
 
                                         PlayerButtons(_audioPlayer),
                                         SizedBox(
@@ -636,7 +696,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                               Expanded(
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
-                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     GestureDetector(
                                       onTap: () {
@@ -744,11 +804,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                   ],
                                 ),
                               ),
-                              Icon(
-                                Icons.search,
-                                size: 20,
-                                color: Colors.white,
-                              )
+                              // Icon(
+                              //   Icons.search,
+                              //   size: 20,
+                              //   color: Colors.white,
+                              // )
                             ],
                           ),
                         ),
