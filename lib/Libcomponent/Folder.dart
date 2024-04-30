@@ -182,7 +182,7 @@ class FloderCard extends StatelessWidget {
       // ),
       child: Row(
         children: [
-          Expanded(flex: 1, child: Image.asset('lib/Icons/folder.png')),
+          Expanded(flex: 1, child: Image.asset('lib/Icons/folderbook.png')),
           Expanded(
             flex: 2,
             child: Column(

@@ -10,17 +10,7 @@ class PlayerButtons extends StatefulWidget {
 
   final AudioPlayer _audioPlayer;
 
-  //late AudioController _controller;
-
-  //final int duration;
-  // final Color color;
-
-  // List<Color> colors = [
-  //   Colors.blueAccent,
-  //   Colors.greenAccent,
-  //   Colors.yellowAccent,
-  //   Colors.redAccent
-  // ];
+  
 
   @override
   State<PlayerButtons> createState() => _PlayerButtonsState();
@@ -35,24 +25,10 @@ class _PlayerButtonsState extends State<PlayerButtons>
     Colors.redAccent
   ];
 
-  // final List<Color> colors = [
-  //   Colors.red[900]!,
-  //   Colors.green[900]!,
-  //   Colors.blue[900]!,
-  //   Colors.brown[900]!
-  // ];
 
   final List<int> duration = [900, 700, 600, 800, 500];
 
-  // final List<int> duration = [900, 700, 600, 800, 500];
-  // List<Color> colors = [
-  //   Colors.blueAccent,
-  //   Colors.greenAccent,
-  //   Colors.yellowAccent,
-  //   Colors.redAccent
-  // ];
-
-//  List<int> duration = [900, 700, 600, 800, 500];
+ 
 
   late Animation<double> animation;
   late AnimationController animationController;
@@ -76,13 +52,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
         animationController.repeat(reverse: true);
       });
 
-    // widget._audioPlayer.play();
-
-    // widget._audioPlayer.playerStateStream.listen((state) {
-    //   setState(() {
-    //     isPlaying == state.playing;
-    //   });
-    // });
+    
 
     widget._audioPlayer.positionStream.listen((position) {
       final duration = widget._audioPlayer.duration;
@@ -106,23 +76,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
     }
   }
 
-  void togglePlayPause() {
-    setState(() {
-      isPlaying = !isPlaying;
-    });
-  }
 
-  void playMusic() {
-    // Start playing music
-    isPlaying = true;
-    // Add any additional logic here (e.g., starting audio playback)
-  }
-
-  void pauseMusic() {
-    // Pause the music
-    isPlaying = false;
-    // Add any additional logic here (e.g., pausing audio playback)
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,25 +89,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
         children: [
           Stack(
             children: [
-              // Center(
-              //   child: Container(
-              //     child: Lottie.asset(
-              //       'asset/lottie/Animation - 1713755104463.json',
-              //       width: size.width * 0.8,
-              //     ),
-              //   ),
-              // ),
-              //
-              //
-
-              // widget._audioPlayer.playing
-              //     ? MusicVisualizer(
-              //         barCount: 30,
-              //         colors: colors,
-              //         duration: duration,
-              //         // curve: Curves.easeIn,
-              //       )
-              //     : Container(),
+           
 
               Container(
                 padding: EdgeInsets.only(top: 42),
@@ -183,7 +119,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
                       //   ),
                       // ),
                       Container(
-                        //   decoration: BoxDecoration(image: DecorationImage(image: AssetImage(''))),
+                     
                         width: size.width * 0.65,
                         child: LinearProgressIndicator(
                           value: _progressValue,

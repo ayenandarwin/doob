@@ -229,22 +229,22 @@ class _NaviScreenState extends State<NaviScreen>
                     // ),
                     BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Image.asset(
                           "lib/Icons/feed1.png",
                           //  color: Colors.black,
-                          width: 25,
-                          height: 25,
+                          width: 30,
+                          height: 30,
                         ),
                       ),
                       //   SvgPicture.asset("lib/Icons/pay.svg", height: 24),
                       activeIcon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Image.asset(
                           "lib/Icons/feed1.png",
                           color: Color(0xffff9800),
-                          width: 25,
-                          height: 25,
+                          width: 30,
+                          height: 30,
                           //   height: 50,
                         ),
                       ),
