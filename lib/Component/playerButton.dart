@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:doob/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
@@ -9,8 +11,6 @@ class PlayerButtons extends StatefulWidget {
   const PlayerButtons(this._audioPlayer, {super.key});
 
   final AudioPlayer _audioPlayer;
-
-  
 
   @override
   State<PlayerButtons> createState() => _PlayerButtonsState();
@@ -25,10 +25,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
     Colors.redAccent
   ];
 
-
   final List<int> duration = [900, 700, 600, 800, 500];
-
- 
 
   late Animation<double> animation;
   late AnimationController animationController;
@@ -36,11 +33,20 @@ class _PlayerButtonsState extends State<PlayerButtons>
   double _progressValue = 0.0;
   int currentIndex = 0;
   bool isPlaying = true;
+  late Timer _timer;
+  Duration currentDuration = Duration.zero;
 
   @override
   void initState() {
     super.initState();
     initAudioPlayer();
+    _timer = Timer.periodic(Duration(seconds: 1), (_) {
+      setState(() {
+        // Update the current duration based on the audio player's position
+        currentDuration = widget._audioPlayer.position;   
+
+      });
+    });
     animationController = AnimationController(
         duration: Duration(milliseconds: 1200), vsync: this);
 
@@ -52,7 +58,11 @@ class _PlayerButtonsState extends State<PlayerButtons>
         animationController.repeat(reverse: true);
       });
 
-    
+    @override
+    void dispose() {
+      _timer.cancel();
+      super.dispose();
+    }
 
     widget._audioPlayer.positionStream.listen((position) {
       final duration = widget._audioPlayer.duration;
@@ -76,8 +86,6 @@ class _PlayerButtonsState extends State<PlayerButtons>
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -89,8 +97,6 @@ class _PlayerButtonsState extends State<PlayerButtons>
         children: [
           Stack(
             children: [
-           
-
               Container(
                 padding: EdgeInsets.only(top: 42),
                 child: SizedBox(
@@ -119,7 +125,6 @@ class _PlayerButtonsState extends State<PlayerButtons>
                       //   ),
                       // ),
                       Container(
-                     
                         width: size.width * 0.65,
                         child: LinearProgressIndicator(
                           value: _progressValue,
@@ -127,6 +132,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
                         ),
                       ),
                       Text(
+                        //  '${currentDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${currentDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}',
                         '${audioDuration?.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.duration?.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
                         style: TextStyle(
                             fontSize: 12.0,

@@ -17,6 +17,7 @@ class Song with _$Song {
     String? type,
     String? mtv,
     String? reject_reason,
+    String? like_count,
    
     
    

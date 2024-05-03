@@ -32,6 +32,7 @@ mixin _$Song {
   String? get type => throw _privateConstructorUsedError;
   String? get mtv => throw _privateConstructorUsedError;
   String? get reject_reason => throw _privateConstructorUsedError;
+  String? get like_count => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +56,8 @@ abstract class $SongCopyWith<$Res> {
       String? status,
       String? type,
       String? mtv,
-      String? reject_reason});
+      String? reject_reason,
+      String? like_count});
 }
 
 /// @nodoc
@@ -83,6 +85,7 @@ class _$SongCopyWithImpl<$Res, $Val extends Song>
     Object? type = freezed,
     Object? mtv = freezed,
     Object? reject_reason = freezed,
+    Object? like_count = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -133,6 +136,10 @@ class _$SongCopyWithImpl<$Res, $Val extends Song>
           ? _value.reject_reason
           : reject_reason // ignore: cast_nullable_to_non_nullable
               as String?,
+      like_count: freezed == like_count
+          ? _value.like_count
+          : like_count // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -156,7 +163,8 @@ abstract class _$$SongImplCopyWith<$Res> implements $SongCopyWith<$Res> {
       String? status,
       String? type,
       String? mtv,
-      String? reject_reason});
+      String? reject_reason,
+      String? like_count});
 }
 
 /// @nodoc
@@ -181,6 +189,7 @@ class __$$SongImplCopyWithImpl<$Res>
     Object? type = freezed,
     Object? mtv = freezed,
     Object? reject_reason = freezed,
+    Object? like_count = freezed,
   }) {
     return _then(_$SongImpl(
       freezed == id
@@ -231,6 +240,10 @@ class __$$SongImplCopyWithImpl<$Res>
           ? _value.reject_reason
           : reject_reason // ignore: cast_nullable_to_non_nullable
               as String?,
+      freezed == like_count
+          ? _value.like_count
+          : like_count // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -250,7 +263,8 @@ class _$SongImpl implements _Song {
       this.status,
       this.type,
       this.mtv,
-      this.reject_reason);
+      this.reject_reason,
+      this.like_count);
 
   factory _$SongImpl.fromJson(Map<String, dynamic> json) =>
       _$$SongImplFromJson(json);
@@ -279,10 +293,12 @@ class _$SongImpl implements _Song {
   final String? mtv;
   @override
   final String? reject_reason;
+  @override
+  final String? like_count;
 
   @override
   String toString() {
-    return 'Song(id: $id, name: $name, cover_photo: $cover_photo, audio: $audio, run_time: $run_time, lyric: $lyric, album_id: $album_id, owner_id: $owner_id, status: $status, type: $type, mtv: $mtv, reject_reason: $reject_reason)';
+    return 'Song(id: $id, name: $name, cover_photo: $cover_photo, audio: $audio, run_time: $run_time, lyric: $lyric, album_id: $album_id, owner_id: $owner_id, status: $status, type: $type, mtv: $mtv, reject_reason: $reject_reason, like_count: $like_count)';
   }
 
   @override
@@ -306,13 +322,28 @@ class _$SongImpl implements _Song {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.mtv, mtv) || other.mtv == mtv) &&
             (identical(other.reject_reason, reject_reason) ||
-                other.reject_reason == reject_reason));
+                other.reject_reason == reject_reason) &&
+            (identical(other.like_count, like_count) ||
+                other.like_count == like_count));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, cover_photo, audio,
-      run_time, lyric, album_id, owner_id, status, type, mtv, reject_reason);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      cover_photo,
+      audio,
+      run_time,
+      lyric,
+      album_id,
+      owner_id,
+      status,
+      type,
+      mtv,
+      reject_reason,
+      like_count);
 
   @JsonKey(ignore: true)
   @override
@@ -341,7 +372,8 @@ abstract class _Song implements Song {
       final String? status,
       final String? type,
       final String? mtv,
-      final String? reject_reason) = _$SongImpl;
+      final String? reject_reason,
+      final String? like_count) = _$SongImpl;
 
   factory _Song.fromJson(Map<String, dynamic> json) = _$SongImpl.fromJson;
 
@@ -369,6 +401,8 @@ abstract class _Song implements Song {
   String? get mtv;
   @override
   String? get reject_reason;
+  @override
+  String? get like_count;
   @override
   @JsonKey(ignore: true)
   _$$SongImplCopyWith<_$SongImpl> get copyWith =>

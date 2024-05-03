@@ -2,8 +2,10 @@ import 'dart:io';
 import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:doob/Component/playerButton.dart';
 import 'package:doob/MusicPlayer/ForYouScreen.dart';
+import 'package:doob/MusicPlayer/Pause.dart';
 import 'package:doob/MusicPlayer/WaveProgressBar.dart';
 import 'package:doob/MusicPlayer/videoplayer.dart';
+import 'package:doob/services/favServiceProvider.dart';
 import 'package:doob/services/songServiceProvider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +40,7 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
   bool isPlaying = true;
   bool isicon = false;
   bool isrepeat = true;
+  bool isReact = true;
 
   AppLifecycleState? stateChanged;
 
@@ -88,15 +91,22 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
               if (_audioPlayer.playing) {
                 _audioPlayer.pause();
                 ref.read(waveIconTapChangeProvider.notifier).isAudioPlay(false);
+                ref.read(pauseChangeProvider.notifier).isAudioPlay(true);
               } else {
                 _audioPlayer.play();
                 ref.read(waveIconTapChangeProvider.notifier).isAudioPlay(true);
+                ref.read(pauseChangeProvider.notifier).isAudioPlay(false);
               }
             },
             child: Consumer(
               builder: (context, ref, child) {
                 return Stack(
                   children: [
+                    // Icon(
+                    //   Icons.play_arrow,
+                    //   size: 50,
+                    //   color: Colors.orange,
+                    // ),
                     PageView(
                       controller: controller,
                       onPageChanged: (value) {
@@ -157,6 +167,30 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
+                                  Container(
+                                    child: Consumer(
+                                        builder: (context, pauseRef, child) {
+                                      final pauseChange =
+                                          pauseRef.watch(pauseChangeProvider);
+                                      print("Pause  ###### : $pauseChange");
+                                      return Center(
+                                        child: Stack(
+                                          children: [
+                                            pauseChange
+                                                ? Center(
+                                                    child: Icon(
+                                                      Icons.play_arrow,
+                                                      size: 90,
+                                                      color: Colors.white38,
+                                                    ),
+                                                  )
+                                                : SizedBox.shrink(),
+                                          ],
+                                        ),
+                                      );
+                                    }),
+                                  ),
+
                                   Align(
                                     alignment: Alignment.centerRight,
                                     child: Padding(
@@ -219,36 +253,98 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                               child: Column(
                                                 children: [
                                                   InkWell(
-                                                      onTap: () {
-                                                        Get.to(() =>
-                                                            PlaylistMoreDetails());
-                                                        //Navigator.pushNamed(context, '/favoriteDetails');
-                                                      },
-                                                      child:
-                                                          //  Container(
-                                                          //   padding:
-                                                          //       EdgeInsets.only(
-                                                          //           top: 12),
-                                                          //   child: Icon(
-                                                          //     Icons.favorite,
-                                                          //     color: Colors.white,
-                                                          //     size: 30,
-                                                          //   ),
-                                                          // )
-                                                          Container(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                top: 20),
-                                                        child: Image.asset(
-                                                          'asset/Icons/heart.png',
-                                                          height: 30,
-                                                        ),
-                                                      )
-                                                      // SvgPicture.asset('lib/Icons/love.svg',
-                                                      //     height: 25),
-                                                      ),
+                                                    onTap: () async {
+                                                      // ref.invalidate(
+                                                      //     audioFavProvider);
+
+                                                      // final favBook = await ref
+                                                      //     .read(audioFavProvider(
+                                                      //             songList
+                                                      //                 .data![
+                                                      //                     index]
+                                                      //                 .id!
+                                                      //                 .toString())
+                                                      //         .future);
+                                                      // final snackbar = SnackBar(
+                                                      //     content: Text(
+                                                      //         favBook!.data));
+                                                      // ScaffoldMessenger.of(
+                                                      //         context)
+                                                      //     .showSnackBar(
+                                                      //         snackbar);
+                                                      // if (favBook.data ==
+                                                      //     'Successfully remove from favorite list !') {
+                                                      //   Set() {
+                                                      //     // --songList
+                                                      //     //     .data![index]
+                                                      //     //     .like_count!
+                                                      //     //     .length;
+
+                                                      //     //   songList.data![index].like_count!.removeAt(0);
+                                                      //   }
+                                                      // } else {
+                                                      //   // ++songList.data![index]
+                                                      //   //     .like_count!.length;
+                                                      // }
+
+                                                      setState(() {
+                                                        isReact = !isReact;
+                                                      });
+                                                      // Get.to(() =>
+                                                      //     PlaylistMoreDetails());
+                                                    },
+                                                    child: isReact
+                                                        ? Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 20),
+                                                            child: Icon(
+                                                              Icons.favorite,
+                                                              color:
+                                                                  Colors.white,
+                                                              size: 40,
+                                                            ),
+                                                          )
+
+                                                        //  Container(
+                                                        //     padding:
+                                                        //         EdgeInsets
+                                                        //             .only(
+                                                        //                 top: 16),
+                                                        //     child: Image
+                                                        //         .asset(
+                                                        //       'asset/Icons/heart.png',
+                                                        //       height: 30,
+                                                        //     ),
+                                                        //   )
+                                                        : Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 20),
+                                                            child: Icon(
+                                                              Icons.favorite,
+                                                              color: Color(
+                                                                  0xffff9800),
+                                                              size: 40,
+                                                            ),
+                                                          ),
+
+                                                    // SvgPicture.asset('lib/Icons/love.svg',
+                                                    //     height: 25),
+                                                  ),
                                                   Text(
-                                                    '5.3M',
+                                                    //   '5.3M',
+                                                    songList.data![index]
+                                                            .like_count?.length
+                                                            .toString() ??
+                                                        '0',
+                                                    //   songList.data![index]
+                                                    //       .like_count!
+                                                    //       .length
+                                                    //       .toString() ??
+                                                    //   '0'
+                                                    //  ,
+
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         fontFamily: "Century",
@@ -471,41 +567,13 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                             'asset/lottie/Animation - 1713755104463.json',
                                                           ),
                                                         ),
-                                                      )
-
-                                                      //  MusicVisualizer(
-                                                      //   barCount: 80,
-                                                      //   colors: colors,
-                                                      //   duration: duration,
-                                                      //   // curve: Curves.easeIn,
-                                                      // ),
-                                                      )
+                                                      ))
                                                   : SizedBox.shrink(),
                                               PlayerButtons(_audioPlayer),
                                             ],
                                           ),
                                         ),
                                       );
-                                      /* Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            tapChange
-                                                ? MusicVisualizer(
-                                                    barCount: 30,
-                                                    colors: colors,
-                                                    duration: duration,
-                                                    // curve: Curves.easeIn,
-                                                  )
-                                                : SizedBox(),
-                                            PlayerButtons(_audioPlayer),
-                                            SizedBox(
-                                              height: 20,
-                                            )
-                                          ],
-                                        ),
-                                      ); */
                                     }),
                                   ),
                                   // Align(
@@ -513,139 +581,118 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                   //   child: Column(
                                   //     mainAxisSize: MainAxisSize.min,
                                   //     children: [
-                                  //       // _audioPlayer.playing
-                                  //       //     ? MusicVisualizer(
-                                  //       //         barCount: 30,
-                                  //       //         colors: colors,
-                                  //       //         duration: duration,
-                                  //       //         // curve: Curves.easeIn,
-                                  //       //   )
-                                  //       // : SizedBox.shrink(),
 
-                                  //       PlayerButtons(_audioPlayer),
-                                  //       SizedBox(
-                                  //         height: 20,
-                                  //       )
-                                  //       //       // Padding(
-                                  //       //       //   padding: const EdgeInsets.only(
-                                  //       //       //       left: 10, right: 10, bottom: 20),
-                                  //       //       //   child: GestureDetector(
-                                  //       //       //     onTap: () {
-                                  //       //       //       showDialog(
-                                  //       //       //         context: context,
-                                  //       //       //         builder: (context) => Padding(
-                                  //       //       //           padding:
-                                  //       //       //               const EdgeInsets.symmetric(
-                                  //       //       //                   horizontal: 10,
-                                  //       //       //                   vertical: 100),
-                                  //       //       //           child: Container(
-                                  //       //       //             height: 100,
-                                  //       //       //             decoration: BoxDecoration(
-                                  //       //       //                 borderRadius:
-                                  //       //       //                     BorderRadius.circular(
-                                  //       //       //                         10),
-                                  //       //       //                 color:
-                                  //       //       //                     Colors.transparent),
-                                  //       //       //             child: Column(
-                                  //       //       //               children: [
-                                  //       //       //                 Row(
-                                  //       //       //                   mainAxisAlignment:
-                                  //       //       //                       MainAxisAlignment
-                                  //       //       //                           .end,
-                                  //       //       //                   children: [
-                                  //       //       //                     GestureDetector(
-                                  //       //       //                       onTap: () {
-                                  //       //       //                         Navigator.of(
-                                  //       //       //                                 context)
-                                  //       //       //                             .pop();
-                                  //       //       //                       },
-                                  //       //       //                       child: Icon(
-                                  //       //       //                         Icons.cancel,
-                                  //       //       //                         color:
-                                  //       //       //                             Colors.white,
-                                  //       //       //                       ),
-                                  //       //       //                     ),
-                                  //       //       //                   ],
-                                  //       //       //                 ),
-                                  //       //       //                 Container(
-                                  //       //       //                   decoration: BoxDecoration(
-                                  //       //       //                       color:
-                                  //       //       //                           Colors.black26,
-                                  //       //       //                       borderRadius:
-                                  //       //       //                           BorderRadius
-                                  //       //       //                               .circular(
-                                  //       //       //                                   15),
-                                  //       //       //                       border: Border.all(
-                                  //       //       //                           color: Colors
-                                  //       //       //                               .white)),
-                                  //       //       //                   padding: EdgeInsets
-                                  //       //       //                       .symmetric(
-                                  //       //       //                           horizontal: 10,
-                                  //       //       //                           vertical: 10),
-                                  //       //       //                   // color: Colors.black12,
-                                  //       //       //                   child: Center(
-                                  //       //       //                     child: Text(
-                                  //       //       //                       'You are my sunshine, my only sunshine you make me happy when skies are gray you will never keep dear,how much I love you,please don\'t take my sunshine away.',
-                                  //       //       //                       textAlign: TextAlign
-                                  //       //       //                           .center,
-                                  //       //       //                       style: TextStyle(
-                                  //       //       //                         fontFamily:
-                                  //       //       //                             'Century',
-                                  //       //       //                         // wordSpacing: 2,
-                                  //       //       //                         fontSize: 16,
-                                  //       //       //                         fontWeight:
-                                  //       //       //                             FontWeight
-                                  //       //       //                                 .bold,
-                                  //       //       //                         color:
-                                  //       //       //                             Colors.white,
-                                  //       //       //                       ),
-                                  //       //       //                     ),
-                                  //       //       //                   ),
-                                  //       //       //                 ),
-                                  //       //       //               ],
-                                  //       //       //             ),
-                                  //       //       //           ),
-                                  //       //       //         ),
-                                  //       //       //       );
-                                  //       //       //     },
-                                  //       //       //     child:
-                                  //       //       // Container(
-                                  //       //       //       height: 40,
-                                  //       //       //       width: 200,
-                                  //       //       //       decoration: BoxDecoration(
-                                  //       //       //         color: Color(0xffff9800),
-                                  //       //       //         borderRadius:
-                                  //       //       //             BorderRadius.circular(25),
-                                  //       //       //       ),
-                                  //       //       //       child: Center(
-                                  //       //       //         child: Text(
-                                  //       //       //           'Lyrics',
-                                  //       //       //           style: TextStyle(
-                                  //       //       //               fontFamily: 'Century',
-                                  //       //       //               fontSize: 14,
-                                  //       //       //               fontWeight: FontWeight.bold,
-                                  //       //       //               color: Colors.white),
-                                  //       //       //         ),
-                                  //       //       //       ),
-                                  //       //       //     ),
-                                  //       //       //   ),
-                                  //       //       ),
-                                  //     ],
-                                  //   ),
-                                  // )
+                                  //             // Padding(
+                                  //             //   padding: const EdgeInsets.only(
+                                  //             //       left: 10, right: 10, bottom: 20),
+                                  //             //   child: GestureDetector(
+                                  //             //     onTap: () {
+                                  //             //       showDialog(
+                                  //             //         context: context,
+                                  //             //         builder: (context) => Padding(
+                                  //             //           padding:
+                                  //             //               const EdgeInsets.symmetric(
+                                  //             //                   horizontal: 10,
+                                  //             //                   vertical: 100),
+                                  //             //           child: Container(
+                                  //             //             height: 100,
+                                  //             //             decoration: BoxDecoration(
+                                  //             //                 borderRadius:
+                                  //             //                     BorderRadius.circular(
+                                  //             //                         10),
+                                  //             //                 color:
+                                  //             //                     Colors.transparent),
+                                  //             //             child: Column(
+                                  //             //               children: [
+                                  //             //                 Row(
+                                  //             //                   mainAxisAlignment:
+                                  //             //                       MainAxisAlignment
+                                  //             //                           .end,
+                                  //             //                   children: [
+                                  //             //                     GestureDetector(
+                                  //             //                       onTap: () {
+                                  //             //                         Navigator.of(
+                                  //             //                                 context)
+                                  //             //                             .pop();
+                                  //             //                       },
+                                  //             //                       child: Icon(
+                                  //             //                         Icons.cancel,
+                                  //             //                         color:
+                                  //             //                             Colors.white,
+                                  //             //                       ),
+                                  //             //                     ),
+                                  //             //                   ],
+                                  //             //                 ),
+                                  //             //                 Container(
+                                  //             //                   decoration: BoxDecoration(
+                                  //             //                       color:
+                                  //             //                           Colors.black26,
+                                  //             //                       borderRadius:
+                                  //             //                           BorderRadius
+                                  //             //                               .circular(
+                                  //             //                                   15),
+                                  //             //                       border: Border.all(
+                                  //             //                           color: Colors
+                                  //             //                               .white)),
+                                  //             //                   padding: EdgeInsets
+                                  //             //                       .symmetric(
+                                  //             //                           horizontal: 10,
+                                  //             //                           vertical: 10),
+                                  //             //                   // color: Colors.black12,
+                                  //             //                   child: Center(
+                                  //             //                     child: Text(
+                                  //             //                       'You are my sunshine, my only sunshine you make me happy when skies are gray you will never keep dear,how much I love you,please don\'t take my sunshine away.',
+                                  //             //                       textAlign: TextAlign
+                                  //             //                           .center,
+                                  //             //                       style: TextStyle(
+                                  //             //                         fontFamily:
+                                  //             //                             'Century',
+                                  //             //                         // wordSpacing: 2,
+                                  //             //                         fontSize: 16,
+                                  //             //                         fontWeight:
+                                  //             //                             FontWeight
+                                  //             //                                 .bold,
+                                  //             //                         color:
+                                  //             //                             Colors.white,
+                                  //             //                       ),
+                                  //             //                     ),
+                                  //             //                   ),
+                                  //             //                 ),
+                                  //             //               ],
+                                  //             //             ),
+                                  //             //           ),
+                                  //             //         ),
+                                  //             //       );
+                                  //             //     },
+                                  //             //     child:
+                                  //             // Container(
+                                  //             //       height: 40,
+                                  //             //       width: 200,
+                                  //             //       decoration: BoxDecoration(
+                                  //             //         color: Color(0xffff9800),
+                                  //             //         borderRadius:
+                                  //             //             BorderRadius.circular(25),
+                                  //             //       ),
+                                  //             //       child: Center(
+                                  //             //         child: Text(
+                                  //             //           'Lyrics',
+                                  //             //           style: TextStyle(
+                                  //             //               fontFamily: 'Century',
+                                  //             //               fontSize: 14,
+                                  //             //               fontWeight: FontWeight.bold,
+                                  //             //               color: Colors.white),
+                                  //             //         ),
+                                  //             //       ),
+                                  //             //     ),
+                                  //             //   ),
+                                  //           //  ),
+                                  //  ],
+                                  // ),
+                                  //  )
                                 ],
                               );
                             },
                             scrollDirection: Axis.vertical,
-                            // children: [
-                            //   MusicScreenCard(),
-                            //   MusicScreenCard(),
-                            //   MusicScreenCard(),
-                            //   MusicScreenCard(),
-                            //   MusicScreenCard(),
-                            //   MusicScreenCard(),
-                            // MusicScreenCard(),
-                            // ],
                           );
                         }, error: (Object error, StackTrace stackTrace) {
                           return Text('$error');
