@@ -338,12 +338,11 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                             .like_count?.length
                                                             .toString() ??
                                                         '0',
-                                                    //   songList.data![index]
-                                                    //       .like_count!
-                                                    //       .length
-                                                    //       .toString() ??
-                                                    //   '0'
-                                                    //  ,
+                                                    // songList.data![index]
+                                                    //     .like_count!
+                                                    //     .length
+                                                    //     .toString() ??
+                                                    // '0'
 
                                                     style: TextStyle(
                                                         color: Colors.white,

@@ -40,13 +40,13 @@ class _PlayerButtonsState extends State<PlayerButtons>
   void initState() {
     super.initState();
     initAudioPlayer();
-    _timer = Timer.periodic(Duration(seconds: 1), (_) {
-      setState(() {
-        // Update the current duration based on the audio player's position
-        currentDuration = widget._audioPlayer.position;   
+    // _timer = Timer.periodic(Duration(seconds: 1), (_) {
+    //   setState(() {
+    //     // Update the current duration based on the audio player's position
+    //     currentDuration = widget._audioPlayer.position;
 
-      });
-    });
+    //   });
+    // });
     animationController = AnimationController(
         duration: Duration(milliseconds: 1200), vsync: this);
 
@@ -90,6 +90,25 @@ class _PlayerButtonsState extends State<PlayerButtons>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final audioDuration = widget._audioPlayer.duration;
+    var durationminute =
+        (audioDuration != null ? audioDuration.inMinutes.remainder(60) : 0) -
+            (widget._audioPlayer.position.inMinutes.remainder(60));
+    var duSec = ((widget._audioPlayer.duration != null
+            ? (widget._audioPlayer.duration!.inSeconds >
+                    widget._audioPlayer.position.inSeconds
+                ? widget._audioPlayer.duration!.inSeconds.remainder(60)
+                : 0)
+            : 0)) -
+        (widget._audioPlayer.position.inSeconds.remainder(60));
+
+    var durationSecond = ((widget._audioPlayer.duration != null
+            ? (widget._audioPlayer.duration!.inSeconds.remainder(60))
+            : 0)) -
+        (widget._audioPlayer.position.inSeconds.remainder(60));
+    durationSecond = durationSecond < 0 ? 0 : durationSecond;
+//         if (durationSecond < 0) {
+//   durationSecond = 0;
+// }
 
     return SizedBox(
       width: size.width * 0.9,
@@ -131,14 +150,45 @@ class _PlayerButtonsState extends State<PlayerButtons>
                           color: const Color(0xffff9800),
                         ),
                       ),
+
                       Text(
-                        //  '${currentDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${currentDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}',
-                        '${audioDuration?.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.duration?.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
+                        '${durationminute.toString().padLeft(2, '0')}:${durationSecond > 0 ? durationSecond.toString().padLeft(2, '0') : '00'}',
                         style: TextStyle(
                             fontSize: 12.0,
                             fontFamily: 'Century',
                             color: Colors.white),
-                      ),
+                      )
+
+                      // Text(
+                      //   '${(audioDuration != null ? audioDuration.inMinutes.remainder(60) : 0) - (widget._audioPlayer.position.inMinutes.remainder(60))}:'
+                      //   '${((widget._audioPlayer.duration != null ? (widget._audioPlayer.duration!.inSeconds > widget._audioPlayer.position.inSeconds ? widget._audioPlayer.duration!.inSeconds.remainder(60) : 0) : 0)) - (widget._audioPlayer.position.inSeconds.remainder(60))}',
+                      //   style: TextStyle(
+                      //       fontSize: 12.0,
+                      //       fontFamily: 'Century',
+                      //       color: Colors.white),
+                      // ),
+//                       Text(
+//   '${(audioDuration != null ? audioDuration.inMinutes.remainder(60) : 0) - (widget._audioPlayer.position.inMinutes.remainder(60))}:'
+//   '${((widget._audioPlayer.duration != null ? widget._audioPlayer.duration!.inSeconds.remainder(60) : 0)) - (widget._audioPlayer.position.inSeconds.remainder(60))}',
+//   style: TextStyle(
+//     fontSize: 12.0,
+//     fontFamily: 'Century',
+//     color: Colors.white
+//   ),
+// )
+                      //  Text(
+                      //     '${audioDuration!.inMinutes.remainder(60) - (widget._audioPlayer.position.inMinutes.remainder(60))}:${(widget._audioPlayer.duration?.inSeconds.remainder(60))! - (widget._audioPlayer.position.inSeconds.remainder(60))}',
+                      //     style: TextStyle(fontSize: 12.0, fontFamily: 'Century', color: Colors.red),
+                      //   )
+
+                      // Text(
+                      //   //  '${currentDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${currentDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}',
+                      //   '${audioDuration?.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.duration?.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
+                      //   style: TextStyle(
+                      //       fontSize: 12.0,
+                      //       fontFamily: 'Century',
+                      //       color: Colors.white),
+                      // ),
                     ],
                   ),
                 ),

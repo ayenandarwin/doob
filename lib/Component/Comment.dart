@@ -77,7 +77,9 @@ class _CommentState extends State<Comment> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Comment Page"),
-        backgroundColor: Colors.pink,
+        backgroundColor: const Color(0xffff9800),
+
+        // backgroundColor: Colors.pink,
       ),
       body: Container(
         child: CommentBox(
@@ -108,7 +110,9 @@ class _CommentState extends State<Comment> {
           },
           formKey: formKey,
           commentController: commentController,
-          backgroundColor: Colors.pink,
+          backgroundColor: const Color(0xffff9800),
+
+          // backgroundColor: Colors.pink,
           textColor: Colors.white,
           sendWidget: Icon(Icons.send_sharp, size: 30, color: Colors.white),
         ),
