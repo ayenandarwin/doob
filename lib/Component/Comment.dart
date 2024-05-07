@@ -81,7 +81,8 @@ class _CommentState extends State<Comment> {
 
         // backgroundColor: Colors.pink,
       ),
-      body: Container(
+      body: 
+      Container(
         child: CommentBox(
           userImage: CommentBox.commentImageParser(
               imageURLorPath: "assets/img/userpic.jpg"),

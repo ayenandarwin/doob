@@ -6,6 +6,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simple_waveform_progressbar/simple_waveform_progressbar.dart';
 import 'package:music_visualizer/music_visualizer.dart';
+import 'package:video_player/video_player.dart';
 
 class PlayerButtons extends StatefulWidget {
   const PlayerButtons(this._audioPlayer, {super.key});
@@ -29,12 +30,21 @@ class _PlayerButtonsState extends State<PlayerButtons>
 
   late Animation<double> animation;
   late AnimationController animationController;
+  late VideoPlayerController controller;
 
   double _progressValue = 0.0;
   int currentIndex = 0;
   bool isPlaying = true;
   late Timer _timer;
   Duration currentDuration = Duration.zero;
+
+  String formatDuration(Duration duration) {
+    //  int hours = duration.inHours;
+    int minutes = duration.inMinutes.remainder(60);
+    int seconds = duration.inSeconds.remainder(60);
+    // return '$hours:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  }
 
   @override
   void initState() {
@@ -90,25 +100,16 @@ class _PlayerButtonsState extends State<PlayerButtons>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final audioDuration = widget._audioPlayer.duration;
+
     var durationminute =
         (audioDuration != null ? audioDuration.inMinutes.remainder(60) : 0) -
             (widget._audioPlayer.position.inMinutes.remainder(60));
-    var duSec = ((widget._audioPlayer.duration != null
-            ? (widget._audioPlayer.duration!.inSeconds >
-                    widget._audioPlayer.position.inSeconds
-                ? widget._audioPlayer.duration!.inSeconds.remainder(60)
-                : 0)
-            : 0)) -
-        (widget._audioPlayer.position.inSeconds.remainder(60));
 
     var durationSecond = ((widget._audioPlayer.duration != null
             ? (widget._audioPlayer.duration!.inSeconds.remainder(60))
             : 0)) -
         (widget._audioPlayer.position.inSeconds.remainder(60));
     durationSecond = durationSecond < 0 ? 0 : durationSecond;
-//         if (durationSecond < 0) {
-//   durationSecond = 0;
-// }
 
     return SizedBox(
       width: size.width * 0.9,
@@ -124,25 +125,22 @@ class _PlayerButtonsState extends State<PlayerButtons>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${widget._audioPlayer.position.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.position.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
+                        formatDuration(
+                          widget._audioPlayer.position,
+                        ),
                         style: TextStyle(
                             fontSize: 12.0,
                             fontFamily: 'Century',
                             color: Colors.white),
                       ),
-                      // SizedBox(
-                      //   width: size.width * 0.65,
-                      //   height: 35,
-                      //   child: WaveformProgressbar(
-                      //     color: Colors.grey,
-                      //     //progressColor: Constants.kGradient,
-                      //     progressColor: Color(0xffFF9800),
-                      //     progress: _progressValue,
-                      //     onTap: (progress) {
-                      //       var tt = progress;
-                      //     },
-                      //   ),
+                      // Text(
+                      //   '${widget._audioPlayer.position.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.position.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
+                      //   style: TextStyle(
+                      //       fontSize: 12.0,
+                      //       fontFamily: 'Century',
+                      //       color: Colors.white),
                       // ),
+
                       Container(
                         width: size.width * 0.65,
                         child: LinearProgressIndicator(
@@ -151,13 +149,30 @@ class _PlayerButtonsState extends State<PlayerButtons>
                         ),
                       ),
 
-                      Text(
-                        '${durationminute.toString().padLeft(2, '0')}:${durationSecond > 0 ? durationSecond.toString().padLeft(2, '0') : '00'}',
-                        style: TextStyle(
-                            fontSize: 12.0,
-                            fontFamily: 'Century',
-                            color: Colors.white),
-                      )
+                      widget._audioPlayer.duration != null
+                          ? Text(
+                              formatDuration(widget._audioPlayer.duration! -
+                                  widget._audioPlayer.position),
+                              style: TextStyle(
+                                  fontSize: 12.0,
+                                  fontFamily: 'Century',
+                                  color: Colors.white),
+                            )
+                          : Text(
+                              '00:00',
+                              style: TextStyle(
+                                  fontSize: 12.0,
+                                  fontFamily: 'Century',
+                                  color: Colors.white),
+                            ),
+
+                      // Text(
+                      //   '${durationminute.toString().padLeft(2, '0')}:${durationSecond > 0 ? durationSecond.toString().padLeft(2, '0') : '00'}',
+                      //   style: TextStyle(
+                      //       fontSize: 12.0,
+                      //       fontFamily: 'Century',
+                      //       color: Colors.white),
+                      // )
 
                       // Text(
                       //   '${(audioDuration != null ? audioDuration.inMinutes.remainder(60) : 0) - (widget._audioPlayer.position.inMinutes.remainder(60))}:'
@@ -166,29 +181,11 @@ class _PlayerButtonsState extends State<PlayerButtons>
                       //       fontSize: 12.0,
                       //       fontFamily: 'Century',
                       //       color: Colors.white),
-                      // ),
-//                       Text(
-//   '${(audioDuration != null ? audioDuration.inMinutes.remainder(60) : 0) - (widget._audioPlayer.position.inMinutes.remainder(60))}:'
-//   '${((widget._audioPlayer.duration != null ? widget._audioPlayer.duration!.inSeconds.remainder(60) : 0)) - (widget._audioPlayer.position.inSeconds.remainder(60))}',
-//   style: TextStyle(
-//     fontSize: 12.0,
-//     fontFamily: 'Century',
-//     color: Colors.white
-//   ),
-// )
+
                       //  Text(
                       //     '${audioDuration!.inMinutes.remainder(60) - (widget._audioPlayer.position.inMinutes.remainder(60))}:${(widget._audioPlayer.duration?.inSeconds.remainder(60))! - (widget._audioPlayer.position.inSeconds.remainder(60))}',
                       //     style: TextStyle(fontSize: 12.0, fontFamily: 'Century', color: Colors.red),
                       //   )
-
-                      // Text(
-                      //   //  '${currentDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${currentDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}',
-                      //   '${audioDuration?.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.duration?.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
-                      //   style: TextStyle(
-                      //       fontSize: 12.0,
-                      //       fontFamily: 'Century',
-                      //       color: Colors.white),
-                      // ),
                     ],
                   ),
                 ),
@@ -212,6 +209,21 @@ class _PlayerButtonsState extends State<PlayerButtons>
               //     return _previousSecodsButton();
               //   },
               // ),
+
+              // StreamBuilder<PositionData>(
+              //   stream: _positionDataStream,
+              //   builder: (context, snapshot) {
+              //     final positionData = snapshot.data;
+              //     return SeekBar(
+              //       duration: positionData?.duration ?? Duration.zero,
+              //       position: positionData?.position ?? Duration.zero,
+              //       bufferedPosition:
+              //           positionData?.bufferedPosition ?? Duration.zero,
+              //       onChangeEnd: widget._audioPlayer.seek,
+              //     );
+              //   },
+              // ),
+
               StreamBuilder<PlayerState?>(
                 stream: widget._audioPlayer.playerStateStream,
                 builder: (_, snapshot) {

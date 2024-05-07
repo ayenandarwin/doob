@@ -17,14 +17,12 @@ class Song with _$Song {
     String? type,
     String? mtv,
     String? reject_reason,
-    String? like_count,
-   
-    
+   int? like_count,
+  int?    comment_count,
    
   ) = _Song;
 
-  factory Song.fromJson(Map<String, dynamic> json) =>
-      _$SongFromJson(json);
+  factory Song.fromJson(Map<String, dynamic> json) => _$SongFromJson(json);
 }
 
 /*

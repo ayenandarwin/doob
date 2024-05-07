@@ -19,7 +19,8 @@ _$SongImpl _$$SongImplFromJson(Map<String, dynamic> json) => _$SongImpl(
       json['type'] as String?,
       json['mtv'] as String?,
       json['reject_reason'] as String?,
-      json['like_count'] as String?,
+      json['like_count'] as int?,
+      json['comment_count'] as int?,
     );
 
 Map<String, dynamic> _$$SongImplToJson(_$SongImpl instance) =>
@@ -37,4 +38,5 @@ Map<String, dynamic> _$$SongImplToJson(_$SongImpl instance) =>
       'mtv': instance.mtv,
       'reject_reason': instance.reject_reason,
       'like_count': instance.like_count,
+      'comment_count': instance.comment_count,
     };

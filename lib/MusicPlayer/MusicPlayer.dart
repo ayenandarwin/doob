@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:comment_box/comment/comment.dart';
+import 'package:doob/Component/Comment.dart';
 import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:doob/Component/playerButton.dart';
 import 'package:doob/MusicPlayer/ForYouScreen.dart';
@@ -56,13 +58,80 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
 
   int currentindex = 0;
   double value = 50;
+  var _remove;
 
   late AudioPlayer _audioPlayer;
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController commentController = TextEditingController();
+  List filedata = [
+    {
+      'name': 'Chuks Okwuenu',
+      'pic': 'https://picsum.photos/300/30',
+      'message': 'I love to code',
+      'date': '2021-01-01 12:00:00'
+    },
+    {
+      'name': 'Biggi Man',
+      'pic': 'https://www.adeleyeayodeji.com/img/IMG_20200522_121756_834_2.jpg',
+      'message': 'Very cool',
+      'date': '2021-01-01 12:00:00'
+    },
+    // {
+    //   'name': 'Tunde Martins',
+    //   'pic': 'assets/img/userpic.jpg',
+    //   'message': 'Very cool',
+    //   'date': '2021-01-01 12:00:00'
+    // },
+    // {
+    //   'name': 'Biggi Man',
+    //   'pic': 'https://picsum.photos/300/30',
+    //   'message': 'Very cool',
+    //   'date': '2021-01-01 12:00:00'
+    // },
+  ];
+
+  Widget commentChild(data) {
+    return ListView(
+      children: [
+        for (var i = 0; i < data.length; i++)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(2.0, 8.0, 2.0, 0.0),
+            child: ListTile(
+              leading: GestureDetector(
+                onTap: () async {
+                  // Display the image in large form.
+                  print("Comment Clicked");
+                },
+                child: Container(
+                  height: 50.0,
+                  width: 50.0,
+                  decoration: new BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: new BorderRadius.all(Radius.circular(50))),
+                  child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: CommentBox.commentImageParser(
+                          imageURLorPath: data[i]['pic'])),
+                ),
+              ),
+              title: Text(
+                data[i]['name'],
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(data[i]['message']),
+              trailing: Text(data[i]['date'], style: TextStyle(fontSize: 10)),
+            ),
+          )
+      ],
+    );
+  }
+
   //late Duration? audioDuration;
   @override
   void initState() {
     super.initState();
     _audioPlayer = AudioPlayer();
+    _remove = true;
   }
 
   @override
@@ -107,10 +176,11 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                     //   size: 50,
                     //   color: Colors.orange,
                     // ),
+                    // Text("Debug"),
                     PageView(
                       controller: controller,
                       onPageChanged: (value) {
-                        print(currentindex.toString() + 'bjasbfajbdfjbad');
+                        // print(currentindex.toString() + 'bjasbfajbdfjbad');
                         setState(() {
                           currentindex = value;
                         });
@@ -254,38 +324,35 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () async {
-                                                      // ref.invalidate(
-                                                      //     audioFavProvider);
+                                                      ref.invalidate(
+                                                          audioFavProvider);
 
-                                                      // final favBook = await ref
-                                                      //     .read(audioFavProvider(
-                                                      //             songList
-                                                      //                 .data![
-                                                      //                     index]
-                                                      //                 .id!
-                                                      //                 .toString())
-                                                      //         .future);
-                                                      // final snackbar = SnackBar(
-                                                      //     content: Text(
-                                                      //         favBook!.data));
-                                                      // ScaffoldMessenger.of(
-                                                      //         context)
-                                                      //     .showSnackBar(
-                                                      //         snackbar);
-                                                      // if (favBook.data ==
-                                                      //     'Successfully remove from favorite list !') {
-                                                      //   Set() {
-                                                      //     // --songList
-                                                      //     //     .data![index]
-                                                      //     //     .like_count!
-                                                      //     //     .length;
+                                                      final favBook = await ref
+                                                          .read(audioFavProvider(
+                                                                  songList
+                                                                      .data![
+                                                                          index]
+                                                                      .id!
+                                                                      .toString())
+                                                              .future);
+                                                      final snackbar = SnackBar(
+                                                          content: Text(
+                                                              favBook!.data));
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                              snackbar);
+                                                      if (favBook.data ==
+                                                          'Successfully remove from favorite list !') {
 
-                                                      //     //   songList.data![index].like_count!.removeAt(0);
-                                                      //   }
-                                                      // } else {
-                                                      //   // ++songList.data![index]
-                                                      //   //     .like_count!.length;
-                                                      // }
+                                                      //  --songList.data![index]
+                                                      //       .like_count!.length;
+
+                                                        //   songList.data![index].like_count!.removeAt(0);
+                                                      } else {
+                                                        // ++songList.data![index]
+                                                        //     .like_count!.length;
+                                                      }
 
                                                       setState(() {
                                                         isReact = !isReact;
@@ -335,9 +402,9 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                   Text(
                                                     //   '5.3M',
                                                     songList.data![index]
-                                                            .like_count?.length
-                                                            .toString() ??
-                                                        '0',
+                                                        .like_count!
+                                                        .toString(),
+
                                                     // songList.data![index]
                                                     //     .like_count!
                                                     //     .length
@@ -352,42 +419,236 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                 ],
                                               ),
                                             ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: Colors.black
-                                                            .withOpacity(0.2),
-                                                        blurRadius: 20)
-                                                  ]),
-                                              child: Column(
-                                                children: [
-                                                  // Container(
-                                                  //   padding: EdgeInsets.only(
-                                                  //       top: 10),
-                                                  //   child: Icon(
-                                                  //     Icons.bookmark,
-                                                  //     color: Colors.white,
-                                                  //   ),
-                                                  // ),
-                                                  Container(
-                                                    padding: EdgeInsets.only(
-                                                        top: 20),
-                                                    child: Image.asset(
-                                                      'asset/Icons/chat.png',
-                                                      height: 30,
+                                            InkWell(
+                                              onTap: () {
+                                                // showDialog(
+                                                //   context: context,
+                                                //   builder: (context) {
+                                                //     return StatefulBuilder(
+                                                //         builder: (BuildContext
+                                                //                 context,
+                                                //             StateSetter
+                                                //                 setState) {
+                                                //       return AlertDialog(
+                                                //         contentPadding:
+                                                //             EdgeInsets.zero,
+                                                //         backgroundColor:
+                                                //             Colors.grey,
+                                                //         titleTextStyle:
+                                                //             const TextStyle(
+                                                //                 fontSize: 20,
+                                                //                 color: Colors
+                                                //                     .black),
+                                                //         content: Container(
+                                                //           width:
+                                                //               double.infinity,
+                                                //           height: MediaQuery.of(
+                                                //                       context)
+                                                //                   .size
+                                                //                   .height *
+                                                //               0.3,
+                                                //           padding:
+                                                //               const EdgeInsets
+                                                //                   .symmetric(
+                                                //                   horizontal:
+                                                //                       10,
+                                                //                   vertical: 20),
+                                                //           child: Column(
+                                                //             mainAxisAlignment:
+                                                //                 MainAxisAlignment
+                                                //                     .spaceAround,
+                                                //             children: [
+                                                //               Container(
+                                                //                 height: 200,
+                                                //                 color: Colors
+                                                //                     .white,
+                                                //               ),
+                                                //               Container(
+                                                //                 child:
+                                                //                     CommentBox(
+                                                //                   userImage: CommentBox
+                                                //                       .commentImageParser(
+                                                //                           imageURLorPath:
+                                                //                               "assets/img/userpic.jpg"),
+                                                //                   child: commentChild(
+                                                //                       filedata),
+                                                //                   labelText:
+                                                //                       'Write a comment...',
+                                                //                   errorText:
+                                                //                       'Comment cannot be blank',
+                                                //                   withBorder:
+                                                //                       false,
+                                                //                   sendButtonMethod:
+                                                //                       () {
+                                                //                     if (formKey
+                                                //                         .currentState!
+                                                //                         .validate()) {
+                                                //                       print(commentController
+                                                //                           .text);
+                                                //                       setState(
+                                                //                           () {
+                                                //                         var value =
+                                                //                             {
+                                                //                           'name':
+                                                //                               'New User',
+                                                //                           'pic':
+                                                //                               'https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400',
+                                                //                           'message':
+                                                //                               commentController.text,
+                                                //                           'date':
+                                                //                               '2021-01-01 12:00:00'
+                                                //                         };
+                                                //                         filedata.insert(
+                                                //                             0,
+                                                //                             value);
+                                                //                       });
+                                                //                       commentController
+                                                //                           .clear();
+                                                //                       FocusScope.of(
+                                                //                               context)
+                                                //                           .unfocus();
+                                                //                     } else {
+                                                //                       print(
+                                                //                           "Not validated");
+                                                //                     }
+                                                //                   },
+                                                //                   formKey:
+                                                //                       formKey,
+                                                //                   commentController:
+                                                //                       commentController,
+                                                //                   backgroundColor:
+                                                //                       const Color(
+                                                //                           0xffff9800),
+
+                                                //                   // backgroundColor: Colors.pink,
+                                                //                   textColor:
+                                                //                       Colors
+                                                //                           .white,
+                                                //                   sendWidget: Icon(
+                                                //                       Icons
+                                                //                           .send_sharp,
+                                                //                       size: 30,
+                                                //                       color: Colors
+                                                //                           .white),
+                                                //                 ),
+                                                //               ),
+                                                //             ],
+                                                //           ),
+                                                //         ),
+                                                //       );
+                                                //     });
+                                                //   },
+                                                // );
+                                                //  Get.to(() => Comment());
+                                                _remove
+                                                    ? showModalBottomSheet(
+                                                        context: context,
+                                                        builder: ((context) {
+                                                          return SizedBox(
+                                                            width:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                            height:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height,
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Column(
+                                                                children: [
+                                                                  Row(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      Container(
+                                                                        margin: EdgeInsets.only(
+                                                                            left:
+                                                                                120),
+                                                                        child:
+                                                                            Text(
+                                                                          '39 comments',
+                                                                          style: TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontFamily: "Century",
+                                                                              fontSize: 16,
+                                                                              fontWeight: FontWeight.bold),
+                                                                        ),
+                                                                      ),
+                                                                      InkWell(
+                                                                        onTap:
+                                                                            () {
+                                                                          Get.back();
+                                                                          // setState(
+                                                                          //     () {});
+                                                                          // _remove =
+                                                                          //     !_remove;
+                                                                        },
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .cancel,
+                                                                          color:
+                                                                              Colors.grey[500],
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }))
+                                                    : Container();
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black
+                                                              .withOpacity(0.2),
+                                                          blurRadius: 20)
+                                                    ]),
+                                                child: Column(
+                                                  children: [
+                                                    // Container(
+                                                    //   padding: EdgeInsets.only(
+                                                    //       top: 10),
+                                                    //   child: Icon(
+                                                    //     Icons.bookmark,
+                                                    //     color: Colors.white,
+                                                    //   ),
+                                                    // ),
+                                                    Container(
+                                                      padding: EdgeInsets.only(
+                                                          top: 20),
+                                                      child: Image.asset(
+                                                        'asset/Icons/chat.png',
+                                                        height: 30,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  // SvgPicture.asset('lib/Icons/comment.svg', height: 25),
-                                                  Text(
-                                                    '5.3M',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontFamily: "Century",
-                                                      fontSize: 14,
-                                                    ),
-                                                  )
-                                                ],
+                                                    // SvgPicture.asset('lib/Icons/comment.svg', height: 25),
+                                                    Text(
+                                                      // '5.3M',
+                                                      songList.data![index]
+                                                          .comment_count!
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontFamily: "Century",
+                                                        fontSize: 14,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                             Container(
@@ -429,7 +690,7 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                   ),
                                                   //  SvgPicture.asset('lib/Icons/share.svg', height: 25),
                                                   Text(
-                                                    '5.3M',
+                                                    '0',
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         fontFamily: "Century",
