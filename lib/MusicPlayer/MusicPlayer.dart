@@ -9,6 +9,7 @@ import 'package:doob/MusicPlayer/WaveProgressBar.dart';
 import 'package:doob/MusicPlayer/videoplayer.dart';
 import 'package:doob/services/favServiceProvider.dart';
 import 'package:doob/services/songServiceProvider.dart';
+import 'package:doob/utils/sharedPreference.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +20,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:music_visualizer/music_visualizer.dart';
 import 'package:video_player/video_player.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:http/http.dart' as http;
 
 class MusicPlayer extends ConsumerStatefulWidget {
   MusicPlayer({super.key});
@@ -68,13 +70,13 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
       'name': 'Chuks Okwuenu',
       'pic': 'https://picsum.photos/300/30',
       'message': 'I love to code',
-      'date': '2021-01-01 12:00:00'
+      'date': '2021-01-01'
     },
     {
       'name': 'Biggi Man',
       'pic': 'https://www.adeleyeayodeji.com/img/IMG_20200522_121756_834_2.jpg',
       'message': 'Very cool',
-      'date': '2021-01-01 12:00:00'
+      'date': '2021-01-01'
     },
     // {
     //   'name': 'Tunde Martins',
@@ -89,6 +91,43 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
     //   'date': '2021-01-01 12:00:00'
     // },
   ];
+
+  Future<dynamic> likeCount(String id) async {
+    final token = await SharedPref.getData(key: SharedPref.token);
+
+    final Map<String, dynamic> data = {
+      // "order_code": getResult,
+    };
+
+    final response = await http.post(
+      Uri.parse('https://doob.smartcodemm.com/api/customer/songs/$id/react'),
+      headers: {
+        'Accept': 'application/json; charset=UTF-8',
+        'Authorization': token!
+      },
+      body: data,
+    );
+
+    print("Like Count *************** ${response.body}");
+  }
+  Future<dynamic> updateLikeCoun(String id) async {
+    final token = await SharedPref.getData(key: SharedPref.token);
+
+    final Map<String, dynamic> data = {
+      // "order_code": getResult,
+    };
+
+    final response = await http.post(
+      Uri.parse('https://doob.smartcodemm.com/api/customer/songs/$id/react'),
+      headers: {
+        'Accept': 'application/json; charset=UTF-8',
+        'Authorization': token!
+      },
+      body: data,
+    );
+
+    print("Like Count *************** ${response.body}");
+  }
 
   Widget commentChild(data) {
     return ListView(
@@ -324,39 +363,41 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () async {
-                                                      ref.invalidate(
-                                                          audioFavProvider);
+                                                      // ref.invalidate(
+                                                      //     audioFavProvider);
 
-                                                      final favBook = await ref
-                                                          .read(audioFavProvider(
-                                                                  songList
-                                                                      .data![
-                                                                          index]
-                                                                      .id!
-                                                                      .toString())
-                                                              .future);
-                                                      final snackbar = SnackBar(
-                                                          content: Text(
-                                                              favBook!.data));
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                              snackbar);
-                                                      if (favBook.data ==
-                                                          'Successfully remove from favorite list !') {
+                                                      // final favBook = await ref
+                                                      //     .read(audioFavProvider(
+                                                      //             songList
+                                                      //                 .data![
+                                                      //                     index]
+                                                      //                 .id!
+                                                      //                 .toString())
+                                                      //         .future);
+                                                      // final snackbar = SnackBar(
+                                                      //     content: Text(
+                                                      //         favBook!.data));
+                                                      // ScaffoldMessenger.of(
+                                                      //         context)
+                                                      //     .showSnackBar(
+                                                      //         snackbar);
+                                                      // // if (favBook.data ==
+                                                      //     'Successfully remove from favorite list !') {
+                                                      //   //  --songList.data![index]
+                                                      //   //       .like_count!.length;
 
-                                                      //  --songList.data![index]
-                                                      //       .like_count!.length;
-
-                                                        //   songList.data![index].like_count!.removeAt(0);
-                                                      } else {
-                                                        // ++songList.data![index]
-                                                        //     .like_count!.length;
-                                                      }
+                                                      //   //   songList.data![index].like_count!.removeAt(0);
+                                                      // } else {
+                                                      //   // ++songList.data![index]
+                                                      //   //     .like_count!.length;
+                                                      // }
 
                                                       setState(() {
                                                         isReact = !isReact;
                                                       });
+                                                      likeCount(songList
+                                                          .data![index].id
+                                                          .toString());
                                                       // Get.to(() =>
                                                       //     PlaylistMoreDetails());
                                                     },
@@ -421,193 +462,263 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                             ),
                                             InkWell(
                                               onTap: () {
-                                                // showDialog(
-                                                //   context: context,
-                                                //   builder: (context) {
-                                                //     return StatefulBuilder(
-                                                //         builder: (BuildContext
-                                                //                 context,
-                                                //             StateSetter
-                                                //                 setState) {
-                                                //       return AlertDialog(
-                                                //         contentPadding:
-                                                //             EdgeInsets.zero,
-                                                //         backgroundColor:
-                                                //             Colors.grey,
-                                                //         titleTextStyle:
-                                                //             const TextStyle(
-                                                //                 fontSize: 20,
-                                                //                 color: Colors
-                                                //                     .black),
-                                                //         content: Container(
-                                                //           width:
-                                                //               double.infinity,
-                                                //           height: MediaQuery.of(
-                                                //                       context)
-                                                //                   .size
-                                                //                   .height *
-                                                //               0.3,
-                                                //           padding:
-                                                //               const EdgeInsets
-                                                //                   .symmetric(
-                                                //                   horizontal:
-                                                //                       10,
-                                                //                   vertical: 20),
-                                                //           child: Column(
-                                                //             mainAxisAlignment:
-                                                //                 MainAxisAlignment
-                                                //                     .spaceAround,
-                                                //             children: [
-                                                //               Container(
-                                                //                 height: 200,
-                                                //                 color: Colors
-                                                //                     .white,
-                                                //               ),
-                                                //               Container(
-                                                //                 child:
-                                                //                     CommentBox(
-                                                //                   userImage: CommentBox
-                                                //                       .commentImageParser(
-                                                //                           imageURLorPath:
-                                                //                               "assets/img/userpic.jpg"),
-                                                //                   child: commentChild(
-                                                //                       filedata),
-                                                //                   labelText:
-                                                //                       'Write a comment...',
-                                                //                   errorText:
-                                                //                       'Comment cannot be blank',
-                                                //                   withBorder:
-                                                //                       false,
-                                                //                   sendButtonMethod:
-                                                //                       () {
-                                                //                     if (formKey
-                                                //                         .currentState!
-                                                //                         .validate()) {
-                                                //                       print(commentController
-                                                //                           .text);
-                                                //                       setState(
-                                                //                           () {
-                                                //                         var value =
-                                                //                             {
-                                                //                           'name':
-                                                //                               'New User',
-                                                //                           'pic':
-                                                //                               'https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400',
-                                                //                           'message':
-                                                //                               commentController.text,
-                                                //                           'date':
-                                                //                               '2021-01-01 12:00:00'
-                                                //                         };
-                                                //                         filedata.insert(
-                                                //                             0,
-                                                //                             value);
-                                                //                       });
-                                                //                       commentController
-                                                //                           .clear();
-                                                //                       FocusScope.of(
-                                                //                               context)
-                                                //                           .unfocus();
-                                                //                     } else {
-                                                //                       print(
-                                                //                           "Not validated");
-                                                //                     }
-                                                //                   },
-                                                //                   formKey:
-                                                //                       formKey,
-                                                //                   commentController:
-                                                //                       commentController,
-                                                //                   backgroundColor:
-                                                //                       const Color(
-                                                //                           0xffff9800),
-
-                                                //                   // backgroundColor: Colors.pink,
-                                                //                   textColor:
-                                                //                       Colors
-                                                //                           .white,
-                                                //                   sendWidget: Icon(
-                                                //                       Icons
-                                                //                           .send_sharp,
-                                                //                       size: 30,
-                                                //                       color: Colors
-                                                //                           .white),
-                                                //                 ),
-                                                //               ),
-                                                //             ],
-                                                //           ),
-                                                //         ),
-                                                //       );
-                                                //     });
-                                                //   },
-                                                // );
                                                 //  Get.to(() => Comment());
-                                                _remove
-                                                    ? showModalBottomSheet(
-                                                        context: context,
-                                                        builder: ((context) {
-                                                          return SizedBox(
-                                                            width:
-                                                                MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                            height:
-                                                                MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height,
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
-                                                              child: Column(
+                                                showModalBottomSheet(
+                                                  context: context,
+                                                  builder: ((context) {
+                                                    return SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .height,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child:
+                                                            SingleChildScrollView(
+                                                          child: Column(
+                                                            children: [
+                                                              Row(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
                                                                 children: [
-                                                                  Row(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Container(
-                                                                        margin: EdgeInsets.only(
+                                                                  Container(
+                                                                    margin: EdgeInsets
+                                                                        .only(
                                                                             left:
                                                                                 120),
-                                                                        child:
-                                                                            Text(
-                                                                          '39 comments',
-                                                                          style: TextStyle(
-                                                                              color: Colors.black,
-                                                                              fontFamily: "Century",
-                                                                              fontSize: 16,
-                                                                              fontWeight: FontWeight.bold),
-                                                                        ),
-                                                                      ),
-                                                                      InkWell(
-                                                                        onTap:
-                                                                            () {
-                                                                          Get.back();
-                                                                          // setState(
-                                                                          //     () {});
-                                                                          // _remove =
-                                                                          //     !_remove;
-                                                                        },
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .cancel,
-                                                                          color:
-                                                                              Colors.grey[500],
-                                                                        ),
-                                                                      ),
-                                                                    ],
+                                                                    child: Text(
+                                                                      '39 comments',
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontFamily:
+                                                                              "Century",
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    ),
+                                                                  ),
+                                                                  InkWell(
+                                                                    onTap: () {
+                                                                      Get.back();
+                                                                      // _remove = !_remove;
+                                                                    },
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .cancel,
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          500],
+                                                                    ),
                                                                   ),
                                                                 ],
                                                               ),
-                                                            ),
-                                                          );
-                                                        }))
-                                                    : Container();
+                                                              Container(
+                                                                height: 400,
+                                                                child: Expanded(
+                                                                  child:
+                                                                      Container(
+                                                                    child:
+                                                                        CommentBox(
+                                                                      userImage:
+                                                                          CommentBox.commentImageParser(
+                                                                              imageURLorPath: "assets/img/userpic.jpg"),
+                                                                      child: commentChild(
+                                                                          filedata),
+                                                                      labelText:
+                                                                          'Write a comment...',
+                                                                      errorText:
+                                                                          'Comment cannot be blank',
+                                                                      withBorder:
+                                                                          false,
+                                                                      sendButtonMethod:
+                                                                          () {
+                                                                        if (formKey
+                                                                            .currentState!
+                                                                            .validate()) {
+                                                                          print(
+                                                                              commentController.text);
+                                                                          setState(
+                                                                              () {
+                                                                            var value =
+                                                                                {
+                                                                              'name': 'New User',
+                                                                              'pic': 'https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400',
+                                                                              'message': commentController.text,
+                                                                              'date': '2021-01-01'
+                                                                            };
+                                                                            filedata.insert(0,
+                                                                                value);
+                                                                          });
+                                                                          commentController
+                                                                              .clear();
+                                                                          FocusScope.of(context)
+                                                                              .unfocus();
+                                                                        } else {
+                                                                          print(
+                                                                              "Not validated");
+                                                                        }
+                                                                      },
+                                                                      formKey:
+                                                                          formKey,
+                                                                      commentController:
+                                                                          commentController,
+                                                                      backgroundColor:
+                                                                          const Color(
+                                                                              0xffff9800),
+                                                                      textColor:
+                                                                          Colors
+                                                                              .white,
+                                                                      sendWidget: Icon(
+                                                                          Icons
+                                                                              .send_sharp,
+                                                                          size:
+                                                                              30,
+                                                                          color:
+                                                                              Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }),
+                                                );
+
+                                                // showModalBottomSheet(
+                                                //     context: context,
+                                                //     builder: ((context) {
+                                                //       return SingleChildScrollView(
+                                                //         child: Container(
+                                                //           width:
+                                                //               MediaQuery.of(
+                                                //                       context)
+                                                //                   .size
+                                                //                   .width,
+                                                //           height:
+                                                //               MediaQuery.of(
+                                                //                       context)
+                                                //                   .size
+                                                //                   .height,
+                                                //           child: Padding(
+                                                //             padding:
+                                                //                 const EdgeInsets
+                                                //                     .all(
+                                                //                     8.0),
+                                                //             child: Column(
+                                                //               children: [
+                                                //                 Row(
+                                                //                   crossAxisAlignment:
+                                                //                       CrossAxisAlignment
+                                                //                           .start,
+                                                //                   mainAxisAlignment:
+                                                //                       MainAxisAlignment
+                                                //                           .spaceBetween,
+                                                //                   children: [
+                                                //                     Container(
+                                                //                       margin:
+                                                //                           EdgeInsets.only(left: 120),
+                                                //                       child:
+                                                //                           Text(
+                                                //                         '39 comments',
+                                                //                         style: TextStyle(
+                                                //                             color: Colors.black,
+                                                //                             fontFamily: "Century",
+                                                //                             fontSize: 16,
+                                                //                             fontWeight: FontWeight.bold),
+                                                //                       ),
+                                                //                     ),
+                                                //                     InkWell(
+                                                //                       onTap:
+                                                //                           () {
+                                                //                         Get.back();
+                                                //                         // setState(
+                                                //                         //     () {});
+                                                //                         // _remove =
+                                                //                         //     !_remove;
+                                                //                       },
+                                                //                       child:
+                                                //                           Icon(
+                                                //                         Icons.cancel,
+                                                //                         color:
+                                                //                             Colors.grey[500],
+                                                //                       ),
+                                                //                     ),
+                                                //                   ],
+                                                //                 ),
+                                                //                 Container(
+                                                //                   child:
+                                                //                       CommentBox(
+                                                //                     userImage:
+                                                //                         CommentBox.commentImageParser(imageURLorPath: "assets/img/userpic.jpg"),
+                                                //                     child: commentChild(
+                                                //                         filedata),
+                                                //                     labelText:
+                                                //                         'Write a comment...',
+                                                //                     errorText:
+                                                //                         'Comment cannot be blank',
+                                                //                     withBorder:
+                                                //                         false,
+                                                //                     sendButtonMethod:
+                                                //                         () {
+                                                //                       if (formKey
+                                                //                           .currentState!
+                                                //                           .validate()) {
+                                                //                         print(commentController.text);
+                                                //                         setState(() {
+                                                //                           var value = {
+                                                //                             'name': 'New User',
+                                                //                             'pic': 'https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400',
+                                                //                             'message': commentController.text,
+                                                //                             'date': '2021-01-01 12:00:00'
+                                                //                           };
+                                                //                           filedata.insert(0, value);
+                                                //                         });
+                                                //                         commentController.clear();
+                                                //                         FocusScope.of(context).unfocus();
+                                                //                       } else {
+                                                //                         print("Not validated");
+                                                //                       }
+                                                //                     },
+                                                //                     formKey:
+                                                //                         formKey,
+                                                //                     commentController:
+                                                //                         commentController,
+                                                //                     backgroundColor:
+                                                //                         const Color(0xffff9800),
+
+                                                //                     // backgroundColor: Colors.pink,
+                                                //                     textColor:
+                                                //                         Colors.white,
+                                                //                     sendWidget: Icon(
+                                                //                         Icons
+                                                //                             .send_sharp,
+                                                //                         size:
+                                                //                             30,
+                                                //                         color:
+                                                //                             Colors.white),
+                                                //                   ),
+                                                //                 ),
+                                                //               ],
+                                                //             ),
+                                                //           ),
+                                                //         ),
+                                                //       );
+                                                //     }))
                                               },
                                               child: Container(
                                                 decoration: BoxDecoration(

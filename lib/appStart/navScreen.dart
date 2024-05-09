@@ -2,8 +2,10 @@ import "dart:math";
 import "dart:ffi";
 import "package:doob/Controller/navController.dart";
 import "package:doob/MusicPlayer/MusicPlayer.dart";
+import "package:doob/MusicPlayer/MusicPlayerNew.dart";
 import "package:doob/Pages/Explore.dart";
 import "package:doob/Pages/Home.dart";
+import "package:doob/Pages/Homenew.dart";
 import "package:doob/Pages/Library.dart";
 import "package:doob/Pages/Premium.dart";
 import "package:doob/Pages/SignIn.dart";
@@ -293,9 +295,11 @@ class _NaviScreenState extends State<NaviScreen>
               index: naviController.currentIndex.value,
               children: [
                 //login ? Home() : SignIn(),
-                Home(),
+                // Home(),
+                HomeScreen(),
                 Explore(),
                 MusicPlayer(),
+                // MusicPlayerNew(),
                 Library(),
                 Premium(),
               ],

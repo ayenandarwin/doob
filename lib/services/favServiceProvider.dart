@@ -44,7 +44,7 @@ class FavIdService {
   Future<dynamic> getFavIdInfo(String id) async {
     final token = await SharedPref.getData(key: SharedPref.token);
 
-    final response = await _dio.get(
+    final response = await _dio.post(
       'https://doob.smartcodemm.com/api/customer/songs/$id/react',
       options: Options(
         headers: <String, String>{
