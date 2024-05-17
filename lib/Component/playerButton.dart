@@ -1,17 +1,13 @@
 import 'dart:async';
-
-import 'package:doob/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:lottie/lottie.dart';
-import 'package:simple_waveform_progressbar/simple_waveform_progressbar.dart';
-import 'package:music_visualizer/music_visualizer.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayerButtons extends StatefulWidget {
-  const PlayerButtons(this._audioPlayer, {super.key});
+  const PlayerButtons(this._audioPlayer, this.lyrics, {super.key});
 
   final AudioPlayer _audioPlayer;
+  final String lyrics;
 
   @override
   State<PlayerButtons> createState() => _PlayerButtonsState();
@@ -19,13 +15,6 @@ class PlayerButtons extends StatefulWidget {
 
 class _PlayerButtonsState extends State<PlayerButtons>
     with SingleTickerProviderStateMixin {
-  List<Color> colors = [
-    Colors.blueAccent,
-    Colors.greenAccent,
-    Colors.yellowAccent,
-    Colors.redAccent
-  ];
-
   final List<int> duration = [900, 700, 600, 800, 500];
 
   late Animation<double> animation;
@@ -35,7 +24,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
   double _progressValue = 0.0;
   int currentIndex = 0;
   bool isPlaying = true;
-  late Timer _timer;
+
   Duration currentDuration = Duration.zero;
 
   String formatDuration(Duration duration) {
@@ -57,33 +46,33 @@ class _PlayerButtonsState extends State<PlayerButtons>
 
     //   });
     // });
-    animationController = AnimationController(
-        duration: Duration(milliseconds: 1200), vsync: this);
 
-    final curvedAnimation =
-        CurvedAnimation(parent: animationController, curve: Curves.easeInCubic);
+    // animationController = AnimationController(
+    //     duration: Duration(milliseconds: 1200), vsync: this);
 
-    animation = Tween<double>(begin: 0, end: 100).animate(curvedAnimation)
-      ..addListener(() {
-        animationController.repeat(reverse: true);
-      });
+    // final curvedAnimation =
+    //     CurvedAnimation(parent: animationController, curve: Curves.easeInCubic);
 
-    @override
-    void dispose() {
-      _timer.cancel();
-      super.dispose();
-    }
+    // animation = Tween<double>(begin: 0, end: 100).animate(curvedAnimation)
+    //   ..addListener(() {
+    //     animationController.repeat(reverse: true);
+    //   });
 
     widget._audioPlayer.positionStream.listen((position) {
       final duration = widget._audioPlayer.duration;
       if (duration != null) {
         if (mounted) {
           setState(() {
+            // _progressValue = p.inSeconds / widget._audioPlayer.getDuration().inSeconds;
             _progressValue = position.inMilliseconds / duration.inMilliseconds;
           });
         }
       }
     });
+  }
+
+  void _seekAudio(Duration duration) {
+    widget._audioPlayer.seek(duration);
   }
 
   Future<void> initAudioPlayer() async {
@@ -94,6 +83,12 @@ class _PlayerButtonsState extends State<PlayerButtons>
     } catch (e) {
       print('Error loading audio $e');
     }
+  }
+
+  void _handleTapDown(TapDownDetails details, double containerWidth) {
+    setState(() {
+      _progressValue = details.localPosition.dx / containerWidth;
+    });
   }
 
   @override
@@ -133,19 +128,48 @@ class _PlayerButtonsState extends State<PlayerButtons>
                             fontFamily: 'Century',
                             color: Colors.white),
                       ),
-                      // Text(
-                      //   '${widget._audioPlayer.position.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(widget._audioPlayer.position.inSeconds.remainder(60)).toString().padLeft(2, '0')}',
-                      //   style: TextStyle(
-                      //       fontSize: 12.0,
-                      //       fontFamily: 'Century',
-                      //       color: Colors.white),
+
+                      // Container(
+                      //   width: size.width * 0.65,
+                      //   child: GestureDetector(
+                      //     onTapDown: (details) {
+                      //       _handleTapDown(details, size.width * 0.65);
+                      //     },
+                      //     child: LinearProgressIndicator(
+                      //       value: _progressValue,
+                      //       color: const Color(0xffff9800),
+                      //       backgroundColor: Colors.grey[300],
+                      //     ),
+                      //   ),
                       // ),
 
-                      Container(
-                        width: size.width * 0.65,
-                        child: LinearProgressIndicator(
-                          value: _progressValue,
-                          color: const Color(0xffff9800),
+                      // Container(
+                      //   width: size.width * 0.65,
+                      //   child: Slider(
+                      //     value: _position.inMilliseconds.toDouble(),
+                      //     max: _duration.inMilliseconds.toDouble(),
+                      //     onChanged: (value) {
+                      //       setState(() {
+                      //         widget._audioPlayer
+                      //             .seek(Duration(milliseconds: value.toInt()));
+                      //       });
+                      //     },
+                      //     activeColor: const Color(0xffff9800),
+                      //   ),
+                      // ),
+
+                      InkWell(
+                        onTap: () {
+                          widget._audioPlayer.seek(Duration(
+                              seconds:
+                                  widget._audioPlayer.position.inSeconds + 20));
+                        },
+                        child: Container(
+                          width: size.width * 0.65,
+                          child: LinearProgressIndicator(
+                            value: _progressValue,
+                            color: const Color(0xffff9800),
+                          ),
                         ),
                       ),
 
@@ -165,34 +189,13 @@ class _PlayerButtonsState extends State<PlayerButtons>
                                   fontFamily: 'Century',
                                   color: Colors.white),
                             ),
-
-                      // Text(
-                      //   '${durationminute.toString().padLeft(2, '0')}:${durationSecond > 0 ? durationSecond.toString().padLeft(2, '0') : '00'}',
-                      //   style: TextStyle(
-                      //       fontSize: 12.0,
-                      //       fontFamily: 'Century',
-                      //       color: Colors.white),
-                      // )
-
-                      // Text(
-                      //   '${(audioDuration != null ? audioDuration.inMinutes.remainder(60) : 0) - (widget._audioPlayer.position.inMinutes.remainder(60))}:'
-                      //   '${((widget._audioPlayer.duration != null ? (widget._audioPlayer.duration!.inSeconds > widget._audioPlayer.position.inSeconds ? widget._audioPlayer.duration!.inSeconds.remainder(60) : 0) : 0)) - (widget._audioPlayer.position.inSeconds.remainder(60))}',
-                      //   style: TextStyle(
-                      //       fontSize: 12.0,
-                      //       fontFamily: 'Century',
-                      //       color: Colors.white),
-
-                      //  Text(
-                      //     '${audioDuration!.inMinutes.remainder(60) - (widget._audioPlayer.position.inMinutes.remainder(60))}:${(widget._audioPlayer.duration?.inSeconds.remainder(60))! - (widget._audioPlayer.position.inSeconds.remainder(60))}',
-                      //     style: TextStyle(fontSize: 12.0, fontFamily: 'Century', color: Colors.red),
-                      //   )
                     ],
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 25.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.min,
@@ -207,20 +210,6 @@ class _PlayerButtonsState extends State<PlayerButtons>
               //   stream: widget._audioPlayer.positionStream,
               //   builder: (_, __) {
               //     return _previousSecodsButton();
-              //   },
-              // ),
-
-              // StreamBuilder<PositionData>(
-              //   stream: _positionDataStream,
-              //   builder: (context, snapshot) {
-              //     final positionData = snapshot.data;
-              //     return SeekBar(
-              //       duration: positionData?.duration ?? Duration.zero,
-              //       position: positionData?.position ?? Duration.zero,
-              //       bufferedPosition:
-              //           positionData?.bufferedPosition ?? Duration.zero,
-              //       onChangeEnd: widget._audioPlayer.seek,
-              //     );
               //   },
               // ),
 
@@ -264,24 +253,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
                     //   ),
                     // );
                   } else if (widget._audioPlayer.playing != true) {
-                    return Container(
-                      height: 40,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xffff9800),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Lyrics',
-                          style: TextStyle(
-                              fontFamily: 'Century',
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ),
-                    );
+                    return lyricButton();
                     // return CircleAvatar(
                     //   maxRadius: 25,
                     //   backgroundColor: Color(0xffff9800),
@@ -295,24 +267,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
                     //   ),
                     // );
                   } else if (processingState != ProcessingState.completed) {
-                    return Container(
-                      height: 40,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xffff9800),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Lyrics',
-                          style: TextStyle(
-                              fontFamily: 'Century',
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ),
-                    );
+                    return lyricButton();
                     // return CircleAvatar(
                     //   maxRadius: 25,
                     //   backgroundColor: const Color(0xffff9800),
@@ -326,24 +281,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
                     //   ),
                     // );
                   } else {
-                    return Container(
-                      height: 40,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xffff9800),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Lyrics',
-                          style: TextStyle(
-                              fontFamily: 'Century',
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ),
-                    );
+                    return lyricButton();
                     // return IconButton(
                     //   icon: const Icon(
                     //     Icons.replay,
@@ -374,6 +312,101 @@ class _PlayerButtonsState extends State<PlayerButtons>
         ],
       ),
     );
+  }
+
+  Widget lyricButton() {
+
+    return  InkWell(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (context) => Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 120),
+                child: Container(
+                  height: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.black38,
+                      //color: Colors.transparent,
+                      border: Border.all(color: Colors.white)),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Icon(
+                              Icons.cancel,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child:
+                            widget.lyrics !=""?
+                             Text(
+                              // lyrics ?? 'No lyrics available', // Handle null lyrics
+                              '${widget.lyrics}',
+
+                              // 'You are my sunshine, my only sunshine you make me happy when skies are gray you will never keep dear,how much I love you,please don\'t take my sunshine away.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Century',
+                                // wordSpacing: 2,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ):Text(
+                              // lyrics ?? 'No lyrics available', // Handle null lyrics
+                              'No lyrics available',
+
+                              // 'You are my sunshine, my only sunshine you make me happy when skies are gray you will never keep dear,how much I love you,please don\'t take my sunshine away.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Century',
+                                // wordSpacing: 2,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                     
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+          child: Container(
+            height: 40,
+            width: 200,
+            decoration: BoxDecoration(
+              color: Color(0xffff9800),
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Center(
+              child: Text(
+                'Lyrics',
+                style: TextStyle(
+                    fontFamily: 'Century',
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+          ),
+        );
+    
   }
 
   // Widget _playPauseButton(PlayerState playerState) {
@@ -423,28 +456,28 @@ class _PlayerButtonsState extends State<PlayerButtons>
     );
   }
 
-  // Widget _previousButton() {
-  //   // if (currentIndex > 0) {
-  //   //   setState(() {
-  //   //     currentIndex--;
+  Widget _previousButton() {
+    // if (currentIndex > 0) {
+    //   setState(() {
+    //     currentIndex--;
 
-  //   //   });
-  //   // }
-  //   return IconButton(
-  //       icon: const Icon(
-  //         Icons.skip_previous,
-  //         color: Colors.black,
-  //       ),
-  //       onPressed: () {
-  //         setState(() {
-  //           widget._audioPlayer.seekToPrevious;
-  //         });
-  //       }
-  //       // widget._audioPlayer.hasPrevious
-  //       //     ? widget._audioPlayer.seekToPrevious
-  //       //     : null,
-  //       );
-  // }
+    //   });
+    // }
+    return IconButton(
+        icon: const Icon(
+          Icons.skip_previous,
+          color: Colors.black,
+        ),
+        onPressed: () {
+          setState(() {
+            widget._audioPlayer.seekToPrevious;
+          });
+        }
+        // widget._audioPlayer.hasPrevious
+        //     ? widget._audioPlayer.seekToPrevious
+        //     : null,
+        );
+  }
 
   Widget _previousSecodsButton() {
     return IconButton(

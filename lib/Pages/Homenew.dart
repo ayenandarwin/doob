@@ -20,6 +20,7 @@ import '../widgets/home_articles_card.dart';
 import '../widgets/home_page_mood.dart';
 import '../widgets/local_hits.dart';
 import '../widgets/mixes.dart';
+import '../widgets/music_player/custom_slider_trackshape.dart';
 import '../widgets/new_for_you.dart';
 import '../widgets/new_release.dart';
 import '../widgets/play_list.dart';

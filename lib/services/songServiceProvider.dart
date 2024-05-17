@@ -1,13 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:doob/Controller/isLoginController.dart';
-import 'package:doob/Model/Album/album.dart';
-import 'package:doob/Model/Albumlist/albumlist.dart';
 import 'package:doob/Model/SongList/songlist.dart';
 import 'package:doob/utils/constants.dart';
 import 'package:doob/utils/sharedPreference.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 final songServiceProvider = FutureProvider.autoDispose<SongList?>((ref) async {
   final service = ref.watch(songProvider);
@@ -41,5 +38,19 @@ class SongService {
     // print('Album Api Result ^^^^^^^^^^^^ $request');
 
     return request;
+  }
+
+  Future<dynamic> likeCount(String id) async {
+    final token = await SharedPref.getData(key: SharedPref.token);
+
+    final Map<String, dynamic> data = {
+      // "order_code": getResult,
+    };
+
+    final response = await _dio.post(
+      'https://doob.smartcodemm.com/api/customer/songs/$id/react',
+    );
+    print("Hello Like ########################## : ${response.data}");
+    return response.data;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:doob/Component/PageProvider.dart';
 import 'package:doob/MusicPlayer/MusicPlayer.dart';
+import 'package:doob/MusicPlayer/MusicPlayerNew.dart';
 import 'package:doob/Pages/Explore.dart';
 import 'package:doob/Pages/Home.dart';
 import 'package:doob/Pages/Library.dart';
@@ -69,7 +70,7 @@ class _EmptyState extends State<Empty> with SingleTickerProviderStateMixin {
               case 2:
                 {
                   setState(() {
-                    currentPage =  MusicPlayer();
+                    currentPage =  MusicPlayerNew();
                     currentIndex = index;
                   });
                 }

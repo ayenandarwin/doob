@@ -10,16 +10,14 @@ class ApiUrl {
   // static const String mainUrlForUri = "newbrdemo.icgwebdevelopment.com";
   static const String mainUrlForUri = "https://newbr.icgwebdevelopment.com";
 
-  static const String movieListUrl =
-      "$mainUrl/title/get-videos?tconst=tt0944947&limit=7&region=MM";
+  static const String movieListUrl = "$mainUrl/title/get-videos?tconst=tt0944947&limit=7&region=MM";
   static const String adsListUrl = "$mainUrl/advertises";
 
   //Contact
   static const String contactUrl = "$mainUrl/contact";
 
   //Joker App Play Store Link
-  static const String playStoreLink =
-      "https://play.google.com/store/apps/details?id=com.lucky.seven_mm";
+  static const String playStoreLink = "https://play.google.com/store/apps/details?id=com.lucky.seven_mm";
 
   //Auth
   static const String registerUrl = "$mainUrl/customer/register/phone";
@@ -58,6 +56,4 @@ class ApiUrl {
   //Profile
   // static const String profileUrl = "$mainUrl/delimens/profile";
   // static const String editProfile = "$mainUrl/delimens/edit";
-
-  
 }

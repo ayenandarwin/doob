@@ -10,6 +10,7 @@ import 'package:doob/Component/Queue.dart';
 import 'package:doob/Component/TopGenres.dart';
 import 'package:doob/Component/sleepTimer.dart';
 import 'package:doob/MusicPlayer/MusicPlayer.dart';
+import 'package:doob/MusicPlayer/MusicPlayerNew.dart';
 import 'package:doob/Pages/CreatePlayList.dart';
 import 'package:doob/Pages/Explore.dart';
 import 'package:doob/Pages/Home.dart';
@@ -119,7 +120,7 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const Home(),
         "/search": (context) => const Search(),
         "/folderdetails": (context) => const FolderDetails(),
-        "/musicplayer": (context) => MusicPlayer(),
+        "/musicplayer": (context) => MusicPlayerNew(),
         "/mainsearch": (context) => const MainSearch(),
         "/setting": (context) => const Setting(),
         "/lang": (context) => const Language(),

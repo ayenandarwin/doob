@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:doob/MusicPlayer/MusicPlayer.dart';
+import 'package:doob/MusicPlayer/MusicPlayerNew.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -78,7 +79,7 @@ class PodcastAndShowCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => MusicPlayer());
+        Get.to(() => MusicPlayerNew());
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -146,7 +147,7 @@ class SmallPodcastAndShowCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => MusicPlayer());
+        Get.to(() => MusicPlayerNew());
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.46,

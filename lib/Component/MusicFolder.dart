@@ -2,6 +2,8 @@ import 'package:doob/MusicPlayer/MusicPlayer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../MusicPlayer/MusicPlayerNew.dart';
+
 class MusicFolder extends StatefulWidget {
   const MusicFolder({super.key});
 
@@ -151,7 +153,7 @@ class SmartCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => MusicPlayer());
+        Get.to(() => MusicPlayerNew());
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.46,

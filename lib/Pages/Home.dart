@@ -17,6 +17,8 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
 
+import '../widgets/music_player/custom_slider_trackshape.dart';
+
 class Home extends StatefulWidget {
   const Home({
     super.key,

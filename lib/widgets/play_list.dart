@@ -13,20 +13,27 @@ class PlayList extends StatelessWidget {
           padding: const EdgeInsets.only(top: 20, bottom: 5),
           child: Text(
             lableText ?? "",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: "Century", color: Colors.white),
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                fontFamily: "Century",
+                color: Colors.white),
           ),
         ),
-        Container(
-          height: 150,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 3,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: widget,
-              );
-            },
+        Padding(
+          padding: const EdgeInsets.only(right: 4, top: 4, bottom: 4),
+          child: Container(
+            height: 150,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 3,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: widget,
+                );
+              },
+            ),
           ),
         ),
       ],

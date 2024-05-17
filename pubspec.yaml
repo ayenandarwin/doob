@@ -74,6 +74,7 @@ dependencies:
   firebase_core: ^2.27.0
   music_visualizer: ^1.0.4
   comment_box: ^0.0.18
+  equatable: ^2.0.5
  
 
 dev_dependencies:

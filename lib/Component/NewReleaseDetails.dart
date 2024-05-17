@@ -11,6 +11,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../MusicPlayer/MusicPlayerNew.dart';
+
 class NewReleaseDetails extends StatefulWidget {
   // final String? id;
   // final String? name;
@@ -387,7 +389,7 @@ class Albums extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.off(() => MusicPlayer());
+        Get.off(() => MusicPlayerNew());
         //Get.off(NewReleaseMoreDetails());
 
         //  Navigator.pushNamed(context, '/NewReleaseMoreDetails');
