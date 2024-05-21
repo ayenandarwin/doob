@@ -1,4 +1,4 @@
-/* import 'package:comment_box/comment/comment.dart';
+ import 'package:comment_box/comment/comment.dart';
 import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:doob/Component/playerButton.dart';
 import 'package:doob/MusicPlayer/ForYouScreen.dart';
@@ -7,6 +7,7 @@ import 'package:doob/MusicPlayer/Pause.dart';
 import 'package:doob/MusicPlayer/videoplayer.dart';
 import 'package:doob/services/songServiceProvider.dart';
 import 'package:doob/src/providers/music_provider/like_count_provider.dart';
+import 'package:doob/src/providers/wave_icon_provider/wave_icon_provider.dart';
 import 'package:doob/utils/sharedPreference.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -758,7 +759,7 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                   Container(
                                     child: Consumer(builder: (context, waveIconRef, child) {
                                       final tapChange = waveIconRef.watch(waveIconTapChangeProvider);
-                                      print("YE YINT AUNG ###### : $tapChange");
+                                      print("yya yya yya  ###### : $tapChange");
                                       return Container(
                                         margin: EdgeInsets.only(top: size.height * 0.68),
                                         child: Center(
@@ -777,7 +778,7 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                         ),
                                                       ))
                                                   : SizedBox.shrink(),
-                                              PlayerButtons(_audioPlayer),
+                                              PlayerButtons(_audioPlayer,songList.data![index].lyric!),
                                             ],
                                           ),
                                         ),
@@ -1641,4 +1642,3 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
     );
   }
 }
- */

@@ -88,6 +88,7 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
       'date': '2021-01-01 12:00:00'
     },
   ];
+
   List<dynamic> cmtList = [];
 
   void _toggleShuffleRepeat() {
@@ -749,22 +750,119 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                           FollowTapScreen()
                         ],
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 35),
-                        height: 50,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [
-                              Colors.black.withOpacity(0.5),
-                              Colors.transparent,
+                       Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Container(
+                        child: Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                height: 10,
+                                width: 20,
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        if (currentindex != 0) {
+                                          controller.animateToPage(0, duration: Duration(milliseconds: 500), curve: Curves.linear);
+                                          setState(() {
+                                            currentindex = 0;
+                                          });
+                                        }
+                                      },
+                                      child: Text(
+                                        'Music',
+                                        style: TextStyle(
+                                            fontFamily: 'Century', color: currentindex == 0 ? Color(0xffff9800) : Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        if (currentindex != 1) {
+                                          controller.animateToPage(1, duration: Duration(milliseconds: 500), curve: Curves.linear);
+
+                                          setState(() {
+                                            currentindex = 1;
+                                          });
+                                        }
+                                      },
+                                      child: Text(
+                                        'Video',
+                                        style: TextStyle(
+                                            fontFamily: 'Century', color: currentindex == 1 ? Color(0xffff9800) : Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        if (currentindex != 2) {
+                                          controller.animateToPage(2, duration: Duration(milliseconds: 500), curve: Curves.linear);
+                                          setState(() {
+                                            currentindex = 2;
+                                          });
+                                        }
+                                      },
+                                      child: Text(
+                                        'For You',
+                                        style: TextStyle(
+                                            fontFamily: 'Century', color: currentindex == 2 ? Color(0xffff9800) : Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        if (currentindex != 3) {
+                                          controller.animateToPage(3, duration: Duration(milliseconds: 500), curve: Curves.linear);
+
+                                          setState(() {
+                                            currentindex = 3;
+                                          });
+                                        }
+                                      },
+                                      child: Text(
+                                        'Follow',
+                                        style: TextStyle(
+                                            fontFamily: 'Century', color: currentindex == 3 ? Color(0xffff9800) : Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              
                             ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter)),
-                        child: PageViewTextButton(
-                          controller: controller,
+                          ),
                         ),
                       ),
+                    ),
+                      // Container(
+                      //   padding: EdgeInsets.symmetric(horizontal: 35),
+                      //   height: 50,
+                      //   width: double.infinity,
+                      //   decoration: BoxDecoration(
+                      //       gradient: LinearGradient(
+                      //           colors: [
+                      //         Colors.black.withOpacity(0.5),
+                      //         Colors.transparent,
+                      //       ],
+                      //           begin: Alignment.topCenter,
+                      //           end: Alignment.bottomCenter)),
+                      //   child: PageViewTextButton(
+                      //     controller: controller,
+                      //   ),
+                      // ),
                     ],
                   );
                 } else if (songState is LoadingState) {

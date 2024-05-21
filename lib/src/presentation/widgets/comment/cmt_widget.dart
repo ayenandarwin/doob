@@ -3,6 +3,8 @@ import 'package:doob/src/data/repositories/music_repo/comment_repository.dart';
 import 'package:doob/src/domain/state/api_state.dart';
 import 'package:doob/src/providers/music_provider/comment_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final cmtProvider = StateNotifierProvider<CommentProvider, ApiState>((ref) {
@@ -50,22 +52,41 @@ class _CmtWidgetState extends ConsumerState<CmtWidget> {
           return SingleChildScrollView(
             child: Column(
               children: [
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Text(
-                      "${cmtList.length} comments",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Century'),
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8, top: 10, right: 8),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Center(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 120),
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            "${cmtList.length} comments",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Century'),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.cancel,
+                          color: Colors.grey[500],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Container(
                   color: Colors.transparent,
                   padding: EdgeInsets.all(10),
-                  height: 430,
+                  height: 420,
                   child: ListView.builder(
                     itemCount: cmtList.length,
                     itemBuilder: (context, index) {

@@ -435,7 +435,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                       Expanded(
                         child: SliderTheme(
                           data: const SliderThemeData(
-                            trackShape: CustomSliderTrackShape(),
+                          //  trackShape: CustomSliderTrackShape(),
                             trackHeight: 2,
                             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 4),
                             overlayShape: CustomSliderOverlayShape(),

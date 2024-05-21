@@ -304,6 +304,8 @@
 //   }
 // }
 
+import 'package:doob/MusicPlayer/MusicPlayer.dart';
+import 'package:doob/src/presentation/bottom_nav_bar/feed_nav/music_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:doob/Controller/navController.dart';
@@ -501,6 +503,7 @@ class _NaviScreenState extends State<NaviScreen>
               children: [
                 HomeScreen(),
                 Explore(),
+                // MusicPlayer(),
                 NotificationListener<ScrollUpdateNotification>(
                   onNotification: (scrollNotification) {
                     if (scrollNotification.scrollDelta!.isNegative) {
@@ -519,7 +522,4 @@ class _NaviScreenState extends State<NaviScreen>
           )),
     ));
   }
-
-  
 }
-
