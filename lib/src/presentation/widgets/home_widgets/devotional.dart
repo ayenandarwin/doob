@@ -10,7 +10,7 @@ class Devotional extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/Image/IGOR.jpg',
+        'assets/Image/IGOR.jpg',
         fit: BoxFit.cover,
         width: 150,
         height: 150,

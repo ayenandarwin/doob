@@ -137,7 +137,7 @@ class PodCastCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
-                  'lib/Image/Eric.png',
+                  'assets/Image/Eric.png',
                   fit: BoxFit.cover,
                 ),
               ),

@@ -25,7 +25,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
         Container(
           height: double.infinity,
           child: Image.asset(
-            'lib/Image/Eric.png',
+            'assets/Image/Eric.png',
             fit: BoxFit.cover,
           ),
         ),
@@ -47,7 +47,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.asset(
-                                'lib/Image/jojipf.jpg',
+                                'assets/Image/jojipf.jpg',
                                 height: 40,
                               )),
                         ),
@@ -79,7 +79,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                               //Navigator.pushNamed(context, '/favoriteDetails');
                             },
                             child: Image.asset(
-                              'lib/Icons/4.png',
+                              'assets/Icons/4.png',
                               height: 50,
                             )),
                         Text(
@@ -94,7 +94,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     child: Column(
                       children: [
                         Image.asset(
-                          'lib/Icons/6.png',
+                          'assets/Icons/6.png',
                           height: 50,
                         ),
                         Text(
@@ -117,7 +117,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                             Share.share('com.example.doob');
                           },
                           child: Image.asset(
-                            'lib/Icons/5.png',
+                            'assets/Icons/5.png',
                             height: 50,
                           ),
                         ),
@@ -131,30 +131,30 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                   Container(
                       decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
                       child: Image.asset(
-                        'lib/Icons/7.png',
+                        'assets/Icons/7.png',
                         height: 50,
                       )
-                      //  SvgPicture.asset('lib/Icons/download.svg',
+                      //  SvgPicture.asset('assets/Icons/download.svg',
                       //     height: 25),
                       ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Container(
                       decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
-                      child: SvgPicture.asset('lib/Icons/repeat.svg', height: 25),
+                      child: SvgPicture.asset('assets/Icons/repeat.svg', height: 25),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Container(
                       decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
-                      child: SvgPicture.asset('lib/Icons/Shuffle.svg', height: 25),
+                      child: SvgPicture.asset('assets/Icons/Shuffle.svg', height: 25),
                     ),
                   ),
                   Container(
                       decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
                       child: Image.asset(
-                        'lib/Icons/8.png',
+                        'assets/Icons/8.png',
                         height: 50,
                       )),
                 ],

@@ -119,9 +119,9 @@ class _EmptyState extends State<Empty> with SingleTickerProviderStateMixin {
               label: AppLocalizations.of(context)!.library,
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset('lib/Icons/pay.svg', height: 24),
+              icon: SvgPicture.asset('assets/Icons/pay.svg', height: 24),
               activeIcon: SvgPicture.asset(
-                'lib/Icons/pay.svg',
+                'assets/Icons/pay.svg',
                 height: 24,
               ),
               label: AppLocalizations.of(context)!.premium,

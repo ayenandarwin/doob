@@ -106,7 +106,7 @@ class _MusicScreenState extends ConsumerState<MusicScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
                                 child: Image.asset(
-                                  'lib/Image/jojipf.jpg',
+                                  'assets/Image/jojipf.jpg',
                                   height: 40,
                                 ),
                               ),
@@ -143,7 +143,7 @@ class _MusicScreenState extends ConsumerState<MusicScreen> {
                         /* COMMENT OPTION */
                         IconButton(
                           icon: Image.asset(
-                            "asset/Icons/chat.png",
+                            "assets/Icons/chat.png",
                             height: 30,
                           ),
                           onPressed: () {
@@ -168,7 +168,7 @@ class _MusicScreenState extends ConsumerState<MusicScreen> {
                         /* SHARE OPTION */
                         Option(
                           iconWidget: Image.asset(
-                            'asset/Icons/paper-plane.png',
+                            'assets/Icons/paper-plane.png',
                             height: 30,
                           ),
                           label: "0",
@@ -179,7 +179,7 @@ class _MusicScreenState extends ConsumerState<MusicScreen> {
                         /* DOWNLOAD OPTION */
                         Option(
                           iconWidget: Image.asset(
-                            'asset/Icons/downloading.png',
+                            'assets/Icons/downloading.png',
                             height: 30,
                           ),
                           label: "0",
@@ -189,10 +189,10 @@ class _MusicScreenState extends ConsumerState<MusicScreen> {
                         Option(
                           iconWidget: isrepeat
                               ? Image.asset(
-                                  'asset/Icons/shuffle.png',
+                                  'assets/Icons/Shuffle.png',
                                   height: 30,
                                 )
-                              : Image.asset('asset/Icons/repeat.png',
+                              : Image.asset('assets/Icons/repeat.png',
                                   height: 30),
                           label: "",
                           onTap: () {},

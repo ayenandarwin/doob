@@ -61,7 +61,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.asset(
-                        'lib/Image/manic.jpg',
+                        'assets/Image/manic.jpg',
                         fit: BoxFit.cover,
                         height: 180,
                         width: 200,
@@ -103,7 +103,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                                 },
                                 child: FloderCard(
                                   image: Image.asset(
-                                    'lib/Icons/add.png',
+                                    'assets/Icons/add.png',
                                   ),
                                   text: 'Add to playlist',
                                 ),
@@ -117,7 +117,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                                 },
                                 child: FloderCard(
                                   image: Image.asset(
-                                    'lib/Icons/add1.png',
+                                    'assets/Icons/add1.png',
                                   ),
                                   text: 'Add to queue',
                                 ),
@@ -127,7 +127,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                               ),
                               FloderCard(
                                 image: Image.asset(
-                                  'lib/Icons/remove.png',
+                                  'assets/Icons/remove.png',
                                 ),
                                 text: 'Remove from playlist',
                               ),
@@ -136,7 +136,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                               ),
                               FloderCard(
                                 image: Image.asset(
-                                  'lib/Icons/sale.png',
+                                  'assets/Icons/sale.png',
                                 ),
                                 text: 'Modify tags',
                               ),
@@ -145,7 +145,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                               ),
                               FloderCard(
                                 image: Image.asset(
-                                  'lib/Icons/artist.png',
+                                  'assets/Icons/artist.png',
                                 ),
                                 text: 'View Artists',
                               ),
@@ -154,7 +154,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                               ),
                               FloderCard(
                                 image: Image.asset(
-                                  'lib/Icons/disc.png',
+                                  'assets/Icons/disc.png',
                                 ),
                                 text: 'View Album',
                               ),
@@ -163,7 +163,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                               ),
                               FloderCard(
                                 image: Image.asset(
-                                  'lib/Icons/user-information.png',
+                                  'assets/Icons/user-information.png',
                                 ),
                                 text: 'Show Credits',
                               ),
@@ -172,7 +172,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                               ),
                               FloderCard(
                                   image: Image.asset(
-                                    'lib/Icons/download1.png',
+                                    'assets/Icons/download1.png',
                                   ),
                                   text: 'Download'),
                               SizedBox(
@@ -180,7 +180,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                               ),
                               FloderCard(
                                   image: Image.asset(
-                                    'lib/Icons/share1.png',
+                                    'assets/Icons/share1.png',
                                   ),
                                   text: 'Share'),
                               SizedBox(
@@ -188,7 +188,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                               ),
                               FloderCard(
                                   image: Image.asset(
-                                    'lib/Icons/qrcode.png',
+                                    'assets/Icons/qrcode.png',
                                   ),
                                   text: 'Generate QR Code'),
                               SizedBox(
@@ -200,7 +200,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                                 },
                                 child: FloderCard(
                                     image: Image.asset(
-                                      'lib/Icons/moon.png',
+                                      'assets/Icons/moon.png',
                                     ),
                                     text: 'Sleep Timer'),
                               ),
@@ -209,7 +209,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                               ),
                               FloderCard(
                                   image: Image.asset(
-                                    'lib/Icons/hide.png',
+                                    'assets/Icons/hide.png',
                                   ),
                                   text: 'Hide Song'),
                               SizedBox(
@@ -217,7 +217,7 @@ class _PlaylistMoreDetailsState extends State<PlaylistMoreDetails> {
                               ),
                               FloderCard(
                                   image: Image.asset(
-                                    'lib/Icons/songradio.png',
+                                    'assets/Icons/songradio.png',
                                   ),
                                   text: 'Go to Song Radio'),
 

@@ -86,7 +86,7 @@ class _QueueScreenState extends State<QueueScreen> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
-                          'lib/Image/manic.jpg',
+                          'assets/Image/manic.jpg',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -244,7 +244,7 @@ class _QueueScreenState extends State<QueueScreen> {
                 //       child: ClipRRect(
                 //         borderRadius: BorderRadius.circular(8),
                 //         child: Image.asset(
-                //           'lib/Image/joji.png',
+                //           'assets/Image/joji.png',
                 //           fit: BoxFit.cover,
                 //         ),
                 //       ),

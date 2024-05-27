@@ -1,10 +1,12 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:doob/Component/CustomCheckBox.dart';
+import 'package:doob/Controller/registeration.dart';
 import 'package:doob/appStart/navScreen.dart';
 import 'package:doob/services/authorizedService.dart';
 import 'package:doob/utils/constants.dart';
 import 'package:doob/utils/global.dart';
 import 'package:doob/utils/sharedPreference.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   FocusNode passwordFocusNode = FocusNode();
   RememberController rememberController = Get.put(RememberController());
+  RegisterationController registerationController = RegisterationController();
   bool view = true;
   bool _isChecked = true;
   String dToken = '';
@@ -58,8 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
     checkRememberUser();
     //postDeviceToken();
   }
-
- 
 
   void createBox() async {
     box1 = await Hive.openBox('login');
@@ -126,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Center(
                       child: Container(
                         child:
-                            Image.asset("lib/Image/dooblogo.png", height: 150),
+                            Image.asset("assets/Image/dooblogo.png", height: 150),
                       ),
                     ),
                   ),
@@ -190,80 +191,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(vertical: 10),
-                  //   //  padding: const EdgeInsets.only(
-                  //   //   top: 40, bottom: 5, left: 10, right: 10),
-                  //   child: SizedBox(
-                  //     height: 60,
-                  //     child: TextFormField(
-                  //       textAlignVertical: TextAlignVertical.center,
-                  //       inputFormatters: [
-                  //         LengthLimitingTextInputFormatter(100)
-                  //       ],
-                  //       controller: phoneController,
-                  //       focusNode: phoneFocusNode,
-                  //       //  disableLengthCheck: false,
-
-                  //       // initialCountryCode: 'MM',
-                  //       // dropdownTextStyle:
-                  //       //     TextStyle(fontSize: 14, color: Colors.white),
-                  //       // dropdownIcon: Icon(
-                  //       //   Icons.arrow_drop_down,
-                  //       //   color: Colors.white,
-                  //       //   size: 20,
-                  //       // ),
-                  //       keyboardType: TextInputType.number,
-                  //       style: TextStyle(color: Colors.white),
-                  //       decoration: InputDecoration(
-                  //         labelText: 'Phone Number'.tr,
-                  //         //  counterText: '',
-                  //         labelStyle: TextStyle(
-                  //             color: Colors.white,
-                  //             fontSize: 14,
-                  //             // color: Colors.white.withOpacity(0.7),
-                  //             fontFamily: "Century"),
-                  //         prefixIcon: CountryCodePicker(
-                  //           // backgroundColor: Colors.black,
-                  //           // dialogSize: Size(300, 400),
-
-                  //           //  dialogBackgroundColor: Colors.transparent,
-                  //           // dialogTextStyle: TextStyle(color: Colors.white),
-                  //           searchStyle: TextStyle(color: Colors.white),
-
-                  //           initialSelection: 'MM',
-                  //           showCountryOnly: true,
-                  //           //showCountryOnly: false,
-                  //           showOnlyCountryWhenClosed: false,
-                  //           enabled: true,
-                  //           hideMainText: false,
-                  //           showFlagMain: true,
-                  //           showFlagDialog: true,
-
-                  //           textStyle:
-                  //               TextStyle(fontSize: 14, color: Colors.white),
-                  //         ),
-                  //         // Icon(
-                  //         //   Icons.phone,
-                  //         //   color: Colors.white,
-                  //         //   size: 20,
-                  //         //   // color: Colors.white.withOpacity(0.4),
-                  //         // ),
-                  //         border: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //           borderSide: BorderSide(color: Colors.white),
-                  //         ),
-                  //         enabledBorder: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //           borderSide:
-                  //               BorderSide(color: Colors.white, width: 0.3),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Row(
@@ -280,14 +207,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               labelStyle: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,
-                                  //color: Colors.white.withOpacity(0.7),
                                   fontFamily: "Century"),
                               prefixIcon: Icon(
                                 Icons.lock,
                                 size: 20,
                                 color: Colors.white,
 
-                                // color: Colors.white.withOpacity(0.4),
                               ),
                               suffixIcon: GestureDetector(
                                 onTap: () {
@@ -326,24 +251,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     child: Row(
                       children: [
-                        // InkWell(
-                        //   onTap: () async {
-                        //     setState(() {
-                        //       _remember = !_remember;
-                        //     });
-                        //   },
-                        //   child: _remember
-                        //       ? Icon(
-                        //           Icons.check_box,
-                        //           color: Color(0xffFF9800),
-                        //           size: 25,
-                        //         )
-                        //       : Icon(
-                        //           Icons.check_box_outline_blank,
-                        //           color: Color(0xffFF9800),
-                        //           size: 25,
-                        //         ),
-                        // ),
+                       
                         CustomCheckbox(
                             isCheck: _isChecked,
                             onchange: () {
@@ -412,29 +320,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                       await SharedPref.setData(
                                           key: SharedPref.token,
                                           value: "Bearer $token");
-                                      // if (_remember) {
-                                      //   print("Remember");
-                                      //   rememberController.saveRememberUserName(
-                                      //       username: phoneController.text);
-                                      //   rememberController.saveRememberPassword(
-                                      //       password: passwordController.text);
-                                      // } else {
-                                      //   rememberController
-                                      //       .removeRememberUsername();
-                                      //   rememberController
-                                      //       .removeRememberPassword();
-                                      // }
+                                      
                                       Global.isLogIn = true;
                                       Global.loginStatus();
                                       loginData();
-                                     
+
                                       print('Device token Success');
 
                                       setState(() {
                                         isloading = false;
                                       });
-                                      // Navigator.pushNamed(
-                                      //     context, '/naviScreen');
 
                                       Get.off(() => NaviScreen());
                                     } else {
@@ -481,6 +376,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                     },
                   ),
+                  
                   // InkWell(
                   //   onTap: () {
                   //     // login(
@@ -595,25 +491,67 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            // color: Colors.white12
-                          ),
-                          child: Image.asset(
-                            "lib/Image/google.png",
+                        GestureDetector(
+                          onTap: () async {
+                            var token = registerationController
+                                .authenticateWithGoogle(context: context);
+
+                            await SharedPref.setData(
+                                key: SharedPref.token, value: "Bearer $token");
+                            Global.isLogIn = true;
+                            Global.loginStatus();
+                           // loginData();
+
+                            print('Device token Success');
+
+                            setState(() {
+                              isloading = false;
+                            });
+
+                            Get.off(() => NaviScreen());
+                            
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              // color: Colors.white12
+                            ),
+                            child: Image.asset(
+                              "assets/Image/google.png",
+                            ),
                           ),
                         ),
-                        Container(
-                          height: 35,
-                          width: 35,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: Colors.white12),
-                          child: Image.asset(
-                            "lib/Image/facebook.png",
+                        GestureDetector(
+                          onTap: () 
+                          async {
+                            var token = registerationController
+                                .authenticateWithFacebook(context: context);
+
+                            await SharedPref.setData(
+                                key: SharedPref.token, value: "Bearer $token");
+                            Global.isLogIn = true;
+                            Global.loginStatus();
+                           // loginData();
+
+                            print('Device token Success');
+
+                            setState(() {
+                              isloading = false;
+                            });
+
+                            Get.off(() => NaviScreen());
+                          },
+                          child: Container(
+                            height: 35,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: Colors.white12),
+                            child: Image.asset(
+                              "assets/Image/facebook.png",
+                            ),
                           ),
                         ),
                         Container(
@@ -621,10 +559,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 60,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
-                            // color: Colors.white12
                           ),
                           child: Image.asset(
-                            "lib/Image/apple.png",
+                            "assets/Image/apple.png",
+                           // 'assets\Image\apple.png',
+                            
                           ),
                         )
                       ],

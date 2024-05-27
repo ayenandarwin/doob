@@ -1,13 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:doob/Controller/registeration.dart';
 import 'package:doob/error/dioErrorException.dart';
 import 'package:doob/firebase_message.dart';
 import 'package:doob/httpService/httpException.dart';
 import 'package:doob/utils/global.dart';
 import 'package:doob/utils/sharedPreference.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
 import '../utils/constants.dart';
@@ -23,6 +27,13 @@ class AuthService {
 
   final Dio _dio;
   //String dToken = '';
+  static final _auth = FirebaseAuth.instance;
+
+  static User? get user => _auth.currentUser;
+
+  static Stream<User?> get userStream => _auth.userChanges();
+
+  static bool get isEmailVerified => user?.emailVerified ?? false;
 
   Future<dynamic> login({
     required String phone,
@@ -37,7 +48,7 @@ class AuthService {
       print(encodeJson);
 
       final token = await SharedPref.getData(key: SharedPref.token);
-     
+
       var response = await http
           .post(Uri.parse(ApiUrl.loginUrl), body: encodeJson, headers: {
         //"Accept": "application/json",
@@ -83,6 +94,60 @@ class AuthService {
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
+  }
+
+  static Future<String> signInWithGoogle() async {
+    print("login start");
+
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    print("return start");
+    if (googleUser == null) {
+      print("is null start");
+      throw NoGoogleAccountChosenException();
+    }
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    print("This is id token" + credential.idToken.toString());
+
+    // Once signed in, return the UserCredential
+    await FirebaseAuth.instance.signInWithCredential(credential);
+    return credential.idToken.toString();
+  }
+
+  static Future<String> signInWithFacebook() async {
+    print("login start");
+    String token = "";
+    // Trigger the authentication flow
+    final LoginResult result = await FacebookAuth.instance.login();
+    print("return start");
+
+    if (result.status == LoginStatus.success) {
+      // you are logged
+      final AccessToken accessToken = result.accessToken!;
+      token = accessToken.tokenString;
+    } else {
+      print(result.status);
+      print(result.message);
+      print("is null start");
+      throw NoFacebookAccountChosenException();
+    }
+    return token;
+  }
+
+  
+
+  static Future<void> logout() async {
+    await _auth.signOut();
+    await GoogleSignIn().signOut();
   }
 
   Future<dynamic> editPhone({

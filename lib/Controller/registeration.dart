@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'dart:js';
+//import 'dart:js';
 
+import 'package:doob/services/authorizedService.dart';
 import 'package:doob/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -62,4 +63,45 @@ class RegisterationController extends GetxController {
           });
     }
   }
+
+  Future<String> authenticateWithGoogle({required BuildContext context}) async {
+    String token = "";
+    try {
+      token = await AuthService.signInWithGoogle();
+    } on NoGoogleAccountChosenException {
+      // return;
+    } catch (e) {
+      if (!context.mounted)
+        //return;
+        AlertDialog(
+          content: Text('An unknown error occured'),
+        );
+    }
+    return token;
+  }
+
+  Future<String> authenticateWithFacebook(
+      {required BuildContext context}) async {
+    String token = "";
+    try {
+      token = await AuthService.signInWithFacebook();
+    } on NoFacebookAccountChosenException {
+      // return;
+    } catch (e) {
+      if (!context.mounted)
+        //return;
+        AlertDialog(
+          content: Text('An unknown error occured'),
+        );
+    }
+    return token;
+  }
+}
+
+class NoGoogleAccountChosenException implements Exception {
+  const NoGoogleAccountChosenException();
+}
+
+class NoFacebookAccountChosenException implements Exception {
+  const NoFacebookAccountChosenException();
 }

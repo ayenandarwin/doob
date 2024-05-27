@@ -11,7 +11,7 @@ class PageIDC2 extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: ClipRRect(
             child: Container(
-          child: Image.asset('lib/Image/epikpost.png'),
+          child: Image.asset('assets/Image/epikpost.png'),
         )),
       ),
     );

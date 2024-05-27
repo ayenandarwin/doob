@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Container(
                                   child: Image.asset(
-                                'lib/Image/DOOB.png',
+                                'assets/Image/DOOB.png',
                                 width: 60,
                               )),
                             ],
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Image.asset(
-                                'lib/Icons/bar.png',
+                                'assets/Icons/bar.png',
                                 width: 25,
                                 height: 25,
                               ),
@@ -268,7 +268,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
         Container(
           height: double.infinity,
           child: Image.asset(
-            'lib/Image/Eric.png',
+            'assets/Image/Eric.png',
             fit: BoxFit.cover,
           ),
         ),
@@ -290,7 +290,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.asset(
-                                'lib/Image/jojipf.jpg',
+                                'assets/Image/jojipf.jpg',
                                 height: 40,
                               )),
                         ),
@@ -313,7 +313,10 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.2), blurRadius: 20)
+                    ]),
                     child: Column(
                       children: [
                         InkWell(
@@ -322,28 +325,34 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                               //Navigator.pushNamed(context, '/favoriteDetails');
                             },
                             child: Image.asset(
-                              'lib/Icons/4.png',
+                              'assets/Icons/4.png',
                               height: 50,
                             )
-                            // SvgPicture.asset('lib/Icons/love.svg',
+                            // SvgPicture.asset('assets/Icons/love.svg',
                             //     height: 25),
                             ),
                         Text(
                           '5.3M',
-                          style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Century",
+                              fontSize: 14),
                         )
                       ],
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.2), blurRadius: 20)
+                    ]),
                     child: Column(
                       children: [
                         Image.asset(
-                          'lib/Icons/6.png',
+                          'assets/Icons/6.png',
                           height: 50,
                         ),
-                        // SvgPicture.asset('lib/Icons/comment.svg', height: 25),
+                        // SvgPicture.asset('assets/Icons/comment.svg', height: 25),
                         Text(
                           '5.3M',
                           style: TextStyle(
@@ -356,7 +365,10 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.2), blurRadius: 20)
+                    ]),
                     child: Column(
                       children: [
                         InkWell(
@@ -364,48 +376,69 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                             Share.share('com.example.doob');
                           },
                           child: Image.asset(
-                            'lib/Icons/5.png',
+                            'assets/Icons/5.png',
                             height: 50,
                           ),
                         ),
-                        //  SvgPicture.asset('lib/Icons/share.svg', height: 25),
+                        //  SvgPicture.asset('assets/Icons/share.svg', height: 25),
                         Text(
                           '5.3M',
-                          style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Century",
+                              fontSize: 14),
                         )
                       ],
                     ),
                   ),
                   Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Image.asset(
-                        'lib/Icons/7.png',
+                        'assets/Icons/7.png',
                         height: 50,
                       )
-                      //  SvgPicture.asset('lib/Icons/download.svg',
+                      //  SvgPicture.asset('assets/Icons/download.svg',
                       //     height: 25),
                       ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
-                      child: SvgPicture.asset('lib/Icons/repeat.svg', height: 25),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
+                      child:
+                          SvgPicture.asset('assets/Icons/repeat.svg', height: 25),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
-                      child: SvgPicture.asset('lib/Icons/Shuffle.svg', height: 25),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
+                      child:
+                          SvgPicture.asset('assets/Icons/Shuffle.svg', height: 25),
                     ),
                   ),
                   Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Image.asset(
-                        'lib/Icons/8.png',
+                        'assets/Icons/8.png',
                         height: 50,
                       )
-                      // SvgPicture.asset('lib/Icons/option.svg', height: 25),
+                      // SvgPicture.asset('assets/Icons/option.svg', height: 25),
                       ),
                 ],
               ),
@@ -435,9 +468,10 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                       Expanded(
                         child: SliderTheme(
                           data: const SliderThemeData(
-                          //  trackShape: CustomSliderTrackShape(),
+                            //  trackShape: CustomSliderTrackShape(),
                             trackHeight: 2,
-                            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 4),
+                            thumbShape:
+                                RoundSliderThumbShape(enabledThumbRadius: 4),
                             overlayShape: CustomSliderOverlayShape(),
                           ),
                           child: Slider(
@@ -472,10 +506,13 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     showDialog(
                       context: context,
                       builder: (context) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 100),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 100),
                         child: Container(
                           height: 100,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.transparent),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.transparent),
                           child: Column(
                             children: [
                               Row(
@@ -521,7 +558,11 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     child: Center(
                       child: Text(
                         'Lyrics',
-                        style: TextStyle(fontFamily: 'Century', fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+                        style: TextStyle(
+                            fontFamily: 'Century',
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
                   ),
@@ -553,7 +594,8 @@ class CustomSliderThumbShape extends RoundSliderThumbShape {
     required double textScaleFactor,
     required Size sizeWithOverflow,
   }) {
-    super.paint(context, center.translate(-(value - 0.5) / 0.5 * enabledThumbRadius, 0.0),
+    super.paint(context,
+        center.translate(-(value - 0.5) / 0.5 * enabledThumbRadius, 0.0),
         activationAnimation: activationAnimation,
         enableAnimation: enableAnimation,
         isDiscrete: isDiscrete,
@@ -586,7 +628,8 @@ class CustomSliderOverlayShape extends RoundSliderOverlayShape {
     required double textScaleFactor,
     required Size sizeWithOverflow,
   }) {
-    super.paint(context, center.translate(-(value - 0.5) / 0.5 * enabledThumbRadius, 0.0),
+    super.paint(context,
+        center.translate(-(value - 0.5) / 0.5 * enabledThumbRadius, 0.0),
         activationAnimation: activationAnimation,
         enableAnimation: enableAnimation,
         isDiscrete: isDiscrete,
@@ -616,7 +659,8 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse('https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'))
+    _controller = VideoPlayerController.networkUrl(Uri.parse(
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'))
       ..initialize().then((_) {
         if (mounted) {
           setState(() {});
@@ -632,7 +676,9 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
         Container(
             // height: double.infinity,
             child: Center(
-          child: AspectRatio(aspectRatio: _controller.value.aspectRatio, child: VideoPlayer(_controller)),
+          child: AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: VideoPlayer(_controller)),
         )),
         GestureDetector(
           onTap: () async {
@@ -683,7 +729,7 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.asset(
-                                'lib/Image/jojipf.jpg',
+                                'assets/Image/jojipf.jpg',
                                 height: 40,
                               )),
                         ),
@@ -708,13 +754,20 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/love.png', height: 25),
+                          Image.asset('assets/Icons/love.png', height: 25),
                           Text(
                             '5.3M',
-                            style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Century",
+                                fontSize: 14),
                           )
                         ],
                       ),
@@ -723,10 +776,14 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/comment.png', height: 25),
+                          Image.asset('assets/Icons/comment.png', height: 25),
                           Text(
                             '5.3M',
                             style: TextStyle(
@@ -742,13 +799,20 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/share.png', height: 25),
+                          Image.asset('assets/Icons/share.png', height: 25),
                           Text(
                             '5.3M',
-                            style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Century",
+                                fontSize: 14),
                           )
                         ],
                       ),
@@ -757,10 +821,14 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/download.png', height: 25),
+                          Image.asset('assets/Icons/download.png', height: 25),
                         ],
                       ),
                     ),
@@ -768,10 +836,14 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/option.png', height: 25),
+                          Image.asset('assets/Icons/option.png', height: 25),
                         ],
                       ),
                     ),
@@ -794,7 +866,10 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                   height: 8,
                   child: VideoProgressIndicator(_controller,
                       allowScrubbing: true,
-                      colors: VideoProgressColors(backgroundColor: Colors.white.withOpacity(0.1), bufferedColor: Colors.white.withOpacity(0.3), playedColor: Color(0xffffff9800))),
+                      colors: VideoProgressColors(
+                          backgroundColor: Colors.white.withOpacity(0.1),
+                          bufferedColor: Colors.white.withOpacity(0.3),
+                          playedColor: Color(0xffffff9800))),
                 ),
               ],
             ),

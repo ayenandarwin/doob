@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
                             children: [
                               Container(
                                   child: Image.asset(
-                                'lib/Image/DOOB.png',
+                                'assets/Image/DOOB.png',
                                 width: 60,
                               )
                                  
@@ -106,7 +106,7 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Image.asset(
-                                'lib/Icons/bar.png',
+                                'assets/Icons/bar.png',
                                 width: 25,
                                 height: 25,
                               ),
@@ -731,7 +731,7 @@ class NewRelese extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/middle.jpg',
+            'assets/Image/middle.jpg',
             fit: BoxFit.cover,
             height: 150,
             width: 150,
@@ -758,7 +758,7 @@ class Mixes extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/utopia.jpg',
+            'assets/Image/utopia.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -785,7 +785,7 @@ class NewFU extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/unforgiven.jpg',
+            'assets/Image/unforgiven.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -820,7 +820,7 @@ class HomeArtistCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.asset(
-                  'lib/Image/jojipf.jpg',
+                  'assets/Image/jojipf.jpg',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -860,7 +860,7 @@ class HomePageMood extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/JC.jpg',
+            'assets/Image/JC.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -880,7 +880,7 @@ class Devotional extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/Image/IGOR.jpg',
+        'assets/Image/IGOR.jpg',
         fit: BoxFit.cover,
         width: 150,
         height: 150,
@@ -905,7 +905,7 @@ class TopChart extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/unforgiven.jpg',
+            'assets/Image/unforgiven.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -932,7 +932,7 @@ class TrendingNearYou extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/utopia.jpg',
+            'assets/Image/utopia.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -959,7 +959,7 @@ class PopularPlaylist extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/middle.jpg',
+            'assets/Image/middle.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -986,7 +986,7 @@ class YourMostPlayedSongs extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/JC.jpg',
+            'assets/Image/JC.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -1013,7 +1013,7 @@ class FlavourofMusics extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/IGOR.jpg',
+            'assets/Image/IGOR.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -1040,7 +1040,7 @@ class BaseOnYourRecent extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/utopia.jpg',
+            'assets/Image/utopia.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -1067,7 +1067,7 @@ class DoobChoice extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/JC.jpg',
+            'assets/Image/JC.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -1094,7 +1094,7 @@ class InternationalHitsSongs extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/middle.jpg',
+            'assets/Image/middle.jpg',
             fit: BoxFit.cover,
             width: 150,
             height: 150,
@@ -1121,7 +1121,7 @@ class LocalHits extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/IGOR.jpg',
+            'assets/Image/IGOR.jpg',
             width: 150,
             fit: BoxFit.cover,
             height: 150,
@@ -1156,7 +1156,7 @@ class ArtistForU extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.asset(
-                  'lib/Image/jojipf.jpg',
+                  'assets/Image/jojipf.jpg',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -1204,7 +1204,7 @@ class YourFollowArtist extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.asset(
-                  'lib/Image/jojipf.jpg',
+                  'assets/Image/jojipf.jpg',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -1247,7 +1247,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
         Container(
           height: double.infinity,
           child: Image.asset(
-            'lib/Image/Eric.png',
+            'assets/Image/Eric.png',
             fit: BoxFit.cover,
           ),
         ),
@@ -1269,7 +1269,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.asset(
-                                'lib/Image/jojipf.jpg',
+                                'assets/Image/jojipf.jpg',
                                 height: 40,
                               )),
                         ),
@@ -1304,10 +1304,10 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                               //Navigator.pushNamed(context, '/favoriteDetails');
                             },
                             child: Image.asset(
-                              'lib/Icons/4.png',
+                              'assets/Icons/4.png',
                               height: 50,
                             )
-                            // SvgPicture.asset('lib/Icons/love.svg',
+                            // SvgPicture.asset('assets/Icons/love.svg',
                             //     height: 25),
                             ),
                         Text(
@@ -1328,10 +1328,10 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     child: Column(
                       children: [
                         Image.asset(
-                          'lib/Icons/6.png',
+                          'assets/Icons/6.png',
                           height: 50,
                         ),
-                        // SvgPicture.asset('lib/Icons/comment.svg', height: 25),
+                        // SvgPicture.asset('assets/Icons/comment.svg', height: 25),
                         Text(
                           '5.3M',
                           style: TextStyle(
@@ -1355,11 +1355,11 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                             Share.share('com.example.doob');
                           },
                           child: Image.asset(
-                            'lib/Icons/5.png',
+                            'assets/Icons/5.png',
                             height: 50,
                           ),
                         ),
-                        //  SvgPicture.asset('lib/Icons/share.svg', height: 25),
+                        //  SvgPicture.asset('assets/Icons/share.svg', height: 25),
                         Text(
                           '5.3M',
                           style: TextStyle(
@@ -1377,10 +1377,10 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                             blurRadius: 20)
                       ]),
                       child: Image.asset(
-                        'lib/Icons/7.png',
+                        'assets/Icons/7.png',
                         height: 50,
                       )
-                      //  SvgPicture.asset('lib/Icons/download.svg',
+                      //  SvgPicture.asset('assets/Icons/download.svg',
                       //     height: 25),
                       ),
                   Padding(
@@ -1392,7 +1392,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                             blurRadius: 20)
                       ]),
                       child:
-                          SvgPicture.asset('lib/Icons/repeat.svg', height: 25),
+                          SvgPicture.asset('assets/Icons/repeat.svg', height: 25),
                     ),
                   ),
                   Padding(
@@ -1404,7 +1404,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                             blurRadius: 20)
                       ]),
                       child:
-                          SvgPicture.asset('lib/Icons/Shuffle.svg', height: 25),
+                          SvgPicture.asset('assets/Icons/Shuffle.svg', height: 25),
                     ),
                   ),
                   Container(
@@ -1414,10 +1414,10 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                             blurRadius: 20)
                       ]),
                       child: Image.asset(
-                        'lib/Icons/8.png',
+                        'assets/Icons/8.png',
                         height: 50,
                       )
-                      // SvgPicture.asset('lib/Icons/option.svg', height: 25),
+                      // SvgPicture.asset('assets/Icons/option.svg', height: 25),
                       ),
                 ],
               ),
@@ -1708,7 +1708,7 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.asset(
-                                'lib/Image/jojipf.jpg',
+                                'assets/Image/jojipf.jpg',
                                 height: 40,
                               )),
                         ),
@@ -1740,7 +1740,7 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                       ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/love.png', height: 25),
+                          Image.asset('assets/Icons/love.png', height: 25),
                           Text(
                             '5.3M',
                             style: TextStyle(
@@ -1762,7 +1762,7 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                       ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/comment.png', height: 25),
+                          Image.asset('assets/Icons/comment.png', height: 25),
                           Text(
                             '5.3M',
                             style: TextStyle(
@@ -1785,7 +1785,7 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                       ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/share.png', height: 25),
+                          Image.asset('assets/Icons/share.png', height: 25),
                           Text(
                             '5.3M',
                             style: TextStyle(
@@ -1807,7 +1807,7 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                       ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/download.png', height: 25),
+                          Image.asset('assets/Icons/download.png', height: 25),
                         ],
                       ),
                     ),
@@ -1822,7 +1822,7 @@ class _VideoScreenCardState extends State<VideoScreenCard> {
                       ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/option.png', height: 25),
+                          Image.asset('assets/Icons/option.png', height: 25),
                         ],
                       ),
                     ),

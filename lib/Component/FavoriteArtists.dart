@@ -43,7 +43,7 @@ class _FavoriteArtistsState extends State<FavoriteArtists> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: Image.asset(
-                            'lib/Image/joji.png',
+                            'assets/Image/joji.png',
                             fit: BoxFit.cover,
                           ),
                         ),

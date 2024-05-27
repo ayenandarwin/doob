@@ -58,12 +58,12 @@ class _PageIndicatorState extends State<PageIndicator> {
                                             'https://i.ebayimg.com/images/g/QQAAAOSwk-JiEK3v/s-l1600.jpg',
                                           );
                                         },
-                                        // 'lib/Image/joji.png',
+                                        // 'assets/Image/joji.png',
                                         fit: BoxFit.cover,
                                       ),
 
                                       // Image.asset(
-                                      //   'lib/Image/epikpost.png',
+                                      //   'assets/Image/epikpost.png',
                                       //   fit: BoxFit.cover,
                                       // ),
                                     ),
@@ -112,7 +112,7 @@ class _PageIndicatorState extends State<PageIndicator> {
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               child: Image.asset(
-                                                'lib/Image/epikpost.png',
+                                                'assets/Image/epikpost.png',
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -124,7 +124,7 @@ class _PageIndicatorState extends State<PageIndicator> {
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               child: Image.asset(
-                                                'lib/Image/shukhin.jpg',
+                                                'assets/Image/shukhin.jpg',
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -136,7 +136,7 @@ class _PageIndicatorState extends State<PageIndicator> {
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               child: Image.asset(
-                                                'lib/Image/epikpost.png',
+                                                'assets/Image/epikpost.png',
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -200,7 +200,7 @@ class _PageIndicatorState extends State<PageIndicator> {
       //               child: ClipRRect(
       //                 borderRadius: BorderRadius.circular(10),
       //                 child: Image.asset(
-      //                   'lib/Image/epikpost.png',
+      //                   'assets/Image/epikpost.png',
       //                   fit: BoxFit.cover,
       //                 ),
       //               ),
@@ -210,7 +210,7 @@ class _PageIndicatorState extends State<PageIndicator> {
       //               child: ClipRRect(
       //                 borderRadius: BorderRadius.circular(10),
       //                 child: Image.asset(
-      //                   'lib/Image/shukhin.jpg',
+      //                   'assets/Image/shukhin.jpg',
       //                   fit: BoxFit.cover,
       //                 ),
       //               ),
@@ -220,7 +220,7 @@ class _PageIndicatorState extends State<PageIndicator> {
       //               child: ClipRRect(
       //                 borderRadius: BorderRadius.circular(10),
       //                 child: Image.asset(
-      //                   'lib/Image/epikpost.png',
+      //                   'assets/Image/epikpost.png',
       //                   fit: BoxFit.cover,
       //                 ),
       //               ),

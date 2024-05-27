@@ -101,7 +101,7 @@ class FloderCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
-                'lib/Image/joji.png',
+                'assets/Image/joji.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -173,7 +173,7 @@ class SmartCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
-                  'lib/Image/joji.png',
+                  'assets/Image/joji.png',
                   fit: BoxFit.cover,
                 ),
               ),

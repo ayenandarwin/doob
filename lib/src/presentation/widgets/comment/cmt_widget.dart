@@ -158,7 +158,7 @@ class _CmtWidgetState extends ConsumerState<CmtWidget> {
                               // width: 20,
                               // height: 20,
                               child: ImageIcon(AssetImage(
-                            'lib/Image/dooblogo.png',
+                            'assets/Image/dooblogo.png',
                           ))),
                         ),
                         suffixIcon: IconButton(

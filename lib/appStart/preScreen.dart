@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:doob/Controller/isLoginController.dart';
 import 'package:doob/Pages/SignIn.dart';
@@ -48,7 +47,6 @@ class _PreScreenState extends State<PreScreen> {
       Global.loginStatus();
       Global.isLogIn = false;
       //naviController.currentIndex.value = 3;
-      // Get.off(() => LoginScreen());
       Get.off(() => LoginScreen());
       Get.snackbar(
         "Alert",
@@ -78,7 +76,7 @@ class _PreScreenState extends State<PreScreen> {
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
-                          'lib/Image/noInternet.png',
+                          'assets/Image/noInternet.png',
                         ),
                         fit: BoxFit.fill)),
                 child: Padding(
@@ -87,13 +85,7 @@ class _PreScreenState extends State<PreScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      // Container(
-                      //   width: 200,
-                      //   height: 100,
-                      //   child: Image.asset(
-                      //     'lib/Image/noInternet1.jpg',
-                      //   ),
-                      // ),
+                      
                       Padding(
                         padding: const EdgeInsets.only(
                             top: 160.0, left: 15, right: 15),
@@ -101,16 +93,7 @@ class _PreScreenState extends State<PreScreen> {
                           height: MediaQuery.of(context).size.height * 0.1,
                         ),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(left: 15, right: 15),
-                      //   child: Text(
-                      //     "Alert",
-                      //     style: const TextStyle(
-                      //         fontSize: 18,
-                      //         fontFamily: 'Century',
-                      //         fontWeight: FontWeight.bold),
-                      //   ),
-                      // ),
+                     
                       Container(
                         alignment: Alignment.center,
                         padding: const EdgeInsets.only(left: 10.0, right: 10),
@@ -170,7 +153,7 @@ class _PreScreenState extends State<PreScreen> {
       if (Global.isLogIn) {
         // Get.off(() => NaviScreen());
         fetchMyBalance();
-      } else {
+      } else  {
         // Get.off(() => LoginScreen());
         Get.to(() => Welcome());
       }
@@ -326,7 +309,7 @@ class _PreScreenState extends State<PreScreen> {
             ),
             Center(
               child: Image.asset(
-                'lib/Image/DOOB.png',
+                'assets/Image/DOOB.png',
                 height: 90,
               ),
             ),

@@ -20,7 +20,7 @@ class LocalHits extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            'lib/Image/IGOR.jpg',
+            'assets/Image/IGOR.jpg',
             width: 150,
             fit: BoxFit.cover,
             height: 150,

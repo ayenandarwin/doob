@@ -12,7 +12,20 @@
           "package_name": "com.example.doob"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "86312393578-huih8o1fbechooonjjrummm22aeq7d2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.doob",
+            "certificate_hash": "38d5405a84152163628eb975ef416ca6e4d72ae3"
+          }
+        },
+        {
+          "client_id": "86312393578-2q3ck5oi8o4kciibfo0ff00jjekt5vdg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCgcgp6Ssb1EbMenpUPCmho9MevJ7rX1pw"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86312393578-2q3ck5oi8o4kciibfo0ff00jjekt5vdg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "86312393578-q4o5a98ctrrmjte75a5g27s0tgaabgt9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.doob"
+              }
+            }
+          ]
         }
       }
     }

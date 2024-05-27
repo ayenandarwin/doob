@@ -90,7 +90,7 @@ class FloderCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(7),
             child: Image.asset(
-              'lib/Image/unforgiven.jpg',
+              'assets/Image/unforgiven.jpg',
               width: 50,
               height: 50,
             ),

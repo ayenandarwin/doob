@@ -193,7 +193,7 @@ class PlaylistCard extends StatelessWidget {
               width: 70,
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.asset('lib/Image/JC.jpg'))),
+                  child: Image.asset('assets/Image/JC.jpg'))),
           SizedBox(
             width: 20,
           ),

@@ -106,7 +106,7 @@ class _SignUpState extends State<SignUp> {
                     child: Center(
                       child: Container(
                         child:
-                            Image.asset("lib/Image/dooblogo.png", height: 150),
+                            Image.asset("assets/Image/dooblogo.png", height: 150),
                       ),
                     ),
                   ),

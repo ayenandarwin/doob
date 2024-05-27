@@ -15,7 +15,7 @@ class HomeNotiBar extends StatelessWidget {
                 children: [
                   Container(
                       child: Image.asset(
-                    'lib/Image/DOOB.png',
+                    'assets/Image/DOOB.png',
                     width: 60,
                   )),
                 ],
@@ -29,7 +29,7 @@ class HomeNotiBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Image.asset(
-                    'lib/Icons/bar.png',
+                    'assets/Icons/bar.png',
                     width: 25,
                     height: 25,
                   ),

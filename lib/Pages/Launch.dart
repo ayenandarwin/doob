@@ -34,7 +34,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
             ),
             Center(
               child: Image.asset(
-                'lib/Image/DOOB.png',
+                'assets/Image/DOOB.png',
 
                 height: 90,
                 //scale: 0.1,

@@ -188,12 +188,12 @@ class _EqualizersState extends State<Equalizers> {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20.0, vertical: 30),
-                    child: Image.asset('lib/Image/sliders.png'),
+                    child: Image.asset('assets/Image/sliders.png'),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20.0, vertical: 10),
-                    child: Image.asset('lib/Image/3d.png'),
+                    child: Image.asset('assets/Image/3d.png'),
                   )
                 ],
               ),

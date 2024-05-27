@@ -28,7 +28,7 @@ class HomeArtistCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.asset(
-                  'lib/Image/jojipf.jpg',
+                  'assets/Image/jojipf.jpg',
                   fit: BoxFit.cover,
                 ),
               ),

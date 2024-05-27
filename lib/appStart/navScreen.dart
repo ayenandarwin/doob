@@ -89,7 +89,7 @@
 //                       icon: Padding(
 //                         padding: const EdgeInsets.symmetric(vertical: 8),
 //                         child: Image.asset(
-//                           "lib/Icons/home.png",
+//                           "assets/Icons/home.png",
 //                           width: 25,
 //                           height: 25,
 //                         ),
@@ -97,7 +97,7 @@
 //                       activeIcon: Padding(
 //                         padding: const EdgeInsets.symmetric(vertical: 8),
 //                         child: Image.asset(
-//                           "lib/Icons/home.png",
+//                           "assets/Icons/home.png",
 //                           color: Color(0xffff9800),
 //                           width: 25,
 //                           height: 25,
@@ -117,7 +117,7 @@
 //                       icon: Padding(
 //                         padding: const EdgeInsets.symmetric(vertical: 8),
 //                         child: Image.asset(
-//                           "lib/Icons/search.png",
+//                           "assets/Icons/search.png",
 //                           width: 25,
 //                           height: 25,
 //                         ),
@@ -125,7 +125,7 @@
 //                       activeIcon: Padding(
 //                         padding: const EdgeInsets.symmetric(vertical: 8),
 //                         child: Image.asset(
-//                           "lib/Icons/search.png",
+//                           "assets/Icons/search.png",
 //                           color: Color(0xffff9800),
 //                           width: 25,
 //                           height: 25,
@@ -147,7 +147,7 @@
 //                       icon: Padding(
 //                         padding: const EdgeInsets.symmetric(vertical: 8),
 //                         child: Image.asset(
-//                           "lib/Image/list.png",
+//                           "assets/Image/list.png",
 //                           color: Colors.white,
 //                           width: 25,
 //                           height: 25,
@@ -156,7 +156,7 @@
 //                       activeIcon: Padding(
 //                         padding: const EdgeInsets.symmetric(vertical: 8),
 //                         child: Image.asset(
-//                           "lib/Image/list.png",
+//                           "assets/Image/list.png",
 //                           color: Color(0xffff9800),
 //                           width: 25,
 //                           height: 25,
@@ -177,7 +177,7 @@
 //                       icon: Padding(
 //                         padding: const EdgeInsets.symmetric(vertical: 5),
 //                         child: Image.asset(
-//                           "lib/Icons/folder.png",
+//                           "assets/Icons/folder.png",
 //                           //  color: Colors.black,
 //                           width: 30,
 //                           height: 30,
@@ -186,14 +186,14 @@
 //                       activeIcon: Padding(
 //                         padding: const EdgeInsets.symmetric(vertical: 5),
 //                         child: Image.asset(
-//                           "lib/Icons/folder.png",
+//                           "assets/Icons/folder.png",
 //                           color: Color(0xffff9800),
 //                           width: 30,
 //                           height: 30,
 //                         ),
 //                       ),
 //                       //  Image.asset(
-//                       //   "lib/Icons/library.png", width: 25, height: 25,)
+//                       //   "assets/Icons/library.png", width: 25, height: 25,)
 
 //                       //     Container(
 //                       //   margin: EdgeInsets.only(bottom: 7),
@@ -225,17 +225,17 @@
 //                       icon: Padding(
 //                         padding: const EdgeInsets.symmetric(vertical: 5),
 //                         child: Image.asset(
-//                           "lib/Icons/feed1.png",
+//                           "assets/Icons/feed1.png",
 //                           //  color: Colors.black,
 //                           width: 30,
 //                           height: 30,
 //                         ),
 //                       ),
-//                       //   SvgPicture.asset("lib/Icons/pay.svg", height: 24),
+//                       //   SvgPicture.asset("assets/Icons/pay.svg", height: 24),
 //                       activeIcon: Padding(
 //                         padding: const EdgeInsets.symmetric(vertical: 5),
 //                         child: Image.asset(
-//                           "lib/Icons/feed1.png",
+//                           "assets/Icons/feed1.png",
 //                           color: Color(0xffff9800),
 //                           width: 30,
 //                           height: 30,
@@ -243,7 +243,7 @@
 //                         ),
 //                       ),
 //                       // SvgPicture.asset(
-//                       //   "lib/Icons/pay.svg",
+//                       //   "assets/Icons/pay.svg",
 //                       //   height: 24,
 //                       // ),
 //                       label: "Premium".tr,
@@ -376,7 +376,7 @@ class _NaviScreenState extends State<NaviScreen>
                       icon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Icons/home.png",
+                          "assets/Icons/home.png",
                           width: 25,
                           height: 25,
                         ),
@@ -384,7 +384,7 @@ class _NaviScreenState extends State<NaviScreen>
                       activeIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Icons/home.png",
+                          "assets/Icons/home.png",
                           color: Color(0xffff9800),
                           width: 25,
                           height: 25,
@@ -396,7 +396,7 @@ class _NaviScreenState extends State<NaviScreen>
                       icon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Icons/search.png",
+                          "assets/Icons/search.png",
                           width: 25,
                           height: 25,
                         ),
@@ -404,7 +404,7 @@ class _NaviScreenState extends State<NaviScreen>
                       activeIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Icons/search.png",
+                          "assets/Icons/search.png",
                           color: Color(0xffff9800),
                           width: 25,
                           height: 25,
@@ -416,7 +416,7 @@ class _NaviScreenState extends State<NaviScreen>
                       icon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Image/list.png",
+                          "assets/Image/list.png",
                           color: Colors.white,
                           width: 25,
                           height: 25,
@@ -425,7 +425,7 @@ class _NaviScreenState extends State<NaviScreen>
                       activeIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Image.asset(
-                          "lib/Image/list.png",
+                          "assets/Image/list.png",
                           color: Color(0xffff9800),
                           width: 25,
                           height: 25,
@@ -437,7 +437,7 @@ class _NaviScreenState extends State<NaviScreen>
                       icon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Image.asset(
-                          "lib/Icons/folder.png",
+                          "assets/Icons/folder.png",
                           width: 30,
                           height: 30,
                         ),
@@ -445,7 +445,7 @@ class _NaviScreenState extends State<NaviScreen>
                       activeIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Image.asset(
-                          "lib/Icons/folder.png",
+                          "assets/Icons/folder.png",
                           color: Color(0xffff9800),
                           width: 30,
                           height: 30,
@@ -457,7 +457,7 @@ class _NaviScreenState extends State<NaviScreen>
                       icon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Image.asset(
-                          "lib/Icons/feed1.png",
+                          "assets/Icons/feed1.png",
                           width: 30,
                           height: 30,
                         ),
@@ -465,7 +465,7 @@ class _NaviScreenState extends State<NaviScreen>
                       activeIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Image.asset(
-                          "lib/Icons/feed1.png",
+                          "assets/Icons/feed1.png",
                           color: Color(0xffff9800),
                           width: 30,
                           height: 30,
@@ -504,17 +504,18 @@ class _NaviScreenState extends State<NaviScreen>
                 HomeScreen(),
                 Explore(),
                 // MusicPlayer(),
-                NotificationListener<ScrollUpdateNotification>(
-                  onNotification: (scrollNotification) {
-                    if (scrollNotification.scrollDelta!.isNegative) {
-                      naviController.isBottomNavVisible.value = false;
-                    } else if (!scrollNotification.scrollDelta!.isNegative) {
-                      naviController.isBottomNavVisible.value = false;
-                    }
-                    return true;
-                  },
-                  child: MusicPlayerNew(),
-                ),
+                MusicPlayerNew(),
+                // NotificationListener<ScrollUpdateNotification>(
+                //   onNotification: (scrollNotification) {
+                //     if (scrollNotification.scrollDelta!.isNegative) {
+                //       naviController.isBottomNavVisible.value = false;
+                //     } else if (!scrollNotification.scrollDelta!.isNegative) {
+                //       naviController.isBottomNavVisible.value = true;
+                //     }
+                //     return true;
+                //   },
+                //   child: MusicPlayerNew(),
+                // ),
                 Library(),
                 Premium(),
               ],

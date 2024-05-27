@@ -75,7 +75,7 @@ class _TopGenresState extends State<TopGenres> {
                           onTap: () {
                             //  Navigator.pushNamed(context, '/search');
                           },
-                          child: SvgPicture.asset('lib/Icons/menu.svg',
+                          child: SvgPicture.asset('assets/Icons/menu.svg',
                               height: 25),
 
                           // Icon(

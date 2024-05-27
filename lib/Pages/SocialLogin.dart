@@ -23,7 +23,7 @@ class _SCLoginState extends State<SCLogin> {
                   padding: const EdgeInsets.only(top: 20),
                   child: Center(
                     child: Container(
-                      child: Image.asset("lib/Image/dooblogo.png", height: 150),
+                      child: Image.asset("assets/Image/dooblogo.png", height: 150),
                     ),
                   ),
                 ),
@@ -51,7 +51,7 @@ class _SCLoginState extends State<SCLogin> {
                       children: [
                         Expanded(
                             flex: 1,
-                            child: Image.asset('lib/Image/google.png')),
+                            child: Image.asset('assets/Image/google.png')),
                         Expanded(
                           flex: 3,
                           child: Text(
@@ -81,7 +81,7 @@ class _SCLoginState extends State<SCLogin> {
                         Expanded(
                           flex: 1,
                           child: Image.asset(
-                            'lib/Image/facebook.png',
+                            'assets/Image/facebook.png',
                             width: 35,
                             height: 30,
                           ),
@@ -113,7 +113,7 @@ class _SCLoginState extends State<SCLogin> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
-                            flex: 1, child: Image.asset('lib/Image/apple.png')),
+                            flex: 1, child: Image.asset('assets/Image/apple.png')),
                         Expanded(
                           flex: 3,
                           child: Text(

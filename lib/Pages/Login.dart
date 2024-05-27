@@ -87,7 +87,7 @@ class _LoginState extends State<Login> {
                     child: Center(
                       child: Container(
                         child:
-                            Image.asset("lib/Image/dooblogo.png", height: 150),
+                            Image.asset("assets/Image/dooblogo.png", height: 150),
                       ),
                     ),
                   ),
@@ -416,7 +416,7 @@ class _LoginState extends State<Login> {
                             // color: Colors.white12
                           ),
                           child: Image.asset(
-                            "lib/Image/google.png",
+                            "assets/Image/google.png",
                           ),
                         ),
                         Container(
@@ -426,7 +426,7 @@ class _LoginState extends State<Login> {
                               borderRadius: BorderRadius.circular(100),
                               color: Colors.white12),
                           child: Image.asset(
-                            "lib/Image/facebook.png",
+                            "assets/Image/facebook.png",
                           ),
                         ),
                         Container(
@@ -437,7 +437,7 @@ class _LoginState extends State<Login> {
                             // color: Colors.white12
                           ),
                           child: Image.asset(
-                            "lib/Image/apple.png",
+                            "assets/Image/apple.png",
                           ),
                         )
                       ],

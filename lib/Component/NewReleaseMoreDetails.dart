@@ -91,7 +91,7 @@ class _NewReleaseMoreDetailsState extends State<NewReleaseMoreDetails> {
                     child: ClipRRect(
                       //   borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
-                        'lib/Image/pop.png',
+                        'assets/Image/pop.png',
                         fit: BoxFit.cover,
                         // height: 210,
                         // width: 210,
@@ -311,7 +311,7 @@ class Albums extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.asset(
-                    'lib/Image/joji.png',
+                    'assets/Image/joji.png',
                     fit: BoxFit.cover,
                   ),
                 ),

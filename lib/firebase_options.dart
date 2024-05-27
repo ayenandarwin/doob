@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'doob-2f7ae.appspot.com',
     iosBundleId: 'com.example.doob',
   );
+
 }

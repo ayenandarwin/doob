@@ -85,7 +85,7 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.asset(
-                                'lib/Image/jojipf.jpg',
+                                'assets/Image/jojipf.jpg',
                                 height: 40,
                               )),
                         ),
@@ -113,7 +113,7 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                       decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/love.png', height: 25),
+                          Image.asset('assets/Icons/love.png', height: 25),
                           Text(
                             '5.3M',
                             style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
@@ -128,7 +128,7 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                       decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/comment.png', height: 25),
+                          Image.asset('assets/Icons/comment.png', height: 25),
                           Text(
                             '5.3M',
                             style: TextStyle(
@@ -147,7 +147,7 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                       decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/share.png', height: 25),
+                          Image.asset('assets/Icons/share.png', height: 25),
                           Text(
                             '5.3M',
                             style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
@@ -162,7 +162,7 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                       decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/download.png', height: 25),
+                          Image.asset('assets/Icons/download.png', height: 25),
                         ],
                       ),
                     ),
@@ -173,7 +173,7 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                       decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/option.png', height: 25),
+                          Image.asset('assets/Icons/option.png', height: 25),
                         ],
                       ),
                     ),

@@ -1,5 +1,9 @@
+import 'package:doob/MusicPlayer/MusicPlayer.dart';
+import 'package:doob/MusicPlayer/MusicPlayerNew.dart';
+import 'package:doob/Pages/Homenew.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 
 class Explore extends StatefulWidget {
   const Explore({super.key});
@@ -13,215 +17,231 @@ class _ExploreState extends State<Explore> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Container(
-                //   // padding: EdgeInsets.symmetric(horizontal: 10),
-                //   child: Row(
-                //     children: [
-                //       Text(
-                //         'Your Library',
-                //         style: TextStyle(
-                //             color: Color(0xffff9800),
-                //             fontFamily: "Century",
-                //             letterSpacing: 2,
-                //             fontWeight: FontWeight.bold,
-                //             fontSize: 20),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/mainsearch');
-                      //Navigator.pushNamed(context, '/topgenres');
-                    },
+      body: GestureDetector(
+        onPanUpdate: (details) {
+          if (details.delta.dx > 0) {
+            print("Dragging in +X direction");
+            Get.to(() => HomeScreen());
+          } else {
+            print("Dragging in -X direction");
+            Get.to(() => MusicPlayerNew());
+          }
+
+          if (details.delta.dy > 0)
+            print("Dragging in +Y direction");
+          else
+            print("Dragging in -Y direction");
+        },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Container(
+                  //   // padding: EdgeInsets.symmetric(horizontal: 10),
+                  //   child: Row(
+                  //     children: [
+                  //       Text(
+                  //         'Your Library',
+                  //         style: TextStyle(
+                  //             color: Color(0xffff9800),
+                  //             fontFamily: "Century",
+                  //             letterSpacing: 2,
+                  //             fontWeight: FontWeight.bold,
+                  //             fontSize: 20),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/mainsearch');
+                        //Navigator.pushNamed(context, '/topgenres');
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15)),
+                          height: 40,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.search,
+                                  color: Color(0xff8A9A9D),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                FittedBox(
+                                  child: Text(
+                                    AppLocalizations.of(context)!.songsartists,
+                                    style: TextStyle(
+                                        color: Color(0xff8A9A9D),
+                                        fontSize: 12,
+                                        fontFamily: "Century"),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15)),
-                        height: 40,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.search,
-                                color: Color(0xff8A9A9D),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              FittedBox(
-                                child: Text(
-                                  AppLocalizations.of(context)!.songsartists,
-                                  style: TextStyle(
-                                      color: Color(0xff8A9A9D),
-                                      fontSize: 12,
-                                      fontFamily: "Century"),
-                                ),
-                              )
-                            ],
+                      // color: Colors.green,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Your Top Genres",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                fontFamily: "Century"),
                           ),
-                        )),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Container(
-                    // color: Colors.green,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Your Top Genres",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              fontFamily: "Century"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Container(
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                        child: InkWell(
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                  context, '/topgenres');
-                                            },
-                                            child: GenreCard())),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Expanded(child: GenreCard()),
-                                  ],
-                                ),
-                                // SizedBox(
-                                //   height: 8,
-                                // ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: Row(
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Row(
                                     children: [
-                                      Expanded(child: GenreCard()),
+                                      Expanded(
+                                          child: InkWell(
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                    context, '/topgenres');
+                                              },
+                                              child: GenreCard())),
                                       SizedBox(
                                         width: 20,
                                       ),
                                       Expanded(child: GenreCard()),
                                     ],
                                   ),
-                                )
-                              ],
+                                  // SizedBox(
+                                  //   height: 8,
+                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    child: Row(
+                                      children: [
+                                        Expanded(child: GenreCard()),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Expanded(child: GenreCard()),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 50),
-                  child: Container(
-                    // color: Colors.green,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Browse All",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              fontFamily: "Century"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Container(
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                        child: InkWell(
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                  context, '/topgenres');
-                                            },
-                                            child: GenreCard())),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Expanded(child: GenreCard()),
-                                  ],
-                                ),
-                                // SizedBox(
-                                //   height: 8,
-                                // ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: Row(
-                                    children: [
-                                      Expanded(child: GenreCard()),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      Expanded(child: GenreCard()),
-                                    ],
-                                  ),
-                                ),
-                                // SizedBox(
-                                //   height: 8,
-                                // ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: Row(
-                                    children: [
-                                      Expanded(child: GenreCard()),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      Expanded(child: GenreCard()),
-                                    ],
-                                  ),
-                                ),
-                                // SizedBox(
-                                //   height: 8,
-                                // ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: Row(
-                                    children: [
-                                      Expanded(child: GenreCard()),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      Expanded(child: GenreCard()),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 50),
+                    child: Container(
+                      // color: Colors.green,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Browse All",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                fontFamily: "Century"),
                           ),
-                        )
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                          child: InkWell(
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                    context, '/topgenres');
+                                              },
+                                              child: GenreCard())),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Expanded(child: GenreCard()),
+                                    ],
+                                  ),
+                                  // SizedBox(
+                                  //   height: 8,
+                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    child: Row(
+                                      children: [
+                                        Expanded(child: GenreCard()),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Expanded(child: GenreCard()),
+                                      ],
+                                    ),
+                                  ),
+                                  // SizedBox(
+                                  //   height: 8,
+                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Row(
+                                      children: [
+                                        Expanded(child: GenreCard()),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Expanded(child: GenreCard()),
+                                      ],
+                                    ),
+                                  ),
+                                  // SizedBox(
+                                  //   height: 8,
+                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Row(
+                                      children: [
+                                        Expanded(child: GenreCard()),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Expanded(child: GenreCard()),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -266,7 +286,7 @@ class GenreCard extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Image.asset(
-              'lib/Image/ateez.jpeg',
+              'assets/Image/ateez.jpeg',
               width: 65,
               height: 65,
               fit: BoxFit.cover,

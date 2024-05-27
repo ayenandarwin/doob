@@ -1,4 +1,4 @@
- import 'package:comment_box/comment/comment.dart';
+import 'package:comment_box/comment/comment.dart';
 import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:doob/Component/playerButton.dart';
 import 'package:doob/MusicPlayer/ForYouScreen.dart';
@@ -46,7 +46,12 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
 
   AppLifecycleState? stateChanged;
 
-  List<Color> colors = [Colors.blueAccent, Colors.greenAccent, Colors.yellowAccent, Colors.redAccent];
+  List<Color> colors = [
+    Colors.blueAccent,
+    Colors.greenAccent,
+    Colors.yellowAccent,
+    Colors.redAccent
+  ];
 
   // List<int> duration = [900, 700, 600, 800, 500];
   List<int> duration = [900, 700, 600, 800, 500];
@@ -59,8 +64,18 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController commentController = TextEditingController();
   List filedata = [
-    {'name': 'Chuks Okwuenu', 'pic': 'https://picsum.photos/300/30', 'message': 'I love to code', 'date': '2021-01-01'},
-    {'name': 'Biggi Man', 'pic': 'https://www.adeleyeayodeji.com/img/IMG_20200522_121756_834_2.jpg', 'message': 'Very cool', 'date': '2021-01-01'},
+    {
+      'name': 'Chuks Okwuenu',
+      'pic': 'https://picsum.photos/300/30',
+      'message': 'I love to code',
+      'date': '2021-01-01'
+    },
+    {
+      'name': 'Biggi Man',
+      'pic': 'https://www.adeleyeayodeji.com/img/IMG_20200522_121756_834_2.jpg',
+      'message': 'Very cool',
+      'date': '2021-01-01'
+    },
     // {
     //   'name': 'Tunde Martins',
     //   'pic': 'assets/img/userpic.jpg',
@@ -84,7 +99,10 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
 
     final response = await http.post(
       Uri.parse('https://doob.smartcodemm.com/api/customer/songs/$id/react'),
-      headers: {'Accept': 'application/json; charset=UTF-8', 'Authorization': token!},
+      headers: {
+        'Accept': 'application/json; charset=UTF-8',
+        'Authorization': token!
+      },
       body: data,
     );
 
@@ -100,7 +118,10 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
 
     final response = await http.post(
       Uri.parse('https://doob.smartcodemm.com/api/customer/songs/$id/react'),
-      headers: {'Accept': 'application/json; charset=UTF-8', 'Authorization': token!},
+      headers: {
+        'Accept': 'application/json; charset=UTF-8',
+        'Authorization': token!
+      },
       body: data,
     );
 
@@ -122,8 +143,13 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                 child: Container(
                   height: 50.0,
                   width: 50.0,
-                  decoration: new BoxDecoration(color: Colors.blue, borderRadius: new BorderRadius.all(Radius.circular(50))),
-                  child: CircleAvatar(radius: 50, backgroundImage: CommentBox.commentImageParser(imageURLorPath: data[i]['pic'])),
+                  decoration: new BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: new BorderRadius.all(Radius.circular(50))),
+                  child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: CommentBox.commentImageParser(
+                          imageURLorPath: data[i]['pic'])),
                 ),
               ),
               title: Text(
@@ -204,8 +230,10 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                             itemCount: songList!.data!.length,
                             itemBuilder: (context, index) {
                               _audioPlayer
-                                  .setAudioSource(ConcatenatingAudioSource(children: [
-                                AudioSource.uri(Uri.parse('${songList.data![index].audio}')),
+                                  .setAudioSource(
+                                      ConcatenatingAudioSource(children: [
+                                AudioSource.uri(Uri.parse(
+                                    '${songList.data![index].audio}')),
                               ]))
                                   .catchError((error) {
                                 // catch load errors: 404, invalid url ...
@@ -227,7 +255,9 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                       // height:
                                       //     MediaQuery.of(context).size.height *
                                       //         0.21,
-                                      errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                      errorBuilder: (BuildContext context,
+                                          Object exception,
+                                          StackTrace? stackTrace) {
                                         // This function is called when the image fails to load
                                         // Return a new widget to display a dummy image from the internet
                                         return Container(
@@ -246,8 +276,10 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                     ),
                                   ),
                                   Container(
-                                    child: Consumer(builder: (context, pauseRef, child) {
-                                      final pauseChange = pauseRef.watch(pauseChangeProvider);
+                                    child: Consumer(
+                                        builder: (context, pauseRef, child) {
+                                      final pauseChange =
+                                          pauseRef.watch(pauseChangeProvider);
                                       print("Pause  ###### : $pauseChange");
                                       return Center(
                                         child: Stack(
@@ -270,22 +302,30 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                   Align(
                                     alignment: Alignment.centerRight,
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
                                       child: Container(
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(vertical: 4),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 4),
                                               child: Stack(
-                                                alignment: Alignment.bottomCenter,
+                                                alignment:
+                                                    Alignment.bottomCenter,
                                                 children: [
                                                   Padding(
-                                                    padding: const EdgeInsets.only(bottom: 10),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            bottom: 10),
                                                     child: ClipRRect(
-                                                        borderRadius: BorderRadius.circular(100),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(100),
                                                         child: Image.asset(
-                                                          'lib/Image/jojipf.jpg',
+                                                          'assets/Image/jojipf.jpg',
                                                           height: 40,
                                                         )),
                                                   ),
@@ -293,14 +333,17 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                     height: 20,
                                                     width: 20,
                                                     decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(100),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100),
                                                       color: Colors.white,
                                                     ),
                                                     child: Center(
                                                       child: Icon(
                                                         Icons.add,
                                                         size: 20,
-                                                        color: Color(0xffff9800),
+                                                        color:
+                                                            Color(0xffff9800),
                                                       ),
                                                     ),
                                                   ),
@@ -308,7 +351,13 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                               ),
                                             ),
                                             Container(
-                                              decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                                              decoration: BoxDecoration(
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                        color: Colors.black
+                                                            .withOpacity(0.2),
+                                                        blurRadius: 20)
+                                                  ]),
                                               child: Column(
                                                 children: [
                                                   InkWell(
@@ -345,16 +394,21 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                       setState(() {
                                                         isReact = !isReact;
                                                       });
-                                                      likeCount(songList.data![index].id.toString());
+                                                      likeCount(songList
+                                                          .data![index].id
+                                                          .toString());
                                                       // Get.to(() =>
                                                       //     PlaylistMoreDetails());
                                                     },
                                                     child: isReact
                                                         ? Container(
-                                                            padding: EdgeInsets.only(top: 20),
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 20),
                                                             child: Icon(
                                                               Icons.favorite,
-                                                              color: Colors.white,
+                                                              color:
+                                                                  Colors.white,
                                                               size: 40,
                                                             ),
                                                           )
@@ -366,25 +420,30 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                         //                 top: 16),
                                                         //     child: Image
                                                         //         .asset(
-                                                        //       'asset/Icons/heart.png',
+                                                        //       'assets/Icons/heart.png',
                                                         //       height: 30,
                                                         //     ),
                                                         //   )
                                                         : Container(
-                                                            padding: EdgeInsets.only(top: 20),
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 20),
                                                             child: Icon(
                                                               Icons.favorite,
-                                                              color: Color(0xffff9800),
+                                                              color: Color(
+                                                                  0xffff9800),
                                                               size: 40,
                                                             ),
                                                           ),
 
-                                                    // SvgPicture.asset('lib/Icons/love.svg',
+                                                    // SvgPicture.asset('assets/Icons/love.svg',
                                                     //     height: 25),
                                                   ),
                                                   Text(
                                                     //   '5.3M',
-                                                    songList.data![index].like_count!.toString(),
+                                                    songList.data![index]
+                                                        .like_count!
+                                                        .toString(),
 
                                                     // songList.data![index]
                                                     //     .like_count!
@@ -392,7 +451,10 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                     //     .toString() ??
                                                     // '0'
 
-                                                    style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontFamily: "Century",
+                                                        fontSize: 14),
                                                   )
                                                 ],
                                               ),
@@ -404,22 +466,46 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                   context: context,
                                                   builder: ((context) {
                                                     return SizedBox(
-                                                      width: MediaQuery.of(context).size.width,
-                                                      height: MediaQuery.of(context).size.height,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .height,
                                                       child: Padding(
-                                                        padding: const EdgeInsets.all(8.0),
-                                                        child: SingleChildScrollView(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child:
+                                                            SingleChildScrollView(
                                                           child: Column(
                                                             children: [
                                                               Row(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
                                                                 children: [
                                                                   Container(
-                                                                    margin: EdgeInsets.only(left: 120),
+                                                                    margin: EdgeInsets
+                                                                        .only(
+                                                                            left:
+                                                                                120),
                                                                     child: Text(
                                                                       '39 comments',
-                                                                      style: TextStyle(color: Colors.black, fontFamily: "Century", fontSize: 16, fontWeight: FontWeight.bold),
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontFamily:
+                                                                              "Century",
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
                                                                     ),
                                                                   ),
                                                                   InkWell(
@@ -428,8 +514,11 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                                       // _remove = !_remove;
                                                                     },
                                                                     child: Icon(
-                                                                      Icons.cancel,
-                                                                      color: Colors.grey[500],
+                                                                      Icons
+                                                                          .cancel,
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          500],
                                                                     ),
                                                                   ),
                                                                 ],
@@ -437,36 +526,66 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                               Container(
                                                                 height: 400,
                                                                 child: Expanded(
-                                                                  child: Container(
-                                                                    child: CommentBox(
-                                                                      userImage: CommentBox.commentImageParser(imageURLorPath: "assets/img/userpic.jpg"),
-                                                                      child: commentChild(filedata),
-                                                                      labelText: 'Write a comment...',
-                                                                      errorText: 'Comment cannot be blank',
-                                                                      withBorder: false,
-                                                                      sendButtonMethod: () {
-                                                                        if (formKey.currentState!.validate()) {
-                                                                          print(commentController.text);
-                                                                          setState(() {
-                                                                            var value = {
+                                                                  child:
+                                                                      Container(
+                                                                    child:
+                                                                        CommentBox(
+                                                                      userImage:
+                                                                          CommentBox.commentImageParser(
+                                                                              imageURLorPath: "assets/img/userpic.jpg"),
+                                                                      child: commentChild(
+                                                                          filedata),
+                                                                      labelText:
+                                                                          'Write a comment...',
+                                                                      errorText:
+                                                                          'Comment cannot be blank',
+                                                                      withBorder:
+                                                                          false,
+                                                                      sendButtonMethod:
+                                                                          () {
+                                                                        if (formKey
+                                                                            .currentState!
+                                                                            .validate()) {
+                                                                          print(
+                                                                              commentController.text);
+                                                                          setState(
+                                                                              () {
+                                                                            var value =
+                                                                                {
                                                                               'name': 'New User',
                                                                               'pic': 'https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400',
                                                                               'message': commentController.text,
                                                                               'date': '2021-01-01'
                                                                             };
-                                                                            filedata.insert(0, value);
+                                                                            filedata.insert(0,
+                                                                                value);
                                                                           });
-                                                                          commentController.clear();
-                                                                          FocusScope.of(context).unfocus();
+                                                                          commentController
+                                                                              .clear();
+                                                                          FocusScope.of(context)
+                                                                              .unfocus();
                                                                         } else {
-                                                                          print("Not validated");
+                                                                          print(
+                                                                              "Not validated");
                                                                         }
                                                                       },
-                                                                      formKey: formKey,
-                                                                      commentController: commentController,
-                                                                      backgroundColor: const Color(0xffff9800),
-                                                                      textColor: Colors.white,
-                                                                      sendWidget: Icon(Icons.send_sharp, size: 30, color: Colors.white),
+                                                                      formKey:
+                                                                          formKey,
+                                                                      commentController:
+                                                                          commentController,
+                                                                      backgroundColor:
+                                                                          const Color(
+                                                                              0xffff9800),
+                                                                      textColor:
+                                                                          Colors
+                                                                              .white,
+                                                                      sendWidget: Icon(
+                                                                          Icons
+                                                                              .send_sharp,
+                                                                          size:
+                                                                              30,
+                                                                          color:
+                                                                              Colors.white),
                                                                     ),
                                                                   ),
                                                                 ),
@@ -601,7 +720,13 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                 //     }))
                                               },
                                               child: Container(
-                                                decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                                                decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black
+                                                              .withOpacity(0.2),
+                                                          blurRadius: 20)
+                                                    ]),
                                                 child: Column(
                                                   children: [
                                                     // Container(
@@ -613,16 +738,19 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                     //   ),
                                                     // ),
                                                     Container(
-                                                      padding: EdgeInsets.only(top: 20),
+                                                      padding: EdgeInsets.only(
+                                                          top: 20),
                                                       child: Image.asset(
-                                                        'asset/Icons/chat.png',
+                                                        'assets/Icons/chat.png',
                                                         height: 30,
                                                       ),
                                                     ),
-                                                    // SvgPicture.asset('lib/Icons/comment.svg', height: 25),
+                                                    // SvgPicture.asset('assets/Icons/comment.svg', height: 25),
                                                     Text(
                                                       // '5.3M',
-                                                      songList.data![index].comment_count!.toString(),
+                                                      songList.data![index]
+                                                          .comment_count!
+                                                          .toString(),
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                         fontFamily: "Century",
@@ -634,12 +762,19 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                               ),
                                             ),
                                             Container(
-                                              decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                                              decoration: BoxDecoration(
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                        color: Colors.black
+                                                            .withOpacity(0.2),
+                                                        blurRadius: 20)
+                                                  ]),
                                               child: Column(
                                                 children: [
                                                   InkWell(
                                                     onTap: () {
-                                                      Share.share('com.example.doob');
+                                                      Share.share(
+                                                          'com.example.doob');
                                                     },
                                                     child:
                                                         // Container(
@@ -654,24 +789,34 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                         // ),
                                                         // )
                                                         Container(
-                                                      padding: EdgeInsets.only(top: 20),
+                                                      padding: EdgeInsets.only(
+                                                          top: 20),
                                                       child: Image.asset(
-                                                        'asset/Icons/paper-plane.png',
+                                                        'assets/Icons/paper-plane.png',
                                                         //color: Colors.white,
                                                         height: 30,
                                                       ),
                                                     ),
                                                   ),
-                                                  //  SvgPicture.asset('lib/Icons/share.svg', height: 25),
+                                                  //  SvgPicture.asset('assets/Icons/share.svg', height: 25),
                                                   Text(
                                                     '0',
-                                                    style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontFamily: "Century",
+                                                        fontSize: 14),
                                                   )
                                                 ],
                                               ),
                                             ),
                                             Container(
-                                                decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                                                decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black
+                                                              .withOpacity(0.2),
+                                                          blurRadius: 20)
+                                                    ]),
                                                 child:
                                                     // Container(
                                                     //     padding:
@@ -681,42 +826,55 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                     //       color: Colors.white,
                                                     //  )),
                                                     Container(
-                                                  padding: EdgeInsets.only(top: 20),
+                                                  padding:
+                                                      EdgeInsets.only(top: 20),
                                                   child: Image.asset(
-                                                    'asset/Icons/downloading.png',
+                                                    'assets/Icons/downloading.png',
                                                     height: 30,
                                                   ),
                                                 )
-                                                //  SvgPicture.asset('lib/Icons/download.svg',
+                                                //  SvgPicture.asset('assets/Icons/download.svg',
                                                 //     height: 25),
                                                 ),
                                             Padding(
-                                              padding: const EdgeInsets.only(top: 25),
+                                              padding: const EdgeInsets.only(
+                                                  top: 25),
                                               child: Container(
-                                                decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                                                decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black
+                                                              .withOpacity(0.2),
+                                                          blurRadius: 20)
+                                                    ]),
                                                 child: InkWell(
                                                     onTap: () {
                                                       setState(() {});
                                                       isrepeat = !isrepeat;
                                                     },
                                                     child: isrepeat
-                                                        ? Image.asset('asset/Icons/shuffle.png', height: 30)
+                                                        ? Image.asset(
+                                                            'assets/Icons/Shuffle.png',
+                                                            height: 30)
+
                                                         // Icon(
                                                         //     Icons.repeat,
                                                         //     color: Colors.white,
                                                         //     size: 30,
                                                         //   )
-                                                        : Image.asset('asset/Icons/repeat.png', height: 30)
+                                                        : Image.asset(
+                                                            'assets/Icons/repeat.png',
+                                                            height: 30)
                                                     // Icon(
                                                     //     Icons.shuffle,
                                                     //     color: Colors.white,
                                                     //     size: 30,
                                                     //   )
                                                     // Image.asset(
-                                                    //     'lib/Icons/repeat.svg',
+                                                    //     'assets/Icons/repeat.svg',
                                                     //     height: 25)
                                                     // : Image.asset(
-                                                    //     'lib/Icons/Shuffle.svg'),
+                                                    //     'assets/Icons/Shuffle.svg'),
                                                     ),
                                               ),
                                             ),
@@ -733,7 +891,7 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                             //               blurRadius: 20)
                                             //         ]),
                                             //     child: SvgPicture.asset(
-                                            //         'lib/Icons/Shuffle.svg',
+                                            //         'assets/Icons/Shuffle.svg',
                                             //         height: 25),
                                             //   ),
                                             //),
@@ -746,10 +904,10 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                             //               blurRadius: 20)
                                             //         ]),
                                             //     child: Image.asset(
-                                            //       'lib/Icons/8.png',
+                                            //       'assets/Icons/8.png',
                                             //       height: 55,
                                             //     )
-                                            //     // SvgPicture.asset('lib/Icons/option.svg', height: 25),
+                                            //     // SvgPicture.asset('assets/Icons/option.svg', height: 25),
                                             //     ),
                                           ],
                                         ),
@@ -757,11 +915,14 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                     ),
                                   ),
                                   Container(
-                                    child: Consumer(builder: (context, waveIconRef, child) {
-                                      final tapChange = waveIconRef.watch(waveIconTapChangeProvider);
+                                    child: Consumer(
+                                        builder: (context, waveIconRef, child) {
+                                      final tapChange = waveIconRef
+                                          .watch(waveIconTapChangeProvider);
                                       print("yya yya yya  ###### : $tapChange");
                                       return Container(
-                                        margin: EdgeInsets.only(top: size.height * 0.68),
+                                        margin: EdgeInsets.only(
+                                            top: size.height * 0.68),
                                         child: Center(
                                           child: Stack(
                                             children: [
@@ -771,14 +932,16 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                                       left: 40,
                                                       child: Center(
                                                         child: Container(
-                                                          width: size.width * 0.68,
+                                                          width:
+                                                              size.width * 0.68,
                                                           child: Lottie.asset(
                                                             'asset/lottie/Animation - 1713755104463.json',
                                                           ),
                                                         ),
                                                       ))
                                                   : SizedBox.shrink(),
-                                              PlayerButtons(_audioPlayer,songList.data![index].lyric!),
+                                              PlayerButtons(_audioPlayer,
+                                                  songList.data![index].lyric!),
                                             ],
                                           ),
                                         ),
@@ -952,10 +1115,13 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                       height: 50,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [
-                        Colors.black.withOpacity(0.5),
-                        Colors.transparent,
-                      ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                          gradient: LinearGradient(
+                              colors: [
+                            Colors.black.withOpacity(0.5),
+                            Colors.transparent,
+                          ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),
@@ -977,7 +1143,10 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                     GestureDetector(
                                       onTap: () {
                                         if (currentindex != 0) {
-                                          controller.animateToPage(0, duration: Duration(milliseconds: 500), curve: Curves.linear);
+                                          controller.animateToPage(0,
+                                              duration:
+                                                  Duration(milliseconds: 500),
+                                              curve: Curves.linear);
                                           setState(() {
                                             currentindex = 0;
                                           });
@@ -986,7 +1155,12 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                       child: Text(
                                         'Music',
                                         style: TextStyle(
-                                            fontFamily: 'Century', color: currentindex == 0 ? Color(0xffff9800) : Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                                            fontFamily: 'Century',
+                                            color: currentindex == 0
+                                                ? Color(0xffff9800)
+                                                : Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
                                       ),
                                     ),
                                     SizedBox(
@@ -995,7 +1169,10 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                     GestureDetector(
                                       onTap: () {
                                         if (currentindex != 1) {
-                                          controller.animateToPage(1, duration: Duration(milliseconds: 500), curve: Curves.linear);
+                                          controller.animateToPage(1,
+                                              duration:
+                                                  Duration(milliseconds: 500),
+                                              curve: Curves.linear);
 
                                           setState(() {
                                             currentindex = 1;
@@ -1005,7 +1182,12 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                       child: Text(
                                         'Video',
                                         style: TextStyle(
-                                            fontFamily: 'Century', color: currentindex == 1 ? Color(0xffff9800) : Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                                            fontFamily: 'Century',
+                                            color: currentindex == 1
+                                                ? Color(0xffff9800)
+                                                : Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
                                       ),
                                     ),
                                     SizedBox(
@@ -1014,7 +1196,10 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                     GestureDetector(
                                       onTap: () {
                                         if (currentindex != 2) {
-                                          controller.animateToPage(2, duration: Duration(milliseconds: 500), curve: Curves.linear);
+                                          controller.animateToPage(2,
+                                              duration:
+                                                  Duration(milliseconds: 500),
+                                              curve: Curves.linear);
                                           setState(() {
                                             currentindex = 2;
                                           });
@@ -1023,7 +1208,12 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                       child: Text(
                                         'For You',
                                         style: TextStyle(
-                                            fontFamily: 'Century', color: currentindex == 2 ? Color(0xffff9800) : Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                                            fontFamily: 'Century',
+                                            color: currentindex == 2
+                                                ? Color(0xffff9800)
+                                                : Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
                                       ),
                                     ),
                                     SizedBox(
@@ -1032,7 +1222,10 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                     GestureDetector(
                                       onTap: () {
                                         if (currentindex != 3) {
-                                          controller.animateToPage(3, duration: Duration(milliseconds: 500), curve: Curves.linear);
+                                          controller.animateToPage(3,
+                                              duration:
+                                                  Duration(milliseconds: 500),
+                                              curve: Curves.linear);
 
                                           setState(() {
                                             currentindex = 3;
@@ -1042,7 +1235,12 @@ class _MusicPlayerState extends ConsumerState<MusicPlayer> {
                                       child: Text(
                                         'Follow',
                                         style: TextStyle(
-                                            fontFamily: 'Century', color: currentindex == 3 ? Color(0xffff9800) : Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                                            fontFamily: 'Century',
+                                            color: currentindex == 3
+                                                ? Color(0xffff9800)
+                                                : Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
                                       ),
                                     ),
                                   ],
@@ -1087,7 +1285,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
         Container(
           height: double.infinity,
           child: Image.asset(
-            'lib/Image/Eric.png',
+            'assets/Image/Eric.png',
             fit: BoxFit.cover,
           ),
         ),
@@ -1109,7 +1307,7 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.asset(
-                                'lib/Image/jojipf.jpg',
+                                'assets/Image/jojipf.jpg',
                                 height: 40,
                               )),
                         ),
@@ -1132,7 +1330,10 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.2), blurRadius: 20)
+                    ]),
                     child: Column(
                       children: [
                         InkWell(
@@ -1141,28 +1342,34 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                               //Navigator.pushNamed(context, '/favoriteDetails');
                             },
                             child: Image.asset(
-                              'lib/Icons/4.png',
+                              'assets/Icons/4.png',
                               height: 50,
                             )
-                            // SvgPicture.asset('lib/Icons/love.svg',
+                            // SvgPicture.asset('assets/Icons/love.svg',
                             //     height: 25),
                             ),
                         Text(
                           '5.3M',
-                          style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Century",
+                              fontSize: 14),
                         )
                       ],
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.2), blurRadius: 20)
+                    ]),
                     child: Column(
                       children: [
                         Image.asset(
-                          'lib/Icons/6.png',
+                          'assets/Icons/6.png',
                           height: 50,
                         ),
-                        // SvgPicture.asset('lib/Icons/comment.svg', height: 25),
+                        // SvgPicture.asset('assets/Icons/comment.svg', height: 25),
                         Text(
                           '5.3M',
                           style: TextStyle(
@@ -1175,7 +1382,10 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.2), blurRadius: 20)
+                    ]),
                     child: Column(
                       children: [
                         InkWell(
@@ -1183,48 +1393,69 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                             Share.share('com.example.doob');
                           },
                           child: Image.asset(
-                            'lib/Icons/5.png',
+                            'assets/Icons/5.png',
                             height: 50,
                           ),
                         ),
-                        //  SvgPicture.asset('lib/Icons/share.svg', height: 25),
+                        //  SvgPicture.asset('assets/Icons/share.svg', height: 25),
                         Text(
                           '5.3M',
-                          style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Century",
+                              fontSize: 14),
                         )
                       ],
                     ),
                   ),
                   Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Image.asset(
-                        'lib/Icons/7.png',
+                        'assets/Icons/7.png',
                         height: 50,
                       )
-                      //  SvgPicture.asset('lib/Icons/download.svg',
+                      //  SvgPicture.asset('assets/Icons/download.svg',
                       //     height: 25),
                       ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
-                      child: SvgPicture.asset('lib/Icons/repeat.svg', height: 25),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
+                      child: SvgPicture.asset('assets/Icons/repeat.svg',
+                          height: 25),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
-                      child: SvgPicture.asset('lib/Icons/Shuffle.svg', height: 25),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
+                      child: SvgPicture.asset('assets/Icons/Shuffle.svg',
+                          height: 25),
                     ),
                   ),
                   Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Image.asset(
-                        'lib/Icons/8.png',
+                        'assets/Icons/8.png',
                         height: 50,
                       )
-                      // SvgPicture.asset('lib/Icons/option.svg', height: 25),
+                      // SvgPicture.asset('assets/Icons/option.svg', height: 25),
                       ),
                 ],
               ),
@@ -1292,10 +1523,13 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     showDialog(
                       context: context,
                       builder: (context) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 100),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 100),
                         child: Container(
                           height: 100,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.transparent),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.transparent),
                           child: Column(
                             children: [
                               Row(
@@ -1341,7 +1575,11 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                     child: Center(
                       child: Text(
                         'Lyrics',
-                        style: TextStyle(fontFamily: 'Century', fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+                        style: TextStyle(
+                            fontFamily: 'Century',
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
                   ),
@@ -1391,7 +1629,8 @@ class CustomSliderThumbShape extends RoundSliderThumbShape {
     required double textScaleFactor,
     required Size sizeWithOverflow,
   }) {
-    super.paint(context, center.translate(-(value - 0.5) / 0.5 * enabledThumbRadius, 0.0),
+    super.paint(context,
+        center.translate(-(value - 0.5) / 0.5 * enabledThumbRadius, 0.0),
         activationAnimation: activationAnimation,
         enableAnimation: enableAnimation,
         isDiscrete: isDiscrete,
@@ -1424,7 +1663,8 @@ class CustomSliderOverlayShape extends RoundSliderOverlayShape {
     required double textScaleFactor,
     required Size sizeWithOverflow,
   }) {
-    super.paint(context, center.translate(-(value - 0.5) / 0.5 * enabledThumbRadius, 0.0),
+    super.paint(context,
+        center.translate(-(value - 0.5) / 0.5 * enabledThumbRadius, 0.0),
         activationAnimation: activationAnimation,
         enableAnimation: enableAnimation,
         isDiscrete: isDiscrete,
@@ -1454,7 +1694,8 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse('https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'))
+    _controller = VideoPlayerController.networkUrl(Uri.parse(
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'))
       ..initialize().then((_) {
         if (mounted) {
           setState(() {});
@@ -1470,7 +1711,9 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
         Container(
             // height: double.infinity,
             child: Center(
-          child: AspectRatio(aspectRatio: _controller.value.aspectRatio, child: VideoPlayer(_controller)),
+          child: AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: VideoPlayer(_controller)),
         )),
         GestureDetector(
           onTap: () async {
@@ -1521,7 +1764,7 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.asset(
-                                'lib/Image/jojipf.jpg',
+                                'assets/Image/jojipf.jpg',
                                 height: 40,
                               )),
                         ),
@@ -1546,13 +1789,20 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/love.png', height: 25),
+                          Image.asset('assets/Icons/love.png', height: 25),
                           Text(
                             '5.3M',
-                            style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Century",
+                                fontSize: 14),
                           )
                         ],
                       ),
@@ -1561,10 +1811,14 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/comment.png', height: 25),
+                          Image.asset('assets/Icons/comment.png', height: 25),
                           Text(
                             '5.3M',
                             style: TextStyle(
@@ -1580,13 +1834,20 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/share.png', height: 25),
+                          Image.asset('assets/Icons/share.png', height: 25),
                           Text(
                             '5.3M',
-                            style: TextStyle(color: Colors.white, fontFamily: "Century", fontSize: 14),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Century",
+                                fontSize: 14),
                           )
                         ],
                       ),
@@ -1595,10 +1856,14 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/download.png', height: 25),
+                          Image.asset('assets/Icons/download.png', height: 25),
                         ],
                       ),
                     ),
@@ -1606,10 +1871,14 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Container(
-                      decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20)]),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 20)
+                      ]),
                       child: Column(
                         children: [
-                          Image.asset('lib/Icons/option.png', height: 25),
+                          Image.asset('assets/Icons/option.png', height: 25),
                         ],
                       ),
                     ),
@@ -1632,7 +1901,10 @@ class _VideoFollowCardState extends State<VideoFollowCard> {
                   height: 8,
                   child: VideoProgressIndicator(_controller,
                       allowScrubbing: true,
-                      colors: VideoProgressColors(backgroundColor: Colors.white.withOpacity(0.1), bufferedColor: Colors.white.withOpacity(0.3), playedColor: Color(0xffffff9800))),
+                      colors: VideoProgressColors(
+                          backgroundColor: Colors.white.withOpacity(0.1),
+                          bufferedColor: Colors.white.withOpacity(0.3),
+                          playedColor: Color(0xffffff9800))),
                 ),
               ],
             ),

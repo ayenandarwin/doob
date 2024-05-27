@@ -1,5 +1,9 @@
+import 'package:doob/Controller/registeration.dart';
 import 'package:doob/Pages/SignUp.dart';
 import 'package:doob/Pages/loginCopy.dart';
+import 'package:doob/appStart/navScreen.dart';
+import 'package:doob/utils/global.dart';
+import 'package:doob/utils/sharedPreference.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +16,10 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  RegisterationController registerationController = RegisterationController();
+  bool isloading = false;
+  
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,7 +52,7 @@ class _SignInState extends State<SignIn> {
                     child: Center(
                       child: Container(
                         child:
-                            Image.asset("lib/Image/dooblogo.png", height: 150),
+                            Image.asset("assets/Image/dooblogo.png", height: 150),
                       ),
                     ),
                   ),
@@ -64,60 +72,117 @@ class _SignInState extends State<SignIn> {
                           ]),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Container(
-                      height: 50,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: Colors.white12,
-                        border: Border.all(color: Colors.white12),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('lib/Image/google.png'),
-                          SizedBox(
-                            width: 20,
+
+                  isloading
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.white12,
+                                border: Border.all(color: Colors.white12),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child:
+                                  Center(child: CircularProgressIndicator())),
+                        )
+                      : GestureDetector(
+                          onTap: () async {
+                            setState(() {
+                              isloading = true;
+                            });
+                            var token = registerationController
+                                .authenticateWithGoogle(context: context);
+
+                            await SharedPref.setData(
+                                key: SharedPref.token, value: "Bearer $token");
+                            Global.isLogIn = true;
+                            Global.loginStatus();
+
+                            print('Device token Success');
+
+                            setState(() {
+                              isloading = false;
+                            });
+
+                            Get.off(() => NaviScreen());
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.white12,
+                                border: Border.all(color: Colors.white12),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/Image/google.png'),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text("Continue with Google",
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.mulish(
+                                          color: Color(0xffffffff),
+                                          // fontWeight: FontWeight.bold,
+                                          fontSize: 14)),
+                                ],
+                              ),
+                            ),
                           ),
-                          Text("Continue with Google",
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.mulish(
-                                  color: Color(0xffffffff),
-                                  // fontWeight: FontWeight.bold,
-                                  fontSize: 14)),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Container(
-                      height: 50,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white12),
-                        color: Colors.white12,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'lib/Image/facebook.png',
-                            width: 35,
-                            //  height: 50,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text("Continue with Facebook",
-                              style: GoogleFonts.mulish(
-                                  color: Color(0xffffffff),
-                                  //  fontWeight: FontWeight.bold,
-                                  fontSize: 14)),
-                        ],
+                        ),
+                  InkWell(
+                    onTap: () async{
+                      var token = registerationController
+                                .authenticateWithFacebook(context: context);
+
+                            await SharedPref.setData(
+                                key: SharedPref.token, value: "Bearer $token");
+                            Global.isLogIn = true;
+                            Global.loginStatus();
+                           // loginData();
+
+                            print('Device token Success');
+
+                            setState(() {
+                              isloading = false;
+                            });
+
+                            Get.off(() => NaviScreen());
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white12),
+                          color: Colors.white12,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/Image/facebook.png',
+                              width: 35,
+                              //  height: 50,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("Continue with Facebook",
+                                style: GoogleFonts.mulish(
+                                    color: Color(0xffffffff),
+                                    //  fontWeight: FontWeight.bold,
+                                    fontSize: 14)),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -136,7 +201,7 @@ class _SignInState extends State<SignIn> {
                         children: [
                           ClipRRect(
                               borderRadius: BorderRadius.circular(20),
-                              child: Image.asset('lib/Image/apple.png')),
+                              child: Image.asset('assets/Image/apple.png')),
                           SizedBox(
                             width: 20,
                           ),
@@ -184,7 +249,7 @@ class _SignInState extends State<SignIn> {
                   // Padding(
                   //   padding:
                   //       const EdgeInsets.only(left: 10, right: 10, top: 30),
-                  //   child: Image.asset('lib/Image/or.png'),
+                  //   child: Image.asset('assets/Image/or.png'),
                   // ),
                   Row(
                     children: [

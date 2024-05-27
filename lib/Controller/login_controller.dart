@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'dart:js';
+//import 'dart:js';
 
+import 'package:doob/services/authorizedService.dart';
 import 'package:doob/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class LoginController extends GetxController {
 
       Map body = {
         'name': nameController.text,
-       // 'phone': phoneController.text.trim(),
+        // 'phone': phoneController.text.trim(),
         'password': passwordController.text,
       };
 

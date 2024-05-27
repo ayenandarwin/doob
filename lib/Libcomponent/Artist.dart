@@ -111,11 +111,11 @@ class _ArtistState extends State<Artists> {
                                                 // 'https://media.istockphoto.com/photos/music-picture-id535427404?k=6&m=535427404&s=612x612&w=0&h=en1c7qslpGsVRkrTUHPvBNmA61gPUXl_v8ABMgQoZPY=',
                                               );
                                             },
-                                            // 'lib/Image/joji.png',
+                                            // 'assets/Image/joji.png',
                                             fit: BoxFit.cover,
                                           ),
                                           // Image.asset(
-                                          //   'lib/Image/jojipf.jpg',
+                                          //   'assets/Image/jojipf.jpg',
                                           //   fit: BoxFit.cover,
                                           // ),
                                         ),

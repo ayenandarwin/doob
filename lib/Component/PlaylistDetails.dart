@@ -89,7 +89,7 @@ class _PlaylistDetailsState extends State<PlaylistDetails> {
                       //   child: ClipRRect(
                       //     borderRadius: BorderRadius.circular(10),
                       //     child: Image.asset(
-                      //       'lib/Image/middle.jpg',
+                      //       'assets/Image/middle.jpg',
                       //       fit: BoxFit.cover,
                       //       height: 210,
                       //       width: 210,
@@ -125,11 +125,11 @@ class _PlaylistDetailsState extends State<PlaylistDetails> {
                                     );
                                   },
 
-                                  // 'lib/Image/joji.png',
+                                  // 'assets/Image/joji.png',
                                   fit: BoxFit.cover,
                                 ),
                                 // Image.asset(
-                                //   'lib/Image/middle.jpg',
+                                //   'assets/Image/middle.jpg',
                                 //   fit: BoxFit.cover,
                                 //   height: 210,
                                 //   width: 210,
@@ -235,7 +235,7 @@ class _PlaylistDetailsState extends State<PlaylistDetails> {
                                                         height: 50,
                                                       );
                                                     },
-                                                    // 'lib/Image/joji.png',
+                                                    // 'assets/Image/joji.png',
                                                     fit: BoxFit.cover,
                                                   ),
                                                 ),
@@ -325,7 +325,7 @@ class _PlaylistDetailsState extends State<PlaylistDetails> {
                       //       child: ClipRRect(
                       //         borderRadius: BorderRadius.circular(10),
                       //         child: Image.asset(
-                      //           'lib/Image/middle.jpg',
+                      //           'assets/Image/middle.jpg',
                       //           fit: BoxFit.cover,
                       //           height: 210,
                       //           width: 210,
@@ -417,7 +417,7 @@ class Albums extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.asset(
-                    'lib/Image/joji.png',
+                    'assets/Image/joji.png',
                     fit: BoxFit.cover,
                   ),
                 ),

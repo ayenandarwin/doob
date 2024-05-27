@@ -29,11 +29,11 @@ class _WelcomeState extends State<Welcome> {
           children: [
             Container(
               child: Image.asset(
-                'lib/Image/Listen_to_music.png',
+                'assets/Image/Listen_to_music.png',
               ),
             ),
             // Image.asset(
-            //   'lib/Image/Listen_to_music.png',
+            //   'assets/Image/Listen_to_music.png',
             // ),
             Container(
               margin: EdgeInsets.only(top: size.height / 1.8),
@@ -82,7 +82,7 @@ class _WelcomeState extends State<Welcome> {
                   //   // margin: EdgeInsets.only(top: size.height / 1.8),
                   //   // height: size.height / 0.9,
                   //   child: Image.asset(
-                  //     'lib/Image/Balloon.png',
+                  //     'assets/Image/Balloon.png',
                   //   ),
                   // ),
                   Container(

@@ -76,6 +76,11 @@ dependencies:
   comment_box: ^0.0.18
   equatable: ^2.0.5
   card_swiper: ^3.0.1
+  lrc: ^1.0.2
+  scrollable_positioned_list: ^0.3.8
+  google_sign_in: ^6.2.1
+  firebase_auth: ^4.17.8
+  flutter_facebook_auth: ^7.0.0
  
 
 dev_dependencies:
@@ -90,7 +95,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "asset/Logos/dooblogo.png"
+  image_path: "assets/Logos/dooblogo.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -110,11 +115,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - asset/Icons/
-    - lib/Image/
-    - lib/Icons/
-    - asset/century-gothic/
-    - asset/lottie/Animation - 1713755104463.json
+    - assets/Icon/
+    - assets/Image/
+    - assets/Icons/
+    - assets/century-gothic/
+    - assets/lottie/Animation - 1713755104463.json
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -131,8 +136,8 @@ flutter:
   fonts:
     - family: Century
       fonts:
-        - asset: asset/century-gothic/Century Gothic.otf
-        - asset: asset/century-gothic/Century Gothic Bold.otf
+        - asset: assets/century-gothic/Century Gothic.otf
+        - asset: assets/century-gothic/Century Gothic Bold.otf
           style: italic
   
   #

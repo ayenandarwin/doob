@@ -19,7 +19,7 @@ class _PremiumState extends State<Premium> {
           child: Column(
             children: [
               SvgPicture.asset(
-                'lib/Icons/pay.svg',
+                'assets/Icons/pay.svg',
                 height: 40,
               ),
               Text(

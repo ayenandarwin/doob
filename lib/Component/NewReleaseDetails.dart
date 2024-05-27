@@ -118,11 +118,11 @@ class _NewReleaseDetailsState extends State<NewReleaseDetails> {
                       //               );
                       //             },
 
-                      //             // 'lib/Image/joji.png',
+                      //             // 'assets/Image/joji.png',
                       //             fit: BoxFit.cover,
                       //           ),
                       //           // Image.asset(
-                      //           //   'lib/Image/middle.jpg',
+                      //           //   'assets/Image/middle.jpg',
                       //           //   fit: BoxFit.cover,
                       //           //   height: 210,
                       //           //   width: 210,
@@ -227,7 +227,7 @@ class _NewReleaseDetailsState extends State<NewReleaseDetails> {
                       //                                   height: 50,
                       //                                 );
                       //                               },
-                      //                               // 'lib/Image/joji.png',
+                      //                               // 'assets/Image/joji.png',
                       //                               fit: BoxFit.cover,
                       //                             ),
                       //                           ),
@@ -317,7 +317,7 @@ class _NewReleaseDetailsState extends State<NewReleaseDetails> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.asset(
-                                'lib/Image/middle.jpg',
+                                'assets/Image/middle.jpg',
                                 fit: BoxFit.cover,
                                 height: 210,
                                 width: 210,
@@ -412,7 +412,7 @@ class Albums extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.asset(
-                    'lib/Image/joji.png',
+                    'assets/Image/joji.png',
                     fit: BoxFit.cover,
                   ),
                 ),

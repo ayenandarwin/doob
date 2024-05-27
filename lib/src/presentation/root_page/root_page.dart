@@ -47,11 +47,11 @@
 //           });
 //         },
 //         items: [
-//           BottomNavigationBarItem(icon: ImageIcon(AssetImage('lib/Icons/home.png')), label: "Home"),
-//           BottomNavigationBarItem(icon: ImageIcon(AssetImage('lib/Icons/search.png')), label: "Search"),
-//           BottomNavigationBarItem(icon: ImageIcon(AssetImage('lib/Image/list.png')), label: "Feed"),
-//           BottomNavigationBarItem(icon: ImageIcon(AssetImage('lib/Icons/folder.png')), label: "Library"),
-//           BottomNavigationBarItem(icon: ImageIcon(AssetImage('lib/Icons/feed1.png')), label: "Premium"),
+//           BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/Icons/home.png')), label: "Home"),
+//           BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/Icons/search.png')), label: "Search"),
+//           BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/Image/list.png')), label: "Feed"),
+//           BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/Icons/folder.png')), label: "Library"),
+//           BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/Icons/feed1.png')), label: "Premium"),
 //         ],
 //       ),
 //     );
