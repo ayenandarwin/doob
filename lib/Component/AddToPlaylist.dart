@@ -10,7 +10,8 @@ class AddToPlaylist extends StatefulWidget {
 class _AddToPlaylistState extends State<AddToPlaylist> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return 
+    SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
         body: SingleChildScrollView(

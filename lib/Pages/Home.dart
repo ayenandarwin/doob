@@ -6,7 +6,6 @@ import 'package:doob/Component/PlaylistDetails.dart';
 import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:doob/Component/Podcast&show.dart';
 import "package:doob/Controller/navController.dart";
-
 import 'package:doob/Libcomponent/AlbumsTabs.dart';
 import 'package:doob/Libcomponent/Folder.dart';
 import 'package:doob/Libcomponent/PodCast.dart';
@@ -16,7 +15,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
-
 import '../widgets/music_player/custom_slider_trackshape.dart';
 
 class Home extends StatefulWidget {

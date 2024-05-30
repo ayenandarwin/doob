@@ -48,27 +48,6 @@ class _SignUpState extends State<SignUp> {
   final IsLoginController isLoginController = Get.put(IsLoginController());
   bool isloading = false;
 
-  // register(String name, password, phone) async {
-  //   // final token = await SharedPref.getData(key: SharedPref.token);
-  //   final response = await http.post(Uri.parse(ApiUrl.registerUrl),
-  //       // headers: {
-  //       //   'Accept': 'application/json;charset=UTF-8',
-  //       //   // 'Authorization': token!
-  //       // },
-  //       body: {
-  //         'name': name,
-  //         'phone': phone,
-  //         'password': password,
-  //       });
-
-  //   if (response.statusCode == 200) {
-  //     print("API Result ${response.body}");
-  //     // print('******* $token');
-  //   } else {
-  //     print('error');
-  //   }
-  // }
-
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
   AndroidDeviceInfo? androidInfo;
@@ -105,8 +84,8 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.only(top: 20),
                     child: Center(
                       child: Container(
-                        child:
-                            Image.asset("assets/Image/dooblogo.png", height: 150),
+                        child: Image.asset("assets/Image/dooblogo.png",
+                            height: 150),
                       ),
                     ),
                   ),
@@ -357,74 +336,6 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
 
-                  // Padding(
-                  //   padding:
-                  //       const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  //   child: SizedBox(
-                  //     height: 60,
-                  //     child: Container(
-                  //       //    padding: EdgeInsets.only(bottom: 5),
-                  //       child: TextFormField(
-                  //         inputFormatters: [
-                  //           LengthLimitingTextInputFormatter(100)
-                  //         ],
-                  //         onChanged: (phone) {},
-                  //         controller: phoneController,
-                  //         textAlignVertical: TextAlignVertical.center,
-                  //         // textAlign: TextAlign.center,
-
-                  //         keyboardType: TextInputType.number,
-                  //         focusNode: phoneFocusNode,
-                  //         maxLength: null,
-                  //         // initialCountryCode: 'MM',
-                  //         // dropdownTextStyle:
-                  //         //     TextStyle(fontSize: 14, color: Colors.white),
-                  //         // dropdownIcon: Icon(
-                  //         //   Icons.arrow_drop_down,
-                  //         //   color: Colors.white,
-                  //         //   size: 20,
-                  //         // ),
-                  //         style: TextStyle(color: Colors.white),
-                  //         decoration: InputDecoration(
-                  //           labelText: 'Phone Number'.tr,
-                  //           counterText: '',
-                  //           labelStyle: TextStyle(
-                  //               color: Colors.white,
-                  //               fontSize: 14,
-
-                  //               // color: Colors.white.withOpacity(0.6),
-                  //               fontFamily: "Century"),
-                  //           prefixIcon: CountryCodePicker(
-                  //             initialSelection: 'MM',
-                  //             showCountryOnly: true,
-                  //             textStyle:
-                  //                 TextStyle(fontSize: 14, color: Colors.white),
-                  //           ),
-                  //           // prefixIcon: Icon(
-                  //           //   Icons.phone_iphone,
-                  //           //   size: 20,
-
-                  //           //   color: Colors.white,
-
-                  //           //   // color: Colors.white.withOpacity(0.4),
-                  //           // ),
-                  //           border: OutlineInputBorder(
-                  //             borderRadius: BorderRadius.circular(10),
-                  //             borderSide: BorderSide(
-                  //               color: Colors.white,
-                  //             ),
-                  //           ),
-                  //           enabledBorder: OutlineInputBorder(
-                  //             borderRadius: BorderRadius.circular(10),
-                  //             borderSide:
-                  //                 BorderSide(color: Colors.white, width: 0.3),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-
                   Consumer(
                     builder: (context, ref, child) {
                       return isloading
@@ -450,20 +361,6 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                             )
-                          // Card(
-                          //     color: CustomColors.mainColor,
-                          //     shape: RoundedRectangleBorder(
-                          //       borderRadius: BorderRadius.circular(5.0),
-                          //     ),
-                          //     elevation: 5,
-                          //     child: Container(
-                          //       height: 50,
-                          //       alignment: Alignment.center,
-                          //       child: CircularProgressIndicator(
-                          //         color: Colors.white,
-                          //       ),
-                          //     ),
-                          //   )
                           : InkWell(
                               onTap: () {
                                 // if (_formKey.currentState!.validate()) {
@@ -557,35 +454,6 @@ class _SignUpState extends State<SignUp> {
                     },
                   ),
 
-                  // InkWell(
-                  //   onTap: () {
-                  //     register(
-                  //         nameController.text.toString(),
-                  //         //  emailController.text.toString(),
-                  //         passwordController.text.toString(),
-                  //         phoneController.text.toString());
-                  //     Navigator.pushNamed(context, '/login');
-                  //   },
-                  // child:
-                  //  Padding(
-                  //   padding: const EdgeInsets.symmetric(vertical: 25),
-                  //   child: Container(
-                  //     height: 40,
-                  //     width: 150,
-                  //     decoration: BoxDecoration(
-                  //       color: Color(0xffff9800),
-                  //       borderRadius: BorderRadius.circular(50),
-                  //     ),
-                  //     child: Center(
-                  //       child: Text("Register",
-                  //           style: GoogleFonts.mulish(
-                  //               color: Color(0xffffffff),
-                  //               fontWeight: FontWeight.bold,
-                  //               fontSize: 16)),
-                  //     ),
-                  //   ),
-                  // ),
-                  //),
                   InkWell(
                     onTap: () {
                       Get.to(() => LoginScreen());

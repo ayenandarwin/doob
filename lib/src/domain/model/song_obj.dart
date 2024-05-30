@@ -28,6 +28,7 @@ class Data {
   int? id;
   String? name;
   String? coverPhoto;
+  String? thumbnail;
   String? audio;
   String? runTime;
   String? lyric;
@@ -45,6 +46,7 @@ class Data {
       {this.id,
       this.name,
       this.coverPhoto,
+      this.thumbnail,
       this.audio,
       this.runTime,
       this.lyric,
@@ -62,6 +64,7 @@ class Data {
     id = json['id'];
     name = json['name'];
     coverPhoto = json['cover_photo'];
+    thumbnail = json['thumbnail'];
     audio = json['audio'];
     runTime = json['run_time'];
     lyric = json['lyric'];
@@ -81,6 +84,7 @@ class Data {
     data['id'] = this.id;
     data['name'] = this.name;
     data['cover_photo'] = this.coverPhoto;
+    data['thumbnail'] = this.thumbnail;
     data['audio'] = this.audio;
     data['run_time'] = this.runTime;
     data['lyric'] = this.lyric;

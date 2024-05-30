@@ -205,10 +205,12 @@ class _PlayerButtonsState extends State<PlayerButtons>
                   //  final processState = snapshot.data?.processingState;
                   if (processingState == ProcessingState.loading ||
                       processingState == ProcessingState.buffering) {
-                    return Container(
+                    return 
+                    Container(
                       height: 40,
                       width: 200,
-                      decoration: BoxDecoration(
+                      decoration: 
+                      BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           color: Color(0xffFF9800)),
                       child: Container(

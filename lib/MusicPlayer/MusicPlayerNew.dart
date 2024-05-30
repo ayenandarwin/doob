@@ -4,21 +4,21 @@ import 'package:doob/Pages/Explore.dart';
 import 'package:doob/Pages/Library.dart';
 import 'package:doob/services/songCommentProvider.dart';
 import "package:doob/Controller/navController.dart";
-
 import 'package:doob/src/data/repositories/music_repo/comment_repository.dart';
 import 'package:doob/src/data/repositories/music_repo/like_count_repository.dart';
 import 'package:doob/src/presentation/widgets/comment/cmt_widget.dart';
 import 'package:doob/src/providers/music_provider/comment_provider.dart';
 import 'package:doob/src/providers/music_provider/like_count_provider.dart';
+import 'package:doob/widgets/music_player/follow/follow_audio_detail.dart';
+import 'package:doob/widgets/music_player/taps/music_tap_screen.dart';
+import 'package:doob/widgets/music_player/taps/new%20_video_play.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
-import 'package:lrc/lrc.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:video_player/video_player.dart';
 import '../Component/playerButton.dart';
 import '../src/data/repositories/music_repo/music_repository.dart';
 import '../src/domain/state/api_state.dart';
@@ -27,10 +27,6 @@ import '../src/providers/wave_icon_provider/wave_icon_provider.dart';
 import '../widgets/common/music_background_image.dart';
 import '../widgets/common/option.dart';
 import 'package:http/http.dart' as http;
-import '../widgets/music_player/page_view_text_btn.dart';
-import '../widgets/music_player/taps/follow_tap_screen.dart';
-import '../widgets/music_player/taps/for_you_tap_screen.dart';
-import '../widgets/music_player/taps/video_tap_screen.dart';
 
 final musicDetailProvider =
     StateNotifierProvider.autoDispose<MusicProvider, ApiState>((ref) {
@@ -75,8 +71,6 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
   int? favCount;
 
   late AudioPlayer _audioPlayer;
-    late VideoPlayer _videoController;
-
 
   final formKey = GlobalKey<FormState>();
   final TextEditingController commentController = TextEditingController();
@@ -169,8 +163,6 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    // String unparsedLrc = "https://doobbucket.s3.ap-southeast-1.amazonaws.com/songs/lyrics/664c52d57b173.lrc";
-    // Lrc parsedLrc = Lrc.parse(unparsedLrc);
 
     return SafeArea(
       child: Scaffold(
@@ -205,14 +197,17 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
             child: Consumer(
               builder: (context, ref, child) {
                 final songState = ref.watch(musicDetailProvider);
-                final NaviController naviController = Get.put(NaviController());
-                if (naviController != 2) {
-                  _audioPlayer.pause();
-                } else {
-                  _audioPlayer.play();
-                }
+                // final NaviController naviController = Get.put(NaviController());
+                // if (naviController != 2) {
+                //   _audioPlayer.pause();
+                // } else {
+                //   _audioPlayer.play();
+                // }
 
                 if (songState is SuccessState) {
+                  final songLists = songState.data!
+                      .where((item) => item.type.toString() == 'song')
+                      .toList();
                   print("Song list data : ${songState.data}");
                   return Stack(
                     children: [
@@ -227,14 +222,14 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                           PageView.builder(
                             scrollDirection: Axis.vertical,
                             controller: musicController,
-                            itemCount: songState.data.length,
+                            itemCount: songLists.length,
                             itemBuilder: (context, index) {
-                              favCount = songState.data[index].likeCount;
+                              favCount = songLists[index].likeCount;
                               _audioPlayer
                                   .setAudioSource(
                                       ConcatenatingAudioSource(children: [
-                                AudioSource.uri(Uri.parse(
-                                    '${songState.data[index].audio}')),
+                                AudioSource.uri(
+                                    Uri.parse('${songLists[index].audio}')),
                               ]))
                                   .catchError((error) {
                                 if (kDebugMode) {
@@ -245,46 +240,51 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                               return Stack(
                                 children: [
                                   MusicBackgroundImage(
-                                    imageUrl:
-                                        "${songState.data[index].coverPhoto}",
+                                    imageUrl: "${songLists[index].coverPhoto}",
                                   ),
                                   Positioned(
                                     left: 300,
-                                    // top: size.height * 0.34,
                                     top: size.height * 0.27,
-                                    //top: 250,
                                     child: Column(
                                       children: [
-                                        Stack(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(100),
-                                                child: Image.asset(
-                                                  'assets/Image/jojipf.jpg',
-                                                  height: 45,
+                                        InkWell(
+                                          onTap: () {
+                                            Get.to(() =>
+                                                FollowAudioDetailScreen(
+                                                    songState.data));
+                                          },
+                                          child: Stack(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
+                                                  child: Image.asset(
+                                                    'assets/Image/jojipf.jpg',
+                                                    height: 45,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Positioned(
-                                              top: 40,
-                                              left: 19,
-                                              child: CircleAvatar(
-                                                backgroundColor:
-                                                    Color(0xffff9800),
-                                                radius: 10,
-                                                child: Icon(
-                                                  Icons.add,
-                                                  fill: 0.5,
-                                                  size: 20,
-                                                  color: Colors.white,
+                                              Positioned(
+                                                top: 40,
+                                                left: 19,
+                                                child: CircleAvatar(
+                                                  backgroundColor:
+                                                      Color(0xffff9800),
+                                                  radius: 10,
+                                                  child: Icon(
+                                                    Icons.add,
+                                                    fill: 0.5,
+                                                    size: 20,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
-                                              ),
-                                            )
-                                          ],
+                                              )
+                                            ],
+                                          ),
                                         ),
                                         Padding(
                                           padding:
@@ -305,7 +305,7 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                                                 ? songState
                                                     .data[index].likeCount
                                                     .toString()
-                                                : "${songState.data[index].likeCount}",
+                                                : "${songLists[index].likeCount}",
                                             onTap: () {
                                               ref
                                                   .read(favProvider.notifier)
@@ -329,8 +329,7 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                                               .data[index].commentCount
                                               .toString(),
                                           onTap: () {
-                                            commentid =
-                                                songState.data[index].id;
+                                            commentid = songLists[index].id;
                                             // commentBottomSheet(context);
                                             showModalBottomSheet(
                                               isScrollControlled: true,
@@ -339,7 +338,8 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                                                 return Container(
                                                   height: 540,
                                                   child: CmtWidget(
-                                                    id: songState.data[index].id
+                                                    id: songLists[index]
+                                                        .id
                                                         .toString(),
                                                   ),
                                                 );
@@ -437,7 +437,7 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                                                       ))
                                                   : SizedBox.shrink(),
                                               PlayerButtons(_audioPlayer,
-                                                  songState.data[index].lyric),
+                                                  songLists[index].lyric),
                                             ],
                                           ),
                                         ),
@@ -448,9 +448,13 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                               );
                             },
                           ),
-                          VideoTapScreen(),
-                          ForYouTapScreen(),
-                          FollowTapScreen()
+                          //  VideoTapScreen(songLists),
+                          VideoPlayerScreen(songLists),
+                          MusicTapScreen(songLists),
+                          // NewVideoPlayTwo(songLists),
+                          VideoPlayerScreen(songLists),
+                          // ForYouTapScreen(),
+                          //FollowTapScreen()
                         ],
                       ),
                       Padding(
@@ -598,47 +602,5 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
     );
   }
 
-  Future<dynamic> commentBottomSheet(BuildContext context) {
-    return showModalBottomSheet(
-        context: context,
-        builder: ((context) {
-          return SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 120),
-                        child: Text(
-                          '39 comments',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Century",
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Icon(
-                          Icons.cancel,
-                          color: Colors.grey[500],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          );
-        }));
-  }
+  
 }

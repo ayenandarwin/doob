@@ -55,6 +55,14 @@ class _PageIndicatorState extends State<PageIndicator> {
                                           // This function is called when the image fails to load
                                           // Return a new widget to display a dummy image from the internet
                                           return Image.network(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.9,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.21,
                                             'https://i.ebayimg.com/images/g/QQAAAOSwk-JiEK3v/s-l1600.jpg',
                                           );
                                         },
@@ -178,72 +186,7 @@ class _PageIndicatorState extends State<PageIndicator> {
           ],
         );
       },
-      // child:
-      // Column(
-      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //   mainAxisSize: MainAxisSize.min,
-      //   children: [
-      //     AspectRatio(
-      //       aspectRatio: 16 / 9,
-      //       child: SizedBox(
-      //         width: double.infinity,
-      //         child: PageView(
-      //           controller: _pageController,
-      //           onPageChanged: (int page) {
-      //             setState(() {
-      //               _currentPage = page;
-      //             });
-      //           },
-      //           children: [
-      //             Padding(
-      //               padding: const EdgeInsets.symmetric(horizontal: 5),
-      //               child: ClipRRect(
-      //                 borderRadius: BorderRadius.circular(10),
-      //                 child: Image.asset(
-      //                   'assets/Image/epikpost.png',
-      //                   fit: BoxFit.cover,
-      //                 ),
-      //               ),
-      //             ),
-      //             Padding(
-      //               padding: const EdgeInsets.symmetric(horizontal: 5),
-      //               child: ClipRRect(
-      //                 borderRadius: BorderRadius.circular(10),
-      //                 child: Image.asset(
-      //                   'assets/Image/shukhin.jpg',
-      //                   fit: BoxFit.cover,
-      //                 ),
-      //               ),
-      //             ),
-      //             Padding(
-      //               padding: const EdgeInsets.symmetric(horizontal: 5),
-      //               child: ClipRRect(
-      //                 borderRadius: BorderRadius.circular(10),
-      //                 child: Image.asset(
-      //                   'assets/Image/epikpost.png',
-      //                   fit: BoxFit.cover,
-      //                 ),
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //       ),
-      //     ),
-      //     SizedBox(
-      //       height: 16.0,
-      //     ),
-      //     SmoothPageIndicator(
-      //       controller: _pageController,
-      //       count: 3,
-      //       axisDirection: Axis.horizontal,
-      //       effect: WormEffect(
-      //           activeDotColor: Color(0xffff9800),
-      //           dotColor: Colors.white.withOpacity(0.4),
-      //           dotHeight: 4,
-      //           dotWidth: 4),
-      //     ),
-      //   ],
-      // ),
+      
     );
   }
 
