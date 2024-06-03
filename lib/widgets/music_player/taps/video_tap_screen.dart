@@ -1,3 +1,4 @@
+import 'package:doob/MusicPlayer/videoplayer.dart';
 import 'package:doob/src/data/repositories/music_repo/music_repository.dart';
 import 'package:doob/src/domain/model/song_obj.dart';
 import 'package:doob/src/domain/state/api_state.dart';
@@ -330,7 +331,7 @@ class _VideoTapScreenState extends State<VideoTapScreen> {
       },
       // children: [
 
-      //   VideoScreenCard(),
+      // VideoScreenCard(),
       //   VideoScreenCard(),
       //   // VideoScreenCard(),
       //   // VideoScreenCard(),

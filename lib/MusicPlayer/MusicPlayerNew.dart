@@ -4,12 +4,16 @@ import 'package:doob/Pages/Explore.dart';
 import 'package:doob/Pages/Library.dart';
 import 'package:doob/services/songCommentProvider.dart';
 import "package:doob/Controller/navController.dart";
+import 'package:doob/src/data/repositories/delight_repo/delight_repository.dart';
 import 'package:doob/src/data/repositories/music_repo/comment_repository.dart';
 import 'package:doob/src/data/repositories/music_repo/like_count_repository.dart';
 import 'package:doob/src/presentation/widgets/comment/cmt_widget.dart';
+import 'package:doob/src/providers/delight_provider/delight_provider.dart';
 import 'package:doob/src/providers/music_provider/comment_provider.dart';
 import 'package:doob/src/providers/music_provider/like_count_provider.dart';
 import 'package:doob/widgets/music_player/follow/follow_audio_detail.dart';
+import 'package:doob/widgets/music_player/taps/delight_tap.dart';
+import 'package:doob/widgets/music_player/taps/delight_tap_screen.dart';
 import 'package:doob/widgets/music_player/taps/music_tap_screen.dart';
 import 'package:doob/widgets/music_player/taps/new%20_video_play.dart';
 import 'package:flutter/foundation.dart';
@@ -32,6 +36,12 @@ final musicDetailProvider =
     StateNotifierProvider.autoDispose<MusicProvider, ApiState>((ref) {
   final repository = ref.watch(musicRepositoryProvider);
   return MusicProvider(repository);
+});
+
+final delightDetailProvider =
+    StateNotifierProvider.autoDispose<DelightProvider, ApiState>((ref) {
+  final repository = ref.watch(delightRepositoryProvider);
+  return DelightProvider(repository);
 });
 
 final favProvider = StateNotifierProvider<LikeCountProvider, ApiState>((ref) {
@@ -197,6 +207,8 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
             child: Consumer(
               builder: (context, ref, child) {
                 final songState = ref.watch(musicDetailProvider);
+                //final delightState = ref.watch(delightDetailProvider);
+
                 // final NaviController naviController = Get.put(NaviController());
                 // if (naviController != 2) {
                 //   _audioPlayer.pause();
@@ -249,9 +261,9 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            Get.to(() =>
-                                                FollowAudioDetailScreen(
-                                                    songState.data));
+                                            // Get.to(() =>
+                                            //     FollowAudioDetailScreen(
+                                            //         songState.data));
                                           },
                                           child: Stack(
                                             children: [
@@ -450,7 +462,9 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                           ),
                           //  VideoTapScreen(songLists),
                           VideoPlayerScreen(songLists),
-                          MusicTapScreen(songLists),
+                          MusicTapScreen(),
+                          //  DelightScreen(),
+                          // DelightPage()
                           // NewVideoPlayTwo(songLists),
                           VideoPlayerScreen(songLists),
                           // ForYouTapScreen(),
@@ -567,7 +581,7 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                                           }
                                         },
                                         child: Text(
-                                          'Follow',
+                                          'Delight',
                                           style: TextStyle(
                                               fontFamily: 'Century',
                                               color: currentindex == 3
@@ -601,6 +615,4 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
           )),
     );
   }
-
-  
 }

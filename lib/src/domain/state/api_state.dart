@@ -1,9 +1,12 @@
+import 'package:doob/src/domain/model/delight.dart';
 import 'package:flutter/material.dart';
 
 import 'data_type.dart';
 
 @immutable
-abstract class ApiState extends DataType {}
+abstract class ApiState extends DataType {
+  get data => null;
+}
 
 class InitialState extends ApiState {}
 
@@ -46,5 +49,11 @@ class ErrorState extends ApiState {
 enum ErrorType { server, forbidden, badState, notFound, unknown }
 
 ErrorType codeToType(int? statusCode) {
-  return switch (statusCode) { 404 => ErrorType.notFound, 500 => ErrorType.server, 400 => ErrorType.badState, 503 => ErrorType.forbidden, _ => ErrorType.unknown };
+  return switch (statusCode) {
+    404 => ErrorType.notFound,
+    500 => ErrorType.server,
+    400 => ErrorType.badState,
+    503 => ErrorType.forbidden,
+    _ => ErrorType.unknown
+  };
 }
