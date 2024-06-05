@@ -1,6 +1,5 @@
 // import 'package:doob/MusicPlayer/MusicPlayerNew.dart';
 // import 'package:doob/src/data/repositories/delight_repo/delight_repository.dart';
-// import 'package:doob/src/domain/model/delight.dart';
 // import 'package:doob/src/domain/state/api_state.dart';
 // import 'package:doob/src/presentation/widgets/comment/cmt_widget.dart';
 // import 'package:doob/src/providers/delight_provider/delight_provider.dart';
@@ -12,27 +11,18 @@
 // import 'package:share_plus/share_plus.dart';
 // import 'package:video_player/video_player.dart';
 
-// final delightDetailProvider =
-//     StateNotifierProvider.autoDispose<DelightProvider, ApiState>((ref) {
-//   final repository = ref.watch(delightRepositoryProvider);
-//   return DelightProvider(repository);
-// });
-
-// class DelightScreen extends ConsumerStatefulWidget {
-//   const DelightScreen({super.key});
-
-//   // final List _vData;
+// class DelightTapScreen extends StatefulWidget {
+//   const DelightTapScreen({super.key});
 
 //   @override
-//   _DelightScreenState createState() => _DelightScreenState();
+//   State<DelightTapScreen> createState() => _DelightTapScreenState();
 // }
 
-// class _DelightScreenState extends ConsumerState<DelightScreen> {
-//   late Map<int, VideoPlayerController> _controllers;
+// class _DelightTapScreenState extends State<DelightTapScreen> {
+//   // late Map<int, VideoPlayerController> _controllers;
 //   late VideoPlayerController _controller;
+
 //   late PageController _pageController;
-//   // late List<Data> delightData; // R
-//   int _currentIndex = 0;
 //   bool isReact = true;
 //   var commentid;
 //   bool isrepeat = true;
@@ -40,93 +30,59 @@
 //   @override
 //   void initState() {
 //     super.initState();
-//     _controllers = {};
-//     _pageController = PageController(initialPage: _currentIndex);
-//    // _initializeController(_currentIndex);
+//     // _controllers = {};
+//     // _pageController = PageController(initialPage: _currentIndex);
 //   }
 
-//   @override
-//   void dispose() {
-//     _controllers.values.forEach((controller) => controller.dispose());
-//     _pageController.dispose();
-//     super.dispose();
-//   }
-
-//   Future<void> _initializeController(int index) async {
-
-//     final videoUrl = delightState.data[index].mtv;
-//     final controller = VideoPlayerController.networkUrl(Uri.parse(videoUrl!));
-
-//     controller.addListener(() {
-//       if (controller.value.hasError) {
-//         print('Video player error: ${controller.value.errorDescription}');
-//       }
-//     });
-
-//     try {
-//       await controller.initialize();
-//       if (mounted) {
-//         setState(() {
-//           _controllers[index] = controller;
-//           controller.play();
-//         });
-//       }
-//     } catch (e) {
-//       print('Error initializing video controller: $e');
-//     }
-//   }
+//   //  @override
+//   // void dispose() {
+//   //   _controllers.values.forEach((controller) => controller.dispose());
+//   //   _pageController.dispose();
+//   //   super.dispose();
+//   // }
 
 //   @override
 //   Widget build(BuildContext context) {
 //     var size = MediaQuery.of(context).size;
 //     return Consumer(
 //       builder: (context, ref, child) {
-//         final delightState = ref.watch(delightDetailProvider);
-//         if (delightState is SuccessState) {
+//         final delightOk = ref.watch(delightDetailProvider);
+
+//         if (delightOk is SuccessState) {
+//           print("Delight list data : ${delightOk.data}");
 //           return PageView.builder(
 //             controller: _pageController,
 //             scrollDirection: Axis.vertical,
-//             itemCount: delightState.data.length,
-//             onPageChanged: (index) {
-//               setState(() {
-//                 _currentIndex = index;
-//                 _controller;
-//                 // if (!_controllers.containsKey(index)) {
-//                 //   _initializeController(index);
-//                 // }
-//               });
-//             },
+//             itemCount: delightOk.data.length,
+//             onPageChanged: (index) {},
 //             itemBuilder: (context, index) {
-//               final controller = _controllers[index];
-//               if (controller == null || !controller.value.isInitialized) {
-//                 return Center(child: CircularProgressIndicator());
-//               }
+
 //               return Stack(
 //                 children: [
 //                   SizedBox.expand(
 //                     child: FittedBox(
 //                       fit: BoxFit.cover,
 //                       child: SizedBox(
-//                         width: controller.value.size?.width ?? 0,
-//                         height: controller.value.size?.height ?? 0,
-//                         child: VideoPlayer(controller),
+//                         width: _controller.value.size?.width ?? 0,
+//                         height: _controller.value.size?.height ?? 0,
+//                         child: VideoPlayer(VideoPlayerController.networkUrl(
+//                             Uri.parse(delightOk.data[index].mtv))
+//                           ..initialize().then((_) {
+//                             if (mounted) {
+//                               setState(() {});
+//                               _controller.play();
+//                             }
+//                           })),
 //                       ),
 //                     ),
 //                   ),
-//                   // Container(
-//                   //  child: Center(
-//                   //   child: AspectRatio(
-//                   //   aspectRatio: controller.value.aspectRatio,
-//                   //   child: VideoPlayer(controller),
-//                   // ),
-//                   // ),
-//                   // ),
+
 //                   GestureDetector(
 //                     onTap: () async {
-//                       if (controller.value.isPlaying) {
-//                         await controller.pause();
+//                       if (_controller.value.isPlaying) {
+//                         await _controller.pause();
 //                       } else {
-//                         await controller.play();
+//                         await _controller.play();
 //                       }
 //                       setState(() {});
 //                     },
@@ -136,7 +92,7 @@
 //                         height: double.infinity,
 //                         width: double.infinity,
 //                         child: Visibility(
-//                           visible: !controller.value.isPlaying,
+//                           visible: !_controller.value.isPlaying,
 //                           child: Icon(
 //                             Icons.play_arrow,
 //                             size: 80,
@@ -155,7 +111,7 @@
 //                       children: [
 //                         InkWell(
 //                           onTap: () {
-//                             Get.to(() => FollowDetailScreen(delightState.data));
+//                             //   Get.to(() => FollowDetailScreen(delightOk.data));
 //                           },
 //                           child: Stack(
 //                             children: [
@@ -201,11 +157,11 @@
 //                                     color: Color(0xffff9800),
 //                                   ),
 //                             label: isReact
-//                                 ? delightState.data[index].likeCount.toString()
-//                                 : "${delightState.data[index].likeCount}",
+//                                 ? delightOk.data[index].likeCount.toString()
+//                                 : "${delightOk.data[index].likeCount}",
 //                             onTap: () {
 //                               ref.read(favProvider.notifier).updateLikeCount(
-//                                   delightState.data[index].id.toString());
+//                                   delightOk.data[index].id.toString());
 //                               // ref.invalidate(musicDetailProvider);
 //                               setState(() {
 //                                 isReact = !isReact;
@@ -219,10 +175,9 @@
 //                             'assets/Icons/chat.png',
 //                             height: 30,
 //                           ),
-//                           label:
-//                               delightState.data[index].commentCount.toString(),
+//                           label: delightOk.data[index].commentCount.toString(),
 //                           onTap: () {
-//                             commentid = delightState.data[index].id;
+//                             commentid = delightOk.data[index].id;
 //                             // commentBottomSheet(context);
 //                             showModalBottomSheet(
 //                               isScrollControlled: true,
@@ -231,7 +186,7 @@
 //                                 return Container(
 //                                   height: 540,
 //                                   child: CmtWidget(
-//                                     id: delightState.data[index].id.toString(),
+//                                     id: delightOk.data[index].id.toString(),
 //                                   ),
 //                                 );
 //                               },
@@ -243,10 +198,9 @@
 //                             'assets/Icons/paper.png',
 //                             height: 30,
 //                           ),
-//                           label: delightState.data[index].shareCount.toString(),
+//                           label: delightOk.data[index].shareCount.toString(),
 //                           onTap: () {
-//                             Share.share(
-//                                 delightState.data[index].audio.toString());
+//                             Share.share(delightOk.data[index].audio.toString());
 
 //                             //Share.share('com.example.doob');
 //                           },
@@ -286,7 +240,7 @@
 //                           SizedBox(
 //                             height: 8,
 //                             child: VideoProgressIndicator(
-//                               controller,
+//                               _controller,
 //                               allowScrubbing: true,
 //                               colors: VideoProgressColors(
 //                                 backgroundColor: Colors.white.withOpacity(0.1),
@@ -303,7 +257,7 @@
 //               );
 //             },
 //           );
-//         } else if (delightState.data is LoadingState) {
+//         } else if (delightOk is LoadingState) {
 //           return Center(
 //             child: CircularProgressIndicator(
 //               color: Colors.white,
@@ -313,23 +267,23 @@
 //           return Text("");
 //         }
 //       },
+//       // child:
 //     );
 //   }
 // }
 
 import 'package:doob/MusicPlayer/MusicPlayerNew.dart';
 import 'package:doob/src/data/repositories/delight_repo/delight_repository.dart';
-import 'package:doob/src/domain/model/delight.dart';
 import 'package:doob/src/domain/state/api_state.dart';
-import 'package:doob/src/presentation/widgets/comment/cmt_widget.dart';
 import 'package:doob/src/providers/delight_provider/delight_provider.dart';
-import 'package:doob/widgets/common/option.dart';
-import 'package:doob/widgets/music_player/follow/follow_video_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
+import 'package:doob/src/presentation/widgets/comment/cmt_widget.dart';
+import 'package:doob/widgets/common/option.dart';
+import 'package:doob/widgets/music_player/follow/follow_video_detail.dart';
 
 final delightDetailProvider =
     StateNotifierProvider.autoDispose<DelightProvider, ApiState>((ref) {
@@ -337,21 +291,16 @@ final delightDetailProvider =
   return DelightProvider(repository);
 });
 
-class DelightScreen extends ConsumerStatefulWidget {
-  const DelightScreen({super.key});
-
-  // final List _vData;
+class DelightTapScreen extends StatefulWidget {
+  const DelightTapScreen({Key? key}) : super(key: key);
 
   @override
-  _DelightScreenState createState() => _DelightScreenState();
+  State<DelightTapScreen> createState() => _DelightTapScreenState();
 }
 
-class _DelightScreenState extends ConsumerState<DelightScreen> {
-  late Map<int, VideoPlayerController> _controllers;
+class _DelightTapScreenState extends State<DelightTapScreen> {
   late VideoPlayerController _controller;
   late PageController _pageController;
-  // late List<Data> delightData; // R
-  int _currentIndex = 0;
   bool isReact = true;
   var commentid;
   bool isrepeat = true;
@@ -359,52 +308,16 @@ class _DelightScreenState extends ConsumerState<DelightScreen> {
   @override
   void initState() {
     super.initState();
-    _controllers = {};
-    _pageController = PageController(initialPage: _currentIndex);
-
-    // Accessing the delightDetailProvider value to check if data has been fetched
-    final delightState = ref.read(delightDetailProvider);
-    if (mounted) {
-      if (delightState is SuccessState || delightState is ErrorState) {
-        _initializeController(_currentIndex);
-      } else if (delightState is InitialState) {
-        // Fetch API data if not already fetched
-        ref.read(delightDetailProvider.notifier).fetchMusics();
-      }
-    }
+    _controller =
+        VideoPlayerController.network(''); // Initialize with empty URL
+    _pageController = PageController(); // Initialize the PageController
   }
 
   @override
   void dispose() {
-    _controllers.values.forEach((controller) => controller.dispose());
-    _pageController.dispose();
+    _controller.dispose(); // Dispose of the VideoPlayerController
+    _pageController.dispose(); // Dispose of the PageController
     super.dispose();
-  }
-
-  Future<void> _initializeController(int index) async {
-    final delightState = ref.watch(delightDetailProvider);
-    if (delightState is SuccessState && delightState.data.length > index) {
-      final videoUrl = delightState.data[index].mtv;
-      final controller = VideoPlayerController.network(videoUrl!);
-
-      controller.addListener(() {
-        if (controller.value.hasError) {
-          print('Video player error: ${controller.value.errorDescription}');
-        }
-      });
-
-      try {
-        await controller.initialize();
-        if (mounted) {
-          setState(() {
-            _controllers[index] = controller;
-            controller.play();
-          });
-        }
-      } catch (e) {
-        print('Error initializing video controller: $e');
-      }
-    }
   }
 
   @override
@@ -412,42 +325,36 @@ class _DelightScreenState extends ConsumerState<DelightScreen> {
     var size = MediaQuery.of(context).size;
     return Consumer(
       builder: (context, ref, child) {
-        final delightState = ref.watch(delightDetailProvider);
-        if (delightState is SuccessState) {
-          print('Delight api ${delightState.data}');
+        final delightOk = ref.watch(delightDetailProvider);
+
+        if (delightOk is SuccessState) {
+          print("Delight list data : ${delightOk.data}");
           return PageView.builder(
             controller: _pageController,
             scrollDirection: Axis.vertical,
-            itemCount: delightState.data.length,
-            onPageChanged: (index) {
-              setState(() {
-                _currentIndex = index;
-                _initializeController(index);
-              });
-            },
+            itemCount: delightOk.data.length,
+            onPageChanged: (index) {},
             itemBuilder: (context, index) {
-              final controller = _controllers[index];
-              if (controller == null || !controller.value.isInitialized) {
-                return Center(child: CircularProgressIndicator());
-              }
+              _controller = VideoPlayerController.network(
+                  delightOk.data[index].mtv.toString());
               return Stack(
                 children: [
                   SizedBox.expand(
                     child: FittedBox(
                       fit: BoxFit.cover,
                       child: SizedBox(
-                        width: controller.value.size?.width ?? 0,
-                        height: controller.value.size?.height ?? 0,
-                        child: VideoPlayer(controller),
+                        width: _controller.value.size?.width ?? 0,
+                        height: _controller.value.size?.height ?? 0,
+                        child: VideoPlayer(_controller),
                       ),
                     ),
                   ),
                   GestureDetector(
                     onTap: () async {
-                      if (controller.value.isPlaying) {
-                        await controller.pause();
+                      if (_controller.value.isPlaying) {
+                        await _controller.pause();
                       } else {
-                        await controller.play();
+                        await _controller.play();
                       }
                       setState(() {});
                     },
@@ -457,7 +364,7 @@ class _DelightScreenState extends ConsumerState<DelightScreen> {
                         height: double.infinity,
                         width: double.infinity,
                         child: Visibility(
-                          visible: !controller.value.isPlaying,
+                          visible: !_controller.value.isPlaying,
                           child: Icon(
                             Icons.play_arrow,
                             size: 80,
@@ -469,12 +376,14 @@ class _DelightScreenState extends ConsumerState<DelightScreen> {
                   ),
                   Positioned(
                     left: 300,
+                    // top: size.height * 0.34,
                     top: size.height * 0.27,
+                    //top: 250,
                     child: Column(
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.to(() => FollowDetailScreen(delightState.data));
+                            //   Get.to(() => FollowDetailScreen(delightOk.data));
                           },
                           child: Stack(
                             children: [
@@ -520,14 +429,16 @@ class _DelightScreenState extends ConsumerState<DelightScreen> {
                                     color: Color(0xffff9800),
                                   ),
                             label: isReact
-                                ? delightState.data[index].likeCount.toString()
-                                : "${delightState.data[index].likeCount}",
+                                ? delightOk.data[index].likeCount.toString()
+                                : "${delightOk.data[index].likeCount}",
                             onTap: () {
                               ref.read(favProvider.notifier).updateLikeCount(
-                                  delightState.data[index].id.toString());
+                                  delightOk.data[index].id.toString());
+                              // ref.invalidate(musicDetailProvider);
                               setState(() {
                                 isReact = !isReact;
                               });
+                              //ref.read(musicDetailProvider.notifier).fetchMusics();
                             },
                           ),
                         ),
@@ -536,10 +447,10 @@ class _DelightScreenState extends ConsumerState<DelightScreen> {
                             'assets/Icons/chat.png',
                             height: 30,
                           ),
-                          label:
-                              delightState.data[index].commentCount.toString(),
+                          label: delightOk.data[index].commentCount.toString(),
                           onTap: () {
-                            commentid = delightState.data[index].id;
+                            commentid = delightOk.data[index].id;
+                            // commentBottomSheet(context);
                             showModalBottomSheet(
                               isScrollControlled: true,
                               context: context,
@@ -547,7 +458,7 @@ class _DelightScreenState extends ConsumerState<DelightScreen> {
                                 return Container(
                                   height: 540,
                                   child: CmtWidget(
-                                    id: delightState.data[index].id.toString(),
+                                    id: delightOk.data[index].id.toString(),
                                   ),
                                 );
                               },
@@ -559,10 +470,11 @@ class _DelightScreenState extends ConsumerState<DelightScreen> {
                             'assets/Icons/paper.png',
                             height: 30,
                           ),
-                          label: delightState.data[index].shareCount.toString(),
+                          label: delightOk.data[index].shareCount.toString(),
                           onTap: () {
-                            Share.share(
-                                delightState.data[index].audio.toString());
+                            Share.share(delightOk.data[index].audio.toString());
+
+                            //Share.share('com.example.doob');
                           },
                         ),
                         Option(
@@ -600,7 +512,7 @@ class _DelightScreenState extends ConsumerState<DelightScreen> {
                           SizedBox(
                             height: 8,
                             child: VideoProgressIndicator(
-                              controller,
+                              _controller,
                               allowScrubbing: true,
                               colors: VideoProgressColors(
                                 backgroundColor: Colors.white.withOpacity(0.1),
@@ -613,18 +525,20 @@ class _DelightScreenState extends ConsumerState<DelightScreen> {
                       ),
                     ),
                   ),
+                  // Other widgets
                 ],
               );
             },
           );
-        } else if (delightState is LoadingState) {
+        } else if (delightOk is LoadingState) {
           return Center(
             child: CircularProgressIndicator(
               color: Colors.white,
             ),
           );
         } else {
-          return Text("");
+          return Text(
+              ""); // Placeholder widget if state is not SuccessState or LoadingState
         }
       },
     );

@@ -6,6 +6,7 @@ import 'package:doob/src/presentation/widgets/comment/cmt_widget.dart';
 import 'package:doob/src/providers/delight_provider/delight_provider.dart';
 import 'package:doob/widgets/common/option.dart';
 import 'package:doob/widgets/music_player/follow/follow_video_detail.dart';
+import 'package:doob/widgets/music_player/taps/delight_ok.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';

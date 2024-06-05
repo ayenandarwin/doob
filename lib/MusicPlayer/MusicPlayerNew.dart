@@ -1,5 +1,6 @@
 import 'package:comment_box/comment/comment.dart';
 import 'package:doob/MusicPlayer/Pause.dart';
+import 'package:doob/MusicPlayer/videoplayer.dart';
 import 'package:doob/Pages/Explore.dart';
 import 'package:doob/Pages/Library.dart';
 import 'package:doob/services/songCommentProvider.dart';
@@ -12,6 +13,8 @@ import 'package:doob/src/providers/delight_provider/delight_provider.dart';
 import 'package:doob/src/providers/music_provider/comment_provider.dart';
 import 'package:doob/src/providers/music_provider/like_count_provider.dart';
 import 'package:doob/widgets/music_player/follow/follow_audio_detail.dart';
+import 'package:doob/widgets/music_player/taps/delight_fine.dart';
+import 'package:doob/widgets/music_player/taps/delight_ok.dart';
 import 'package:doob/widgets/music_player/taps/delight_tap.dart';
 import 'package:doob/widgets/music_player/taps/delight_tap_screen.dart';
 import 'package:doob/widgets/music_player/taps/music_tap_screen.dart';
@@ -38,11 +41,11 @@ final musicDetailProvider =
   return MusicProvider(repository);
 });
 
-final delightDetailProvider =
-    StateNotifierProvider.autoDispose<DelightProvider, ApiState>((ref) {
-  final repository = ref.watch(delightRepositoryProvider);
-  return DelightProvider(repository);
-});
+// final delightDetailProvider =
+//     StateNotifierProvider.autoDispose<DelightProvider, ApiState>((ref) {
+//   final repository = ref.watch(delightRepositoryProvider);
+//   return DelightProvider(repository);
+// });
 
 final favProvider = StateNotifierProvider<LikeCountProvider, ApiState>((ref) {
   final repository = ref.watch(likeCountRepositoryProvider);
@@ -460,13 +463,15 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                               );
                             },
                           ),
-                          //  VideoTapScreen(songLists),
                           VideoPlayerScreen(songLists),
                           MusicTapScreen(),
-                          //  DelightScreen(),
+                          DelightTapScreen(),
+                          // DelightScreen(),
+
+                          // DelightFine(),
                           // DelightPage()
                           // NewVideoPlayTwo(songLists),
-                          VideoPlayerScreen(songLists),
+                          //  VideoPlayerScreen(songLists),
                           // ForYouTapScreen(),
                           //FollowTapScreen()
                         ],

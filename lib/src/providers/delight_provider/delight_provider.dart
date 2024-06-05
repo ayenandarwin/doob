@@ -27,7 +27,7 @@ class DelightProvider extends StateNotifier<ApiState> {
     } else {
       state = ErrorState("Something Wrong", ErrorType.unknown);
     }
-    print("Music Detail State is .............. : ${response}");
+    print("Delight Detail State is .............. : ${response}");
   }
 }
 

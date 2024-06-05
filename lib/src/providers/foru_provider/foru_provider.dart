@@ -5,29 +5,40 @@ import 'package:doob/src/domain/state/api_state.dart';
 import 'package:doob/src/util/app_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 class ForYouProvider extends StateNotifier<ApiState> {
   ForYouProvider(ForURepository forURepo)
       : forURepository = forURepo,
         super(InitialState()) {
-    fetchMusics();
+    fetchForUMusics();
   }
 
   late final ForURepository forURepository;
 
-  Future<void> fetchMusics({Map<String, dynamic>? param, Map<String, dynamic>? body}) async {
+  Future<void> fetchForUMusics(
+      {Map<String, dynamic>? param, Map<String, dynamic>? body}) async {
     state = LoadingState();
-    final response = await forURepository.fetchForUMusics(baseUrl + randomsongs);
-    if (response is SuccessState) {
-      print("Success Data : ${response.data}");
-      final responseData = _parseList(response.data['data']);
-      print("Songs Data : ${responseData![2].likeCount}");
-      state = SuccessState(responseData);
-    } else {
-      state = ErrorState("Something Wrong", ErrorType.unknown);
+    final response =
+        await forURepository.fetchForUMusics(baseUrl + randomsongs);
+
+    if (mounted) {
+      if (response is SuccessState) {
+        // DoSomething
+      } else {
+        //DoSomething
+      }
     }
-    print("Music Detail State is .............. : ${response}");
   }
+
+  //   if (response is SuccessState) {
+  //     print("Success Data : ${response.data}");
+  //     final responseData = _parseList(response.data['data']);
+  //     print("Songs Data : ${responseData![2].likeCount}");
+  //     state = SuccessState(responseData);
+  //   } else {
+  //     state = ErrorState("Something Wrong", ErrorType.unknown);
+  //   }
+  //   print("Music Detail State is .............. : ${response}");
+  // }
 }
 
 List<Data>? _parseList(List<dynamic> data) {
