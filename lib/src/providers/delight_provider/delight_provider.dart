@@ -18,16 +18,19 @@ class DelightProvider extends StateNotifier<ApiState> {
   Future<void> fetchMusics(
       {Map<String, dynamic>? param, Map<String, dynamic>? body}) async {
     state = LoadingState();
-    final response = await delightRepository.fetchMusics(baseUrl + randomsongs);
-    if (response is SuccessState) {
-      print("Success Data : ${response.data}");
-      final responseData = _parseList(response.data['data']);
-      print("Songs Data : ${responseData![2].likeCount}");
-      state = SuccessState(responseData);
-    } else {
-      state = ErrorState("Something Wrong", ErrorType.unknown);
+    final response = await delightRepository.fetchMusics(baseUrl + delight);
+
+    if (mounted) {
+      if (response is SuccessState) {
+        print("Success Data : ${response.data}");
+        final responseData = _parseList(response.data['data']);
+        //print("Songs Data : ${responseData![2].likeCount}");
+        state = SuccessState(responseData);
+      } else {
+        state = ErrorState("Something Wrong", ErrorType.unknown);
+      }
+      print("Music Detail State is .............. : ${response}");
     }
-    print("Delight Detail State is .............. : ${response}");
   }
 }
 

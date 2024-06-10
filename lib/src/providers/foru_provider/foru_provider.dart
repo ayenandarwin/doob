@@ -22,23 +22,18 @@ class ForYouProvider extends StateNotifier<ApiState> {
 
     if (mounted) {
       if (response is SuccessState) {
+        print("Success Data : ${response.data}");
+        final responseData = _parseList(response.data['data']);
+        print("Songs Data : ${responseData![2].likeCount}");
+        state = SuccessState(responseData);
         // DoSomething
       } else {
+        state = ErrorState("Something Wrong", ErrorType.unknown);
         //DoSomething
       }
+      print("Music Detail State is .............. : ${response}");
     }
   }
-
-  //   if (response is SuccessState) {
-  //     print("Success Data : ${response.data}");
-  //     final responseData = _parseList(response.data['data']);
-  //     print("Songs Data : ${responseData![2].likeCount}");
-  //     state = SuccessState(responseData);
-  //   } else {
-  //     state = ErrorState("Something Wrong", ErrorType.unknown);
-  //   }
-  //   print("Music Detail State is .............. : ${response}");
-  // }
 }
 
 List<Data>? _parseList(List<dynamic> data) {

@@ -24,7 +24,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
 
   final List<int> duration = [900, 700, 600, 800, 500];
 
- // List<Lyric>? lyrics = [];
+  // List<Lyric>? lyrics = [];
   final ItemScrollController itemScrollController = ItemScrollController();
   final ScrollOffsetController scrollOffsetController =
       ScrollOffsetController();
@@ -67,11 +67,6 @@ class _PlayerButtonsState extends State<PlayerButtons>
 
     //   setState(() {});
     // });
-   
-
-   
-
-    
 
     widget._audioPlayer.positionStream.listen((position) {
       // DateTime dt = DateTime(1970, 1, 1).copyWith(
@@ -112,7 +107,6 @@ class _PlayerButtonsState extends State<PlayerButtons>
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -139,8 +133,6 @@ class _PlayerButtonsState extends State<PlayerButtons>
                             fontFamily: 'Century',
                             color: Colors.white),
                       ),
-
-
                       InkWell(
                         onTap: () {
                           widget._audioPlayer.seek(Duration(
@@ -155,7 +147,6 @@ class _PlayerButtonsState extends State<PlayerButtons>
                           ),
                         ),
                       ),
-
                       widget._audioPlayer.duration != null
                           ? Text(
                               formatDuration(widget._audioPlayer.duration! -
@@ -205,12 +196,10 @@ class _PlayerButtonsState extends State<PlayerButtons>
                   //  final processState = snapshot.data?.processingState;
                   if (processingState == ProcessingState.loading ||
                       processingState == ProcessingState.buffering) {
-                    return 
-                    Container(
+                    return Container(
                       height: 40,
                       width: 200,
-                      decoration: 
-                      BoxDecoration(
+                      decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           color: Color(0xffFF9800)),
                       child: Container(
@@ -307,125 +296,15 @@ class _PlayerButtonsState extends State<PlayerButtons>
           builder: (context) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 120),
             child: Container(
-              height: 100,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.black38,
-                  //color: Colors.transparent,
-                  border: Border.all(color: Colors.white)),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Icon(
-                          Icons.cancel,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  // lyrics != null
-                  
-                  //     ? ScrollablePositionedList.builder(
-                  //         itemCount: lyrics!.length,
-                  //         itemBuilder: (context, index) {
-                  //           // Duration duration =
-                  //           //     snapshot.data ?? Duration(seconds: 8);
-
-                  //           // DateTime dt = DateTime(1970, 1, 1).copyWith(
-                  //           //     hour: duration.inHours,
-                  //           //     minute: duration.inMinutes.remainder(60),
-                  //           //     second: duration.inSeconds.remainder(60));
-                  //           return Center(
-                  //             child: Padding(
-                  //               padding:
-                  //                   const EdgeInsets.symmetric(horizontal: 16),
-                  //               child: widget.lyrics != ""
-                  //                   ? Text(
-                  //                       // lyrics ?? 'No lyrics available', // Handle null lyrics
-                  //                       '${widget.lyrics}',
-
-                  //                       // 'You are my sunshine, my only sunshine you make me happy when skies are gray you will never keep dear,how much I love you,please don\'t take my sunshine away.',
-                  //                       textAlign: TextAlign.center,
-                  //                       style: TextStyle(
-                  //                         fontFamily: 'Century',
-                  //                         // wordSpacing: 2,
-                  //                         fontSize: 16,
-                  //                         fontWeight: FontWeight.bold,
-                  //                         color: Colors.white,
-                  //                       ),
-                  //                     )
-                  //                   : Text(
-                  //                       // lyrics ?? 'No lyrics available', // Handle null lyrics
-                  //                       'No lyrics available',
-
-                  //                       // 'You are my sunshine, my only sunshine you make me happy when skies are gray you will never keep dear,how much I love you,please don\'t take my sunshine away.',
-                  //                       textAlign: TextAlign.center,
-                  //                       style: TextStyle(
-                  //                         fontFamily: 'Century',
-                  //                         // wordSpacing: 2,
-                  //                         fontSize: 16,
-                  //                         fontWeight: FontWeight.bold,
-                  //                         color: Colors.white,
-                  //                       ),
-                  //                     ),
-                  //             ),
-                  //           );
-                  //         },
-                  //         //=> Text('Item $index'),
-                  //         // Text(lyrics![index].words)
-                  //         itemScrollController: itemScrollController,
-                  //         scrollOffsetController: scrollOffsetController,
-                  //         itemPositionsListener: itemPositionsListener,
-                  //         scrollOffsetListener: scrollOffsetListener,
-                  //       )
-                  //     : SizedBox(),
-
-
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child:
-                      widget.lyrics !=""?
-                       Text(
-                        // lyrics ?? 'No lyrics available', // Handle null lyrics
-                        '${widget.lyrics}',
-
-                        // 'You are my sunshine, my only sunshine you make me happy when skies are gray you will never keep dear,how much I love you,please don\'t take my sunshine away.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Century',
-                          // wordSpacing: 2,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ):Text(
-                        // lyrics ?? 'No lyrics available', // Handle null lyrics
-                        'No lyrics available',
-
-                        // 'You are my sunshine, my only sunshine you make me happy when skies are gray you will never keep dear,how much I love you,please don\'t take my sunshine away.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Century',
-                          // wordSpacing: 2,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  
-                ],
-              ),
-            ),
+                height: 100,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.black38,
+                    //color: Colors.transparent,
+                    border: Border.all(color: Colors.white)),
+                child: Lyric(
+                  audioPlayer: _audioPlayer,
+                )),
           ),
         );
       },
@@ -580,5 +459,90 @@ class _PlayerButtonsState extends State<PlayerButtons>
             cycleModes[(cycleModes.indexOf(loopMode) + 1) % cycleModes.length]);
       },
     );
+  }
+}
+
+class Lyric extends StatefulWidget {
+  final AudioPlayer audioPlayer;
+  const Lyric({super.key, required this.audioPlayer});
+
+  @override
+  State<Lyric> createState() => _LyricState();
+}
+
+List<String> _lyrics = [];
+AudioPlayer _audioPlayer = AudioPlayer();
+String _currentLyric = '';
+
+class _LyricState extends State<Lyric> {
+  @override
+  void initState() {
+    super.initState();
+    _fetchLyrics();
+  }
+
+  Future<void> _fetchLyrics() async {
+    final response = await http.get(Uri.parse(
+        "https://doobbucket.s3.ap-southeast-1.amazonaws.com/songs/lyrics/665ea9c1226d5.lrc"));
+    if (response.statusCode == 200) {
+      final lyrics = response.body;
+      final lines = lyrics.split('\n').where((line) => line.isNotEmpty);
+      _lyrics = lines.toList();
+      _initAudioPlayer(_audioPlayer);
+    } else {
+      throw Exception('Failed to load lyrics');
+    }
+  }
+
+  Future<void> _initAudioPlayer(AudioPlayer audioPlayer) async {
+    audioPlayer.positionStream.listen((Duration duration) {
+      print("hellooooooo");
+
+      if (mounted) {
+        setState(() {
+          print(duration);
+          print('world');
+          _currentLyric = _findCurrentLyric(duration);
+        });
+      }
+    });
+  }
+
+  String _findCurrentLyric(Duration duration) {
+    for (int i = 0; i < _lyrics.length - 1; i++) {
+      final currentLine = _lyrics[i];
+      final nextLine = _lyrics[i + 1];
+      final currentDuration = _parseDuration(currentLine);
+      final nextDuration = _parseDuration(nextLine);
+
+      if (duration >= currentDuration && duration < nextDuration) {
+        return currentLine.substring(currentLine.indexOf(']') + 1);
+      }
+    }
+    return _lyrics.last.substring(_lyrics.last.indexOf(']') + 1);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: ListTile(
+          title: Text(_currentLyric),
+          tileColor: Colors.blueAccent.withOpacity(0.2)
+          //     : null,
+          ),
+    );
+  }
+
+  Duration _parseDuration(String lyricLine) {
+    final timeRegex = RegExp(r"\[(\d{2}):(\d{2}).(\d{2})\]");
+    final match = timeRegex.firstMatch(lyricLine);
+    if (match != null) {
+      final minutes = int.parse(match.group(1)!);
+      final seconds = int.parse(match.group(2)!);
+      final milliseconds = int.parse(match.group(3)!);
+      return Duration(
+          minutes: minutes, seconds: seconds, milliseconds: milliseconds);
+    }
+    return Duration(seconds: 0);
   }
 }

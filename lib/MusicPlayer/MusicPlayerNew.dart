@@ -15,6 +15,7 @@ import 'package:doob/src/providers/music_provider/like_count_provider.dart';
 import 'package:doob/widgets/music_player/follow/follow_audio_detail.dart';
 import 'package:doob/widgets/music_player/taps/delight_fine.dart';
 import 'package:doob/widgets/music_player/taps/delight_ok.dart';
+import 'package:doob/widgets/music_player/taps/delight_ok_Ok.dart';
 import 'package:doob/widgets/music_player/taps/delight_tap.dart';
 import 'package:doob/widgets/music_player/taps/delight_tap_screen.dart';
 import 'package:doob/widgets/music_player/taps/music_tap_screen.dart';
@@ -466,6 +467,7 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                           VideoPlayerScreen(songLists),
                           MusicTapScreen(),
                           DelightTapScreen(),
+                          //DelightOK()
                           // DelightScreen(),
 
                           // DelightFine(),
