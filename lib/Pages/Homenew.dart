@@ -2,6 +2,7 @@ import 'package:doob/Component/MusicFolder.dart';
 import 'package:doob/Component/PlaylistMoreDetails.dart';
 import 'package:doob/Component/Podcast&show.dart';
 import "package:doob/Controller/navController.dart";
+import 'package:doob/Pages/notification.dart';
 import 'package:doob/widgets/feature_today.dart';
 import 'package:doob/widgets/international_hits_songs.dart';
 import 'package:flutter/material.dart';
@@ -114,10 +115,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 25,
                                 height: 25,
                               ),
-                              Icon(
-                                Icons.notifications,
-                                size: 25,
-                                color: Colors.white,
+                              InkWell(
+                                onTap: () {
+                                  Get.to(() => NotificationScreen());
+                                },
+                                child: Icon(
+                                  Icons.notifications,
+                                  size: 25,
+                                  color: Colors.white,
+                                ),
                               ),
                               // Icon(
                               //   Icons.history,
@@ -409,8 +415,8 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                             color: Colors.black.withOpacity(0.2),
                             blurRadius: 20)
                       ]),
-                      child:
-                          SvgPicture.asset('assets/Icons/repeat.svg', height: 25),
+                      child: SvgPicture.asset('assets/Icons/repeat.svg',
+                          height: 25),
                     ),
                   ),
                   Padding(
@@ -421,8 +427,8 @@ class _MusicScreenCardState extends State<MusicScreenCard> {
                             color: Colors.black.withOpacity(0.2),
                             blurRadius: 20)
                       ]),
-                      child:
-                          SvgPicture.asset('assets/Icons/Shuffle.svg', height: 25),
+                      child: SvgPicture.asset('assets/Icons/Shuffle.svg',
+                          height: 25),
                     ),
                   ),
                   Container(

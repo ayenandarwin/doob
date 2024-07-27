@@ -10,14 +10,16 @@ class ApiUrl {
   // static const String mainUrlForUri = "newbrdemo.icgwebdevelopment.com";
   static const String mainUrlForUri = "https://newbr.icgwebdevelopment.com";
 
-  static const String movieListUrl = "$mainUrl/title/get-videos?tconst=tt0944947&limit=7&region=MM";
+  static const String movieListUrl =
+      "$mainUrl/title/get-videos?tconst=tt0944947&limit=7&region=MM";
   static const String adsListUrl = "$mainUrl/advertises";
 
   //Contact
   static const String contactUrl = "$mainUrl/contact";
 
   //Joker App Play Store Link
-  static const String playStoreLink = "https://play.google.com/store/apps/details?id=com.lucky.seven_mm";
+  static const String playStoreLink =
+      "https://play.google.com/store/apps/details?id=com.lucky.seven_mm";
 
   //Auth
   static const String registerUrl = "$mainUrl/customer/register/phone";
@@ -38,7 +40,10 @@ class ApiUrl {
   static const String profile = "$mainUrl/customer/profile";
   static const String sliderList = "$mainUrl/sliders/index";
   static const String songList = "$mainUrl/customer/songs";
+  static const String homefoursong = "$mainUrl/customer/latest/songs";
+  static const String homefourpodcast = "$mainUrl/customer/latest/podcasts";
   //static const String songList = "https://doob.smartcodemm.com/api/customer/songs";
+  //static const String songList = "https://doob.smartcodemm.com/api/customer/latest/songs";
 
   static const String signUpUrl = "$mainUrl/register";
   static const String signUpFirstStepUrl = "$mainUrl/create-login";

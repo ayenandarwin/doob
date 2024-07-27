@@ -1,5 +1,6 @@
 import 'package:doob/Component/help&feedback.dart';
 import 'package:doob/Component/privacy&policy.dart';
+import 'package:doob/Pages/Settings/audio_download.dart';
 import 'package:doob/localization/controller/appLanguageController.dart';
 import 'package:doob/services/profileServiceProvider.dart';
 import 'package:doob/utils/global.dart';
@@ -157,27 +158,32 @@ class _SettingState extends State<Setting> {
                         ],
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.download,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 29,
-                          ),
-                          Text(
-                            'Download'.tr,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                                fontFamily: 'Century'),
-                          ),
-                        ],
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => AudioDownload());
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.download,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 29,
+                            ),
+                            Text(
+                              'Download'.tr,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  fontFamily: 'Century'),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
 

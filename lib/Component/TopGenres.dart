@@ -1,6 +1,5 @@
 import 'package:doob/Libcomponent/AlbumsTabs.dart';
 import 'package:doob/Libcomponent/Artist.dart';
-import 'package:doob/Libcomponent/Folder.dart';
 import 'package:doob/Libcomponent/Tracks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -78,11 +77,7 @@ class _TopGenresState extends State<TopGenres> {
                           child: SvgPicture.asset('assets/Icons/menu.svg',
                               height: 25),
 
-                          // Icon(
-                          //   Icons.menu,
-                          //   size: 25,
-                          //   color: Colors.white,
-                          // ),
+                         
                         ),
                         SizedBox(
                           width: 20,

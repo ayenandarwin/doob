@@ -139,7 +139,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          //   Get.to(() => FollowDetailScreen(widget._vData));
+                          Get.to(() => FollowDetailScreen(widget._vData));
                         },
                         child: Stack(
                           children: [

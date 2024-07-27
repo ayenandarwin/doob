@@ -4,7 +4,7 @@ import 'package:doob/MusicPlayer/MusicPlayerNew.dart';
 import 'package:doob/Pages/Explore.dart';
 import 'package:doob/Pages/Home.dart';
 import 'package:doob/Pages/Library.dart';
-import 'package:doob/Pages/Premium.dart';
+import 'package:doob/Pages/premium/Premium.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';

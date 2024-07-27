@@ -1,6 +1,6 @@
 class Lyric{
   String? words;
-   DateTime? timestamp;
+  DateTime? timestamp;
 
   Lyric({required this.words,required this.timestamp});
 }

@@ -8,6 +8,7 @@ import 'package:doob/src/providers/foru_provider/foru_provider.dart';
 import 'package:doob/src/providers/wave_icon_provider/wave_icon_provider.dart';
 import 'package:doob/widgets/common/music_background_image.dart';
 import 'package:doob/widgets/common/option.dart';
+import 'package:doob/widgets/music_player/follow/follow_audio_detail.dart';
 import 'package:doob/widgets/music_player/follow/follow_video_detail.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -131,7 +132,8 @@ class _MusicTapScreenState extends ConsumerState<MusicTapScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              // Get.to(() => FollowDetailScreen(foruMusics));
+                              //  Get.to(() => FollowDetailScreen(foruMusics));
+                              Get.to(() => FollowAudioDetailScreen(foruMusics));
                             },
                             child: Stack(
                               children: [

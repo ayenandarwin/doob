@@ -1,5 +1,6 @@
 import 'package:comment_box/comment/comment.dart';
 import 'package:doob/MusicPlayer/Pause.dart';
+import 'package:doob/MusicPlayer/downloading_dialog.dart';
 import 'package:doob/MusicPlayer/videoplayer.dart';
 import 'package:doob/Pages/Explore.dart';
 import 'package:doob/Pages/Library.dart';
@@ -19,7 +20,7 @@ import 'package:doob/widgets/music_player/taps/delight_ok_Ok.dart';
 import 'package:doob/widgets/music_player/taps/delight_tap.dart';
 import 'package:doob/widgets/music_player/taps/delight_tap_screen.dart';
 import 'package:doob/widgets/music_player/taps/music_tap_screen.dart';
-import 'package:doob/widgets/music_player/taps/new%20_video_play.dart';
+import 'package:doob/widgets/music_player/taps/video_player_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -221,10 +222,13 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                 // }
 
                 if (songState is SuccessState) {
+                  // print('songstate data ${songState.data}');
+
                   final songLists = songState.data!
                       .where((item) => item.type.toString() == 'song')
                       .toList();
-                  print("Song list data : ${songState.data}");
+                  print("Song list data : ${songLists}");
+
                   return Stack(
                     children: [
                       PageView(
@@ -235,11 +239,29 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                           });
                         },
                         children: [
+                          //Music Page
                           PageView.builder(
                             scrollDirection: Axis.vertical,
                             controller: musicController,
                             itemCount: songLists.length,
                             itemBuilder: (context, index) {
+                              var text = songLists[index].audio;
+
+                              List<String> substrings = text.split('/');
+
+                            //  print("It is OK ${songLists.status} ");
+                              print("It is OK 1 ${substrings[0]} ");
+                              print("It is OK  2 ${substrings[1]} ");
+                              print("It is OK 3 ${substrings[2]} ");
+                              print("It is OK 4 ${substrings[3]} ");
+                              print("It is OK 5 ${substrings[4]} ");
+                              print("It is OK 5 ${substrings[5]} ");
+
+                              String audioFile =
+                                  "${substrings[3]}/${substrings[4]}/${substrings[5]}";
+
+                              print('audio file path $audioFile');
+
                               favCount = songLists[index].likeCount;
                               _audioPlayer
                                   .setAudioSource(
@@ -265,9 +287,9 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            // Get.to(() =>
-                                            //     FollowAudioDetailScreen(
-                                            //         songState.data));
+                                            Get.to(() =>
+                                                FollowAudioDetailScreen(
+                                                    songState.data));
                                           },
                                           child: Stack(
                                             children: [
@@ -385,7 +407,26 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                                             height: 30,
                                           ),
                                           label: "0",
-                                          onTap: () {},
+                                          onTap: () async {
+                                            //                final downloadBook = await ref
+                                            // .read(audioDownloadProvider(audioBookId).future);
+                                            //if (songLists.status == true)
+                                              // {
+                                              //   ref.read(profileDownload);
+                                              // }
+
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    DownloadingDialog(
+                                                  urllink:
+                                                      songLists[index].audio,
+                                                  file: audioFile,
+                                                  //    '${data.mp3Location}${data.audioBook!.mp3!.file}',
+                                                  // file: '${data.audioBook!.id}.mp3',
+                                                ),
+                                              );
+                                          },
                                         ),
                                         Padding(
                                           padding:
@@ -464,9 +505,17 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                               );
                             },
                           ),
+
+                          //Video Page
                           VideoPlayerScreen(songLists),
+
+                          //For you page
                           MusicTapScreen(),
-                          DelightTapScreen(),
+
+                          //Delight Page
+                          // DelightTapScreen(),
+                          VideoPlayerScreen(songLists),
+
                           //DelightOK()
                           // DelightScreen(),
 

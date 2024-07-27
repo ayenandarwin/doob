@@ -1,9 +1,6 @@
 import 'dart:async';
-import 'package:doob/src/domain/model/lyrics.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:lrc/lrc.dart';
 import 'package:http/http.dart' as http;
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:video_player/video_player.dart';
@@ -98,6 +95,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
   }
 
   Future<void> initAudioPlayer() async {
+    print('run audio from player button');
     try {
       await widget._audioPlayer.play();
 
@@ -110,7 +108,6 @@ class _PlayerButtonsState extends State<PlayerButtons>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return SizedBox(
       width: size.width * 0.9,
       child: Column(
@@ -180,6 +177,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
               //     return _previousButton();
               //   },
               // ),
+
               // StreamBuilder<Duration>(
               //   stream: widget._audioPlayer.positionStream,
               //   builder: (_, __) {
@@ -296,15 +294,17 @@ class _PlayerButtonsState extends State<PlayerButtons>
           builder: (context) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 120),
             child: Container(
-                height: 100,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.black38,
-                    //color: Colors.transparent,
-                    border: Border.all(color: Colors.white)),
-                child: Lyric(
-                  audioPlayer: _audioPlayer,
-                )),
+              height: 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.black38,
+                  //color: Colors.transparent,
+                  border: Border.all(color: Colors.white)),
+              //  child:
+              //Lyric(
+              //audioPlayer: _audioPlayer,
+              //)
+            ),
           ),
         );
       },
@@ -462,7 +462,7 @@ class _PlayerButtonsState extends State<PlayerButtons>
   }
 }
 
-class Lyric extends StatefulWidget {
+/*class Lyric extends StatefulWidget {
   final AudioPlayer audioPlayer;
   const Lyric({super.key, required this.audioPlayer});
 
@@ -545,4 +545,4 @@ class _LyricState extends State<Lyric> {
     }
     return Duration(seconds: 0);
   }
-}
+}*/

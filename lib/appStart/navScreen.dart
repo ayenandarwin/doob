@@ -7,7 +7,7 @@ import 'package:doob/Pages/Explore.dart';
 import 'package:doob/Pages/Home.dart';
 import 'package:doob/Pages/Homenew.dart';
 import 'package:doob/Pages/Library.dart';
-import 'package:doob/Pages/Premium.dart';
+import 'package:doob/Pages/premium/Premium.dart';
 import 'package:doob/utils/global.dart';
 import '../MusicPlayer/MusicPlayerNew.dart';
 
@@ -195,10 +195,16 @@ class _NaviScreenState extends State<NaviScreen>
             child: IndexedStack(
               index: naviController.currentIndex.value,
               children: [
-                HomeScreen(),
-                Explore(),
+                Visibility(
+                    visible: naviController.currentIndex.value == 0,
+                    child: HomeScreen()),
+                Visibility(
+                    visible: naviController.currentIndex.value == 1,
+                    child: Explore()),
                 // MusicPlayer(),
-                MusicPlayerNew(),
+                Visibility(
+                    visible: naviController.currentIndex.value == 2,
+                    child: MusicPlayerNew()),
                 // NotificationListener<ScrollUpdateNotification>(
                 //   onNotification: (scrollNotification) {
                 //     if (scrollNotification.scrollDelta!.isNegative) {
@@ -210,8 +216,12 @@ class _NaviScreenState extends State<NaviScreen>
                 //   },
                 //   child: MusicPlayerNew(),
                 // ),
-                Library(),
-                Premium(),
+                Visibility(
+                    visible: naviController.currentIndex.value == 3,
+                    child: Library()),
+                Visibility(
+                    visible: naviController.currentIndex.value == 4,
+                    child: Premium()),
               ],
             ),
           )),
