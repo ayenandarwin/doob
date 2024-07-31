@@ -103,7 +103,8 @@ class _PodcastState extends State<Podcast> {
                           .where((item) => item.type.toString() == 'podcast')
                           .toList();
 
-                      return ListView.builder(
+                      return 
+                      ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                           itemCount: podcasts.length,

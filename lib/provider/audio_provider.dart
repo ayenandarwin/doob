@@ -12,8 +12,10 @@ final downloadLocal = FutureProvider<SongList>((ref) async {
   final file = File(filePath);
   if (!await file.exists()) {
     final initialData = {
-      "success": true,
-      "downloads": []
+      "status": true,
+      "data": []
+      // "success": true,
+      // "downloads": []
     }; // Replace with your desired initial JSON data
     final jsonString = jsonEncode(initialData);
 

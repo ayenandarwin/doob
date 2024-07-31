@@ -6,6 +6,8 @@ import 'data_type.dart';
 @immutable
 abstract class ApiState extends DataType {
   get data => null;
+
+  when({required Widget Function(dynamic download) data, required CircularProgressIndicator Function() loading, required Text Function(dynamic error, dynamic stackTrace) error}) {}
 }
 
 class InitialState extends ApiState {}

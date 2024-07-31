@@ -410,7 +410,7 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                                           onTap: () async {
                                             //                final downloadBook = await ref
                                             // .read(audioDownloadProvider(audioBookId).future);
-                                            //if (songLists.status == true)
+                                            if (songLists.status == true)
                                               // {
                                               //   ref.read(profileDownload);
                                               // }
