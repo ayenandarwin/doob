@@ -62,75 +62,7 @@ class AudioDownload extends ConsumerWidget {
                   return
                       // Text  ( 'ok',  style: TextStyle(color: Colors.white),  );
                       Expanded(
-                    child:
-                        // ListView.builder(
-                        //       scrollDirection: Axis.vertical,
-                        //       shrinkWrap: true,
-                        //       itemCount:  download.data!.length,
-                        //       itemBuilder: (context, index) {
-                        //         final podcast = download.data![index];
-                        //         return InkWell(
-                        //           onTap: () async {},
-                        //           child: Padding(
-                        //             padding:
-                        //                 const EdgeInsets.symmetric(vertical: 10),
-                        //             child: Container(
-                        //               child: Row(
-                        //                 children: [
-                        //                   Container(
-                        //                     height: 70,
-                        //                     width: 70,
-                        //                     child: ClipRRect(
-                        //                       borderRadius:
-                        //                           BorderRadius.circular(8),
-                        //                       child: Image.network(
-                        //                         podcast.cover_photo!,
-                        //                         errorBuilder: (BuildContext context,
-                        //                             Object exception,
-                        //                             StackTrace? stackTrace) {
-                        //                           return Image.network(
-                        //                             'https://media.istockphoto.com/photos/music-picture-id535427404?k=6&m=535427404&s=612x612&w=0&h=en1c7qslpGsVRkrTUHPvBNmA61gPUXl_v8ABMgQoZPY=',
-                        //                           );
-                        //                         },
-                        //                         fit: BoxFit.cover,
-                        //                       ),
-                        //                     ),
-                        //                   ),
-                        //                   SizedBox(
-                        //                     width: 20,
-                        //                   ),
-                        //                   Expanded(
-                        //                     flex: 4,
-                        //                     child: Column(
-                        //                       crossAxisAlignment:
-                        //                           CrossAxisAlignment.start,
-                        //                       children: [
-                        //                         Text(
-                        //                           podcast.name.toString(),
-                        //                           style: TextStyle(
-                        //                               color: Colors.white,
-                        //                               fontFamily: "Century",
-                        //                               fontWeight: FontWeight.bold,
-                        //                               fontSize: 14),
-                        //                         ),
-                        //                         Text(
-                        //                           podcast.type.toString(),
-                        //                           style: TextStyle(
-                        //                               color: Color(0xff8A9A9D),
-                        //                               fontFamily: "Century",
-                        //                               fontSize: 12),
-                        //                         )
-                        //                       ],
-                        //                     ),
-                        //                   )
-                        //                 ],
-                        //               ),
-                        //             ),
-                        //           ),
-                        //         );
-                        //       })
-
-                        ListView.builder(
+                    child: ListView.builder(
                       // itemCount: download.data![0].audio!.length,
                       itemCount: download.data!.length,
                       itemBuilder: (context, index) {
@@ -147,7 +79,6 @@ class AudioDownload extends ConsumerWidget {
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    //  color: Colors.grey.withOpacity(0.2),
                                     spreadRadius: 5,
                                     blurRadius: 5,
                                     offset: const Offset(
@@ -167,15 +98,13 @@ class AudioDownload extends ConsumerWidget {
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: Image.network(
                                         download.data![index].cover_photo!,
-                                        //  height: 250.0,
-                                        // height:
 
                                         height: 70,
                                         //MediaQuery.of(context).size.height * 0.13,
                                         width: 70,
                                         // MediaQuery.of(context).size.width *
                                         //     0.21,
-                                        // width: 80.0,
+
                                         fit: BoxFit.cover,
                                         errorBuilder: (BuildContext context,
                                             Object exception,
@@ -198,17 +127,6 @@ class AudioDownload extends ConsumerWidget {
                                       ),
                                     ),
                                   ),
-
-                                  // Padding(
-                                  //   padding: const EdgeInsets.all(8.0),
-                                  //   child: ClipRRect(
-                                  //       borderRadius: BorderRadius.circular(8.0),
-                                  //       // ignore: unnecessary_null_comparison
-                                  //       child: const SizedBox(
-                                  //         height: 250.0,
-                                  //         width: 80.0,
-                                  //       )),
-                                  // ),
                                   const SizedBox(
                                     width: 10,
                                   ),
@@ -225,35 +143,11 @@ class AudioDownload extends ConsumerWidget {
                                             fontWeight: FontWeight.bold,
                                             fontSize: 14),
                                       ),
-
                                       SizedBox(
                                         height: 5,
                                       ),
                                       Row(
                                         children: [
-                                          // const Icon(
-                                          //   Icons.star_rounded,
-                                          //   color: Color(0xfff2ad70),
-                                          //   size: 15,
-                                          // ),
-                                          // const Icon(
-                                          //   Icons.star_rounded,
-                                          //   color: Color(0xfff2ad70),
-                                          //   size: 15,
-                                          // ),
-                                          // const Icon(
-                                          //   Icons.star_outline_rounded,
-                                          //   color: Color(0xfff2ad70),
-                                          //   size: 15,
-                                          // ),
-                                          // const Icon(
-                                          //   Icons.star_outline_rounded,
-                                          //   color: Color(0xfff2ad70),
-                                          //   size: 15,
-                                          // ),
-                                          // const SizedBox(
-                                          //   width: 10,
-                                          // ),
                                           Text(
                                             download.data![index].type
                                                 .toString(),
@@ -268,59 +162,6 @@ class AudioDownload extends ConsumerWidget {
                                       SizedBox(
                                         height: 5,
                                       ),
-                                      // Row(
-                                      //   mainAxisAlignment:
-                                      //       MainAxisAlignment.spaceBetween,
-                                      //   children: [
-                                      //     SizedBox(
-                                      //       height: 30,
-                                      //       child: TextButton(
-                                      //         style: ButtonStyle(
-                                      //           foregroundColor:
-                                      //               MaterialStateProperty.all<
-                                      //                   Color>(Colors.white),
-                                      //           backgroundColor:
-                                      //               MaterialStateProperty
-                                      //                   .all<Color>(const Color(
-                                      //                       0xffe5ffed)),
-                                      //           shape:
-                                      //               MaterialStateProperty.all<
-                                      //                   RoundedRectangleBorder>(
-                                      //             RoundedRectangleBorder(
-                                      //               borderRadius:
-                                      //                   BorderRadius.circular(
-                                      //                       8.0),
-                                      //               side: const BorderSide(
-                                      //                 color: Color(0xffe5ffed),
-                                      //               ),
-                                      //             ),
-                                      //           ),
-                                      //         ),
-                                      //         onPressed: () {},
-                                      //         child: const Text(
-                                      //           'Free Book',
-                                      //           style: TextStyle(
-                                      //             fontSize: 10,
-                                      //             fontWeight: FontWeight.normal,
-                                      //             fontFamily: 'Poppins',
-                                      //             color: Color(0xff0e8738),
-                                      //           ),
-                                      //         ),
-                                      //       ),
-                                      //     ),
-                                      //     const SizedBox(
-                                      //       width: 10,
-                                      //     ),
-                                      //     const SizedBox(
-                                      //       width: 125,
-                                      //     ),
-                                      //     const Icon(
-                                      //       Icons.favorite,
-                                      //       color: Colors.red,
-                                      //       size: 15,
-                                      //     ),
-                                      //   ],
-                                      // ),
                                     ],
                                   ),
                                 ],

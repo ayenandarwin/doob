@@ -16,8 +16,6 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
   Dio dio = Dio();
   double progress = 0.0;
 
-  
-
   void startDownloading() async {
     String? url = widget.urllink;
 
