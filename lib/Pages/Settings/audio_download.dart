@@ -27,7 +27,7 @@ class AudioDownload extends ConsumerWidget {
     print("Song list data : ${songLists}");
 
     //final downloadlocal1 = ref.watch(musicDetailProvider);
-    final downloadlocal = ref.watch(downloadLocal);
+    final downloadlocal = ref.watch(audioDownloadLocal);
     print('It is ok?');
     Future<String> _getFilePath() async {
       final dir = await getApplicationDocumentsDirectory();
@@ -36,10 +36,10 @@ class AudioDownload extends ConsumerWidget {
       return filePath;
     }
 
-    void someFunction() async {
-      final filePath = await _getFilePath();
-      print(filePath);
-    }
+    // void someFunction() async {
+    //   final filePath = await _getFilePath();
+    //   print(filePath);
+    // }
 
     return SafeArea(
       child: Scaffold(

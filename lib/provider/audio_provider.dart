@@ -5,7 +5,7 @@ import 'package:doob/Model/SongList/songlist.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 
-final downloadLocal = FutureProvider<SongList>((ref) async {
+final audioDownloadLocal = FutureProvider<SongList>((ref) async {
   final directory = await getApplicationDocumentsDirectory();
   final filePath = '${directory.path}/response.json';
 

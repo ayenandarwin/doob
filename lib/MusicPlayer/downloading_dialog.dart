@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 class DownloadingDialog extends StatefulWidget {
   final String? urllink;
   final String? file;
+  
   const DownloadingDialog({Key? key, this.urllink, this.file})
       : super(key: key);
 
@@ -22,7 +23,7 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
     String? fileName = '${widget.file}';
     print(url);
 
-    String path = await _getFilePath(fileName!);
+    String path = await _getFilePath(fileName);
 
     await dio.download(
       url!,

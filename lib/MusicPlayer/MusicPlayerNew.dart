@@ -249,7 +249,7 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
 
                               List<String> substrings = text.split('/');
 
-                            //  print("It is OK ${songLists.status} ");
+                              //  print("It is OK ${songLists.status} ");
                               print("It is OK 1 ${substrings[0]} ");
                               print("It is OK  2 ${substrings[1]} ");
                               print("It is OK 3 ${substrings[2]} ");
@@ -410,22 +410,21 @@ class _MusicPlayerNewState extends ConsumerState<MusicPlayerNew> {
                                           onTap: () async {
                                             //                final downloadBook = await ref
                                             // .read(audioDownloadProvider(audioBookId).future);
-                                            if (songLists.status == true)
-                                              // {
-                                              //   ref.read(profileDownload);
-                                              // }
+                                            // if (songLists.status == true)
+                                            // {
+                                            //   ref.read(profileDownload);
+                                            // }
 
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    DownloadingDialog(
-                                                  urllink:
-                                                      songLists[index].audio,
-                                                  file: audioFile,
-                                                  //    '${data.mp3Location}${data.audioBook!.mp3!.file}',
-                                                  // file: '${data.audioBook!.id}.mp3',
-                                                ),
-                                              );
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) =>
+                                                  DownloadingDialog(
+                                                urllink: songLists[index].audio,
+                                                file: audioFile,
+                                                //    '${data.mp3Location}${data.audioBook!.mp3!.file}',
+                                                // file: '${data.audioBook!.id}.mp3',
+                                              ),
+                                            );
                                           },
                                         ),
                                         Padding(

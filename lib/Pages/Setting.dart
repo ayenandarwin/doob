@@ -1,6 +1,7 @@
 import 'package:doob/Component/help&feedback.dart';
 import 'package:doob/Component/privacy&policy.dart';
 import 'package:doob/Pages/Settings/audio_download.dart';
+import 'package:doob/Pages/Settings/audio_download_files.dart';
 import 'package:doob/localization/controller/appLanguageController.dart';
 import 'package:doob/services/profileServiceProvider.dart';
 import 'package:doob/utils/global.dart';
@@ -160,7 +161,10 @@ class _SettingState extends State<Setting> {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.to(() => AudioDownload());
+                        // Get.to(() => AudioDownload());
+                        Get.to(() => AudioFileListScreen(
+                              subDir: "songs/mp3/",
+                            ));
                       },
                       child: Container(
                         padding: const EdgeInsets.all(20),

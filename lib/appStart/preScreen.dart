@@ -7,6 +7,7 @@ import 'package:doob/Pages/loginCopy.dart';
 import 'package:doob/appStart/navScreen.dart';
 import 'package:doob/utils/constants.dart';
 import 'package:doob/utils/global.dart';
+import 'package:doob/utils/permission_handler.dart';
 import 'package:doob/utils/sharedPreference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -85,7 +86,6 @@ class _PreScreenState extends State<PreScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      
                       Padding(
                         padding: const EdgeInsets.only(
                             top: 160.0, left: 15, right: 15),
@@ -93,7 +93,7 @@ class _PreScreenState extends State<PreScreen> {
                           height: MediaQuery.of(context).size.height * 0.1,
                         ),
                       ),
-                     
+
                       Container(
                         alignment: Alignment.center,
                         padding: const EdgeInsets.only(left: 10.0, right: 10),
@@ -153,7 +153,7 @@ class _PreScreenState extends State<PreScreen> {
       if (Global.isLogIn) {
         // Get.off(() => NaviScreen());
         fetchMyBalance();
-      } else  {
+      } else {
         // Get.off(() => LoginScreen());
         Get.to(() => Welcome());
       }
@@ -293,6 +293,7 @@ class _PreScreenState extends State<PreScreen> {
 
     Global.loginStatus();
     checkConnection();
+    PermissionHandler().requestPermissions();
   }
 
   @override
