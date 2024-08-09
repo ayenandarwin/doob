@@ -30,6 +30,12 @@ class SharedPref {
     return str;
   }
 
+  static Future<dynamic> getDynamicData(String key) async {
+    SharedPreferences shp = await SharedPreferences.getInstance();
+    dynamic data = shp.get(key);
+    return data;
+  }
+
   static Future<bool> setBoolForLoginUser({String? key, bool? value}) async {
     SharedPreferences shp = await SharedPreferences.getInstance();
     return shp.setBool(key!, value!);

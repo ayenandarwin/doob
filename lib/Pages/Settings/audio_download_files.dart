@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AudioFileListScreen extends StatefulWidget {
   final String subDir;
@@ -14,49 +16,17 @@ class AudioFileListScreen extends StatefulWidget {
 }
 
 class _AudioFileListScreenState extends State<AudioFileListScreen> {
-  late Future<List<Metadata>> _audioFiles;
+  List<dynamic> songList = [];
 
   @override
   void initState() {
     super.initState();
-    _audioFiles = _getAudioFiles(widget.subDir);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Audio Files in ${widget.subDir}'),
-      ),
-      body: FutureBuilder<List<Metadata>>(
-        future: _audioFiles,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No audio files found'));
-          } else {
-            final files = snapshot.data!;
-            return ListView.builder(
-              itemCount: files.length,
-              itemBuilder: (context, index) {
-                final file = files[index];
-                return ListTile(
-                  leading: file.albumArt != null
-                      ? Image.memory(file.albumArt!)
-                      : Icon(Icons.audiotrack),
-                  title: Text(file.trackName ?? 'Unknown Title'),
-                  subtitle: Text(
-                      '${file.albumArtistName ?? 'Unknown Artist'} - ${file.albumName ?? 'Unknown Album'}'),
-                );
-              },
-            );
-          }
-        },
-      ),
-    );
+  Future<List<String>?> _getData(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String>? stringList = await prefs.getStringList(key);
+    return stringList;
   }
 
   Future<List<Metadata>> _getAudioFiles(String subDir) async {
@@ -78,5 +48,44 @@ class _AudioFileListScreenState extends State<AudioFileListScreen> {
     }
 
     return audioFiles;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Audio Files in ${widget.subDir}'),
+      ),
+      body: FutureBuilder<List<String>?>(
+        future: _getData('musiclocaldata'),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No audio files found'));
+          } else {
+            final files = snapshot.data!;
+            List<dynamic> song = files.map((e) => jsonDecode(e)).toList();
+            print(song);
+            print('get data');
+            return ListView.builder(
+              itemCount: song.length,
+              itemBuilder: (context, index) {
+                final audio = song[index];
+                return ListTile(
+                  leading: audio['cover_photo'] != null
+                      ? Image.network(audio['cover_photo'])
+                      : Icon(Icons.audiotrack),
+                  title: Text(audio['name'] ?? 'Unknown Title'),
+                  subtitle: Text('${audio['type'] ?? 'Unknown Artis'}'),
+                );
+              },
+            );
+          }
+        },
+      ),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:comment_box/comment/comment.dart';
+import 'package:doob/Component/playerButton.dart';
 import 'package:doob/MusicPlayer/Pause.dart';
 import 'package:doob/MusicPlayer/downloading_dialog.dart';
 import 'package:doob/MusicPlayer/videoplayer.dart';
@@ -9,10 +10,16 @@ import "package:doob/Controller/navController.dart";
 import 'package:doob/src/data/repositories/delight_repo/delight_repository.dart';
 import 'package:doob/src/data/repositories/music_repo/comment_repository.dart';
 import 'package:doob/src/data/repositories/music_repo/like_count_repository.dart';
+import 'package:doob/src/data/repositories/music_repo/music_repository.dart';
+import 'package:doob/src/domain/state/api_state.dart';
 import 'package:doob/src/presentation/widgets/comment/cmt_widget.dart';
 import 'package:doob/src/providers/delight_provider/delight_provider.dart';
 import 'package:doob/src/providers/music_provider/comment_provider.dart';
 import 'package:doob/src/providers/music_provider/like_count_provider.dart';
+import 'package:doob/src/providers/music_provider/music_provider.dart';
+import 'package:doob/src/providers/wave_icon_provider/wave_icon_provider.dart';
+import 'package:doob/widgets/common/music_background_image.dart';
+import 'package:doob/widgets/common/option.dart';
 import 'package:doob/widgets/music_player/follow/follow_audio_detail.dart';
 import 'package:doob/widgets/music_player/taps/delight_fine.dart';
 import 'package:doob/widgets/music_player/taps/delight_ok.dart';
@@ -28,13 +35,7 @@ import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
 import 'package:share_plus/share_plus.dart';
-import '../Component/playerButton.dart';
-import '../src/data/repositories/music_repo/music_repository.dart';
-import '../src/domain/state/api_state.dart';
-import '../src/providers/music_provider/music_provider.dart';
-import '../src/providers/wave_icon_provider/wave_icon_provider.dart';
-import '../widgets/common/music_background_image.dart';
-import '../widgets/common/option.dart';
+
 import 'package:http/http.dart' as http;
 
 final musicDetailProvider =
